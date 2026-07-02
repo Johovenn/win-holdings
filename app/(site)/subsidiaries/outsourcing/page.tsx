@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 import {
     BadgeCheck,
@@ -10,7 +9,6 @@ import {
     Globe2,
     Hammer,
     Handshake,
-    Mail,
     PackageCheck,
     ShieldCheck,
     ShoppingBag,
@@ -19,6 +17,8 @@ import {
     Utensils,
     Wrench,
 } from "lucide-react";
+import Image from "next/image";
+import ButtonLink from "@/app/components/ui/ButtonLink";
 
 type OverviewCard = {
     label: string;
@@ -220,9 +220,9 @@ function HeroSection() {
     return (
         <section className="relative overflow-hidden bg-stone-50 py-24 lg:py-32">
             <div
-                className="absolute inset-0 bg-cover bg-center opacity-20 grayscale"
+                className="absolute inset-0 bg-cover bg-center opacity-100 grayscale"
                 style={{
-                    backgroundImage: "url('/images/wls-hero.jpg')",
+                    backgroundImage: "url('/images/subsidiaries-outsourcing.jpeg')",
                 }}
             />
             <div className="absolute inset-0 bg-linear-to-r from-stone-50 via-stone-50/90 to-stone-50/30" />
@@ -503,33 +503,32 @@ function CapabilityCard({ capability }: { capability: Capability }) {
 
 function CTASection() {
     return (
-        <section className="relative overflow-hidden bg-neutral-950 py-24 text-white">
-            <div
-                className="absolute inset-0 bg-cover bg-center opacity-10"
-                style={{
-                    backgroundImage: "url('/images/wls-cta.jpg')",
-                }}
+        <section className="relative overflow-hidden bg-neutral-800 py-12 text-stone-50">
+            <Image
+                src="/images/cta-bg.jpeg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
             />
 
-            <SectionContainer className="relative flex flex-col items-center text-center">
-                <h2 className="max-w-4xl text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+            <div className="absolute inset-0 bg-neutral-950/70" />
+
+            <SectionContainer className="relative z-10 flex flex-col items-center text-center">
+                <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
                     Source Reliable Construction and Industrial Materials with WLS
                 </h2>
 
-                <p className="mt-5 max-w-2xl text-base leading-7 text-white/80">
+                <p className="mt-6 max-w-2xl text-lg leading-7 text-stone-50/80">
                     Connect with our procurement specialists to discuss your next
-                    project’s material, machinery, packaging, or site-supply
+                    project&apost;s material, machinery, packaging, or site-supply
                     requirements.
                 </p>
 
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                    <Link
-                        href="/contact"
-                        className="inline-flex items-center justify-center rounded-lg bg-orange-600 px-10 py-4 text-base font-medium text-white shadow-xl shadow-orange-600/20 transition-colors hover:bg-orange-700"
-                    >
-                        <Mail className="mr-2 h-5 w-5" />
+                    <ButtonLink href="/contact" variant="orange">
                         Contact Us
-                    </Link>
+                    </ButtonLink>
                 </div>
             </SectionContainer>
         </section>

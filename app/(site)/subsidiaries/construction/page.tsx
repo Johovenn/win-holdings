@@ -6,13 +6,14 @@ import {
     Factory,
     Globe2,
     HardHat,
-    Mail,
     MapPin,
     PackageCheck,
     ShieldCheck,
     Users,
     Wrench,
 } from "lucide-react";
+import Image from "next/image";
+import ButtonLink from "@/app/components/ui/ButtonLink";
 
 type Stat = {
     value: string;
@@ -291,7 +292,7 @@ function HeroSection() {
                             className="h-80 bg-cover bg-center"
                             style={{
                                 backgroundImage:
-                                    "linear-gradient(rgba(15,23,42,0.08), rgba(15,23,42,0.08)), url('/images/icg-hero.jpg')",
+                                    "linear-gradient(rgba(15,23,42,0.08), rgba(15,23,42,0.08)), url('/images/subsidiaries-construction.jpeg')",   
                             }}
                         />
 
@@ -706,25 +707,31 @@ function AdvantageCard({ advantage }: { advantage: Advantage }) {
 
 function CTASection() {
     return (
-        <section className="bg-slate-950 py-20 text-white">
-            <SectionContainer className="flex flex-col items-center text-center">
-                <h2 className="max-w-5xl text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+        <section className="relative overflow-hidden bg-neutral-800 py-12 text-stone-50">
+            <Image
+                src="/images/cta-bg.jpeg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-neutral-950/70" />
+
+            <SectionContainer className="relative z-10 flex flex-col items-center text-center">
+                <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
                     Build Large-Scale Industrial Projects with ICG
                 </h2>
 
-                <p className="mt-5 max-w-3xl text-lg leading-8 text-white/70">
+                <p className="mt-6 max-w-2xl text-lg leading-7 text-stone-50/80">
                     Connecting global engineering standards with Indonesian
                     industrial potential for a sustainable future.
                 </p>
 
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                    <Link
-                        href="/contact"
-                        className="inline-flex items-center justify-center rounded-xl bg-orange-600 px-10 py-4 text-base font-medium text-white shadow-xl shadow-orange-600/20 transition-colors hover:bg-orange-700"
-                    >
-                        <Mail className="mr-2 h-5 w-5" />
-                        Contact WIN Holdings
-                    </Link>
+                    <ButtonLink href="/contact" variant="orange">
+                        Contact Us
+                    </ButtonLink>
                 </div>
             </SectionContainer>
         </section>

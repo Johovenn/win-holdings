@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import {
-    ArrowRight,
     Building2,
     Factory,
     Landmark,
@@ -10,6 +9,7 @@ import {
     Store,
     Users,
 } from "lucide-react";
+import Image from "next/image";
 
 type OrgNode = {
     title: string;
@@ -568,13 +568,19 @@ function BusinessUnitGovernanceSection() {
 
 function CTASection() {
     return (
-        <section className="bg-neutral-800 py-12 text-stone-50">
-            <SectionContainer className="flex flex-col items-center text-center">
-                <p className="text-sm font-semibold uppercase tracking-widest text-orange-500">
-                    Governance & Structure
-                </p>
+        <section className="relative overflow-hidden bg-neutral-800 py-12 text-stone-50">
+            <Image
+                src="/images/cta-bg.jpeg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
 
-                <h2 className="mt-3 text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+            <div className="absolute inset-0 bg-neutral-950/70" />
+
+            <SectionContainer className="relative z-10 flex flex-col items-center text-center">
+                <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
                     Driven by Structure, Led by Experience
                 </h2>
 
@@ -584,12 +590,7 @@ function CTASection() {
                 </p>
 
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                    <ButtonLink href="/subsidiaries">
-                        Explore Our Subsidiaries
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                    </ButtonLink>
-
-                    <ButtonLink href="/contact" variant="outline-light">
+                    <ButtonLink href="/contact" variant="orange">
                         Contact Us
                     </ButtonLink>
                 </div>

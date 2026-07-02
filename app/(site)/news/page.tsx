@@ -11,6 +11,8 @@ import {
     Tag,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
+import Image from "next/image";
+import ButtonLink from "@/app/components/ui/ButtonLink";
 
 type News = {
     id: string;
@@ -452,29 +454,33 @@ function Pagination() {
 
 function CTASection() {
     return (
-        <section className="bg-neutral-950 py-24 text-white lg:py-32">
-            <SectionContainer className="flex flex-col items-center text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-orange-600/10 text-orange-500">
-                    <Newspaper className="h-8 w-8" />
-                </div>
+        <section className="relative overflow-hidden bg-neutral-800 py-12 text-stone-50">
+            <Image
+                src="/images/cta-bg.jpeg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
 
-                <h2 className="mt-8 text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+            <div className="absolute inset-0 bg-neutral-950/70" />
+
+            <SectionContainer className="relative z-10 flex flex-col items-center text-center">
+                <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
                     Stay Connected with WIN Holdings
                 </h2>
 
-                <p className="mt-4 max-w-2xl text-base leading-7 text-white/70">
+                <p className="mt-6 max-w-2xl text-lg leading-7 text-stone-50/80">
                     Follow our latest updates, business activities, and corporate
                     announcements as we continue building sustainable growth across
                     multiple industries.
                 </p>
 
-                <Link
-                    href="/contact"
-                    className="mt-10 inline-flex items-center justify-center rounded-lg bg-orange-600 px-10 py-4 text-base font-semibold text-white shadow-xl transition-colors hover:bg-orange-700"
-                >
-                    Contact Us
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
+                <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                    <ButtonLink href="/contact" variant="orange">
+                        Contact Us
+                    </ButtonLink>
+                </div>
             </SectionContainer>
         </section>
     );

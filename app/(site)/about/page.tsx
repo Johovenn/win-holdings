@@ -14,6 +14,7 @@ import {
     TrendingUp,
     Users,
 } from "lucide-react";
+import Image from "next/image";
 
 type ValueCard = {
     title: string;
@@ -173,17 +174,19 @@ function ButtonLink({
         </Link>
     );
 }
-
 function WhoWeAreSection() {
     return (
         <section className="bg-white py-12">
             <SectionContainer className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-                <div
-                    className="h-80 overflow-hidden rounded-xl bg-stone-300 bg-cover bg-center shadow-md"
-                    style={{
-                        backgroundImage: "url('/images/about-boardroom.jpg')",
-                    }}
-                />
+                <div className="relative h-80 overflow-hidden rounded-xl bg-stone-300 shadow-md">
+                    <Image
+                        src="/images/about-hero.jpeg"
+                        alt="WIN Holdings boardroom and business discussion"
+                        fill
+                        sizes="(min-width: 1024px) 50vw, 100vw"
+                        className="object-cover"
+                    />
+                </div>
 
                 <div>
                     <h1 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
@@ -413,8 +416,18 @@ function TimelineRow({ item }: { item: TimelineItem }) {
 
 function CTASection() {
     return (
-        <section className="bg-neutral-800 py-12 text-stone-50">
-            <SectionContainer className="flex flex-col items-center text-center">
+        <section className="relative overflow-hidden bg-neutral-800 py-12 text-stone-50">
+            <Image
+                src="/images/cta-bg.jpeg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-neutral-950/70" />
+
+            <SectionContainer className="relative z-10 flex flex-col items-center text-center">
                 <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
                     Building Stronger Businesses Together
                 </h2>
@@ -425,9 +438,7 @@ function CTASection() {
                 </p>
 
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                    <ButtonLink href="/subsidiaries">Explore Our Subsidiaries</ButtonLink>
-
-                    <ButtonLink href="/contact" variant="outline-light">
+                    <ButtonLink href="/contact" variant="orange">
                         Contact Us
                     </ButtonLink>
                 </div>

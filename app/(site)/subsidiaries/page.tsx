@@ -4,14 +4,14 @@ import {
     ArrowUpRight,
     Factory,
     Hammer,
-    Handshake,
-    ImageIcon,
     Network,
     Target,
     TrendingUp,
     Truck,
     Users,
 } from "lucide-react";
+import Image from "next/image";
+import ButtonLink from "@/app/components/ui/ButtonLink";
 
 type Subsidiary = {
     name: string;
@@ -22,6 +22,8 @@ type Subsidiary = {
     websiteUrl: string;
     icon: ReactNode;
     imageSide: "left" | "right";
+    imageSrc: string;
+    imageAlt: string;
 };
 
 type SynergyCard = {
@@ -29,7 +31,6 @@ type SynergyCard = {
     description: string;
     icon: ReactNode;
 };
-
 const subsidiaries: Subsidiary[] = [
     {
         name: "3C Paint",
@@ -41,39 +42,47 @@ const subsidiaries: Subsidiary[] = [
         websiteUrl: "https://3c-paint.vercel.app/",
         icon: <Factory className="h-6 w-6" />,
         imageSide: "right",
+        imageSrc: "/images/subsidiaries-manufacture.jpg",
+        imageAlt: "3C Paint manufacturing and coating production facility",
     },
     {
         name: "WLS Trust International",
         industry: "Outsourcing",
-        shortDescription: "Comprehensive workforce and operational support services.",
+        shortDescription: "Construction materials and industrial supply solutions.",
         description:
-            "WLS provides essential workforce solutions and operational support services, enabling businesses to scale efficiently. From talent management to business process optimization, we provide the human capital and logistics required for success.",
+            "WLS Trust International supplies construction materials, industrial products, machinery, packaging, and operational goods for project-based business needs. The company supports domestic and international customers with reliable procurement and distribution capabilities.",
         websiteLabel: "Learn more",
         websiteUrl: "/subsidiaries/outsourcing",
-        icon: <Users className="h-6 w-6" />,
+        icon: <Truck className="h-6 w-6" />,
         imageSide: "left",
+        imageSrc: "/images/subsidiaries-outsourcing.jpeg",
+        imageAlt: "WLS Trust International construction and industrial material supply",
     },
     {
         name: "Indosino Sukses Bersama",
         industry: "Trading",
-        shortDescription: "Global supply chain and distribution network management.",
+        shortDescription: "Professional manpower and outsourcing support services.",
         description:
-            "Our trading arm manages critical supply chains, distribution networks, and commercial activities globally. We connect producers with key markets through a resilient logistics framework and strategic international partnerships.",
+            "Indosino Sukses Bersama provides human resources, outsourcing, and manpower support for industrial and foreign-invested projects across Indonesia. The company helps businesses operate efficiently through reliable workforce solutions and business support services.",
         websiteLabel: "Learn more",
         websiteUrl: "/subsidiaries/trading",
-        icon: <Truck className="h-6 w-6" />,
+        icon: <Users className="h-6 w-6" />,
         imageSide: "right",
+        imageSrc: "/images/subsidiaries-trading.jpeg",
+        imageAlt: "Indosino Sukses Bersama professional HR outsourcing team",
     },
     {
         name: "Indosino Construction Group",
         industry: "Construction",
-        shortDescription: "Infrastructure development and building excellence.",
+        shortDescription: "Industrial construction and engineering project execution.",
         description:
-            "ICG is dedicated to building the future through innovative construction and infrastructure projects. We specialize in high-quality building development, commercial spaces, and urban planning projects that stand the test of time.",
+            "Indosino Construction Group focuses on industrial engineering, construction, commissioning, and production-line support for large-scale projects. The company supports complex industrial development across key operational regions in Indonesia.",
         websiteLabel: "Learn more",
         websiteUrl: "/subsidiaries/construction",
         icon: <Hammer className="h-6 w-6" />,
         imageSide: "left",
+        imageSrc: "/images/subsidiaries-construction.jpeg",
+        imageAlt: "Indosino Construction Group industrial engineering and construction project",
     },
 ];
 
@@ -120,33 +129,6 @@ function SectionContainer({
         <div className={`mx-auto w-full max-w-7xl px-6 lg:px-16 ${className}`}>
             {children}
         </div>
-    );
-}
-
-function ButtonLink({
-    href,
-    children,
-    variant = "orange",
-    className = "",
-}: {
-    href: string;
-    children: ReactNode;
-    variant?: "orange" | "outline";
-    className?: string;
-}) {
-    const variants = {
-        orange: "bg-orange-600 text-white shadow-lg hover:bg-orange-700",
-        outline:
-            "border border-neutral-300 bg-white text-neutral-950 hover:border-orange-600 hover:text-orange-600",
-    };
-
-    return (
-        <Link
-            href={href}
-            className={`inline-flex items-center justify-center rounded-lg px-8 py-4 text-base transition-colors ${variants[variant]} ${className}`}
-        >
-            {children}
-        </Link>
     );
 }
 
@@ -212,17 +194,19 @@ function SubsidiarySections() {
         </section>
     );
 }
-
 function SubsidiaryDetailSection({
     subsidiary,
 }: {
     subsidiary: Subsidiary;
 }) {
     const imageFirst = subsidiary.imageSide === "left";
+    const isExternalLink = subsidiary.websiteUrl.startsWith("http");
 
     return (
         <section className="grid items-center gap-12 lg:grid-cols-2">
-            {imageFirst ? <SubsidiaryImage /> : null}
+            {imageFirst ? (
+                <SubsidiaryImage subsidiary={subsidiary} />
+            ) : null}
 
             <div className={imageFirst ? "lg:pl-6" : "lg:pr-6"}>
                 <p className="text-sm font-bold uppercase tracking-wider text-orange-600">
@@ -239,8 +223,8 @@ function SubsidiaryDetailSection({
 
                 <Link
                     href={subsidiary.websiteUrl}
-                    target="_blank"
-                    rel="noreferrer"
+                    target={isExternalLink ? "_blank" : undefined}
+                    rel={isExternalLink ? "noreferrer" : undefined}
                     className="mt-8 inline-flex items-center gap-2 text-base font-semibold text-orange-600 transition-colors hover:text-orange-700"
                 >
                     {subsidiary.websiteLabel}
@@ -248,17 +232,29 @@ function SubsidiaryDetailSection({
                 </Link>
             </div>
 
-            {!imageFirst ? <SubsidiaryImage /> : null}
+            {!imageFirst ? (
+                <SubsidiaryImage subsidiary={subsidiary} />
+            ) : null}
         </section>
     );
 }
 
-function SubsidiaryImage() {
+function SubsidiaryImage({
+    subsidiary,
+}: {
+    subsidiary: Subsidiary;
+}) {
     return (
-        <div className="overflow-hidden rounded-xl border border-neutral-300 bg-stone-200 p-px shadow-sm">
-            <div className="flex h-80 items-center justify-center rounded-xl bg-stone-300 text-neutral-500">
-                <ImageIcon className="h-6 w-6" />
-            </div>
+        <div className="relative h-80 overflow-hidden rounded-xl border border-neutral-300 bg-stone-200 shadow-sm md:h-96">
+            <Image
+                src={subsidiary.imageSrc}
+                alt={subsidiary.imageAlt}
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover transition-transform duration-500 hover:scale-105"
+            />
+
+            <div className="absolute inset-0 bg-neutral-950/10" />
         </div>
     );
 }
@@ -311,31 +307,31 @@ function GroupSynergySection() {
 
 function CTASection() {
     return (
-        <section className="relative overflow-hidden bg-stone-50 py-16">
-            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-stone-100" />
+        <section className="relative overflow-hidden bg-neutral-800 py-12 text-stone-50">
+            <Image
+                src="/images/cta-bg.jpeg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
 
-            <SectionContainer className="relative flex justify-center">
-                <div className="w-full max-w-3xl rounded-3xl border border-neutral-300 bg-white p-8 text-center shadow-sm md:p-16">
-                    <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-orange-600/10 text-orange-600">
-                        <Handshake className="h-8 w-8" />
-                    </div>
+            <div className="absolute inset-0 bg-neutral-950/70" />
 
-                    <h2 className="mt-8 text-4xl font-bold leading-tight tracking-tight text-neutral-950 md:text-5xl">
-                        Explore Opportunities with WIN Holdings
-                    </h2>
+            <SectionContainer className="relative z-10 flex flex-col items-center text-center">
+                <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+                    Explore Opportunities with WIN Holdings
+                </h2>
 
-                    <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-neutral-600">
-                        Connect with WIN Holdings to learn more about our subsidiaries,
+                <p className="mt-6 max-w-2xl text-lg leading-7 text-stone-50/80">
+                    Connect with WIN Holdings to learn more about our subsidiaries,
                         business portfolio, and partnership opportunities.
-                    </p>
+                </p>
 
-                    <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-                        <ButtonLink href="/contact">Contact Us</ButtonLink>
-
-                        <ButtonLink href="/news" variant="outline">
-                            View News & Info
-                        </ButtonLink>
-                    </div>
+                <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                    <ButtonLink href="/contact" variant="orange">
+                        Contact Us
+                    </ButtonLink>
                 </div>
             </SectionContainer>
         </section>

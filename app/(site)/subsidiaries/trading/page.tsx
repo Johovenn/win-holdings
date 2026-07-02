@@ -1,21 +1,18 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 import {
-    ArrowRight,
     BriefcaseBusiness,
     CheckCircle2,
     ClipboardList,
-    FileText,
     Globe2,
     Handshake,
-    Mail,
     MapPin,
-    Phone,
     ShieldCheck,
     Sparkles,
     Target,
     Users,
 } from "lucide-react";
+import Image from "next/image";
+import ButtonLink from "@/app/components/ui/ButtonLink";
 
 type OverviewItem = {
     title: string;
@@ -158,7 +155,6 @@ export default function IndosinoPage() {
             <OperationalStructureSection />
             <WhyChooseUsSection />
             <ClientsSection />
-            <CompanyProfileSection />
             <CTASection />
         </main>
     );
@@ -481,96 +477,32 @@ function ClientsSection() {
     );
 }
 
-function CompanyProfileSection() {
-    return (
-        <section className="bg-stone-50 py-16">
-            <SectionContainer>
-                <div className="overflow-hidden rounded-2xl border border-neutral-300 bg-white shadow-sm">
-                    <div className="grid lg:grid-cols-[22rem_minmax(0,1fr)]">
-                        <div className="flex min-h-72 items-center justify-center bg-stone-200 p-12">
-                            <FileText className="h-20 w-20 text-orange-300" />
-                        </div>
-
-                        <div className="p-8 lg:p-12">
-                            <h2 className="text-2xl font-semibold tracking-tight text-slate-800">
-                                Detailed Company Profile
-                            </h2>
-
-                            <p className="mt-4 max-w-2xl text-base leading-7 text-neutral-600">
-                                Learn more about Indosino’s organizational structure,
-                                compliance certifications, and comprehensive project
-                                history. Open the official company profile to understand
-                                how the company can support industrial workforce needs.
-                            </p>
-
-                            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                                <Link
-                                    href="/documents/indosino-company-profile.pdf"
-                                    target="_blank"
-                                    className="inline-flex items-center justify-center rounded-lg bg-slate-800 px-6 py-4 text-base font-bold text-white transition-colors hover:bg-slate-900"
-                                >
-                                    <FileText className="mr-2 h-5 w-5" />
-                                    Open Company Profile
-                                </Link>
-
-                                <Link
-                                    href="mailto:indosino.sukses.bersama@gmail.com"
-                                    className="inline-flex items-center justify-center rounded-lg border border-slate-800 px-6 py-4 text-base font-bold text-slate-800 transition-colors hover:bg-slate-800 hover:text-white"
-                                >
-                                    Request More Information
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </SectionContainer>
-        </section>
-    );
-}
-
 function CTASection() {
     return (
-        <section className="bg-linear-to-br from-slate-800 to-slate-950 py-16 text-white">
-            <SectionContainer className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_18rem]">
-                <div>
-                    <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-                        Build Reliable Workforce Operations with Indosino
-                    </h2>
+        <section className="relative overflow-hidden bg-neutral-800 py-12 text-stone-50">
+            <Image
+                src="/images/cta-bg.jpeg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
 
-                    <div className="mt-5 flex flex-col gap-3 text-base text-white/80 sm:flex-row sm:items-center sm:gap-8">
-                        <Link
-                            href="mailto:indosino.sukses.bersama@gmail.com"
-                            className="inline-flex items-center gap-2 transition-colors hover:text-orange-400"
-                        >
-                            <Mail className="h-5 w-5 text-orange-400" />
-                            indosino.sukses.bersama@gmail.com
-                        </Link>
+            <div className="absolute inset-0 bg-neutral-950/70" />
 
-                        <Link
-                            href="tel:081389164450"
-                            className="inline-flex items-center gap-2 transition-colors hover:text-orange-400"
-                        >
-                            <Phone className="h-5 w-5 text-orange-400" />
-                            0813 8916 4450
-                        </Link>
-                    </div>
-                </div>
+            <SectionContainer className="relative z-10 flex flex-col items-center text-center">
+                <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+                    Reliable Trading Partner for Industrial Growth
+                </h2>
 
-                <div className="flex flex-col gap-4">
-                    <Link
-                        href="mailto:indosino.sukses.bersama@gmail.com"
-                        className="inline-flex items-center justify-center rounded-lg bg-orange-500 px-6 py-4 text-base font-bold text-white transition-colors hover:bg-orange-600"
-                    >
-                        Email Indosino
-                    </Link>
+                <p className="mt-6 max-w-2xl text-lg leading-7 text-stone-50/80">
+                    Connecting businesses with trusted supply solutions across construction materials, industrial products, machinery, packaging, and operational needs.
+                </p>
 
-                    <Link
-                        href="/contact"
-                        className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/10 px-6 py-4 text-base font-bold text-white transition-colors hover:border-white/50 hover:bg-white/15"
-                    >
-                        Contact WIN Holdings
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
+                <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                    <ButtonLink href="/contact" variant="orange">
+                        Contact Us
+                    </ButtonLink>
                 </div>
             </SectionContainer>
         </section>

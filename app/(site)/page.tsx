@@ -11,6 +11,7 @@ import {
   TrendingUp,
   Users,
 } from "lucide-react";
+import Image from "next/image";
 
 type Highlight = {
   title: string;
@@ -204,7 +205,16 @@ function HeroSection() {
         <div className="relative">
           <div className="absolute -right-12 -top-12 h-64 w-64 rounded-full bg-orange-600/10 blur-3xl" />
 
-          <PlaceholderBlock className="relative h-96 overflow-hidden shadow-2xl" />
+            <div className="relative h-96 overflow-hidden rounded-2xl shadow-2xl">
+                <Image
+                    src="/images/landing-hero.jpeg"
+                    alt="WIN Holdings business and industrial operations"
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                />
+            </div>
 
           <div className="absolute -bottom-6 left-4 rounded-xl border border-neutral-200/50 bg-white/80 p-6 shadow-xl backdrop-blur-md md:-left-6">
             <div className="flex items-center gap-4">
@@ -415,25 +425,38 @@ function LatestNews() {
     </section>
   );
 }
-
 function CareerSection() {
-  return (
-    <section className="bg-neutral-950 py-12 text-white">
-      <SectionContainer className="flex flex-col items-center text-center">
-        <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-          Grow Your Career With Us
-        </h2>
+    return (
+        <section className="relative overflow-hidden bg-neutral-950 py-12 text-white">
+            <Image
+                src="/images/cta-bg.jpeg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
 
-        <p className="mt-4 max-w-2xl text-lg leading-7 text-neutral-300">
-          Be part of a dynamic team driving change across multiple industries.
-          We offer a culture of continuous learning, professional growth, and
-          global opportunities.
-        </p>
+            <div className="absolute inset-0 bg-neutral-950/75" />
 
-        <PrimaryLink href="/career" variant="orange" className="mt-8 rounded-2xl px-12 py-5">
-          Explore Career Opportunities
-        </PrimaryLink>
-      </SectionContainer>
-    </section>
-  );
+            <SectionContainer className="relative z-10 flex flex-col items-center text-center">
+                <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+                    Grow Your Career With Us
+                </h2>
+
+                <p className="mt-4 max-w-2xl text-lg leading-7 text-neutral-300">
+                    Be part of a dynamic team driving change across multiple industries.
+                    We offer a culture of continuous learning, professional growth, and
+                    global opportunities.
+                </p>
+
+                <PrimaryLink
+                    href="/career"
+                    variant="orange"
+                    className="mt-8 rounded-2xl px-12 py-5"
+                >
+                    Explore Career Opportunities
+                </PrimaryLink>
+            </SectionContainer>
+        </section>
+    );
 }
