@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import Image from "next/image";
+import CareerApplicationButton from "@/app/components/career/CareerApplicationButton";
 
 type Career = {
     id: string;
@@ -31,6 +32,8 @@ type SearchParams = {
     q?: string;
     department?: string;
     location?: string;
+    success?: string;
+    error?: string;
 };
 
 type BenefitCard = {
@@ -153,6 +156,12 @@ export default async function CareersPage({
     return (
         <main className="min-h-screen bg-stone-50 text-neutral-950">
             <WhyJoinUsSection />
+
+            <ApplicationStatusMessage
+                success={params.success}
+                error={params.error}
+            />
+
             <OpenOpportunitiesSection
                 careers={filteredCareers}
                 departments={departments}
@@ -165,6 +174,63 @@ export default async function CareersPage({
             <TalentPoolCTASection />
         </main>
     );
+}
+
+function ApplicationStatusMessage({
+    success,
+    error,
+}: {
+    success?: string;
+    error?: string;
+}) {
+    const successMessage = getSuccessMessage(success);
+    const errorMessage = getErrorMessage(error);
+
+    if (!successMessage && !errorMessage) {
+        return null;
+    }
+
+    return (
+        <section className="bg-white py-6">
+            <SectionContainer>
+                {successMessage ? (
+                    <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm font-medium text-green-700">
+                        {successMessage}
+                    </div>
+                ) : null}
+
+                {errorMessage ? (
+                    <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+                        {errorMessage}
+                    </div>
+                ) : null}
+            </SectionContainer>
+        </section>
+    );
+}
+
+function getSuccessMessage(success?: string) {
+    if (success === "application_submitted") {
+        return "Your application has been submitted successfully.";
+    }
+
+    return null;
+}
+
+function getErrorMessage(error?: string) {
+    if (error === "missing_application_fields") {
+        return "Please fill in your full name and email address.";
+    }
+
+    if (error === "invalid_email") {
+        return "Please enter a valid email address.";
+    }
+
+    if (error === "application_failed") {
+        return "Failed to submit your application. Please try again.";
+    }
+
+    return null;
 }
 
 async function getCareers(): Promise<Career[]> {
@@ -269,8 +335,18 @@ function ButtonLink({
 
 function WhyJoinUsSection() {
     return (
-        <section className="bg-white py-24 lg:py-32">
-            <SectionContainer>
+        <section className="relative overflow-hidden bg-white py-24 lg:py-32">
+            <Image
+                src="/images/career-bg.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-white/70" />
+
+            <SectionContainer className="relative z-10">
                 <div className="text-center">
                     <h1 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
                         Why Work at WIN Holdings?
@@ -286,7 +362,7 @@ function WhyJoinUsSection() {
                     {benefits.map((benefit) => (
                         <article
                             key={benefit.title}
-                            className="rounded-xl border border-neutral-300 bg-white p-6 shadow-sm"
+                            className="rounded-xl border border-neutral-300 bg-white/90 p-6 shadow-sm backdrop-blur-sm"
                         >
                             <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-orange-600/10 text-orange-600">
                                 {benefit.icon}
@@ -459,12 +535,11 @@ function CareerCard({ career }: { career: Career }) {
             </p>
 
             <div className="mt-auto pt-6">
-                <Link
-                    href={`/career/${career.slug}`}
-                    className="inline-flex w-full items-center justify-center rounded-lg bg-orange-600 px-5 py-3 text-base font-medium text-white transition-colors hover:bg-orange-700"
-                >
-                    Apply Now
-                </Link>
+                <CareerApplicationButton
+                    careerId={career.id}
+                    careerSlug={career.slug}
+                    careerTitle={career.title}
+                />
             </div>
         </article>
     );

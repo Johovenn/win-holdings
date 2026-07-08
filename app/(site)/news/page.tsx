@@ -7,7 +7,6 @@ import {
     ChevronRight,
     FileText,
     Newspaper,
-    Search,
     Tag,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
@@ -178,9 +177,20 @@ function SectionContainer({
 function HeroSection() {
     return (
         <section className="relative overflow-hidden bg-white py-24 lg:py-32">
+            <Image
+                src="/images/news-bg.jpg"
+                alt=""
+                fill
+                priority
+                sizes="100vw"
+                className="object-fill"
+            />
+
+            <div className="absolute inset-0 bg-white/70" />
+
             <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-orange-600/10 blur-3xl" />
 
-            <SectionContainer className="relative text-center">
+            <SectionContainer className="relative z-10 text-center">
                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-orange-600/10 text-orange-600">
                     <Newspaper className="h-8 w-8" />
                 </div>
@@ -201,9 +211,6 @@ function HeroSection() {
 function NewsListSection({
     featuredNews,
     news,
-    categories,
-    selectedCategory,
-    searchQuery,
 }: {
     featuredNews: News | null;
     news: News[];
@@ -225,12 +232,6 @@ function NewsListSection({
                             corporate activities.
                         </p>
                     </div>
-
-                    <NewsFilters
-                        categories={categories}
-                        selectedCategory={selectedCategory}
-                        searchQuery={searchQuery}
-                    />
                 </div>
 
                 {featuredNews ? (
@@ -250,52 +251,6 @@ function NewsListSection({
                 {(featuredNews || news.length > 0) ? <Pagination /> : null}
             </SectionContainer>
         </section>
-    );
-}
-
-function NewsFilters({
-    categories,
-    selectedCategory,
-    searchQuery,
-}: {
-    categories: string[];
-    selectedCategory: string;
-    searchQuery: string;
-}) {
-    return (
-        <form className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] lg:flex">
-            <label className="relative block">
-                <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500" />
-
-                <input
-                    type="search"
-                    name="q"
-                    defaultValue={searchQuery}
-                    placeholder="Search news..."
-                    className="h-12 w-full rounded-lg border border-neutral-300 bg-white pl-11 pr-4 text-sm text-neutral-950 outline-none transition-colors placeholder:text-neutral-500 focus:border-orange-600 lg:w-64"
-                />
-            </label>
-
-            <select
-                name="category"
-                defaultValue={selectedCategory}
-                className="h-12 rounded-lg border border-neutral-300 bg-white px-4 text-sm text-neutral-950 outline-none transition-colors focus:border-orange-600"
-            >
-                <option value="">All Categories</option>
-                {categories.map((category) => (
-                    <option key={category} value={category}>
-                        {category}
-                    </option>
-                ))}
-            </select>
-
-            <button
-                type="submit"
-                className="h-12 rounded-lg bg-neutral-950 px-5 text-sm font-medium text-white transition-colors hover:bg-black sm:col-span-2 lg:hidden"
-            >
-                Filter
-            </button>
-        </form>
     );
 }
 

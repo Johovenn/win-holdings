@@ -43,6 +43,7 @@ export async function createNewsAction(formData: FormData) {
 
     revalidatePath("/admin/news");
     revalidatePath("/news");
+    revalidatePath("/");
 
     redirect("/admin/news?success=created");
 }
@@ -101,6 +102,7 @@ export async function updateNewsAction(formData: FormData) {
 
     revalidatePath("/admin/news");
     revalidatePath("/news");
+    revalidatePath("/");
 
     redirect("/admin/news?success=updated");
 }
@@ -125,6 +127,7 @@ export async function deleteNewsAction(formData: FormData) {
 
     revalidatePath("/admin/news");
     revalidatePath("/news");
+    revalidatePath("/");
 
     redirect("/admin/news?success=deleted");
 }

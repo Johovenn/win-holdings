@@ -228,15 +228,26 @@ function VisionMissionSection() {
     ];
 
     return (
-        <section className="bg-stone-50 py-12">
-            <SectionContainer className="grid gap-6 lg:grid-cols-2">
-                <article className="relative overflow-hidden rounded-xl border border-neutral-300 bg-white p-6 shadow-sm lg:min-h-80">
+        <section className="relative overflow-hidden bg-stone-50 py-12">
+            <Image
+                src="/images/landscape-bg-3.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-stone-50/60" />
+
+            <SectionContainer className="relative z-10 grid gap-6 lg:grid-cols-2">
+                <article className="relative overflow-hidden rounded-xl border border-neutral-300 bg-white/90 p-6 shadow-sm backdrop-blur-sm lg:min-h-80">
                     <div className="absolute inset-x-0 top-0 h-1 bg-orange-600" />
 
                     <div className="flex items-center gap-3">
                         <Eye className="h-6 w-6 text-orange-600" />
+
                         <h2 className="text-2xl font-semibold tracking-tight text-neutral-950">
-                        Our Vision
+                            Our Vision
                         </h2>
                     </div>
 
@@ -247,11 +258,12 @@ function VisionMissionSection() {
                     </p>
                 </article>
 
-                <article className="relative overflow-hidden rounded-xl border border-neutral-300 bg-white p-6 shadow-sm">
+                <article className="relative overflow-hidden rounded-xl border border-neutral-300 bg-white/90 p-6 shadow-sm backdrop-blur-sm">
                     <div className="absolute inset-x-0 top-0 h-1 bg-orange-600" />
 
                     <div className="flex items-center gap-3">
                         <Target className="h-6 w-6 text-orange-600" />
+
                         <h2 className="text-2xl font-semibold tracking-tight text-neutral-950">
                             Our Mission
                         </h2>
@@ -261,8 +273,9 @@ function VisionMissionSection() {
                         {missions.map((mission) => (
                             <li key={mission} className="flex gap-3">
                                 <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-orange-600" />
+
                                 <p className="text-base leading-6 text-neutral-600">
-                                {mission}
+                                    {mission}
                                 </p>
                             </li>
                         ))}
@@ -315,16 +328,26 @@ function CoreValuesSection() {
 
 function BusinessEcosystemSection() {
     return (
-        <section className="bg-stone-50 py-12">
-            <SectionContainer>
+        <section className="relative overflow-hidden bg-stone-50 py-12">
+            <Image
+                src="/images/landscape-bg-4.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-stone-50/70" />
+
+            <SectionContainer className="relative z-10">
                 <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                     <div>
                         <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                        Our Business Ecosystem
+                            Our Business Ecosystem
                         </h2>
 
                         <p className="mt-4 text-base leading-6 text-neutral-600">
-                        Diverse expertise, unified by strategic management.
+                            Diverse expertise, unified by strategic management.
                         </p>
                     </div>
 
@@ -341,7 +364,7 @@ function BusinessEcosystemSection() {
                     {subsidiaries.map((item) => (
                         <article
                             key={item.name}
-                            className="rounded-xl bg-neutral-800 p-6 text-stone-50 shadow-sm"
+                            className="rounded-xl bg-neutral-800/95 p-6 text-stone-50 shadow-sm backdrop-blur-sm"
                         >
                             <div className="text-orange-600">{item.icon}</div>
 

@@ -131,7 +131,7 @@ const featureDetails: FeatureDetail[] = [
             "High-Rise Construction",
             "Industrial Manufacturing",
         ],
-        image: "/images/wls-cement-clinker.jpg",
+        image: "/images/outsourcing-1.jpg",
         imageAlt: "Cement and clinker supply",
     },
     {
@@ -143,7 +143,7 @@ const featureDetails: FeatureDetail[] = [
             "Residential Housing Projects",
             "Hospitality Developments",
         ],
-        image: "/images/wls-gypsum-ceramics.jpg",
+        image: "/images/outsourcing-2.jpg",
         imageAlt: "Gypsum board and ceramic materials",
         reverse: true,
     },
@@ -315,12 +315,21 @@ function OverviewCard({ item }: { item: OverviewCard }) {
         </article>
     );
 }
-
 function VisionMissionSection() {
     return (
-        <section className="bg-stone-100 py-16">
-            <SectionContainer className="grid gap-6 lg:grid-cols-2">
-                <article className="rounded-2xl border border-neutral-300 bg-white/80 p-8 shadow-sm backdrop-blur-md lg:p-12">
+        <section className="relative overflow-hidden bg-stone-100 py-16">
+            <Image
+                src="/images/landscape-bg-5.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-stone-100/60" />
+
+            <SectionContainer className="relative z-10 grid gap-6 lg:grid-cols-2">
+                <article className="rounded-2xl border border-neutral-300 bg-white/85 p-8 shadow-sm backdrop-blur-md lg:p-12">
                     <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-600 text-white">
                         <BadgeCheck className="h-6 w-6" />
                     </div>
@@ -336,7 +345,7 @@ function VisionMissionSection() {
                     </p>
                 </article>
 
-                <article className="rounded-2xl border border-neutral-300 bg-white/80 p-8 shadow-sm backdrop-blur-md lg:p-12">
+                <article className="rounded-2xl border border-neutral-300 bg-white/85 p-8 shadow-sm backdrop-blur-md lg:p-12">
                     <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-600 text-white">
                         <TargetIcon />
                     </div>

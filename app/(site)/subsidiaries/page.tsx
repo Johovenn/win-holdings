@@ -131,11 +131,20 @@ function SectionContainer({
         </div>
     );
 }
-
 function PortfolioOverviewSection() {
     return (
-        <section className="bg-stone-100 py-12">
-            <SectionContainer>
+        <section className="relative overflow-hidden bg-stone-100 py-12">
+            <Image
+                src="/images/subsidiary-1.png"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-stone-100/85" />
+
+            <SectionContainer className="relative z-10">
                 <div className="mx-auto max-w-3xl text-center">
                     <h1 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
                         Our Business Portfolio

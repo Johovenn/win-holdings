@@ -12,6 +12,7 @@ import {
   Users,
 } from "lucide-react";
 import Image from "next/image";
+import { createClient } from "@/lib/supabase/server";
 
 type Highlight = {
   title: string;
@@ -28,10 +29,14 @@ type Subsidiary = {
 };
 
 type NewsItem = {
-  category: string;
-  date: string;
-  title: string;
-  excerpt: string;
+    id: string;
+    title: string;
+    slug: string;
+    excerpt: string | null;
+    category: string | null;
+    status: "draft" | "published";
+    published_at: string | null;
+    created_at: string;
 };
 
 const highlights: Highlight[] = [
@@ -90,30 +95,6 @@ const subsidiaries: Subsidiary[] = [
   },
 ];
 
-const newsItems: NewsItem[] = [
-  {
-    category: "Industry",
-    date: "October 24, 2024",
-    title: "WIN Holdings Expands Manufacturing Capacity for 3C Paint",
-    excerpt:
-      "Announcing the groundbreaking of our new production facility designed to meet rising global demand.",
-  },
-  {
-    category: "Community",
-    date: "October 12, 2024",
-    title: "2024 Annual Sustainability Report Released",
-    excerpt:
-      "Detailing our progress toward zero-net emissions across all subsidiaries and our increased investment in local training.",
-  },
-  {
-    category: "Corporate",
-    date: "September 30, 2024",
-    title: "Strategic Partnership with Global Logistics Leader",
-    excerpt:
-      "WIN Holdings enters a long-term agreement with international partners to optimize supply chain performance.",
-  },
-];
-
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-white text-neutral-950">
@@ -169,10 +150,6 @@ function PrimaryLink({
       {children}
     </Link>
   );
-}
-
-function PlaceholderBlock({ className = "" }: { className?: string }) {
-  return <div className={`rounded-2xl bg-stone-300 ${className}`} />;
 }
 
 function HeroSection() {
@@ -239,191 +216,330 @@ function HeroSection() {
 }
 
 function CompanyOverview() {
-  return (
-    <section className="bg-white py-12">
-      <SectionContainer>
-        <div className="max-w-3xl">
-          <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-            About Our Company
-          </h2>
+    return (
+        <section className="relative overflow-hidden bg-white py-12">
+            <Image
+                src="/images/landscape-bg-1.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
 
-          <p className="mt-4 text-lg leading-7 text-neutral-600">
-            We are a diversified holding company focused on creating long-term
-            value through strategic business management, operational excellence,
-            and sustainable growth across multiple sectors. Our commitment lies
-            in fostering innovation and stability.
-          </p>
-        </div>
+            <div className="absolute inset-0 bg-white/70" />
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {highlights.map((item) => (
-            <article
-              key={item.title}
-              className="rounded-xl border border-neutral-300/30 bg-stone-100 p-6"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white text-neutral-950 shadow-sm">
-                {item.icon}
-              </div>
+            <SectionContainer className="relative z-10">
+                <div className="max-w-3xl">
+                    <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
+                        About Our Company
+                    </h2>
 
-              <h3 className="mt-4 text-2xl font-semibold tracking-tight text-neutral-950">
-                {item.title}
-              </h3>
+                    <p className="mt-4 text-lg leading-7 text-neutral-600">
+                        We are a diversified holding company focused on creating long-term
+                        value through strategic business management, operational excellence,
+                        and sustainable growth across multiple sectors. Our commitment lies
+                        in fostering innovation and stability.
+                    </p>
+                </div>
 
-              <p className="mt-2 text-base leading-6 text-neutral-600">
-                {item.description}
-              </p>
-            </article>
-          ))}
-        </div>
-      </SectionContainer>
-    </section>
-  );
+                <div className="mt-12 grid gap-6 md:grid-cols-3">
+                    {highlights.map((item) => (
+                        <article
+                            key={item.title}
+                            className="rounded-xl border border-neutral-300/30 bg-white/85 p-6 shadow-sm backdrop-blur-sm"
+                        >
+                            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white text-neutral-950 shadow-sm">
+                                {item.icon}
+                            </div>
+
+                            <h3 className="mt-4 text-2xl font-semibold tracking-tight text-neutral-950">
+                                {item.title}
+                            </h3>
+
+                            <p className="mt-2 text-base leading-6 text-neutral-600">
+                                {item.description}
+                            </p>
+                        </article>
+                    ))}
+                </div>
+            </SectionContainer>
+        </section>
+    );
 }
 
 function BusinessPortfolio() {
-  return (
-    <section className="bg-white py-12">
-      <SectionContainer>
-        <div className="text-center">
-          <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-            Our Business Portfolio
-          </h2>
-          <div className="mx-auto mt-2 h-1 w-20 bg-orange-600" />
-        </div>
+    return (
+        <section className="relative overflow-hidden bg-white py-12">
+            <Image
+                src="/images/business-portfolio-bg.jpeg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          {subsidiaries.map((item) => (
-            <article
-              key={item.name}
-              className="rounded-2xl bg-neutral-950 p-6 text-white"
-            >
-              <div className="flex min-h-60 flex-col justify-between">
-                <div>
-                  <div className="mb-4 text-orange-600">{item.icon}</div>
+            <div className="absolute inset-0 bg-white/85" />
 
-                  <p className="text-base uppercase tracking-widest text-orange-600">
-                    {item.category}
-                  </p>
+            <SectionContainer className="relative z-10">
+                <div className="text-center">
+                    <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
+                        Our Business Portfolio
+                    </h2>
 
-                  <h3 className="mt-1 text-2xl font-semibold tracking-tight text-white">
-                    {item.name}
-                  </h3>
-
-                  <p className="mt-2 max-w-xl text-base leading-6 text-neutral-300">
-                    {item.description}
-                  </p>
+                    <div className="mx-auto mt-2 h-1 w-20 bg-orange-600" />
                 </div>
 
-                <div className="mt-4 border-t border-neutral-300/30 pt-4">
-                  <Link
-                    href="/subsidiaries"
-                    className="inline-flex items-center gap-2 text-base text-orange-600 transition-colors hover:text-orange-400"
-                  >
-                    {item.cta}
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
+                <div className="mt-12 grid gap-6 lg:grid-cols-2">
+                    {subsidiaries.map((item) => (
+                        <article
+                            key={item.name}
+                            className="rounded-2xl bg-neutral-950/95 p-6 text-white shadow-xl backdrop-blur-sm"
+                        >
+                            <div className="flex min-h-60 flex-col justify-between">
+                                <div>
+                                    <div className="mb-4 text-orange-600">
+                                        {item.icon}
+                                    </div>
+
+                                    <p className="text-base uppercase tracking-widest text-orange-600">
+                                        {item.category}
+                                    </p>
+
+                                    <h3 className="mt-1 text-2xl font-semibold tracking-tight text-white">
+                                        {item.name}
+                                    </h3>
+
+                                    <p className="mt-2 max-w-xl text-base leading-6 text-neutral-300">
+                                        {item.description}
+                                    </p>
+                                </div>
+
+                                <div className="mt-4 border-t border-neutral-300/30 pt-4">
+                                    <Link
+                                        href="/subsidiaries"
+                                        className="inline-flex items-center gap-2 text-base text-orange-600 transition-colors hover:text-orange-400"
+                                    >
+                                        {item.cta}
+                                        <ArrowRight className="h-4 w-4" />
+                                    </Link>
+                                </div>
+                            </div>
+                        </article>
+                    ))}
                 </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </SectionContainer>
-    </section>
-  );
+            </SectionContainer>
+        </section>
+    );
 }
 
 function OrganizationLeadership() {
-  const points = [
-    "Experienced Board of Directors",
-    "Agile Organizational Structure",
-    "Direct Accountability Models",
-  ];
+    const points = [
+        "Experienced Board of Directors",
+        "Agile Organizational Structure",
+        "Direct Accountability Models",
+    ];
 
-  return (
-    <section className="mt-12 overflow-hidden bg-stone-200 pb-12 pt-24">
-      <SectionContainer className="grid items-center gap-12 lg:grid-cols-2">
-        <div>
-          <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-            Organization & Leadership
-          </h2>
+    const images = [
+        {
+            src: "/images/structure-1.jpg",
+            alt: "WIN Holdings leadership meeting",
+            className: "h-64",
+        },
+        {
+            src: "/images/structure-2.jpg",
+            alt: "WIN Holdings corporate discussion",
+            className: "h-48",
+        },
+        {
+            src: "/images/structure-3.jpg",
+            alt: "WIN Holdings management collaboration",
+            className: "h-48",
+        },
+        {
+            src: "/images/structure-4.jpg",
+            alt: "WIN Holdings executive leadership",
+            className: "h-64",
+        },
+    ];
 
-          <p className="mt-4 text-lg leading-7 text-neutral-600">
-            Our leadership team brings decades of collective experience across
-            manufacturing, finance, and global logistics. We pride ourselves on a
-            governance structure that emphasizes transparency, agility, and
-            ethics.
-          </p>
+    return (
+        <section className="relative mt-12 overflow-hidden bg-stone-200 pb-12 pt-24">
+            <Image
+                src="/images/landscape-bg-2.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
 
-          <div className="mt-6 space-y-4 pb-8">
-            {points.map((point) => (
-              <div key={point} className="flex items-center gap-4">
-                <span className="h-1.5 w-1.5 rounded-full bg-orange-600" />
-                <p className="text-base text-neutral-950">{point}</p>
-              </div>
-            ))}
-          </div>
+            <div className="absolute inset-0 bg-stone-200/70" />
 
-          <PrimaryLink href="/organization">
-            View Organization Structure
-          </PrimaryLink>
-        </div>
+            <SectionContainer className="relative z-10 grid items-center gap-12 lg:grid-cols-2">
+                <div>
+                    <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
+                        Organization & Leadership
+                    </h2>
 
-        <div className="grid grid-cols-2 gap-6">
-          <div className="space-y-6 pt-12">
-            <PlaceholderBlock className="h-64 border-4 border-white shadow-lg" />
-            <PlaceholderBlock className="h-48 border-4 border-white shadow-lg" />
-          </div>
+                    <p className="mt-4 text-lg leading-7 text-neutral-600">
+                        Our leadership team brings decades of collective experience across
+                        manufacturing, finance, and global logistics. We pride ourselves on a
+                        governance structure that emphasizes transparency, agility, and
+                        ethics.
+                    </p>
 
-          <div className="space-y-6 pb-12">
-            <PlaceholderBlock className="h-48 border-4 border-white shadow-lg" />
-            <PlaceholderBlock className="h-64 border-4 border-white shadow-lg" />
-          </div>
-        </div>
-      </SectionContainer>
-    </section>
-  );
+                    <div className="mt-6 space-y-4 pb-8">
+                        {points.map((point) => (
+                            <div key={point} className="flex items-center gap-4">
+                                <span className="h-1.5 w-1.5 rounded-full bg-orange-600" />
+
+                                <p className="text-base text-neutral-950">
+                                    {point}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+
+                    <PrimaryLink href="/organization">
+                        View Organization Structure
+                    </PrimaryLink>
+                </div>
+
+                <div className="grid grid-cols-2 gap-6">
+                    <div className="space-y-6 pt-12">
+                        <LeadershipImage image={images[0]} />
+                        <LeadershipImage image={images[1]} />
+                    </div>
+
+                    <div className="space-y-6 pb-12">
+                        <LeadershipImage image={images[2]} />
+                        <LeadershipImage image={images[3]} />
+                    </div>
+                </div>
+            </SectionContainer>
+        </section>
+    );
 }
 
-function LatestNews() {
-  return (
-    <section className="bg-white py-12">
-      <SectionContainer>
-        <h2 className="text-center text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-          Latest News & Insights
-        </h2>
-
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {newsItems.map((item) => (
-            <article key={item.title}>
-              <div className="relative h-52 overflow-hidden rounded-2xl bg-stone-300">
-                <span className="absolute left-4 top-4 rounded bg-orange-600 px-3 py-1 text-xs font-semibold uppercase leading-4 text-white">
-                  {item.category}
-                </span>
-              </div>
-
-              <time className="mt-4 block text-sm font-medium tracking-wide text-neutral-600">
-                {item.date}
-              </time>
-
-              <h3 className="mt-1 text-2xl font-semibold leading-8 tracking-tight text-neutral-950">
-                {item.title}
-              </h3>
-
-              <p className="mt-2 line-clamp-3 text-base leading-6 text-neutral-600">
-                {item.excerpt}
-              </p>
-            </article>
-          ))}
+function LeadershipImage({
+    image,
+}: {
+    image: {
+        src: string;
+        alt: string;
+        className: string;
+    };
+}) {
+    return (
+        <div
+            className={`relative overflow-hidden rounded-xl border-4 border-white bg-stone-300 shadow-lg ${image.className}`}
+        >
+            <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                sizes="(min-width: 1024px) 25vw, 50vw"
+                className="object-cover"
+            />
         </div>
+    );
+}
 
-        <div className="mt-12 flex justify-center">
-          <PrimaryLink href="/news" variant="dark-outline" className="py-3">
-            View All News
-          </PrimaryLink>
-        </div>
-      </SectionContainer>
-    </section>
-  );
+async function LatestNews() {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase
+        .from("news")
+        .select("id, title, slug, excerpt, category, status, published_at, created_at")
+        .eq("status", "published")
+        .order("published_at", { ascending: false, nullsFirst: false })
+        .order("created_at", { ascending: false })
+        .limit(3);
+
+    const newsItems = (data ?? []) as NewsItem[];
+
+    return (
+        <section className="bg-white py-12">
+            <SectionContainer>
+                <h2 className="text-center text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
+                    Latest News & Insights
+                </h2>
+
+                {error ? (
+                    <div className="mx-auto mt-8 max-w-2xl rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-center text-sm text-red-700">
+                        Failed to load latest news. Please check your Supabase
+                        connection and policies.
+                    </div>
+                ) : null}
+
+                {!error && newsItems.length === 0 ? (
+                    <div className="mx-auto mt-8 max-w-2xl rounded-xl border border-neutral-200 bg-stone-50 px-4 py-10 text-center">
+                        <p className="text-base font-medium text-neutral-950">
+                            No published news yet.
+                        </p>
+
+                        <p className="mt-2 text-sm text-neutral-600">
+                            Latest company updates will appear here once published.
+                        </p>
+                    </div>
+                ) : null}
+
+                {!error && newsItems.length > 0 ? (
+                    <div className="mt-12 grid gap-6 md:grid-cols-3">
+                        {newsItems.map((item) => (
+                            <article
+                                key={item.id}
+                                className="flex min-h-72 flex-col rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-orange-600 hover:shadow-md"
+                            >
+                                <div className="flex flex-1 flex-col">
+                                    <span className="inline-flex w-fit rounded bg-orange-600 px-3 py-1 text-xs font-semibold uppercase leading-4 text-white">
+                                        {item.category ?? "News"}
+                                    </span>
+
+                                    <time className="mt-5 block text-sm font-medium tracking-wide text-neutral-600">
+                                        {formatNewsDate(
+                                            item.published_at ?? item.created_at,
+                                        )}
+                                    </time>
+
+                                    <h3 className="mt-2 text-2xl font-semibold leading-8 tracking-tight text-neutral-950">
+                                        {item.title}
+                                    </h3>
+
+                                    <p className="mt-3 line-clamp-4 text-base leading-6 text-neutral-600">
+                                        {item.excerpt ??
+                                            "Read the latest update from WIN Holdings."}
+                                    </p>
+
+                                    <div className="mt-auto pt-6">
+                                        <Link
+                                            href={`/news/${item.slug}`}
+                                            className="inline-flex text-base font-semibold text-orange-600 transition-colors hover:text-orange-700"
+                                        >
+                                            Read More
+                                        </Link>
+                                    </div>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                ) : null}
+
+                <div className="mt-12 flex justify-center">
+                    <PrimaryLink href="/news" variant="dark-outline" className="py-3">
+                        View All News
+                    </PrimaryLink>
+                </div>
+            </SectionContainer>
+        </section>
+    );
+}
+
+function formatNewsDate(value: string) {
+    return new Intl.DateTimeFormat("en", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+    }).format(new Date(value));
 }
 function CareerSection() {
     return (

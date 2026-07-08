@@ -29,6 +29,12 @@ const dashboardCards: DashboardCard[] = [
         href: "/admin/careers",
         icon: <BriefcaseBusiness className="h-6 w-6" />,
     },
+    {
+        title: "Job Applicants",
+        description: "View submitted applications from career openings.",
+        href: "/admin/applicants",
+        icon: <BriefcaseBusiness className="h-6 w-6" />,
+    }
 ];
 
 export default async function AdminDashboardPage() {

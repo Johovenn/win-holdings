@@ -142,7 +142,6 @@ export default function OrganizationStructurePage() {
             <FrameworkSection />
             <OrganizationChartSection />
             <BoardOfDirectorsSection />
-            <LeadershipCommitmentSection />
             <BusinessUnitGovernanceSection />
             <CTASection />
         </main>
@@ -278,8 +277,18 @@ function HeroSection() {
 
 function FrameworkSection() {
     return (
-        <section className="bg-stone-50 py-12">
-            <SectionContainer className="grid items-center gap-12 lg:grid-cols-2">
+        <section className="relative overflow-hidden bg-stone-50 py-12">
+            <Image
+                src="/images/structure-1.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-stone-50/75" />
+
+            <SectionContainer className="relative z-10 grid items-center gap-12 lg:grid-cols-2">
                 <div>
                     <SectionHeading
                         title="Our Organizational Framework"
@@ -293,7 +302,7 @@ function FrameworkSection() {
                     </div>
                 </div>
 
-                <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+                <div className="rounded-2xl border border-neutral-200 bg-white/90 p-6 shadow-sm backdrop-blur-sm">
                     <div className="grid gap-4">
                         <FrameworkItem
                             icon={<Landmark className="h-6 w-6" />}
@@ -459,8 +468,18 @@ function ConnectorLine({ className = "" }: { className?: string }) {
 
 function BoardOfDirectorsSection() {
     return (
-        <section className="bg-stone-50 py-16">
-            <SectionContainer>
+        <section className="relative overflow-hidden bg-stone-50 py-16">
+            <Image
+                src="/images/structure-4.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-stone-50/85" />
+
+            <SectionContainer className="relative z-10">
                 <SectionHeading
                     align="center"
                     title="Board of Directors"
@@ -471,7 +490,7 @@ function BoardOfDirectorsSection() {
                     {directors.map((director) => (
                         <article
                             key={director.position}
-                            className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-shadow hover:shadow-lg"
+                            className="overflow-hidden rounded-2xl border border-neutral-200 bg-white/90 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-lg"
                         >
                             <div className="h-56 bg-stone-300" />
 
@@ -490,37 +509,6 @@ function BoardOfDirectorsSection() {
                             </div>
                         </article>
                     ))}
-                </div>
-            </SectionContainer>
-        </section>
-    );
-}
-
-function LeadershipCommitmentSection() {
-    return (
-        <section className="bg-white py-16">
-            <SectionContainer>
-                <div className="rounded-2xl bg-neutral-950 p-8 text-white md:p-12">
-                    <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-                        <div>
-                            <p className="text-sm font-semibold uppercase tracking-widest text-orange-500">
-                                Leadership Commitment
-                            </p>
-
-                            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                                Responsible leadership for sustainable growth
-                            </h2>
-                        </div>
-
-                        <div className="border-l-4 border-orange-600 pl-6">
-                            <p className="text-xl leading-8 text-white/80">
-                                Our leadership is committed to building a strong business
-                                ecosystem through responsible governance, strategic
-                                collaboration, and continuous improvement across all
-                                subsidiaries.
-                            </p>
-                        </div>
-                    </div>
                 </div>
             </SectionContainer>
         </section>

@@ -1,16 +1,7 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 import {
-    BadgeCheck,
-    ClipboardCheck,
-    Factory,
-    Globe2,
     HardHat,
     MapPin,
-    PackageCheck,
-    ShieldCheck,
-    Users,
-    Wrench,
 } from "lucide-react";
 import Image from "next/image";
 import ButtonLink from "@/app/components/ui/ButtonLink";
@@ -18,11 +9,6 @@ import ButtonLink from "@/app/components/ui/ButtonLink";
 type Stat = {
     value: string;
     label: string;
-};
-
-type Scope = {
-    title: string;
-    icon: ReactNode;
 };
 
 type Qualification = {
@@ -39,11 +25,6 @@ type Project = {
 
 type Region = {
     name: string;
-    description: string;
-};
-
-type Advantage = {
-    title: string;
     description: string;
 };
 
@@ -69,41 +50,6 @@ const stats: Stat[] = [
     {
         value: "B2",
         label: "Highest Grade",
-    },
-];
-
-const scopes: Scope[] = [
-    {
-        title: "Engineering Procurement",
-        icon: <PackageCheck className="h-5 w-5" />,
-    },
-    {
-        title: "Construction Engineering",
-        icon: <HardHat className="h-5 w-5" />,
-    },
-    {
-        title: "Commissioning & Testing",
-        icon: <ClipboardCheck className="h-5 w-5" />,
-    },
-    {
-        title: "Production Management",
-        icon: <Factory className="h-5 w-5" />,
-    },
-    {
-        title: "Project Renovation",
-        icon: <Wrench className="h-5 w-5" />,
-    },
-    {
-        title: "Supervision Services",
-        icon: <ShieldCheck className="h-5 w-5" />,
-    },
-    {
-        title: "Labor Supply",
-        icon: <Users className="h-5 w-5" />,
-    },
-    {
-        title: "Import & Export Trade",
-        icon: <Globe2 className="h-5 w-5" />,
     },
 ];
 
@@ -173,22 +119,34 @@ const projects: Project[] = [
 
 const galleryItems: GalleryItem[] = [
     {
-        title: "Structural Steel Work",
-        image: "/images/icg-gallery-1.jpg",
+        title: "Industrial Construction Project 4",
+        image: "/images/construction-4.jpg",
     },
     {
-        title: "Production Plant Commissioning",
-        image: "/images/icg-gallery-2.jpg",
+        title: "Industrial Construction Project 5",
+        image: "/images/construction-5.jpg",
         className: "md:col-span-2",
     },
     {
-        title: "Smelting Foundation Project",
-        image: "/images/icg-gallery-3.jpg",
-        className: "md:col-span-2",
+        title: "Industrial Construction Project 6",
+        image: "/images/construction-6.jpg",
     },
     {
-        title: "Electromechanical Installation",
-        image: "/images/icg-gallery-4.jpg",
+        title: "Industrial Construction Project 7",
+        image: "/images/construction-7.jpg",
+    },
+    {
+        title: "Industrial Construction Project 8",
+        image: "/images/construction-8.jpg",
+    },
+    {
+        title: "Industrial Construction Project 9",
+        image: "/images/construction-9.jpg",
+    },
+    {
+        title: "Industrial Construction Project 10",
+        image: "/images/construction-10.jpg",
+        className: "md:col-span-2",
     },
 ];
 
@@ -210,41 +168,16 @@ const regions: Region[] = [
     },
 ];
 
-const advantages: Advantage[] = [
-    {
-        title: "B2 Grade",
-        description: "Highest local construction qualification for large projects.",
-    },
-    {
-        title: "Experience",
-        description: "Unmatched scale in metallurgical and smelting projects.",
-    },
-    {
-        title: "Global Support",
-        description: "Direct technical backing from Jiangsu Zhongchen.",
-    },
-    {
-        title: "Skilled Force",
-        description: "Combined expertise of over 3,400 technical personnel.",
-    },
-    {
-        title: "Proven Track",
-        description: "30+ completed high-impact industrial projects.",
-    },
-];
-
 export default function ICGPage() {
     return (
         <main className="min-h-screen bg-stone-50 text-neutral-950">
             <HeroSection />
             <CompanyOverviewSection />
-            <BusinessScopeSection />
             <SpecializedFieldsSection />
             <QualificationsSection />
             <ProjectTrackRecordSection />
             <ProjectGallerySection />
             <RegionalPresenceSection />
-            <ICGAdvantageSection />
             <CTASection />
         </main>
     );
@@ -321,14 +254,24 @@ function HeroSection() {
 
 function CompanyOverviewSection() {
     return (
-        <section className="bg-white py-16">
-            <SectionContainer className="grid gap-12 lg:grid-cols-12">
+        <section className="relative overflow-hidden bg-white py-16">
+            <Image
+                src="/images/construction-2.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-white/70" />
+
+            <SectionContainer className="relative z-10 grid gap-12 lg:grid-cols-12">
                 <div className="lg:col-span-7">
                     <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
                         A Leader in Industrial Construction
                     </h2>
 
-                    <div className="mt-5 space-y-5 text-base leading-7 text-neutral-600">
+                    <div className="mt-5 space-y-5 text-base leading-7 text-neutral-800">
                         <p>
                             PT. Indosino Construction Group stands at the forefront of
                             Indonesia&apos;s industrial transformation. As a core
@@ -367,40 +310,6 @@ function StatCard({ stat }: { stat: Stat }) {
                 {stat.label}
             </p>
         </div>
-    );
-}
-
-function BusinessScopeSection() {
-    return (
-        <section id="capabilities" className="bg-stone-50 py-16">
-            <SectionContainer>
-                <SectionHeader
-                    align="center"
-                    title="Comprehensive Business Scope"
-                    withAccent
-                />
-
-                <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                    {scopes.map((scope) => (
-                        <ScopeCard key={scope.title} scope={scope} />
-                    ))}
-                </div>
-            </SectionContainer>
-        </section>
-    );
-}
-
-function ScopeCard({ scope }: { scope: Scope }) {
-    return (
-        <article className="rounded-xl bg-white p-6 text-center shadow-sm transition-shadow hover:shadow-md">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-stone-100 text-orange-600">
-                {scope.icon}
-            </div>
-
-            <h3 className="mt-5 text-base font-medium leading-6 text-neutral-950">
-                {scope.title}
-            </h3>
-        </article>
     );
 }
 
@@ -487,11 +396,23 @@ function QualificationCard({
         </article>
     );
 }
-
 function ProjectTrackRecordSection() {
     return (
-        <section id="track-record" className="bg-stone-50 py-16">
-            <SectionContainer>
+        <section
+            id="track-record"
+            className="relative overflow-hidden bg-stone-50 py-16"
+        >
+            <Image
+                src="/images/construction-3.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-stone-50/75" />
+
+            <SectionContainer className="relative z-10">
                 <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
                     <div>
                         <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
@@ -510,7 +431,7 @@ function ProjectTrackRecordSection() {
                     </div>
                 </div>
 
-                <div className="mt-12 overflow-hidden rounded-xl bg-white shadow-sm">
+                <div className="mt-12 overflow-hidden rounded-xl bg-white/95 shadow-sm backdrop-blur-sm">
                     <div className="overflow-x-auto">
                         <table className="w-full min-w-4xl border-collapse">
                             <thead className="bg-stone-100">
@@ -524,7 +445,10 @@ function ProjectTrackRecordSection() {
 
                             <tbody>
                                 {projects.map((project) => (
-                                    <ProjectRow key={project.name} project={project} />
+                                    <ProjectRow
+                                        key={project.name}
+                                        project={project}
+                                    />
                                 ))}
                             </tbody>
                         </table>
@@ -605,7 +529,7 @@ function ProjectGallerySection() {
 
                 <div className="mt-12 grid gap-4 md:grid-cols-3">
                     {galleryItems.map((item) => (
-                        <GalleryCard key={item.title} item={item} />
+                        <GalleryCard key={item.image} item={item} />
                     ))}
                 </div>
             </SectionContainer>
@@ -616,26 +540,33 @@ function ProjectGallerySection() {
 function GalleryCard({ item }: { item: GalleryItem }) {
     return (
         <article
-            className={`group relative h-64 overflow-hidden rounded-xl bg-stone-300 ${item.className ?? ""}`}
+            className={`group relative h-64 overflow-hidden rounded-xl bg-stone-300 shadow-sm transition-transform duration-500 hover:scale-105 hover:shadow-xl ${item.className ?? ""}`}
         >
-            <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                style={{
-                    backgroundImage: `url('${item.image}')`,
-                }}
+            <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                sizes="(min-width: 768px) 33vw, 100vw"
+                className="object-cover"
             />
-
-            <div className="absolute inset-0 flex items-end bg-linear-to-t from-slate-950/80 to-transparent p-5 opacity-0 transition-opacity group-hover:opacity-100">
-                <p className="text-base font-medium text-white">{item.title}</p>
-            </div>
         </article>
     );
 }
 
 function RegionalPresenceSection() {
     return (
-        <section className="bg-stone-50 py-16">
-            <SectionContainer>
+        <section className="relative overflow-hidden bg-stone-50 py-16">
+            <Image
+                src="/images/construction-1.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-stone-50/70" />
+
+            <SectionContainer className="relative z-10">
                 <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
                     Strategic Regional Presence
                 </h2>
@@ -663,43 +594,6 @@ function RegionCard({ region }: { region: Region }) {
 
             <p className="mt-3 text-base leading-7 text-neutral-600">
                 {region.description}
-            </p>
-        </article>
-    );
-}
-
-function ICGAdvantageSection() {
-    return (
-        <section className="bg-white py-16">
-            <SectionContainer>
-                <SectionHeader align="center" title="The ICG Advantage" />
-
-                <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-                    {advantages.map((advantage) => (
-                        <AdvantageCard
-                            key={advantage.title}
-                            advantage={advantage}
-                        />
-                    ))}
-                </div>
-            </SectionContainer>
-        </section>
-    );
-}
-
-function AdvantageCard({ advantage }: { advantage: Advantage }) {
-    return (
-        <article className="rounded-xl bg-stone-100 p-6 text-center">
-            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-orange-600/10 text-orange-600">
-                <BadgeCheck className="h-5 w-5" />
-            </div>
-
-            <h3 className="mt-5 text-sm font-bold tracking-wide text-neutral-950">
-                {advantage.title}
-            </h3>
-
-            <p className="mt-2 text-xs leading-5 text-neutral-600">
-                {advantage.description}
             </p>
         </article>
     );
