@@ -7,7 +7,6 @@ import {
     Handshake,
     MapPin,
     ShieldCheck,
-    Sparkles,
     Target,
     Users,
 } from "lucide-react";
@@ -25,12 +24,6 @@ type MissionItem = {
 };
 
 type Service = {
-    title: string;
-    description: string;
-    icon: ReactNode;
-};
-
-type Strength = {
     title: string;
     description: string;
     icon: ReactNode;
@@ -100,49 +93,6 @@ const services: Service[] = [
     },
 ];
 
-const departments = [
-    "FIN ACC & TAX",
-    "HRD",
-    "GAD",
-    "SED",
-    "Logistics",
-    "Translation",
-    "F&A",
-    "Admin",
-    "IT",
-    "PLD",
-    "PMD",
-    "Legal",
-];
-
-const strengths: Strength[] = [
-    {
-        title: "Experience",
-        description: "Years of specialized service in the Indonesian industrial sector.",
-        icon: <Sparkles className="h-5 w-5" />,
-    },
-    {
-        title: "Expert Team",
-        description: "Recruitment professionals with deep domain expertise.",
-        icon: <Users className="h-5 w-5" />,
-    },
-    {
-        title: "Quality",
-        description: "Stringent vetting processes for all manpower deployments.",
-        icon: <ShieldCheck className="h-5 w-5" />,
-    },
-    {
-        title: "Partnerships",
-        description: "Trusted by leading international state-owned enterprises.",
-        icon: <Handshake className="h-5 w-5" />,
-    },
-    {
-        title: "Pricing",
-        description: "Competitive, transparent, and value-driven fee structures.",
-        icon: <Target className="h-5 w-5" />,
-    },
-];
-
 const clients = ["Huawei", "Huayue", "MIP", "MCC", "CCECC", "IWIP"];
 
 export default function IndosinoPage() {
@@ -152,8 +102,6 @@ export default function IndosinoPage() {
             <CompanyOverviewSection />
             <VisionMissionSection />
             <ServicesSection />
-            <OperationalStructureSection />
-            <WhyChooseUsSection />
             <ClientsSection />
             <CTASection />
         </main>
@@ -206,7 +154,7 @@ function HeroSection() {
                         className="h-96 bg-cover bg-center lg:h-120"
                         style={{
                             backgroundImage:
-                                "linear-gradient(rgba(30,41,59,0.1), rgba(30,41,59,0.1)), url('/images/indosino-hero.jpg')",
+                                "linear-gradient(rgba(30,41,59,0.1), rgba(30,41,59,0.1)), url('/images/trading-1.jpg')",
                         }}
                     >
                         <div className="flex h-full items-end p-4">
@@ -228,17 +176,26 @@ function HeroSection() {
         </section>
     );
 }
-
 function CompanyOverviewSection() {
     return (
-        <section className="bg-stone-100 py-16">
-            <SectionContainer className="grid gap-10 lg:grid-cols-12">
+        <section className="relative overflow-hidden bg-stone-100 py-16">
+            <Image
+                src="/images/trading-2.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-stone-100/70" />
+
+            <SectionContainer className="relative z-10 grid gap-10 lg:grid-cols-12">
                 <div className="lg:col-span-7">
                     <h2 className="text-3xl font-semibold leading-10 tracking-tight text-slate-800">
                         Specialized HR Outsourcing
                     </h2>
 
-                    <div className="mt-5 space-y-5 text-base leading-7 text-neutral-600">
+                    <div className="mt-5 space-y-5 text-base leading-7 text-neutral-800">
                         <p>
                             PT. Indosino Sukses Bersama has established itself as a
                             premier partner for foreign-invested enterprises,
@@ -333,8 +290,18 @@ function VisionMissionSection() {
 
 function ServicesSection() {
     return (
-        <section className="bg-stone-50 py-16">
-            <SectionContainer>
+        <section className="relative overflow-hidden bg-stone-50 py-16">
+            <Image
+                src="/images/trading-3.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-stone-50/60" />
+
+            <SectionContainer className="relative z-10">
                 <div className="text-center">
                     <h2 className="text-3xl font-semibold leading-10 tracking-tight text-slate-800">
                         Our Core Services
@@ -366,81 +333,6 @@ function ServiceCard({ service }: { service: Service }) {
 
             <p className="mt-2 text-sm font-medium leading-5 tracking-wide text-neutral-600">
                 {service.description}
-            </p>
-        </article>
-    );
-}
-
-function OperationalStructureSection() {
-    return (
-        <section className="bg-stone-50 py-16">
-            <SectionContainer>
-                <div className="text-center">
-                    <h2 className="text-3xl font-semibold leading-10 tracking-tight text-slate-800">
-                        Operational Structure
-                    </h2>
-
-                    <p className="mt-2 text-base leading-6 text-neutral-600">
-                        Lean, efficient, and vertically integrated management.
-                    </p>
-                </div>
-
-                <div className="mt-10 flex flex-col items-center">
-                    <div className="rounded-lg bg-slate-800 px-6 py-2 text-base font-bold text-white">
-                        Chairman of the Board
-                    </div>
-
-                    <div className="h-8 w-px bg-neutral-300" />
-
-                    <div className="rounded-lg bg-slate-800 px-12 py-2 text-base font-bold text-white">
-                        CEO
-                    </div>
-
-                    <div className="mt-8 h-px w-full max-w-4xl bg-neutral-300" />
-                </div>
-
-                <div className="mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-                    {departments.map((department) => (
-                        <div
-                            key={department}
-                            className="rounded border border-neutral-300 bg-white px-3 py-2 text-center text-sm font-bold tracking-wide text-slate-800"
-                        >
-                            {department}
-                        </div>
-                    ))}
-                </div>
-            </SectionContainer>
-        </section>
-    );
-}
-
-function WhyChooseUsSection() {
-    return (
-        <section className="bg-stone-100 py-16">
-            <SectionContainer>
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-                    {strengths.map((strength) => (
-                        <StrengthCard key={strength.title} strength={strength} />
-                    ))}
-                </div>
-            </SectionContainer>
-        </section>
-    );
-}
-
-function StrengthCard({ strength }: { strength: Strength }) {
-    return (
-        <article className="rounded-xl border border-neutral-300 bg-white p-6 shadow-sm">
-            <div className="text-orange-500">
-                {strength.icon}
-            </div>
-
-            <h3 className="mt-4 text-base font-bold leading-6 text-slate-800">
-                {strength.title}
-            </h3>
-
-            <p className="mt-2 text-sm font-medium leading-5 tracking-wide text-neutral-600">
-                {strength.description}
             </p>
         </article>
     );

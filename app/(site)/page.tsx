@@ -380,7 +380,7 @@ function OrganizationLeadership() {
                         Organization & Leadership
                     </h2>
 
-                    <p className="mt-4 text-lg leading-7 text-neutral-600">
+                    <p className="mt-4 text-lg leading-7 text-neutral-800">
                         Our leadership team brings decades of collective experience across
                         manufacturing, finance, and global logistics. We pride ourselves on a
                         governance structure that emphasizes transparency, agility, and

@@ -68,7 +68,7 @@ const subsidiaries: Subsidiary[] = [
         websiteUrl: "/subsidiaries/trading",
         icon: <Users className="h-6 w-6" />,
         imageSide: "right",
-        imageSrc: "/images/subsidiaries-trading.jpeg",
+        imageSrc: "/images/trading-1.jpg",
         imageAlt: "Indosino Sukses Bersama professional HR outsourcing team",
     },
     {
