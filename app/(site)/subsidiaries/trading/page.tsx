@@ -128,11 +128,11 @@ function HeroSection() {
             <SectionContainer className="grid items-center gap-12 lg:grid-cols-2">
                 <div>
                     <p className="text-sm font-bold uppercase tracking-widest text-orange-500">
-                        Subsidiary Company
+                        Subsidiary
                     </p>
 
                     <h1 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-slate-800 md:text-5xl">
-                        PT. Indosino Sukses Bersama
+                        Trading Company
                     </h1>
 
                     <p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-600">
@@ -141,7 +141,7 @@ function HeroSection() {
                     </p>
 
                     <p className="mt-5 max-w-2xl text-base leading-7 text-neutral-600">
-                        Indosino provides comprehensive professional manpower and
+                        We provide comprehensive professional manpower and
                         outsourcing support across the Indonesian archipelago. The
                         company specializes in navigating large-scale industrial labor
                         needs and ensuring operational efficiency for global
@@ -197,7 +197,7 @@ function CompanyOverviewSection() {
 
                     <div className="mt-5 space-y-5 text-base leading-7 text-neutral-800">
                         <p>
-                            PT. Indosino Sukses Bersama has established itself as a
+                            We have established ourself as a
                             premier partner for foreign-invested enterprises,
                             particularly Chinese state-owned enterprises. The company
                             understands the requirements of international projects and

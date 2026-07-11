@@ -125,7 +125,7 @@ const featureDetails: FeatureDetail[] = [
     {
         title: "Cement & Clinker",
         description:
-            "WLS supplies premium cement and cement clinker for infrastructure, batching plants, high-rise buildings, and industrial manufacturing. The company supports both domestic and international procurement needs.",
+            "We supply premium cement and cement clinker for infrastructure, batching plants, high-rise buildings, and industrial manufacturing. The company supports both domestic and international procurement needs.",
         useCases: [
             "Infrastructure Development",
             "High-Rise Construction",
@@ -137,7 +137,7 @@ const featureDetails: FeatureDetail[] = [
     {
         title: "Gypsum & Ceramics",
         description:
-            "WLS supports residential and commercial construction with gypsum board, ceiling systems, and ceramic products for modern building applications, interior finishing, and architectural development.",
+            "We support residential and commercial construction with gypsum board, ceiling systems, and ceramic products for modern building applications, interior finishing, and architectural development.",
         useCases: [
             "Commercial Interior Fit-outs",
             "Residential Housing Projects",
@@ -230,11 +230,11 @@ function HeroSection() {
             <SectionContainer className="relative">
                 <div className="max-w-3xl">
                     <div className="inline-flex rounded-full bg-orange-600/10 px-4 py-2 text-sm font-medium uppercase tracking-wider text-orange-600">
-                        Subsidiary Company
+                        Subsidiary
                     </div>
 
                     <h1 className="mt-6 text-4xl font-bold leading-tight tracking-tight text-neutral-950 md:text-5xl">
-                        PT. WLS Trust International
+                        Outsourcing Company
                     </h1>
 
                     <p className="mt-5 text-2xl font-semibold leading-9 tracking-tight text-neutral-600">
@@ -243,7 +243,7 @@ function HeroSection() {
                     </p>
 
                     <p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-600">
-                        Established in 2019, PT. WLS Trust International supplies
+                        Established in 2019, we supply
                         premium construction materials, industrial products, machinery,
                         packaging, and food supply solutions for domestic and
                         international customers.
@@ -273,7 +273,7 @@ function CompanyOverviewSection() {
                     </div>
 
                     <p className="mt-6 text-base leading-7 text-neutral-600">
-                        PT. WLS Trust International stands as a reliable partner in the
+                        We stand as a reliable partner in the
                         industrial supply chain. The company specializes in supplying
                         construction materials and industrial needs for concrete
                         batching plants, property development projects, infrastructure
@@ -473,7 +473,7 @@ function IndustrialCapabilitySection() {
                     </h2>
 
                     <p className="mt-5 text-base leading-7 text-white/70">
-                        WLS bridges global manufacturers and local project demands
+                        We bridge global manufacturers and local project demands
                         through procurement expertise, supply coordination, and
                         transparent logistics execution.
                     </p>
@@ -525,7 +525,7 @@ function CTASection() {
 
             <SectionContainer className="relative z-10 flex flex-col items-center text-center">
                 <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-                    Source Reliable Construction and Industrial Materials with WLS
+                    Source Reliable Construction and Industrial Materials with Us
                 </h2>
 
                 <p className="mt-6 max-w-2xl text-lg leading-7 text-stone-50/80">

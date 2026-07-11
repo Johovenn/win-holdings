@@ -292,7 +292,7 @@ function BusinessPortfolio() {
                 <div className="mt-12 grid gap-6 lg:grid-cols-2">
                     {subsidiaries.map((item) => (
                         <article
-                            key={item.name}
+                            key={item.category}
                             className="rounded-2xl bg-neutral-950/95 p-6 text-white shadow-xl backdrop-blur-sm"
                         >
                             <div className="flex min-h-60 flex-col justify-between">
@@ -301,16 +301,12 @@ function BusinessPortfolio() {
                                         {item.icon}
                                     </div>
 
-                                    <p className="text-base uppercase tracking-widest text-orange-600">
+                                    <h3 className="text-2xl font-semibold tracking-tight text-white">
                                         {item.category}
-                                    </p>
-
-                                    <h3 className="mt-1 text-2xl font-semibold tracking-tight text-white">
-                                        {item.name}
                                     </h3>
 
-                                    <p className="mt-2 max-w-xl text-base leading-6 text-neutral-300">
-                                        {item.description}
+                                    <p className="mt-3 max-w-xl text-base leading-6 text-neutral-300">
+                                        {getPublicSubsidiaryDescription(item.category)}
                                     </p>
                                 </div>
 
@@ -319,7 +315,7 @@ function BusinessPortfolio() {
                                         href="/subsidiaries"
                                         className="inline-flex items-center gap-2 text-base text-orange-600 transition-colors hover:text-orange-400"
                                     >
-                                        {item.cta}
+                                        Explore Business Unit
                                         <ArrowRight className="h-4 w-4" />
                                     </Link>
                                 </div>
@@ -330,6 +326,40 @@ function BusinessPortfolio() {
             </SectionContainer>
         </section>
     );
+}
+
+function getPublicSubsidiaryDescription(category: string) {
+    const value = category.toLowerCase();
+
+    if (value.includes("manufacture") || value.includes("manufacturing")) {
+        return "A manufacturing business unit focused on supporting industrial and commercial product development with consistent quality and operational reliability.";
+    }
+
+    if (
+        value.includes("trading") ||
+        value.includes("supply") ||
+        value.includes("industrial")
+    ) {
+        return "A trading and supply business unit providing reliable procurement, materials, and distribution support for industrial and project-based needs.";
+    }
+
+    if (
+        value.includes("outsourcing") ||
+        value.includes("hr") ||
+        value.includes("human")
+    ) {
+        return "An outsourcing business unit delivering manpower, workforce support, and business process services for operational efficiency.";
+    }
+
+    if (
+        value.includes("construction") ||
+        value.includes("engineering") ||
+        value.includes("infrastructure")
+    ) {
+        return "A construction and engineering business unit supporting project execution, infrastructure development, and industrial construction requirements.";
+    }
+
+    return "A strategic business unit operating under WIN Holdings to support diversified growth across selected industries.";
 }
 
 function OrganizationLeadership() {

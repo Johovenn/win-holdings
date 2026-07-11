@@ -50,7 +50,7 @@ const subsidiaries: Subsidiary[] = [
         industry: "Outsourcing",
         shortDescription: "Construction materials and industrial supply solutions.",
         description:
-            "WLS Trust International supplies construction materials, industrial products, machinery, packaging, and operational goods for project-based business needs. The company supports domestic and international customers with reliable procurement and distribution capabilities.",
+            "Supplies construction materials, industrial products, machinery, packaging, and operational goods for project-based business needs. The company supports domestic and international customers with reliable procurement and distribution capabilities.",
         websiteLabel: "Learn more",
         websiteUrl: "/subsidiaries/outsourcing",
         icon: <Truck className="h-6 w-6" />,
@@ -63,7 +63,7 @@ const subsidiaries: Subsidiary[] = [
         industry: "Trading",
         shortDescription: "Professional manpower and outsourcing support services.",
         description:
-            "Indosino Sukses Bersama provides human resources, outsourcing, and manpower support for industrial and foreign-invested projects across Indonesia. The company helps businesses operate efficiently through reliable workforce solutions and business support services.",
+            "Provides human resources, outsourcing, and manpower support for industrial and foreign-invested projects across Indonesia. The company helps businesses operate efficiently through reliable workforce solutions and business support services.",
         websiteLabel: "Learn more",
         websiteUrl: "/subsidiaries/trading",
         icon: <Users className="h-6 w-6" />,
@@ -76,7 +76,7 @@ const subsidiaries: Subsidiary[] = [
         industry: "Construction",
         shortDescription: "Industrial construction and engineering project execution.",
         description:
-            "Indosino Construction Group focuses on industrial engineering, construction, commissioning, and production-line support for large-scale projects. The company supports complex industrial development across key operational regions in Indonesia.",
+            "Focuses on industrial engineering, construction, commissioning, and production-line support for large-scale projects. The company supports complex industrial development across key operational regions in Indonesia.",
         websiteLabel: "Learn more",
         websiteUrl: "/subsidiaries/construction",
         icon: <Hammer className="h-6 w-6" />,
@@ -172,12 +172,8 @@ function PortfolioCard({ subsidiary }: { subsidiary: Subsidiary }) {
         <article className="rounded-xl border border-neutral-300 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
             <div className="text-orange-600">{subsidiary.icon}</div>
 
-            <p className="mt-4 text-xs font-bold uppercase tracking-wider text-neutral-600">
-                {subsidiary.industry}
-            </p>
-
             <h2 className="mt-2 text-2xl font-semibold leading-8 tracking-tight text-neutral-950">
-                {subsidiary.name}
+                {subsidiary.industry}
             </h2>
 
             <p className="mt-2 text-sm leading-5 text-neutral-600">
@@ -218,12 +214,8 @@ function SubsidiaryDetailSection({
             ) : null}
 
             <div className={imageFirst ? "lg:pl-6" : "lg:pr-6"}>
-                <p className="text-sm font-bold uppercase tracking-wider text-orange-600">
-                    {subsidiary.industry}
-                </p>
-
                 <h2 className="mt-2 text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                    {subsidiary.name}
+                    {subsidiary.industry}
                 </h2>
 
                 <p className="mt-6 text-lg leading-8 text-neutral-600">

@@ -203,11 +203,11 @@ function HeroSection() {
             <SectionContainer className="grid items-center gap-12 lg:grid-cols-2">
                 <div>
                     <div className="inline-flex rounded-full bg-orange-600/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-orange-600">
-                        Subsidiary Company
+                        Subsidiary
                     </div>
 
                     <h1 className="mt-5 max-w-2xl text-4xl font-bold leading-tight tracking-tight text-slate-950 md:text-5xl">
-                        PT. Indosino Construction Group
+                        Construction Company
                     </h1>
 
                     <p className="mt-5 max-w-xl text-lg leading-8 text-neutral-600">
@@ -273,7 +273,7 @@ function CompanyOverviewSection() {
 
                     <div className="mt-5 space-y-5 text-base leading-7 text-neutral-800">
                         <p>
-                            PT. Indosino Construction Group stands at the forefront of
+                            We stand at the forefront of
                             Indonesia&apos;s industrial transformation. As a core
                             subsidiary of WIN Holdings and backed by international
                             expertise from Jiangsu Zhongchen, ICG delivers turnkey
@@ -614,7 +614,7 @@ function CTASection() {
 
             <SectionContainer className="relative z-10 flex flex-col items-center text-center">
                 <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-                    Build Large-Scale Industrial Projects with ICG
+                    Build Large-Scale Industrial Projects with Us
                 </h2>
 
                 <p className="mt-6 max-w-2xl text-lg leading-7 text-stone-50/80">

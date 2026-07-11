@@ -13,7 +13,6 @@ import Image from "next/image";
 
 type OrgNode = {
     title: string;
-    subtitle?: string;
     variant?: "primary" | "secondary" | "division";
 };
 
@@ -109,28 +108,23 @@ const directorNodes: OrgNode[] = [
 
 const divisionNodes: OrgNode[] = [
     {
-        title: "Manufacturing Division",
-        subtitle: "3C Paint",
+        title: "Manufacturing Company",
         variant: "division",
     },
     {
-        title: "Outsourcing Division",
-        subtitle: "WLS",
+        title: "Outsourcing Company",
         variant: "division",
     },
     {
-        title: "Trading Division",
-        subtitle: "Indosino Sukses Bersama",
+        title: "Trading Company",
         variant: "division",
     },
     {
-        title: "Construction Division",
-        subtitle: "ICG",
+        title: "Construction Company",
         variant: "division",
     },
     {
         title: "Corporate Support Division",
-        subtitle: "Group-level support",
         variant: "division",
     },
 ];
@@ -421,7 +415,6 @@ function OrganizationChartSection() {
 
                                         <OrgCard
                                             title={node.title}
-                                            subtitle={node.subtitle}
                                             variant={node.variant}
                                         />
                                     </div>
@@ -435,7 +428,7 @@ function OrganizationChartSection() {
     );
 }
 
-function OrgCard({ title, subtitle, variant = "division" }: OrgNode) {
+function OrgCard({ title, variant = "division" }: OrgNode) {
     const variants = {
         primary:
             "border-orange-600 bg-orange-600 text-white shadow-lg shadow-orange-600/20",
@@ -448,16 +441,6 @@ function OrgCard({ title, subtitle, variant = "division" }: OrgNode) {
             className={`w-full min-w-40 max-w-56 rounded-xl border p-4 text-center ${variants[variant]}`}
         >
             <p className="text-sm font-semibold leading-5">{title}</p>
-
-            {subtitle ? (
-                <p
-                    className={`mt-2 text-xs leading-5 ${
-                        variant === "primary" ? "text-white/80" : "text-neutral-500"
-                    }`}
-                >
-                    {subtitle}
-                </p>
-            ) : null}
         </div>
     );
 }
@@ -536,12 +519,8 @@ function BusinessUnitGovernanceSection() {
                             </div>
 
                             <h3 className="mt-6 text-xl font-semibold tracking-tight text-neutral-950">
-                                {item.title}
-                            </h3>
-
-                            <p className="mt-1 text-sm font-medium uppercase tracking-wider text-orange-600">
                                 {item.category}
-                            </p>
+                            </h3>
 
                             <p className="mt-4 text-sm leading-6 text-neutral-600">
                                 {item.description}

@@ -205,10 +205,10 @@ function WhoWeAreSection() {
                         <p>
                             By providing strategic oversight and operational excellence to our
                             core entities—including{" "}
-                            <strong className="font-bold text-neutral-950">3C Paint</strong>,{" "}
-                            <strong className="font-bold text-neutral-950">WLS</strong>,{" "}
-                            <strong className="font-bold text-neutral-950">Indosino</strong>,
-                            and <strong className="font-bold text-neutral-950">ICG</strong>—we
+                            <strong className="font-bold text-neutral-950">Manufacturing</strong>,{" "}
+                            <strong className="font-bold text-neutral-950">Outsourcing</strong>,{" "}
+                            <strong className="font-bold text-neutral-950">Trading</strong>,
+                            and <strong className="font-bold text-neutral-950">Construction</strong> companies —we
                             ensure each business maintains the highest standards of quality
                             while driving collective value for our stakeholders.
                         </p>
@@ -369,12 +369,8 @@ function BusinessEcosystemSection() {
                             <div className="text-orange-600">{item.icon}</div>
 
                             <h3 className="mt-4 text-2xl font-semibold leading-8 tracking-tight">
-                                {item.name}
-                            </h3>
-
-                            <p className="text-base uppercase leading-6 text-orange-600">
                                 {item.industry}
-                            </p>
+                            </h3>
 
                             <p className="mt-3 text-base leading-6 text-stone-50/80">
                                 {item.description}

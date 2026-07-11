@@ -42,8 +42,8 @@ export const footerColumns = [
 ];
 
 export const subsidiaries = [
-    "3C Paint — Manufacturing",
-    "WLS — Outsourcing",
-    "Indosino — Trading",
-    "ICG — Construction",
+    "Manufacturing",
+    "Outsourcing",
+    "Trading",
+    "Construction",
 ];
