@@ -5,7 +5,6 @@ import {
     CalendarDays,
     ChevronLeft,
     ChevronRight,
-    FileText,
     Newspaper,
     Tag,
 } from "lucide-react";
@@ -211,12 +210,16 @@ function HeroSection() {
 function NewsListSection({
     featuredNews,
     news,
+    totalPages = 1,
+    currentPage = 1,
 }: {
     featuredNews: News | null;
     news: News[];
     categories: string[];
     selectedCategory: string;
     searchQuery: string;
+    totalPages?: number;
+    currentPage?: number;
 }) {
     return (
         <section className="bg-stone-100 py-24 lg:py-32">
@@ -228,8 +231,8 @@ function NewsListSection({
                         </h2>
 
                         <p className="mt-2 text-base leading-6 text-neutral-600">
-                            Explore company announcements, subsidiary updates, and
-                            corporate activities.
+                            Explore company announcements, corporate updates, and
+                            business ecosystem activities.
                         </p>
                     </div>
                 </div>
@@ -248,7 +251,12 @@ function NewsListSection({
                     <EmptyNewsState />
                 )}
 
-                {(featuredNews || news.length > 0) ? <Pagination /> : null}
+                {(featuredNews || news.length > 0) && totalPages > 1 ? (
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                    />
+                ) : null}
             </SectionContainer>
         </section>
     );
@@ -256,73 +264,57 @@ function NewsListSection({
 
 function FeaturedNewsCard({ news }: { news: News }) {
     return (
-        <article className="mt-12 overflow-hidden rounded-2xl border border-neutral-300 bg-white shadow-sm">
-            <div className="grid lg:grid-cols-2">
-                <div className="flex min-h-80 items-center justify-center bg-stone-300 text-neutral-500">
-                    <FileText className="h-10 w-10" />
-                </div>
+        <article className="mt-12 overflow-hidden rounded-2xl border border-neutral-300 bg-white p-8 shadow-sm lg:p-10">
+            <div className="flex flex-wrap items-center gap-3">
+                <CategoryBadge category={news.category} />
 
-                <div className="flex flex-col justify-center p-8 lg:p-10">
-                    <div className="flex flex-wrap items-center gap-3">
-                        <CategoryBadge category={news.category} />
-
-                        <DateLabel date={news.published_at ?? news.created_at} />
-                    </div>
-
-                    <h3 className="mt-6 text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                        {news.title}
-                    </h3>
-
-                    <p className="mt-4 text-base leading-7 text-neutral-600">
-                        {news.excerpt ?? truncateText(news.content, 180)}
-                    </p>
-
-                    <Link
-                        href={`/news/${news.slug}`}
-                        className="mt-8 inline-flex items-center gap-2 text-base font-semibold text-orange-600 transition-colors hover:text-orange-700"
-                    >
-                        Read Full Article
-                        <ArrowRight className="h-4 w-4" />
-                    </Link>
-                </div>
+                <DateLabel date={news.published_at ?? news.created_at} />
             </div>
+
+            <h3 className="mt-6 max-w-4xl text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
+                {news.title}
+            </h3>
+
+            <p className="mt-4 max-w-4xl text-base leading-7 text-neutral-600">
+                {news.excerpt ?? truncateText(news.content, 220)}
+            </p>
+
+            <Link
+                href={`/news/${news.slug}`}
+                className="mt-8 inline-flex items-center gap-2 text-base font-semibold text-orange-600 transition-colors hover:text-orange-700"
+            >
+                Read Full Article
+                <ArrowRight className="h-4 w-4" />
+            </Link>
         </article>
     );
 }
 
 function NewsCard({ news }: { news: News }) {
     return (
-        <article className="flex min-h-96 flex-col overflow-hidden rounded-xl border border-neutral-300 bg-white shadow-sm transition-shadow hover:shadow-md">
-            <div className="relative flex h-52 items-center justify-center bg-stone-300 text-neutral-500">
-                <FileText className="h-8 w-8" />
+        <article className="flex min-h-80 flex-col rounded-xl border border-neutral-300 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+            <div className="flex flex-wrap items-center gap-3">
+                <CategoryBadge category={news.category} />
 
-                {news.category ? (
-                    <span className="absolute left-4 top-4 rounded bg-orange-600 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
-                        {news.category}
-                    </span>
-                ) : null}
+                <DateLabel date={news.published_at ?? news.created_at} />
             </div>
 
-            <div className="flex flex-1 flex-col p-6">
-                <DateLabel date={news.published_at ?? news.created_at} />
+            <h3 className="mt-5 text-2xl font-semibold leading-8 tracking-tight text-neutral-950">
+                {news.title}
+            </h3>
 
-                <h3 className="mt-3 text-2xl font-semibold leading-8 tracking-tight text-neutral-950">
-                    {news.title}
-                </h3>
+            <p className="mt-3 line-clamp-4 text-base leading-6 text-neutral-600">
+                {news.excerpt ?? truncateText(news.content, 160)}
+            </p>
 
-                <p className="mt-3 line-clamp-3 text-base leading-6 text-neutral-600">
-                    {news.excerpt ?? truncateText(news.content, 140)}
-                </p>
-
-                <div className="mt-auto pt-6">
-                    <Link
-                        href={`/news/${news.slug}`}
-                        className="inline-flex items-center gap-2 text-base font-semibold text-orange-600 transition-colors hover:text-orange-700"
-                    >
-                        Read More
-                        <ArrowRight className="h-4 w-4" />
-                    </Link>
-                </div>
+            <div className="mt-auto pt-6">
+                <Link
+                    href={`/news/${news.slug}`}
+                    className="inline-flex items-center gap-2 text-base font-semibold text-orange-600 transition-colors hover:text-orange-700"
+                >
+                    Read More
+                    <ArrowRight className="h-4 w-4" />
+                </Link>
             </div>
         </article>
     );
@@ -370,39 +362,78 @@ function EmptyNewsState() {
     );
 }
 
-function Pagination() {
+function Pagination({
+    currentPage,
+    totalPages,
+}: {
+    currentPage: number;
+    totalPages: number;
+}) {
+    if (totalPages <= 1) {
+        return null;
+    }
+
+    const hasPreviousPage = currentPage > 1;
+    const hasNextPage = currentPage < totalPages;
+
     return (
         <div className="mt-12 flex items-center justify-center gap-2">
-            <button
-                type="button"
-                disabled
-                className="flex h-10 w-10 items-center justify-center rounded border border-neutral-300 text-neutral-400 opacity-40"
-                aria-label="Previous page"
-            >
-                <ChevronLeft className="h-4 w-4" />
-            </button>
+            {hasPreviousPage ? (
+                <Link
+                    href={`/news?page=${currentPage - 1}`}
+                    className="flex h-10 w-10 items-center justify-center rounded border border-neutral-300 bg-white text-neutral-950 transition-colors hover:border-orange-600 hover:text-orange-600"
+                    aria-label="Previous page"
+                >
+                    <ChevronLeft className="h-4 w-4" />
+                </Link>
+            ) : (
+                <button
+                    type="button"
+                    disabled
+                    className="flex h-10 w-10 items-center justify-center rounded border border-neutral-300 text-neutral-400 opacity-40"
+                    aria-label="Previous page"
+                >
+                    <ChevronLeft className="h-4 w-4" />
+                </button>
+            )}
 
-            <button
-                type="button"
-                className="flex h-10 w-10 items-center justify-center rounded bg-orange-600 text-base font-bold text-white"
-            >
-                1
-            </button>
+            {Array.from({ length: totalPages }).map((_, index) => {
+                const page = index + 1;
+                const isActive = page === currentPage;
 
-            <button
-                type="button"
-                className="flex h-10 w-10 items-center justify-center rounded border border-neutral-300 bg-white text-base font-medium text-neutral-950"
-            >
-                2
-            </button>
+                return (
+                    <Link
+                        key={page}
+                        href={`/news?page=${page}`}
+                        className={
+                            isActive
+                                ? "flex h-10 w-10 items-center justify-center rounded bg-orange-600 text-base font-bold text-white"
+                                : "flex h-10 w-10 items-center justify-center rounded border border-neutral-300 bg-white text-base font-medium text-neutral-950 transition-colors hover:border-orange-600 hover:text-orange-600"
+                        }
+                    >
+                        {page}
+                    </Link>
+                );
+            })}
 
-            <button
-                type="button"
-                className="flex h-10 w-10 items-center justify-center rounded border border-neutral-300 bg-white text-neutral-950"
-                aria-label="Next page"
-            >
-                <ChevronRight className="h-4 w-4" />
-            </button>
+            {hasNextPage ? (
+                <Link
+                    href={`/news?page=${currentPage + 1}`}
+                    className="flex h-10 w-10 items-center justify-center rounded border border-neutral-300 bg-white text-neutral-950 transition-colors hover:border-orange-600 hover:text-orange-600"
+                    aria-label="Next page"
+                >
+                    <ChevronRight className="h-4 w-4" />
+                </Link>
+            ) : (
+                <button
+                    type="button"
+                    disabled
+                    className="flex h-10 w-10 items-center justify-center rounded border border-neutral-300 text-neutral-400 opacity-40"
+                    aria-label="Next page"
+                >
+                    <ChevronRight className="h-4 w-4" />
+                </button>
+            )}
         </div>
     );
 }

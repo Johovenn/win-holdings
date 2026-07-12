@@ -242,26 +242,16 @@ function HeroSection() {
                     </p>
                 </div>
 
-                <div className="relative">
-                    <div className="rounded-2xl border border-neutral-200 bg-stone-100 p-6 shadow-xl">
-                        <div className="flex justify-center">
-                            <OrgCard title="Board of Directors" variant="primary" />
-                        </div>
-
-                        <ConnectorLine className="mx-auto h-8" />
-
-                        <div className="flex justify-center">
-                            <OrgCard title="President Director" variant="secondary" />
-                        </div>
-
-                        <ConnectorLine className="mx-auto h-8" />
-
-                        <div className="grid gap-4 sm:grid-cols-2">
-                            <OrgCard title="Operations" />
-                            <OrgCard title="Finance" />
-                            <OrgCard title="Business Development" />
-                            <OrgCard title="Human Resources" />
-                        </div>
+                <div className="relative hidden lg:block">
+                    <div className="relative h-105 overflow-hidden rounded-2xl border border-neutral-200 bg-stone-100 shadow-xl">
+                        <Image
+                            src="/images/structure-1.jpg"
+                            alt="WIN Holdings organization structure"
+                            fill
+                            priority
+                            sizes="50vw"
+                            className="object-cover"
+                        />
                     </div>
                 </div>
             </SectionContainer>
@@ -366,65 +356,127 @@ function OrganizationChartSection() {
                     description="A clear hierarchy supports effective leadership, operational control, and business-unit accountability across the WIN Holdings ecosystem."
                 />
 
-                <div className="mt-14 overflow-x-auto rounded-2xl border border-neutral-200 bg-stone-50 p-6 shadow-sm">
-                    <div className="min-w-5xl">
-                        <div className="flex justify-center">
-                            <OrgCard title="Board of Directors" variant="primary" />
-                        </div>
+                <div className="mt-14">
+                    <MobileOrganizationChart />
 
-                        <ConnectorLine className="mx-auto h-10" />
-
-                        <div className="flex justify-center">
-                            <OrgCard title="President Director" variant="secondary" />
-                        </div>
-
-                        <ConnectorLine className="mx-auto h-10" />
-
-                        <div className="relative">
-                            <div className="absolute left-1/2 top-0 hidden h-px w-3/4 -translate-x-1/2 bg-neutral-300 lg:block" />
-
-                            <div className="grid gap-4 pt-6 lg:grid-cols-4">
-                                {directorNodes.map((node) => (
-                                    <div
-                                        key={node.title}
-                                        className="relative flex justify-center"
-                                    >
-                                        <div className="absolute -top-6 hidden h-6 w-px bg-neutral-300 lg:block" />
-
-                                        <OrgCard
-                                            title={node.title}
-                                            variant={node.variant}
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <ConnectorLine className="mx-auto h-10" />
-
-                        <div className="relative">
-                            <div className="absolute left-1/2 top-0 hidden h-px w-11/12 -translate-x-1/2 bg-neutral-300 lg:block" />
-
-                            <div className="grid gap-4 pt-6 sm:grid-cols-2 lg:grid-cols-5">
-                                {divisionNodes.map((node) => (
-                                    <div
-                                        key={node.title}
-                                        className="relative flex justify-center"
-                                    >
-                                        <div className="absolute -top-6 hidden h-6 w-px bg-neutral-300 lg:block" />
-
-                                        <OrgCard
-                                            title={node.title}
-                                            variant={node.variant}
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+                    <DesktopOrganizationChart />
                 </div>
             </SectionContainer>
         </section>
+    );
+}
+
+function MobileOrganizationChart() {
+    return (
+        <div className="space-y-6 lg:hidden">
+            <div className="rounded-2xl border border-neutral-200 bg-stone-50 p-5 shadow-sm">
+                <div className="flex justify-center">
+                    <OrgCard title="Board of Directors" variant="primary" />
+                </div>
+
+                <ConnectorLine className="mx-auto h-8" />
+
+                <div className="flex justify-center">
+                    <OrgCard title="President Director" variant="secondary" />
+                </div>
+            </div>
+
+            <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+                <p className="text-sm font-semibold uppercase tracking-wider text-orange-600">
+                    Directors
+                </p>
+
+                <div className="mt-4 grid gap-3">
+                    {directorNodes.map((node) => (
+                        <MobileOrgNode key={node.title} node={node} />
+                    ))}
+                </div>
+            </div>
+
+            <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+                <p className="text-sm font-semibold uppercase tracking-wider text-orange-600">
+                    Business Divisions
+                </p>
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                    {divisionNodes.map((node) => (
+                        <MobileOrgNode key={node.title} node={node} />
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function DesktopOrganizationChart() {
+    return (
+        <div className="hidden overflow-x-auto rounded-2xl border border-neutral-200 bg-stone-50 p-6 shadow-sm lg:block">
+            <div className="min-w-6xl">
+                <div className="flex justify-center">
+                    <OrgCard title="Board of Directors" variant="primary" />
+                </div>
+
+                <ConnectorLine className="mx-auto h-10" />
+
+                <div className="flex justify-center">
+                    <OrgCard title="President Director" variant="secondary" />
+                </div>
+
+                <ConnectorLine className="mx-auto h-10" />
+
+                <div className="relative">
+                    <div className="absolute left-1/2 top-0 h-px w-3/4 -translate-x-1/2 bg-neutral-300" />
+
+                    <div className="grid gap-4 pt-6 lg:grid-cols-4">
+                        {directorNodes.map((node) => (
+                            <div
+                                key={node.title}
+                                className="relative flex justify-center"
+                            >
+                                <div className="absolute -top-6 h-6 w-px bg-neutral-300" />
+
+                                <OrgCard
+                                    title={node.title}
+                                    variant={node.variant}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <ConnectorLine className="mx-auto h-10" />
+
+                <div className="relative">
+                    <div className="absolute left-1/2 top-0 h-px w-11/12 -translate-x-1/2 bg-neutral-300" />
+
+                    <div className="grid gap-4 pt-6 lg:grid-cols-5">
+                        {divisionNodes.map((node) => (
+                            <div
+                                key={node.title}
+                                className="relative flex justify-center"
+                            >
+                                <div className="absolute -top-6 h-6 w-px bg-neutral-300" />
+
+                                <OrgCard
+                                    title={node.title}
+                                    variant={node.variant}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function MobileOrgNode({ node }: { node: OrgNode }) {
+    return (
+        <div className="rounded-xl border border-neutral-200 bg-stone-50 px-4 py-3">
+            <p className="text-sm font-semibold leading-5 text-neutral-950">
+                {node.title}
+            </p>
+        </div>
     );
 }
 

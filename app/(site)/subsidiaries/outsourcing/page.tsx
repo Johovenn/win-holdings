@@ -409,7 +409,7 @@ function FeaturedPortfolioSection() {
     return (
         <section className="bg-stone-50 py-16">
             <SectionContainer>
-                <div className="space-y-20">
+                <div className="space-y-8 lg:space-y-20">
                     {featureDetails.map((item) => (
                         <FeatureDetailSection key={item.title} item={item} />
                     ))}
@@ -420,45 +420,49 @@ function FeaturedPortfolioSection() {
 }
 
 function FeatureDetailSection({ item }: { item: FeatureDetail }) {
-    const image = (
-        <div className="overflow-hidden rounded-2xl bg-stone-300 shadow-lg">
-            <div
-                className="h-80 bg-cover bg-center"
-                style={{
-                    backgroundImage: `url('${item.image}')`,
-                }}
-                aria-label={item.imageAlt}
-            />
-        </div>
-    );
+    const imageOrder = item.reverse
+        ? "order-1 lg:order-2"
+        : "order-1 lg:order-1";
 
-    const content = (
-        <div>
-            <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                {item.title}
-            </h2>
-
-            <p className="mt-5 text-base leading-7 text-neutral-600">
-                {item.description}
-            </p>
-
-            <ul className="mt-6 space-y-3">
-                {item.useCases.map((useCase) => (
-                    <li key={useCase} className="flex items-center gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-orange-600" />
-                        <span className="text-base text-neutral-950">
-                            {useCase}
-                        </span>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+    const contentOrder = item.reverse
+        ? "order-2 lg:order-1"
+        : "order-2 lg:order-2";
 
     return (
-        <section className="grid items-center gap-12 lg:grid-cols-2">
-            {item.reverse ? image : content}
-            {item.reverse ? content : image}
+        <section className="grid overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm lg:grid-cols-2 lg:items-center lg:gap-12 lg:overflow-visible lg:rounded-none lg:border-0 lg:bg-transparent lg:shadow-none">
+            <div className={imageOrder}>
+                <div className="relative h-72 overflow-hidden bg-stone-300 md:h-80 lg:rounded-2xl lg:shadow-lg">
+                    <Image
+                        src={item.image}
+                        alt={item.imageAlt}
+                        fill
+                        sizes="(min-width: 1024px) 50vw, 100vw"
+                        className="object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                </div>
+            </div>
+
+            <div className={`${contentOrder} p-6 lg:p-0`}>
+                <h2 className="text-2xl font-semibold leading-9 tracking-tight text-neutral-950 md:text-3xl md:leading-10">
+                    {item.title}
+                </h2>
+
+                <p className="mt-4 text-base leading-7 text-neutral-600 md:mt-5">
+                    {item.description}
+                </p>
+
+                <ul className="mt-6 space-y-3">
+                    {item.useCases.map((useCase) => (
+                        <li key={useCase} className="flex items-center gap-3">
+                            <CheckCircle2 className="h-5 w-5 shrink-0 text-orange-600" />
+
+                            <span className="text-base text-neutral-950">
+                                {useCase}
+                            </span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </section>
     );
 }

@@ -187,7 +187,7 @@ function SubsidiarySections() {
     return (
         <section className="bg-stone-50 py-16">
             <SectionContainer>
-                <div className="space-y-24 lg:space-y-32">
+                <div className="space-y-8 lg:space-y-32">
                     {subsidiaries.map((subsidiary) => (
                         <SubsidiaryDetailSection
                             key={subsidiary.name}
@@ -199,6 +199,7 @@ function SubsidiarySections() {
         </section>
     );
 }
+
 function SubsidiaryDetailSection({
     subsidiary,
 }: {
@@ -208,17 +209,29 @@ function SubsidiaryDetailSection({
     const isExternalLink = subsidiary.websiteUrl.startsWith("http");
 
     return (
-        <section className="grid items-center gap-12 lg:grid-cols-2">
-            {imageFirst ? (
+        <article className="grid overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm lg:grid-cols-2 lg:items-center lg:gap-12 lg:overflow-visible lg:rounded-none lg:border-0 lg:bg-transparent lg:shadow-none">
+            <div
+                className={
+                    imageFirst
+                        ? "order-1 lg:order-1"
+                        : "order-1 lg:order-2"
+                }
+            >
                 <SubsidiaryImage subsidiary={subsidiary} />
-            ) : null}
+            </div>
 
-            <div className={imageFirst ? "lg:pl-6" : "lg:pr-6"}>
-                <h2 className="mt-2 text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
+            <div
+                className={
+                    imageFirst
+                        ? "order-2 p-6 lg:order-2 lg:p-0 lg:pl-6"
+                        : "order-2 p-6 lg:order-1 lg:p-0 lg:pr-6"
+                }
+            >
+                <h2 className="text-2xl font-semibold leading-9 tracking-tight text-neutral-950 md:text-3xl md:leading-10">
                     {subsidiary.industry}
                 </h2>
 
-                <p className="mt-6 text-lg leading-8 text-neutral-600">
+                <p className="mt-4 text-base leading-7 text-neutral-600 md:mt-6 md:text-lg md:leading-8">
                     {subsidiary.description}
                 </p>
 
@@ -226,17 +239,13 @@ function SubsidiaryDetailSection({
                     href={subsidiary.websiteUrl}
                     target={isExternalLink ? "_blank" : undefined}
                     rel={isExternalLink ? "noreferrer" : undefined}
-                    className="mt-8 inline-flex items-center gap-2 text-base font-semibold text-orange-600 transition-colors hover:text-orange-700"
+                    className="mt-6 inline-flex items-center gap-2 text-base font-semibold text-orange-600 transition-colors hover:text-orange-700 md:mt-8"
                 >
                     {subsidiary.websiteLabel}
                     <ArrowUpRight className="h-4 w-4" />
                 </Link>
             </div>
-
-            {!imageFirst ? (
-                <SubsidiaryImage subsidiary={subsidiary} />
-            ) : null}
-        </section>
+        </article>
     );
 }
 
@@ -246,7 +255,7 @@ function SubsidiaryImage({
     subsidiary: Subsidiary;
 }) {
     return (
-        <div className="relative h-80 overflow-hidden rounded-xl border border-neutral-300 bg-stone-200 shadow-sm md:h-96">
+        <div className="relative h-64 overflow-hidden bg-stone-200 md:h-80 lg:h-96 lg:rounded-xl lg:border lg:border-neutral-300 lg:shadow-sm">
             <Image
                 src={subsidiary.imageSrc}
                 alt={subsidiary.imageAlt}
