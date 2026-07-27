@@ -29,6 +29,42 @@ type Service = {
     icon: ReactNode;
 };
 
+type TradingOrgNode = {
+    title: string;
+    variant?: "primary" | "secondary" | "division";
+};
+
+type TradingDepartmentNode = {
+    title: string;
+    children: string[];
+};
+
+const tradingDepartmentNodes: TradingDepartmentNode[] = [
+    {
+        title: "Project Manager",
+        children: [
+            "Vice Manager – Site Management",
+            "Vice Manager – Back Office",
+        ],
+    },
+    {
+        title: "Head of Human Resources Department",
+        children: [
+            "Vice Department Head – Head Office HRD",
+            "Vice Department Head – Industrial Relations",
+            "Vice Department Head – Recruitment",
+            "Vice Department Head – Project Attendance",
+        ],
+    },
+    {
+        title: "Head of Finance Department",
+        children: [
+            "Vice Department Head – Accounting",
+            "Vice Department Head – Payroll",
+        ],
+    },
+];
+
 const overviewItems: OverviewItem[] = [
     {
         title: "Indonesia-wide Operations",
@@ -102,12 +138,12 @@ export default function IndosinoPage() {
             <CompanyOverviewSection />
             <VisionMissionSection />
             <ServicesSection />
+            <TradingOrganizationSection />
             <ClientsSection />
             <CTASection />
         </main>
     );
 }
-
 function SectionContainer({
     children,
     className = "",
@@ -221,6 +257,234 @@ function CompanyOverviewSection() {
             </SectionContainer>
         </section>
     );
+}
+
+function TradingOrganizationSection() {
+    return (
+        <section className="bg-white py-16">
+            <SectionContainer>
+                <div className="mx-auto max-w-3xl text-center">
+                    <p className="text-sm font-bold uppercase tracking-widest text-orange-500">
+                        Organization Structure
+                    </p>
+
+                    <h2 className="mt-3 text-3xl font-semibold leading-10 tracking-tight text-slate-800">
+                        Trading Company Organization Structure
+                    </h2>
+
+                    <p className="mt-4 text-base leading-7 text-neutral-600">
+                        A clear leadership hierarchy supports operational control,
+                        project coordination, human resources management, and finance
+                        accountability across the trading company.
+                    </p>
+                </div>
+
+                <div className="mt-14">
+                    <MobileTradingOrganizationChart />
+
+                    <DesktopTradingOrganizationChart />
+                </div>
+            </SectionContainer>
+        </section>
+    );
+}
+
+function MobileTradingOrganizationChart() {
+    return (
+        <div className="space-y-6 lg:hidden">
+            <div className="rounded-2xl border border-neutral-200 bg-stone-50 p-5 shadow-sm">
+                <div className="flex justify-center">
+                    <TradingOrgCard title="CEO" variant="primary" />
+                </div>
+
+                <TradingConnectorLine className="mx-auto h-8" />
+
+                <div className="grid gap-3">
+                    <TradingMobileOrgNode
+                        node={{
+                            title: "Assistant CEO",
+                            variant: "secondary",
+                        }}
+                    />
+
+                    <TradingMobileOrgNode
+                        node={{
+                            title: "Vice CEO",
+                            variant: "secondary",
+                        }}
+                    />
+                </div>
+            </div>
+
+            <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+                <p className="text-sm font-semibold uppercase tracking-wider text-orange-600">
+                    Departments Under Vice CEO
+                </p>
+
+                <div className="mt-4 grid gap-4">
+                    {tradingDepartmentNodes.map((department) => (
+                        <TradingMobileDepartmentCard
+                            key={department.title}
+                            department={department}
+                        />
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function DesktopTradingOrganizationChart() {
+    return (
+        <div className="hidden overflow-x-auto rounded-2xl border border-neutral-200 bg-stone-50 p-6 shadow-sm lg:block">
+            <div className="min-w-200">
+                <div className="flex justify-center">
+                    <TradingOrgCard title="CEO" variant="primary" />
+                </div>
+
+                <TradingConnectorLine className="mx-auto h-10" />
+
+                <div className="relative">
+                    <div className="absolute left-1/2 top-0 h-px w-1/2 -translate-x-1/2 bg-neutral-300" />
+
+                    <div className="grid grid-cols-2 gap-6 pt-6">
+                        <div className="relative flex justify-center">
+                            <div className="absolute -top-6 h-6 w-px bg-neutral-300" />
+
+                            <TradingOrgCard
+                                title="Assistant CEO"
+                                variant="secondary"
+                            />
+                        </div>
+
+                        <div className="relative flex justify-center">
+                            <div className="absolute -top-6 h-6 w-px bg-neutral-300" />
+
+                            <TradingOrgCard
+                                title="Vice CEO"
+                                variant="secondary"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="ml-auto mr-[25%] h-10 w-px bg-neutral-300" />
+
+                <div className="relative">
+                    <div className="absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-neutral-300" />
+
+                    <div className="grid grid-cols-3 gap-6 pt-6">
+                        {tradingDepartmentNodes.map((department) => (
+                            <div
+                                key={department.title}
+                                className="relative"
+                            >
+                                <div className="absolute -top-6 left-1/2 h-6 w-px -translate-x-1/2 bg-neutral-300" />
+
+                                <TradingDepartmentCard
+                                    department={department}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function TradingDepartmentCard({
+    department,
+}: {
+    department: TradingDepartmentNode;
+}) {
+    return (
+        <article className="rounded-xl border border-neutral-200 bg-white p-4 shadow-sm">
+            <TradingOrgCard title={department.title} variant="division" />
+
+            <TradingConnectorLine className="mx-auto h-6" />
+
+            <div className="grid gap-3">
+                {department.children.map((child) => (
+                    <div
+                        key={child}
+                        className="rounded-lg border border-neutral-200 bg-stone-50 px-3 py-3 text-center text-sm font-semibold leading-5 text-neutral-700"
+                    >
+                        {child}
+                    </div>
+                ))}
+            </div>
+        </article>
+    );
+}
+
+function TradingMobileDepartmentCard({
+    department,
+}: {
+    department: TradingDepartmentNode;
+}) {
+    return (
+        <article className="rounded-xl border border-neutral-200 bg-stone-50 p-4">
+            <h3 className="text-sm font-bold leading-5 text-slate-800">
+                {department.title}
+            </h3>
+
+            <ul className="mt-4 space-y-3">
+                {department.children.map((child) => (
+                    <li
+                        key={child}
+                        className="rounded-lg border border-neutral-200 bg-white px-3 py-3 text-sm font-medium leading-5 text-neutral-700"
+                    >
+                        {child}
+                    </li>
+                ))}
+            </ul>
+        </article>
+    );
+}
+
+function TradingMobileOrgNode({
+    node,
+}: {
+    node: TradingOrgNode;
+}) {
+    return (
+        <div className="rounded-xl border border-neutral-200 bg-white px-4 py-3">
+            <p className="text-sm font-semibold leading-5 text-neutral-950">
+                {node.title}
+            </p>
+        </div>
+    );
+}
+
+function TradingOrgCard({
+    title,
+    variant = "division",
+}: TradingOrgNode) {
+    const variants = {
+        primary:
+            "border-orange-600 bg-orange-600 text-white shadow-lg shadow-orange-600/20",
+        secondary: "border-neutral-200 bg-white text-slate-800 shadow-sm",
+        division: "border-orange-100 bg-orange-50 text-slate-800 shadow-sm",
+    };
+
+    return (
+        <div
+            className={`flex min-h-16 w-full min-w-44 max-w-72 items-center justify-center rounded-xl border px-5 py-4 text-center ${variants[variant]}`}
+        >
+            <p className="text-sm font-bold leading-5">
+                {title}
+            </p>
+        </div>
+    );
+}
+
+function TradingConnectorLine({
+    className = "",
+}: {
+    className?: string;
+}) {
+    return <div className={`w-px bg-neutral-300 ${className}`} />;
 }
 
 function OverviewCard({ item }: { item: OverviewItem }) {

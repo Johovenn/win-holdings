@@ -47,6 +47,47 @@ type Capability = {
     icon: ReactNode;
 };
 
+type MaterialSupplyOrgNode = {
+    title: string;
+    variant?: "primary" | "secondary" | "division";
+};
+
+type MaterialSupplyDepartmentNode = {
+    title: string;
+    children: string[];
+};
+
+const materialSupplyDepartmentNodes: MaterialSupplyDepartmentNode[] = [
+    {
+        title: "Regional Manager – Sulawesi",
+        children: [
+            "Vice Manager – Sales",
+            "Vice Manager – Procurement",
+            "Vice Manager – Warehouse",
+        ],
+    },
+    {
+        title: "Regional Manager – Maluku",
+        children: [
+            "Vice Manager – Sales",
+            "Vice Manager – Procurement",
+            "Vice Manager – Warehouse",
+        ],
+    },
+    {
+        title: "Head of Finance Department",
+        children: [
+            "Vice Department Head – Accounting",
+        ],
+    },
+    {
+        title: "Head of Procurement and Logistics Department",
+        children: [
+            "Supervisor – Domestic and International Procurement & Logistics",
+        ],
+    },
+];
+
 const overviewCards: OverviewCard[] = [
     {
         label: "Established",
@@ -197,6 +238,7 @@ export default function WLSPage() {
             <ProductPortfolioSection />
             <FeaturedPortfolioSection />
             <IndustrialCapabilitySection />
+            <MaterialSupplyOrganizationSection />
             <CTASection />
         </main>
     );
@@ -259,6 +301,205 @@ function HeroSection() {
             </SectionContainer>
         </section>
     );
+}
+
+function MaterialSupplyOrganizationSection() {
+    return (
+        <section className="bg-white py-16">
+            <SectionContainer>
+                <div className="mx-auto max-w-3xl text-center">
+                    <p className="text-sm font-bold uppercase tracking-widest text-orange-600">
+                        Organization Structure
+                    </p>
+
+                    <h2 className="mt-3 text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
+                        Material Supply Organization Structure
+                    </h2>
+
+                    <p className="mt-4 text-base leading-7 text-neutral-600">
+                        The material supply division is structured to support regional
+                        operations, sales, procurement, warehousing, finance, and
+                        domestic and international logistics coordination.
+                    </p>
+                </div>
+
+                <div className="mt-14">
+                    <MobileMaterialSupplyOrganizationChart />
+
+                    <DesktopMaterialSupplyOrganizationChart />
+                </div>
+            </SectionContainer>
+        </section>
+    );
+}
+
+function MobileMaterialSupplyOrganizationChart() {
+    return (
+        <div className="space-y-6 lg:hidden">
+            <div className="rounded-2xl border border-neutral-200 bg-stone-50 p-5 shadow-sm">
+                <div className="flex justify-center">
+                    <MaterialSupplyOrgCard
+                        title="Material Supply"
+                        variant="primary"
+                    />
+                </div>
+
+                <MaterialSupplyConnectorLine className="mx-auto h-8" />
+
+                <div className="flex justify-center">
+                    <MaterialSupplyOrgCard
+                        title="Vice CEO"
+                        variant="secondary"
+                    />
+                </div>
+            </div>
+
+            <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+                <p className="text-sm font-semibold uppercase tracking-wider text-orange-600">
+                    Departments Under Vice CEO
+                </p>
+
+                <div className="mt-4 grid gap-4">
+                    {materialSupplyDepartmentNodes.map((department) => (
+                        <MaterialSupplyMobileDepartmentCard
+                            key={department.title}
+                            department={department}
+                        />
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function DesktopMaterialSupplyOrganizationChart() {
+    return (
+        <div className="hidden overflow-x-auto rounded-2xl border border-neutral-200 bg-stone-50 p-6 shadow-sm lg:block">
+            <div className="min-w-200">
+                <div className="flex justify-center">
+                    <MaterialSupplyOrgCard
+                        title="Material Supply"
+                        variant="primary"
+                    />
+                </div>
+
+                <MaterialSupplyConnectorLine className="mx-auto h-10" />
+
+                <div className="flex justify-center">
+                    <MaterialSupplyOrgCard
+                        title="Vice CEO"
+                        variant="secondary"
+                    />
+                </div>
+
+                <MaterialSupplyConnectorLine className="mx-auto h-10" />
+
+                <div className="relative">
+                    <div className="absolute left-1/2 top-0 h-px w-11/12 -translate-x-1/2 bg-neutral-300" />
+
+                    <div className="grid grid-cols-4 gap-6 pt-6">
+                        {materialSupplyDepartmentNodes.map((department) => (
+                            <div
+                                key={department.title}
+                                className="relative"
+                            >
+                                <div className="absolute -top-6 left-1/2 h-6 w-px -translate-x-1/2 bg-neutral-300" />
+
+                                <MaterialSupplyDepartmentCard
+                                    department={department}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function MaterialSupplyDepartmentCard({
+    department,
+}: {
+    department: MaterialSupplyDepartmentNode;
+}) {
+    return (
+        <article className="rounded-xl border border-neutral-200 bg-white p-4 shadow-sm">
+            <MaterialSupplyOrgCard
+                title={department.title}
+                variant="division"
+            />
+
+            <MaterialSupplyConnectorLine className="mx-auto h-6" />
+
+            <div className="grid gap-3">
+                {department.children.map((child) => (
+                    <div
+                        key={child}
+                        className="rounded-lg border border-neutral-200 bg-stone-50 px-3 py-3 text-center text-sm font-semibold leading-5 text-neutral-700"
+                    >
+                        {child}
+                    </div>
+                ))}
+            </div>
+        </article>
+    );
+}
+
+function MaterialSupplyMobileDepartmentCard({
+    department,
+}: {
+    department: MaterialSupplyDepartmentNode;
+}) {
+    return (
+        <article className="rounded-xl border border-neutral-200 bg-stone-50 p-4">
+            <h3 className="text-sm font-bold leading-5 text-neutral-950">
+                {department.title}
+            </h3>
+
+            <ul className="mt-4 space-y-3">
+                {department.children.map((child) => (
+                    <li
+                        key={child}
+                        className="rounded-lg border border-neutral-200 bg-white px-3 py-3 text-sm font-medium leading-5 text-neutral-700"
+                    >
+                        {child}
+                    </li>
+                ))}
+            </ul>
+        </article>
+    );
+}
+
+function MaterialSupplyOrgCard({
+    title,
+    variant = "division",
+}: MaterialSupplyOrgNode) {
+    const variants = {
+        primary:
+            "border-orange-600 bg-orange-600 text-white shadow-lg shadow-orange-600/20",
+        secondary:
+            "border-neutral-200 bg-white text-neutral-950 shadow-sm",
+        division:
+            "border-orange-100 bg-orange-50 text-neutral-950 shadow-sm",
+    };
+
+    return (
+        <div
+            className={`flex min-h-16 w-full min-w-44 max-w-72 items-center justify-center rounded-xl border px-5 py-4 text-center ${variants[variant]}`}
+        >
+            <p className="text-sm font-bold leading-5">
+                {title}
+            </p>
+        </div>
+    );
+}
+
+function MaterialSupplyConnectorLine({
+    className = "",
+}: {
+    className?: string;
+}) {
+    return <div className={`w-px bg-neutral-300 ${className}`} />;
 }
 
 function CompanyOverviewSection() {

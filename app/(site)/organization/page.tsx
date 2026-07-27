@@ -31,100 +31,92 @@ type GovernanceCard = {
 
 const directors: Director[] = [
     {
-        name: "Director Name",
-        position: "President Director",
+        name: "Leadership",
+        position: "Chairman",
         description:
-            "Leads the company’s strategic direction, governance, and long-term business growth.",
+            "Provides group-level leadership, strategic direction, and long-term governance oversight for the holding group.",
     },
     {
-        name: "Director Name",
-        position: "Director of Operations",
+        name: "Leadership",
+        position: "CEO",
         description:
-            "Oversees operational performance, coordination, and execution across business units.",
+            "Leads the execution of corporate strategy and ensures alignment across all business units under the holding group.",
     },
     {
-        name: "Director Name",
-        position: "Director of Finance",
+        name: "Leadership",
+        position: "Assistant CEO",
         description:
-            "Manages financial strategy, reporting, control, and corporate financial governance.",
+            "Supports the CEO in executive coordination, internal communication, and operational follow-up across the organization.",
     },
     {
-        name: "Director Name",
-        position: "Director of Business Development",
+        name: "Leadership",
+        position: "Business Development",
         description:
-            "Develops strategic partnerships, portfolio expansion, and new business opportunities.",
+            "Drives investment planning, business expansion, and strategic development opportunities for the holding group.",
     },
 ];
 
 const governanceCards: GovernanceCard[] = [
     {
-        title: "3C Paint",
-        category: "Manufacture",
+        title: "Manpower Supply Company",
+        category: "Manpower Supply",
         description:
-            "Managed under the manufacturing division to support production quality and operational efficiency.",
-        icon: <Factory className="h-7 w-7" />,
-    },
-    {
-        title: "WLS",
-        category: "Outsourcing",
-        description:
-            "Managed under the outsourcing division to support workforce services and client operations.",
+            "Managed under dedicated executive leadership to support workforce supply, manpower coordination, and operational staffing needs.",
         icon: <Users className="h-7 w-7" />,
     },
     {
-        title: "Indosino Sukses Bersama",
-        category: "Trading",
+        title: "Trading Material Company",
+        category: "Trading Material",
         description:
-            "Managed under the trading division to support commercial, supply, and distribution activities.",
+            "Managed under dedicated executive leadership to support procurement, material trading, and supply coordination.",
         icon: <Store className="h-7 w-7" />,
     },
     {
-        title: "ICG",
+        title: "Construction Company",
         category: "Construction",
         description:
-            "Managed under the construction division to support project development and construction execution.",
+            "Managed under dedicated executive leadership to support construction execution, project coordination, and field operations.",
         icon: <Building2 className="h-7 w-7" />,
     },
-];
-
-const directorNodes: OrgNode[] = [
-    {
-        title: "Director of Operations",
-        variant: "secondary",
-    },
-    {
-        title: "Director of Finance",
-        variant: "secondary",
-    },
-    {
-        title: "Director of Business Development",
-        variant: "secondary",
-    },
-    {
-        title: "Director of Human Resources",
-        variant: "secondary",
-    },
-];
-
-const divisionNodes: OrgNode[] = [
     {
         title: "Manufacturing Company",
+        category: "Manufacturing",
+        description:
+            "Managed under dedicated executive leadership to support production quality, manufacturing operations, and process efficiency.",
+        icon: <Factory className="h-7 w-7" />,
+    },
+    {
+        title: "Investment and Business Development Company",
+        category: "Investment & Business Development",
+        description:
+            "Managed under business development leadership to support investment strategy, portfolio growth, and new business opportunities.",
+        icon: <Landmark className="h-7 w-7" />,
+    },
+];
+
+const executiveNodes: OrgNode[] = [
+    {
+        title: "Assistant CEO",
+        variant: "secondary",
+    },
+    {
+        title: "Vice CEO – Manpower Supply Company",
         variant: "division",
     },
     {
-        title: "Outsourcing Company",
+        title: "Vice CEO – Trading Material Company",
         variant: "division",
     },
     {
-        title: "Trading Company",
+        title: "Vice CEO – Construction Company",
         variant: "division",
     },
     {
-        title: "Construction Company",
+        title: "Vice CEO – Manufacturing Company",
         variant: "division",
     },
     {
-        title: "Corporate Support Division",
+        title: "Business Development – Investment and Business Development Company",
         variant: "division",
     },
 ];
@@ -352,8 +344,8 @@ function OrganizationChartSection() {
             <SectionContainer>
                 <SectionHeading
                     align="center"
-                    title="WIN Holdings Organization Structure"
-                    description="A clear hierarchy supports effective leadership, operational control, and business-unit accountability across the WIN Holdings ecosystem."
+                    title="Holding Group Organization Structure"
+                    description="A clear leadership hierarchy supports executive coordination, business-unit accountability, and strategic growth across the holding group."
                 />
 
                 <div className="mt-14">
@@ -371,35 +363,29 @@ function MobileOrganizationChart() {
         <div className="space-y-6 lg:hidden">
             <div className="rounded-2xl border border-neutral-200 bg-stone-50 p-5 shadow-sm">
                 <div className="flex justify-center">
-                    <OrgCard title="Board of Directors" variant="primary" />
+                    <OrgCard title="Holding Group" variant="primary" />
                 </div>
 
                 <ConnectorLine className="mx-auto h-8" />
 
                 <div className="flex justify-center">
-                    <OrgCard title="President Director" variant="secondary" />
+                    <OrgCard title="Chairman" variant="secondary" />
+                </div>
+
+                <ConnectorLine className="mx-auto h-8" />
+
+                <div className="flex justify-center">
+                    <OrgCard title="CEO" variant="secondary" />
                 </div>
             </div>
 
             <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
                 <p className="text-sm font-semibold uppercase tracking-wider text-orange-600">
-                    Directors
+                    Executive Leadership
                 </p>
 
                 <div className="mt-4 grid gap-3">
-                    {directorNodes.map((node) => (
-                        <MobileOrgNode key={node.title} node={node} />
-                    ))}
-                </div>
-            </div>
-
-            <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
-                <p className="text-sm font-semibold uppercase tracking-wider text-orange-600">
-                    Business Divisions
-                </p>
-
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                    {divisionNodes.map((node) => (
+                    {executiveNodes.map((node) => (
                         <MobileOrgNode key={node.title} node={node} />
                     ))}
                 </div>
@@ -411,37 +397,21 @@ function MobileOrganizationChart() {
 function DesktopOrganizationChart() {
     return (
         <div className="hidden overflow-x-auto rounded-2xl border border-neutral-200 bg-stone-50 p-6 shadow-sm lg:block">
-            <div className="min-w-6xl">
+            <div className="min-w-200">
                 <div className="flex justify-center">
-                    <OrgCard title="Board of Directors" variant="primary" />
+                    <OrgCard title="Holding Group" variant="primary" />
                 </div>
 
                 <ConnectorLine className="mx-auto h-10" />
 
                 <div className="flex justify-center">
-                    <OrgCard title="President Director" variant="secondary" />
+                    <OrgCard title="Chairman" variant="secondary" />
                 </div>
 
                 <ConnectorLine className="mx-auto h-10" />
 
-                <div className="relative">
-                    <div className="absolute left-1/2 top-0 h-px w-3/4 -translate-x-1/2 bg-neutral-300" />
-
-                    <div className="grid gap-4 pt-6 lg:grid-cols-4">
-                        {directorNodes.map((node) => (
-                            <div
-                                key={node.title}
-                                className="relative flex justify-center"
-                            >
-                                <div className="absolute -top-6 h-6 w-px bg-neutral-300" />
-
-                                <OrgCard
-                                    title={node.title}
-                                    variant={node.variant}
-                                />
-                            </div>
-                        ))}
-                    </div>
+                <div className="flex justify-center">
+                    <OrgCard title="CEO" variant="secondary" />
                 </div>
 
                 <ConnectorLine className="mx-auto h-10" />
@@ -449,8 +419,8 @@ function DesktopOrganizationChart() {
                 <div className="relative">
                     <div className="absolute left-1/2 top-0 h-px w-11/12 -translate-x-1/2 bg-neutral-300" />
 
-                    <div className="grid gap-4 pt-6 lg:grid-cols-5">
-                        {divisionNodes.map((node) => (
+                    <div className="grid gap-4 pt-6 lg:grid-cols-6">
+                        {executiveNodes.map((node) => (
                             <div
                                 key={node.title}
                                 className="relative flex justify-center"
@@ -471,8 +441,16 @@ function DesktopOrganizationChart() {
 }
 
 function MobileOrgNode({ node }: { node: OrgNode }) {
+    const isAssistant = node.title === "Assistant CEO";
+
     return (
-        <div className="rounded-xl border border-neutral-200 bg-stone-50 px-4 py-3">
+        <div
+            className={
+                isAssistant
+                    ? "rounded-xl border border-neutral-200 bg-stone-50 px-4 py-3"
+                    : "rounded-xl border border-orange-100 bg-orange-50/40 px-4 py-3"
+            }
+        >
             <p className="text-sm font-semibold leading-5 text-neutral-950">
                 {node.title}
             </p>
@@ -485,12 +463,12 @@ function OrgCard({ title, variant = "division" }: OrgNode) {
         primary:
             "border-orange-600 bg-orange-600 text-white shadow-lg shadow-orange-600/20",
         secondary: "border-neutral-200 bg-white text-neutral-950 shadow-sm",
-        division: "border-neutral-200 bg-white text-neutral-950 shadow-sm",
+        division: "border-orange-100 bg-orange-50 text-neutral-950 shadow-sm",
     };
 
     return (
         <div
-            className={`w-full min-w-40 max-w-56 rounded-xl border p-4 text-center ${variants[variant]}`}
+            className={`flex min-h-20 w-full min-w-44 max-w-60 items-center justify-center rounded-xl border p-4 text-center ${variants[variant]}`}
         >
             <p className="text-sm font-semibold leading-5">{title}</p>
         </div>
@@ -557,10 +535,10 @@ function BusinessUnitGovernanceSection() {
                 <SectionHeading
                     align="center"
                     title="Business Unit Governance"
-                    description="Each subsidiary operates under a defined division to maintain accountability, efficiency, and alignment with WIN Holdings’ strategic direction."
+                    description="Each business unit operates under dedicated executive leadership to maintain accountability, operational focus, and alignment with the holding group’s strategic direction."
                 />
 
-                <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
                     {governanceCards.map((item) => (
                         <article
                             key={item.title}

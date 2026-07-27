@@ -33,8 +33,52 @@ type TimelineItem = {
     year: string;
     title: string;
     description: string;
+    pillar: string;
     side: "left" | "right";
 };
+
+const timeline: TimelineItem[] = [
+    {
+        year: "2019",
+        title: "Foundation in Construction Materials Trading",
+        description:
+            "The company was established in Indonesia with an initial focus on construction material trading in West Java, including cement, stone, sand, and other building materials. This stage built the supplier network and project-service experience that became the foundation for future business expansion.",
+        pillar: "Trading • Procurement • Supply Network",
+        side: "left",
+    },
+    {
+        year: "2021",
+        title: "Expansion into Workforce Solutions",
+        description:
+            "The company entered the manpower outsourcing and human resources supply sector, starting with Halmahera as its first strategic operation point. Services included operators, technicians, skilled workers, general workers, and project support personnel.",
+        pillar: "Workforce • Industrial Services",
+        side: "right",
+    },
+    {
+        year: "2023",
+        title: "Industrial Food Supply Development",
+        description:
+            "To support large-scale industrial operations, the company expanded into food supply and logistics, providing rice, vegetables, meat, seafood, seasonings, and other essential goods while strengthening warehousing, distribution, cold chain, and integrated supply-chain capabilities.",
+        pillar: "Food Supply • Logistics",
+        side: "left",
+    },
+    {
+        year: "2024",
+        title: "National and Multi-Sector Expansion",
+        description:
+            "The company expanded its operational bases into Sulawesi and Kalimantan, entered the construction sector through civil, mechanical, and electrical works, and invested in an industrial coating manufacturing facility in Cikarang, West Java.",
+        pillar: "Regional Expansion • Construction Services • Manufacturing",
+        side: "right",
+    },
+    {
+        year: "2025",
+        title: "Strategic Construction Expansion and Holding Headquarters",
+        description:
+            "The company strengthened its construction capability by winning a strategic project in West Kalimantan involving civil infrastructure and sports facility development. In the same year, the group established its headquarters at Gold Coast Office, Jakarta, with approximately 900 m² of office space to support integrated governance and corporate coordination.",
+        pillar: "Infrastructure Development • Corporate Governance",
+        side: "left",
+    },
+];
 
 const values: ValueCard[] = [
     {
@@ -87,37 +131,6 @@ const subsidiaries: SubsidiaryCard[] = [
         description:
         "Specialized infrastructure development and architectural solutions.",
         icon: <Building2 className="h-8 w-8" />,
-    },
-];
-
-const timeline: TimelineItem[] = [
-    {
-        year: "2010",
-        title: "The Foundation",
-        description:
-        "WIN Holdings established as a strategic management firm to consolidate regional manufacturing assets.",
-        side: "left",
-    },
-    {
-        year: "2014",
-        title: "Manufacturing Excellence",
-        description:
-        "Acquisition and scaling of 3C Paint, establishing a foothold in the industrial coatings market.",
-        side: "right",
-    },
-    {
-        year: "2018",
-        title: "Diversification Phase",
-        description:
-        "Expansion into human resources and international trade with WLS and Indosino Sukses Bersama.",
-        side: "left",
-    },
-    {
-        year: "2023+",
-        title: "Future-Forward Construction",
-        description:
-        "Launching ICG to spearhead sustainable infrastructure and modern architectural development.",
-        side: "right",
     },
 ];
 
@@ -382,21 +395,33 @@ function BusinessEcosystemSection() {
         </section>
     );
 }
-
 function GrowthJourneySection() {
     return (
         <section className="bg-stone-50 py-16">
             <SectionContainer>
-                <h2 className="text-center text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                 Our Growth Journey
-                </h2>
+                <div className="mx-auto max-w-3xl text-center">
+                    <p className="text-sm font-semibold uppercase tracking-widest text-orange-600">
+                        Company History
+                    </p>
+
+                    <h2 className="mt-3 text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
+                        Our Growth Journey
+                    </h2>
+
+                    <p className="mt-4 text-base leading-7 text-neutral-600">
+                        From construction material trading to an integrated industrial
+                        supply and construction group, our growth reflects continuous
+                        expansion across procurement, workforce services, logistics,
+                        construction, manufacturing, and corporate governance.
+                    </p>
+                </div>
 
                 <div className="relative mx-auto mt-16 max-w-5xl">
                     <div className="absolute bottom-0 left-4 top-0 w-px bg-neutral-300 md:left-1/2 md:-translate-x-1/2" />
 
-                    <div className="space-y-16 md:space-y-24">
+                    <div className="space-y-10 md:space-y-16">
                         {timeline.map((item) => (
-                        <TimelineRow key={item.year} item={item} />
+                            <TimelineRow key={`${item.year}-${item.title}`} item={item} />
                         ))}
                     </div>
                 </div>
@@ -412,23 +437,39 @@ function TimelineRow({ item }: { item: TimelineItem }) {
         <div className="relative grid gap-8 pl-12 md:grid-cols-2 md:pl-0">
             <div
                 className={
-                isLeft
-                    ? "md:col-start-1 md:pr-12 md:text-right"
-                    : "md:col-start-2 md:pl-12 md:text-left"
+                    isLeft
+                        ? "md:col-start-1 md:pr-12 md:text-right"
+                        : "md:col-start-2 md:pl-12 md:text-left"
                 }
             >
-                <p className="text-base leading-6 text-orange-600">{item.year}</p>
+                <article className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+                    <p className="text-sm font-bold uppercase tracking-widest text-orange-600">
+                        {item.year}
+                    </p>
 
-                <h3 className="mt-2 text-base font-medium leading-6 text-neutral-950">
-                    {item.title}
-                </h3>
+                    <h3 className="mt-3 text-xl font-semibold leading-7 tracking-tight text-neutral-950">
+                        {item.title}
+                    </h3>
 
-                <p className="mt-2 text-base leading-6 text-neutral-600">
-                    {item.description}
-                </p>
+                    <p className="mt-3 text-base leading-7 text-neutral-600">
+                        {item.description}
+                    </p>
+
+                    <div
+                        className={
+                            isLeft
+                                ? "mt-5 flex md:justify-end"
+                                : "mt-5 flex md:justify-start"
+                        }
+                    >
+                        <span className="inline-flex rounded-full bg-orange-600/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-orange-700">
+                            {item.pillar}
+                        </span>
+                    </div>
+                </article>
             </div>
 
-            <span className="absolute left-4 top-2 h-4 w-4 -translate-x-1/2 rounded-full bg-orange-600 md:left-1/2" />
+            <span className="absolute left-4 top-6 h-4 w-4 -translate-x-1/2 rounded-full border-4 border-white bg-orange-600 shadow-sm md:left-1/2" />
         </div>
     );
 }
