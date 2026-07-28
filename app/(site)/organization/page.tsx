@@ -94,11 +94,12 @@ const governanceCards: GovernanceCard[] = [
     },
 ];
 
+const assistantCeoNode: OrgNode = {
+    title: "Assistant CEO",
+    variant: "secondary",
+};
+
 const executiveNodes: OrgNode[] = [
-    {
-        title: "Assistant CEO",
-        variant: "secondary",
-    },
     {
         title: "Vice CEO – Manpower Supply Company",
         variant: "division",
@@ -414,12 +415,22 @@ function DesktopOrganizationChart() {
                     <OrgCard title="CEO" variant="secondary" />
                 </div>
 
-                <ConnectorLine className="mx-auto h-10" />
+                <div className="relative pt-16">
+                    <div className="absolute left-1/2 top-0 h-10 w-px bg-neutral-300" />
 
-                <div className="relative">
-                    <div className="absolute left-1/2 top-0 h-px w-11/12 -translate-x-1/2 bg-neutral-300" />
+                    <div className="absolute left-[8.333%] right-1/2 top-5 h-px bg-neutral-300" />
+                    <div className="absolute left-[8.333%] top-5 h-11 w-px bg-neutral-300" />
 
-                    <div className="grid gap-4 pt-6 lg:grid-cols-6">
+                    <div className="absolute left-1/4 right-[8.333%] top-10 h-px bg-neutral-300" />
+
+                    <div className="grid grid-cols-6 gap-4">
+                        <div className="relative flex justify-center">
+                            <OrgCard
+                                title={assistantCeoNode.title}
+                                variant={assistantCeoNode.variant}
+                            />
+                        </div>
+
                         {executiveNodes.map((node) => (
                             <div
                                 key={node.title}
