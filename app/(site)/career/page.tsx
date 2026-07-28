@@ -30,8 +30,7 @@ type Career = {
 
 type SearchParams = {
     q?: string;
-    department?: string;
-    location?: string;
+    page?: string;
     success?: string;
     error?: string;
 };
@@ -47,6 +46,8 @@ type HiringStep = {
     title: string;
     description: string;
 };
+
+const CAREERS_PER_PAGE = 6;
 
 const benefits: BenefitCard[] = [
     {
@@ -141,6 +142,20 @@ const fallbackCareers: Career[] = [
     },
 ];
 
+function getCurrentPage(page: string | undefined, totalPages: number) {
+    const parsedPage = Number(page);
+
+    if (!Number.isInteger(parsedPage) || parsedPage < 1) {
+        return 1;
+    }
+
+    if (parsedPage > totalPages) {
+        return totalPages;
+    }
+
+    return parsedPage;
+}
+
 export default async function CareersPage({
     searchParams,
 }: {
@@ -150,8 +165,18 @@ export default async function CareersPage({
     const careers = await getCareers();
 
     const filteredCareers = filterCareers(careers, params);
-    const departments = getUniqueOptions(careers.map((career) => career.department));
-    const locations = getUniqueOptions(careers.map((career) => career.location));
+
+    const totalPages = Math.max(
+        1,
+        Math.ceil(filteredCareers.length / CAREERS_PER_PAGE),
+    );
+
+    const currentPage = getCurrentPage(params.page, totalPages);
+    const startIndex = (currentPage - 1) * CAREERS_PER_PAGE;
+    const paginatedCareers = filteredCareers.slice(
+        startIndex,
+        startIndex + CAREERS_PER_PAGE,
+    );
 
     return (
         <main className="min-h-screen bg-stone-50 text-neutral-950">
@@ -163,13 +188,12 @@ export default async function CareersPage({
             />
 
             <OpenOpportunitiesSection
-                careers={filteredCareers}
-                departments={departments}
-                locations={locations}
-                selectedDepartment={params.department ?? ""}
-                selectedLocation={params.location ?? ""}
+                careers={paginatedCareers}
                 searchQuery={params.q ?? ""}
+                currentPage={currentPage}
+                totalPages={totalPages}
             />
+
             <HiringProcessSection />
             <TalentPoolCTASection />
         </main>
@@ -257,39 +281,17 @@ async function getCareers(): Promise<Career[]> {
 }
 
 function filterCareers(careers: Career[], params: SearchParams) {
-    const searchQuery = params.q?.trim().toLowerCase();
-    const department = params.department?.trim();
-    const location = params.location?.trim();
+    const searchQuery = normalizeFilterValue(params.q);
 
     return careers.filter((career) => {
-        const matchesSearch = searchQuery
-            ? [
-                  career.title,
-                  career.department,
-                  career.location,
-                  career.employment_type,
-                  career.description,
-              ]
-                  .filter(Boolean)
-                  .join(" ")
-                  .toLowerCase()
-                  .includes(searchQuery)
-            : true;
+        const careerTitle = normalizeFilterValue(career.title);
 
-        const matchesDepartment = department
-            ? career.department === department
-            : true;
-
-        const matchesLocation = location ? career.location === location : true;
-
-        return matchesSearch && matchesDepartment && matchesLocation;
+        return searchQuery ? careerTitle.includes(searchQuery) : true;
     });
 }
 
-function getUniqueOptions(values: Array<string | null>) {
-    return Array.from(
-        new Set(values.filter((value): value is string => Boolean(value)))
-    ).sort((a, b) => a.localeCompare(b));
+function normalizeFilterValue(value?: string | null) {
+    return value?.trim().toLowerCase() ?? "";
 }
 
 function SectionContainer({
@@ -385,18 +387,14 @@ function WhyJoinUsSection() {
 
 function OpenOpportunitiesSection({
     careers,
-    departments,
-    locations,
-    selectedDepartment,
-    selectedLocation,
     searchQuery,
+    currentPage,
+    totalPages,
 }: {
     careers: Career[];
-    departments: string[];
-    locations: string[];
-    selectedDepartment: string;
-    selectedLocation: string;
     searchQuery: string;
+    currentPage: number;
+    totalPages: number;
 }) {
     return (
         <section className="bg-stone-100 py-24 lg:py-32">
@@ -412,46 +410,107 @@ function OpenOpportunitiesSection({
                         </p>
                     </div>
 
-                    <CareerFilters
-                        departments={departments}
-                        locations={locations}
-                        selectedDepartment={selectedDepartment}
-                        selectedLocation={selectedLocation}
-                        searchQuery={searchQuery}
-                    />
+                    <CareerFilters searchQuery={searchQuery} />
                 </div>
 
                 {careers.length > 0 ? (
-                    <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-                        {careers.map((career) => (
-                            <CareerCard key={career.id} career={career} />
-                        ))}
-                    </div>
+                    <>
+                        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                            {careers.map((career) => (
+                                <CareerCard key={career.id} career={career} />
+                            ))}
+                        </div>
+
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            searchQuery={searchQuery}
+                        />
+                    </>
                 ) : (
                     <EmptyCareersState />
                 )}
-
-                <Pagination />
             </SectionContainer>
         </section>
     );
 }
 
-function CareerFilters({
-    departments,
-    locations,
-    selectedDepartment,
-    selectedLocation,
+function Pagination({
+    currentPage,
+    totalPages,
     searchQuery,
 }: {
-    departments: string[];
-    locations: string[];
-    selectedDepartment: string;
-    selectedLocation: string;
+    currentPage: number;
+    totalPages: number;
     searchQuery: string;
 }) {
+    if (totalPages <= 1) {
+        return null;
+    }
+
+    const hasPreviousPage = currentPage > 1;
+    const hasNextPage = currentPage < totalPages;
+
     return (
-        <form className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto_auto] lg:flex">
+        <div className="mt-12 flex items-center justify-center gap-4">
+            {hasPreviousPage ? (
+                <Link
+                    href={buildCareerPageHref({
+                        page: currentPage - 1,
+                        searchQuery,
+                    })}
+                    className="inline-flex h-11 items-center gap-2 rounded-lg border border-neutral-300 bg-white px-4 text-sm font-medium text-neutral-950 transition-colors hover:border-orange-600 hover:text-orange-600"
+                >
+                    <ChevronLeft className="h-4 w-4" />
+                    Previous
+                </Link>
+            ) : (
+                <button
+                    type="button"
+                    disabled
+                    className="inline-flex h-11 items-center gap-2 rounded-lg border border-neutral-300 bg-white px-4 text-sm font-medium text-neutral-400 opacity-50"
+                >
+                    <ChevronLeft className="h-4 w-4" />
+                    Previous
+                </button>
+            )}
+
+            <span className="rounded-lg border border-neutral-300 bg-white px-4 py-3 text-sm font-semibold text-neutral-700">
+                Page {currentPage} of {totalPages}
+            </span>
+
+            {hasNextPage ? (
+                <Link
+                    href={buildCareerPageHref({
+                        page: currentPage + 1,
+                        searchQuery,
+                    })}
+                    className="inline-flex h-11 items-center gap-2 rounded-lg border border-neutral-300 bg-white px-4 text-sm font-medium text-neutral-950 transition-colors hover:border-orange-600 hover:text-orange-600"
+                >
+                    Next
+                    <ChevronRight className="h-4 w-4" />
+                </Link>
+            ) : (
+                <button
+                    type="button"
+                    disabled
+                    className="inline-flex h-11 items-center gap-2 rounded-lg border border-neutral-300 bg-white px-4 text-sm font-medium text-neutral-400 opacity-50"
+                >
+                    Next
+                    <ChevronRight className="h-4 w-4" />
+                </button>
+            )}
+        </div>
+    );
+}
+
+function CareerFilters({ searchQuery }: { searchQuery: string }) {
+    return (
+        <form
+            action="/career"
+            method="GET"
+            className="grid w-full gap-3 sm:grid-cols-[minmax(0,1fr)_auto_auto] lg:w-auto"
+        >
             <label className="relative block">
                 <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500" />
 
@@ -459,43 +518,24 @@ function CareerFilters({
                     type="search"
                     name="q"
                     defaultValue={searchQuery}
-                    placeholder="Search for roles..."
-                    className="h-12 w-full rounded-lg border border-neutral-300 bg-white pl-11 pr-4 text-sm text-neutral-950 outline-none transition-colors placeholder:text-neutral-500 focus:border-orange-600 lg:w-64"
+                    placeholder="Search by job title..."
+                    className="h-12 w-full rounded-lg border border-neutral-300 bg-white pl-11 pr-4 text-sm text-neutral-950 outline-none transition-colors placeholder:text-neutral-500 focus:border-orange-600 lg:w-72"
                 />
             </label>
 
-            <select
-                name="department"
-                defaultValue={selectedDepartment}
-                className="h-12 rounded-lg border border-neutral-300 bg-white px-4 text-sm text-neutral-950 outline-none transition-colors focus:border-orange-600"
-            >
-                <option value="">All Departments</option>
-                {departments.map((department) => (
-                    <option key={department} value={department}>
-                        {department}
-                    </option>
-                ))}
-            </select>
-
-            <select
-                name="location"
-                defaultValue={selectedLocation}
-                className="h-12 rounded-lg border border-neutral-300 bg-white px-4 text-sm text-neutral-950 outline-none transition-colors focus:border-orange-600"
-            >
-                <option value="">All Locations</option>
-                {locations.map((location) => (
-                    <option key={location} value={location}>
-                        {location}
-                    </option>
-                ))}
-            </select>
-
             <button
                 type="submit"
-                className="h-12 rounded-lg bg-neutral-950 px-5 text-sm font-medium text-white transition-colors hover:bg-black lg:hidden"
+                className="h-12 rounded-lg bg-neutral-950 px-5 text-sm font-medium text-white transition-colors hover:bg-black"
             >
-                Filter
+                Search
             </button>
+
+            <Link
+                href="/career"
+                className="inline-flex h-12 items-center justify-center rounded-lg border border-neutral-300 bg-white px-5 text-sm font-medium text-neutral-950 transition-colors hover:border-orange-600 hover:text-orange-600"
+            >
+                Reset
+            </Link>
         </form>
     );
 }
@@ -569,48 +609,26 @@ function EmptyCareersState() {
     );
 }
 
-function Pagination() {
-    return (
-        <div className="mt-12 flex items-center justify-center gap-2">
-            <button
-                type="button"
-                disabled
-                className="flex h-10 w-10 items-center justify-center rounded border border-neutral-300 text-neutral-400 opacity-40"
-                aria-label="Previous page"
-            >
-                <ChevronLeft className="h-4 w-4" />
-            </button>
+function buildCareerPageHref({
+    page,
+    searchQuery,
+}: {
+    page: number;
+    searchQuery: string;
+}) {
+    const params = new URLSearchParams();
 
-            <button
-                type="button"
-                className="flex h-10 w-10 items-center justify-center rounded bg-orange-600 text-base font-bold text-white"
-            >
-                1
-            </button>
+    if (searchQuery) {
+        params.set("q", searchQuery);
+    }
 
-            <button
-                type="button"
-                className="flex h-10 w-10 items-center justify-center rounded border border-neutral-300 bg-white text-base font-medium text-neutral-950"
-            >
-                2
-            </button>
+    if (page > 1) {
+        params.set("page", String(page));
+    }
 
-            <button
-                type="button"
-                className="flex h-10 w-10 items-center justify-center rounded border border-neutral-300 bg-white text-base font-medium text-neutral-950"
-            >
-                3
-            </button>
+    const queryString = params.toString();
 
-            <button
-                type="button"
-                className="flex h-10 w-10 items-center justify-center rounded border border-neutral-300 bg-white text-neutral-950"
-                aria-label="Next page"
-            >
-                <ChevronRight className="h-4 w-4" />
-            </button>
-        </div>
-    );
+    return queryString ? `/career?${queryString}` : "/career";
 }
 
 function HiringProcessSection() {
