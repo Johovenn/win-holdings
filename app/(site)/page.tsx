@@ -185,7 +185,7 @@ function HeroSection() {
 
             <div className="relative h-96 overflow-hidden rounded-2xl shadow-2xl">
                 <Image
-                    src="/images/landing-hero.jpeg"
+                    src="/images/hq-5.jpg"
                     alt="WIN Holdings business and industrial operations"
                     fill
                     priority
@@ -372,22 +372,22 @@ function OrganizationLeadership() {
 
     const images = [
         {
-            src: "/images/structure-1.jpg",
+            src: "/images/hq-4.jpg",
             alt: "WIN Holdings leadership meeting",
             className: "h-64",
         },
         {
-            src: "/images/structure-2.jpg",
+            src: "/images/hq-2.jpg",
             alt: "WIN Holdings corporate discussion",
             className: "h-48",
         },
         {
-            src: "/images/structure-3.jpg",
+            src: "/images/hq-1.jpg",
             alt: "WIN Holdings management collaboration",
             className: "h-48",
         },
         {
-            src: "/images/structure-4.jpg",
+            src: "/images/hq-6.jpg",
             alt: "WIN Holdings executive leadership",
             className: "h-64",
         },

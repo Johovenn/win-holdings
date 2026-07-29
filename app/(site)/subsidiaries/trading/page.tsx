@@ -190,7 +190,7 @@ function HeroSection() {
                         className="h-96 bg-cover bg-center lg:h-120"
                         style={{
                             backgroundImage:
-                                "linear-gradient(rgba(30,41,59,0.1), rgba(30,41,59,0.1)), url('/images/trading-1.jpg')",
+                                "linear-gradient(rgba(30,41,59,0.1), rgba(30,41,59,0.1)), url('/images/manpower-8.jpg')",
                         }}
                     >
                         <div className="flex h-full items-end p-4">
@@ -216,7 +216,7 @@ function CompanyOverviewSection() {
     return (
         <section className="relative overflow-hidden bg-stone-100 py-16">
             <Image
-                src="/images/trading-2.jpg"
+                src="/images/manpower-5.jpg"
                 alt=""
                 fill
                 sizes="100vw"
@@ -556,7 +556,7 @@ function ServicesSection() {
     return (
         <section className="relative overflow-hidden bg-stone-50 py-16">
             <Image
-                src="/images/trading-3.jpg"
+                src="/images/manpower-9.jpg"
                 alt=""
                 fill
                 sizes="100vw"

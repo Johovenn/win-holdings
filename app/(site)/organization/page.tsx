@@ -238,7 +238,7 @@ function HeroSection() {
                 <div className="relative hidden lg:block">
                     <div className="relative h-105 overflow-hidden rounded-2xl border border-neutral-200 bg-stone-100 shadow-xl">
                         <Image
-                            src="/images/structure-1.jpg"
+                            src="/images/hq-2.jpg"
                             alt="WIN Holdings organization structure"
                             fill
                             priority

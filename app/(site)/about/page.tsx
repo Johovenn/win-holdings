@@ -193,7 +193,7 @@ function WhoWeAreSection() {
             <SectionContainer className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
                 <div className="relative h-80 overflow-hidden rounded-xl bg-stone-300 shadow-md">
                     <Image
-                        src="/images/about-hero.jpeg"
+                        src="/images/hq-3.jpg"
                         alt="WIN Holdings boardroom and business discussion"
                         fill
                         sizes="(min-width: 1024px) 50vw, 100vw"
