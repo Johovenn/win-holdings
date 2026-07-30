@@ -20,72 +20,81 @@ export default function Navbar() {
     }
 
     return (
-        <header className="sticky top-0 z-50 border-b border-[#c4c7c8] bg-[#fcf8f8]/95 shadow-sm backdrop-blur-md">
+        <header className="sticky top-0 z-50 border-b border-white/10 bg-black/95 shadow-sm backdrop-blur-md">
             <Container>
                 <div className="flex h-20 items-center justify-between">
                     <Link
                         href="/"
-                        className="text-2xl font-bold tracking-[-0.24px] text-[#1c1b1b]"
+                        className="text-2xl font-bold tracking-[-0.24px] text-white"
                         onClick={() => setIsOpen(false)}
                     >
-                        WIN <span className="text-[#ea580c]">Holdings</span>
+                        WIN{" "}
+                        <span className="text-[#ea580c]">
+                            Holdings
+                        </span>
                     </Link>
 
                     <nav className="hidden items-center lg:flex">
                         {navLinks.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            className={cn(
-                            "ml-8 text-base leading-6 transition-colors first:ml-0 hover:text-[#ea580c]",
-                            isActive(link.href)
-                                ? "border-b-2 border-[#5d5f5f] pb-0.5 font-bold text-[#5d5f5f]"
-                                : "font-normal text-[#5c5f60]"
-                            )}
-                        >
-                            {link.label}
-                        </Link>
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={cn(
+                                    "ml-8 text-base leading-6 transition-colors first:ml-0 hover:text-[#ea580c]",
+                                    isActive(link.href)
+                                        ? "border-b-2 border-[#ea580c] pb-0.5 font-bold text-[#ea580c]"
+                                        : "font-normal text-white/70"
+                                )}
+                            >
+                                {link.label}
+                            </Link>
                         ))}
                     </nav>
 
                     <div className="hidden lg:block">
-                        <ButtonLink href="/contact">Contact Us</ButtonLink>
+                        <ButtonLink href="/contact">
+                            Contact Us
+                        </ButtonLink>
                     </div>
 
                     <button
                         type="button"
                         aria-label="Toggle navigation menu"
                         aria-expanded={isOpen}
-                        onClick={() => setIsOpen((current) => !current)}
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#c4c7c8] lg:hidden"
+                        onClick={() =>
+                            setIsOpen((current) => !current)
+                        }
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/20 transition-colors hover:border-[#ea580c] lg:hidden"
                     >
                         <span
-                        className={cn(
-                            "relative h-0.5 w-5 bg-[#1c1b1b] transition-all before:absolute before:left-0 before:h-0.5 before:w-5 before:bg-[#1c1b1b] before:transition-all before:content-[''] after:absolute after:left-0 after:h-0.5 after:w-5 after:bg-[#1c1b1b] after:transition-all after:content-['']",
-                            isOpen
-                                ? "bg-transparent before:top-0 before:rotate-45 after:top-0 after:-rotate-45"
-                                : "before:-top-1.5 after:top-1.5"
-                        )}
+                            className={cn(
+                                "relative h-0.5 w-5 bg-white transition-all before:absolute before:left-0 before:h-0.5 before:w-5 before:bg-white before:transition-all before:content-[''] after:absolute after:left-0 after:h-0.5 after:w-5 after:bg-white after:transition-all after:content-['']",
+                                isOpen
+                                    ? "bg-transparent before:top-0 before:rotate-45 after:top-0 after:-rotate-45"
+                                    : "before:-top-1.5 after:top-1.5"
+                            )}
                         />
                     </button>
                 </div>
 
                 {isOpen ? (
-                    <div className="border-t border-[#c4c7c8] py-4 lg:hidden">
+                    <div className="border-t border-white/10 py-4 lg:hidden">
                         <nav className="flex flex-col gap-1">
                             {navLinks.map((link) => (
                                 <Link
-                                key={link.href}
-                                href={link.href}
-                                onClick={() => setIsOpen(false)}
-                                className={cn(
-                                    "rounded-lg px-3 py-3 text-base transition-colors",
-                                    isActive(link.href)
-                                    ? "bg-[#ea580c]/10 font-semibold text-[#ea580c]"
-                                    : "text-[#5c5f60] hover:bg-[#f6f3f2] hover:text-[#ea580c]"
-                                )}
+                                    key={link.href}
+                                    href={link.href}
+                                    onClick={() =>
+                                        setIsOpen(false)
+                                    }
+                                    className={cn(
+                                        "rounded-lg px-3 py-3 text-base transition-colors",
+                                        isActive(link.href)
+                                            ? "bg-[#ea580c]/10 font-semibold text-[#ea580c]"
+                                            : "text-white/70 hover:bg-white/5 hover:text-[#ea580c]"
+                                    )}
                                 >
-                                {link.label}
+                                    {link.label}
                                 </Link>
                             ))}
 
@@ -100,5 +109,5 @@ export default function Navbar() {
                 ) : null}
             </Container>
         </header>
-  );
+    );
 }

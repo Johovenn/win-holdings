@@ -710,36 +710,45 @@ function FeatureDetailSection({ item }: { item: FeatureDetail }) {
 
 function IndustrialCapabilitySection() {
     return (
-        <section className="bg-neutral-800 py-20 text-white">
-            <SectionContainer>
-                <div className="max-w-3xl">
-                    <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-                        Core Industrial Capabilities
-                    </h2>
+        <section
+            className="relative bg-cover bg-center bg-no-repeat py-20 text-white"
+            style={{
+                backgroundImage: "url('/images/warehouse-1.jpg')",
+            }}
+        >
+            <div className="absolute inset-0 bg-neutral-900/90" />
 
-                    <p className="mt-5 text-base leading-7 text-white/70">
-                        We bridge global manufacturers and local project demands
-                        through procurement expertise, supply coordination, and
-                        transparent logistics execution.
-                    </p>
-                </div>
+            <div className="relative z-10">
+                <SectionContainer>
+                    <div className="max-w-3xl">
+                        <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+                            Core Industrial Capabilities
+                        </h2>
 
-                <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {capabilities.map((capability) => (
-                        <CapabilityCard
-                            key={capability.title}
-                            capability={capability}
-                        />
-                    ))}
-                </div>
-            </SectionContainer>
+                        <p className="mt-5 text-base leading-7 text-white/70">
+                            We bridge global manufacturers and local project
+                            demands through procurement expertise, supply
+                            coordination, and transparent logistics execution.
+                        </p>
+                    </div>
+
+                    <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        {capabilities.map((capability) => (
+                            <CapabilityCard
+                                key={capability.title}
+                                capability={capability}
+                            />
+                        ))}
+                    </div>
+                </SectionContainer>
+            </div>
         </section>
     );
 }
 
 function CapabilityCard({ capability }: { capability: Capability }) {
     return (
-        <article className="rounded-xl border border-white/10 bg-white/5 p-6">
+        <article className="rounded-xl border border-white/10 bg-black/70 p-6">
             <div className="text-orange-500">
                 {capability.icon}
             </div>

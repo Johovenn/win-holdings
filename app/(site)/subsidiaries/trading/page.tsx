@@ -227,7 +227,7 @@ function CompanyOverviewSection() {
 
             <SectionContainer className="relative z-10 grid gap-10 lg:grid-cols-12">
                 <div className="lg:col-span-7">
-                    <h2 className="text-3xl font-semibold leading-10 tracking-tight text-slate-800">
+                    <h2 className="text-3xl font-semibold leading-10 tracking-tight text-orange-600">
                         Specialized HR Outsourcing
                     </h2>
 
@@ -556,22 +556,22 @@ function ServicesSection() {
     return (
         <section className="relative overflow-hidden bg-stone-50 py-16">
             <Image
-                src="/images/manpower-9.jpg"
+                src="/images/manpower-7.jpg"
                 alt=""
                 fill
                 sizes="100vw"
                 className="object-cover"
             />
 
-            <div className="absolute inset-0 bg-stone-50/60" />
+            <div className="absolute inset-0 bg-stone-50/80" />
 
             <SectionContainer className="relative z-10">
                 <div className="text-center">
-                    <h2 className="text-3xl font-semibold leading-10 tracking-tight text-slate-800">
+                    <h2 className="text-3xl font-semibold leading-10 tracking-tight text-orange-600">
                         Our Core Services
                     </h2>
 
-                    <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-orange-500" />
+                    <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-black" />
                 </div>
 
                 <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
@@ -604,14 +604,14 @@ function ServiceCard({ service }: { service: Service }) {
 
 function ClientsSection() {
     return (
-        <section className="bg-stone-50 py-16">
+        <section className="bg-[#a7a7a1] py-16">
             <SectionContainer>
                 <div className="text-center">
-                    <h2 className="text-3xl font-semibold leading-10 tracking-tight text-slate-800">
+                    <h2 className="text-3xl font-semibold leading-10 tracking-tight text-orange-600">
                         Our Strategic Clients
                     </h2>
 
-                    <p className="mt-2 text-base leading-6 text-neutral-600">
+                    <p className="mt-2 text-base leading-6 text-black">
                         Powering the largest industrial projects in Indonesia.
                     </p>
                 </div>
@@ -622,7 +622,7 @@ function ClientsSection() {
                             key={client}
                             className="flex h-24 items-center justify-center rounded-lg border border-neutral-300 bg-white p-4"
                         >
-                            <p className="text-base font-bold text-neutral-500 opacity-60">
+                            <p className="text-base font-bold text-black">
                                 {client}
                             </p>
                         </div>

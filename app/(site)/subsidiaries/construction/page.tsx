@@ -55,11 +55,11 @@ const stats: Stat[] = [
 
 const specializedFields = [
     "Large-scale Metallurgical Projects",
-    "Cement Production Lines",
-    "Nickel-Iron Smelting",
     "Electromechanical Integration",
     "Municipal & Ecological Technology",
     "Industrial Production Lines",
+    "Cement Production Lines",
+    "Nickel-Iron Smelting",
 ];
 
 const qualifications: Qualification[] = [
@@ -331,14 +331,26 @@ function SpecializedFieldsSection() {
                 </div>
 
                 <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {specializedFields.map((field) => (
+                    {specializedFields.map((field, index) => (
                         <div
                             key={field}
-                            className="rounded-xl border border-white/10 p-5 pt-12"
+                            className="group relative min-h-65 overflow-hidden rounded-xl border border-white/10"
                         >
-                            <p className="text-base leading-6 text-white">
-                                {field}
-                            </p>
+                            <Image
+                                src={`/images/fields-${index + 1}.png`}
+                                alt={field}
+                                fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+
+                            <div className="absolute inset-0 bg-linear-to-t from-black via-black/35 to-black/5" />
+
+                            <div className="absolute inset-x-0 bottom-0 p-5">
+                                <p className="text-lg font-semibold leading-6 text-white">
+                                    {field}
+                                </p>
+                            </div>
                         </div>
                     ))}
                 </div>
