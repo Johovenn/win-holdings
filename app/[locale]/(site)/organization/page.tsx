@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import type { ReactNode } from "react";
 import {
     Building2,
@@ -10,114 +10,134 @@ import {
     Users,
 } from "lucide-react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 type OrgNode = {
-    title: string;
+    key:
+        | "assistantCeo"
+        | "manpowerSupply"
+        | "tradingMaterial"
+        | "construction"
+        | "manufacturing"
+        | "businessDevelopment";
     variant?: "primary" | "secondary" | "division";
 };
 
 type Director = {
-    name: string;
-    position: string;
-    description: string;
+    key: "chairman" | "ceo" | "assistantCeo" | "businessDevelopment";
 };
 
 type GovernanceCard = {
-    title: string;
-    category: string;
-    description: string;
+    key:
+        | "manpowerSupply"
+        | "tradingMaterial"
+        | "construction"
+        | "manufacturing"
+        | "investmentBusinessDevelopment";
     icon: ReactNode;
+};
+
+type FrameworkItem = {
+    key:
+        | "strategicDirection"
+        | "operationalCoordination"
+        | "corporateGovernance";
+    icon: ReactNode;
+};
+
+type FrameworkStat = {
+    key: "governance" | "businessUnits" | "portfolio";
 };
 
 const directors: Director[] = [
     {
-        name: "Leadership",
-        position: "Chairman",
-        description:
-            "Provides group-level leadership, strategic direction, and long-term governance oversight for the holding group.",
+        key: "chairman",
     },
     {
-        name: "Leadership",
-        position: "CEO",
-        description:
-            "Leads the execution of corporate strategy and ensures alignment across all business units under the holding group.",
+        key: "ceo",
     },
     {
-        name: "Leadership",
-        position: "Assistant CEO",
-        description:
-            "Supports the CEO in executive coordination, internal communication, and operational follow-up across the organization.",
+        key: "assistantCeo",
     },
     {
-        name: "Leadership",
-        position: "Business Development",
-        description:
-            "Drives investment planning, business expansion, and strategic development opportunities for the holding group.",
+        key: "businessDevelopment",
+    },
+];
+
+const frameworkStats: FrameworkStat[] = [
+    {
+        key: "governance",
+    },
+    {
+        key: "businessUnits",
+    },
+    {
+        key: "portfolio",
+    },
+];
+
+const frameworkItems: FrameworkItem[] = [
+    {
+        key: "strategicDirection",
+        icon: <Landmark className="h-6 w-6" />,
+    },
+    {
+        key: "operationalCoordination",
+        icon: <Network className="h-6 w-6" />,
+    },
+    {
+        key: "corporateGovernance",
+        icon: <ShieldCheck className="h-6 w-6" />,
     },
 ];
 
 const governanceCards: GovernanceCard[] = [
     {
-        title: "Manpower Supply Company",
-        category: "Manpower Supply",
-        description:
-            "Managed under dedicated executive leadership to support workforce supply, manpower coordination, and operational staffing needs.",
+        key: "manpowerSupply",
         icon: <Users className="h-7 w-7" />,
     },
     {
-        title: "Trading Material Company",
-        category: "Trading Material",
-        description:
-            "Managed under dedicated executive leadership to support procurement, material trading, and supply coordination.",
+        key: "tradingMaterial",
         icon: <Store className="h-7 w-7" />,
     },
     {
-        title: "Construction Company",
-        category: "Construction",
-        description:
-            "Managed under dedicated executive leadership to support construction execution, project coordination, and field operations.",
+        key: "construction",
         icon: <Building2 className="h-7 w-7" />,
     },
     {
-        title: "Manufacturing Company",
-        category: "Manufacturing",
-        description:
-            "Managed under dedicated executive leadership to support production quality, manufacturing operations, and process efficiency.",
+        key: "manufacturing",
         icon: <Factory className="h-7 w-7" />,
     },
     {
-        title: "Investment and Business Development Company",
-        category: "Investment & Business Development",
-        description:
-            "Managed under business development leadership to support investment strategy, portfolio growth, and new business opportunities.",
+        key: "investmentBusinessDevelopment",
         icon: <Landmark className="h-7 w-7" />,
     },
 ];
 
 const assistantCeoNode: OrgNode = {
-    title: "Assistant CEO",
+    key: "assistantCeo",
     variant: "secondary",
 };
 
 const executiveNodes: OrgNode[] = [
     {
-        title: "Vice CEO – Manpower Supply Company",
+        key: "manpowerSupply",
         variant: "division",
     },
     {
-        title: "Vice CEO – Trading Material Company",
+        key: "tradingMaterial",
         variant: "division",
     },
     {
-        title: "Vice CEO – Construction Company",
+        key: "construction",
         variant: "division",
     },
     {
-        title: "Vice CEO – Manufacturing Company",
+        key: "manufacturing",
         variant: "division",
     },
     {
-        title: "Business Development – Investment and Business Development Company",
+        key: "businessDevelopment",
         variant: "division",
     },
 ];
@@ -214,6 +234,8 @@ function SectionHeading({
 }
 
 function HeroSection() {
+    const t = useTranslations("Organization.hero");
+
     return (
         <section className="relative overflow-hidden bg-white py-20 lg:py-28">
             <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-orange-600/10 blur-3xl" />
@@ -221,17 +243,15 @@ function HeroSection() {
             <SectionContainer className="relative grid items-center gap-12 lg:grid-cols-2">
                 <div>
                     <div className="mb-4 inline-flex rounded-full bg-orange-600/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-orange-600">
-                        Organization Structure
+                        {t("eyebrow")}
                     </div>
 
                     <h1 className="max-w-2xl text-4xl font-bold leading-tight tracking-tight text-neutral-950 md:text-5xl">
-                        Strong Governance for Sustainable Business Growth
+                        {t("title")}
                     </h1>
 
                     <p className="mt-5 max-w-xl text-lg leading-7 text-neutral-600">
-                        WIN Holdings is supported by a structured organization and
-                        experienced leadership to ensure effective decision-making,
-                        accountability, and strategic growth across all business units.
+                        {t("description")}
                     </p>
                 </div>
 
@@ -239,7 +259,7 @@ function HeroSection() {
                     <div className="relative h-105 overflow-hidden rounded-2xl border border-neutral-200 bg-stone-100 shadow-xl">
                         <Image
                             src="/images/hq-2.jpg"
-                            alt="WIN Holdings organization structure"
+                            alt={t("imageAlt")}
                             fill
                             priority
                             sizes="50vw"
@@ -253,6 +273,8 @@ function HeroSection() {
 }
 
 function FrameworkSection() {
+    const t = useTranslations("Organization.framework");
+
     return (
         <section className="relative overflow-hidden bg-stone-50 py-12">
             <Image
@@ -268,36 +290,28 @@ function FrameworkSection() {
             <SectionContainer className="relative z-10 grid items-center gap-12 lg:grid-cols-2">
                 <div>
                     <SectionHeading
-                        title="Our Organizational Framework"
-                        description="WIN Holdings applies a clear organizational structure to support strategic direction, operational coordination, and business governance across its subsidiaries. This structure helps each business unit operate efficiently while remaining aligned with the company’s long-term vision."
+                        title={t("title")}
+                        description={t("description")}
                     />
 
                     <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                        <FrameworkStat label="Governance" value="Clear" />
-                        <FrameworkStat label="Business Units" value="4+" />
-                        <FrameworkStat label="Portfolio" value="Diversified" />
+                        {frameworkStats.map((stat) => (
+                            <FrameworkStat
+                                key={stat.key}
+                                item={stat}
+                            />
+                        ))}
                     </div>
                 </div>
 
                 <div className="rounded-2xl border border-neutral-200 bg-white/90 p-6 shadow-sm backdrop-blur-sm">
                     <div className="grid gap-4">
-                        <FrameworkItem
-                            icon={<Landmark className="h-6 w-6" />}
-                            title="Strategic Direction"
-                            description="Group-level business oversight"
-                        />
-
-                        <FrameworkItem
-                            icon={<Network className="h-6 w-6" />}
-                            title="Operational Coordination"
-                            description="Integrated subsidiary management"
-                        />
-
-                        <FrameworkItem
-                            icon={<ShieldCheck className="h-6 w-6" />}
-                            title="Corporate Governance"
-                            description="Accountability and ethical control"
-                        />
+                        {frameworkItems.map((item) => (
+                            <FrameworkItem
+                                key={item.key}
+                                item={item}
+                            />
+                        ))}
                     </div>
                 </div>
             </SectionContainer>
@@ -305,53 +319,58 @@ function FrameworkSection() {
     );
 }
 
-function FrameworkItem({
-    icon,
-    title,
-    description,
-}: {
-    icon: ReactNode;
-    title: string;
-    description: string;
-}) {
+function FrameworkItem({ item }: { item: FrameworkItem }) {
+    const t = useTranslations("Organization.framework.items");
+
     return (
         <div className="flex items-center gap-4 rounded-xl bg-stone-100 p-4">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-600/10 text-orange-600">
-                {icon}
+                {item.icon}
             </div>
 
             <div>
-                <p className="font-semibold text-neutral-950">{title}</p>
-                <p className="text-sm text-neutral-600">{description}</p>
+                <p className="font-semibold text-neutral-950">
+                    {t(`${item.key}.title`)}
+                </p>
+
+                <p className="text-sm text-neutral-600">
+                    {t(`${item.key}.description`)}
+                </p>
             </div>
         </div>
     );
 }
 
-function FrameworkStat({ label, value }: { label: string; value: string }) {
+function FrameworkStat({ item }: { item: FrameworkStat }) {
+    const t = useTranslations("Organization.framework.stats");
+
     return (
         <div className="rounded-xl border border-neutral-200 bg-white p-4 shadow-sm">
-            <p className="text-sm text-neutral-500">{label}</p>
+            <p className="text-sm text-neutral-500">
+                {t(`${item.key}.label`)}
+            </p>
+
             <p className="mt-1 text-xl font-semibold tracking-tight text-neutral-950">
-                {value}
+                {t(`${item.key}.value`)}
             </p>
         </div>
     );
 }
 
 function OrganizationChartSection() {
+    const t = useTranslations("Organization.chart");
+
     return (
         <section className="bg-white py-16">
             <SectionContainer>
                 <SectionHeading
                     align="center"
-                    title="Holding Group Organization Structure"
-                    description="A clear leadership hierarchy supports executive coordination, business-unit accountability, and strategic growth across the holding group."
+                    title={t("title")}
+                    description={t("description")}
                 />
 
                 <div className="mt-14">
                     <MobileOrganizationChart />
-
                     <DesktopOrganizationChart />
                 </div>
             </SectionContainer>
@@ -360,34 +379,38 @@ function OrganizationChartSection() {
 }
 
 function MobileOrganizationChart() {
+    const t = useTranslations("Organization.chart");
+
     return (
         <div className="space-y-6 lg:hidden">
             <div className="rounded-2xl border border-neutral-200 bg-stone-50 p-5 shadow-sm">
                 <div className="flex justify-center">
-                    <OrgCard title="Holding Group" variant="primary" />
+                    <OrgCard title={t("holdingGroup")} variant="primary" />
                 </div>
 
                 <ConnectorLine className="mx-auto h-8" />
 
                 <div className="flex justify-center">
-                    <OrgCard title="Chairman" variant="secondary" />
+                    <OrgCard title={t("chairman")} variant="secondary" />
                 </div>
 
                 <ConnectorLine className="mx-auto h-8" />
 
                 <div className="flex justify-center">
-                    <OrgCard title="CEO" variant="secondary" />
+                    <OrgCard title={t("ceo")} variant="secondary" />
                 </div>
             </div>
 
             <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
                 <p className="text-sm font-semibold uppercase tracking-wider text-orange-600">
-                    Executive Leadership
+                    {t("executiveLeadership")}
                 </p>
 
                 <div className="mt-4 grid gap-3">
+                    <MobileOrgNode node={assistantCeoNode} />
+
                     {executiveNodes.map((node) => (
-                        <MobileOrgNode key={node.title} node={node} />
+                        <MobileOrgNode key={node.key} node={node} />
                     ))}
                 </div>
             </div>
@@ -396,23 +419,25 @@ function MobileOrganizationChart() {
 }
 
 function DesktopOrganizationChart() {
+    const t = useTranslations("Organization.chart");
+
     return (
         <div className="hidden overflow-x-auto rounded-2xl border border-neutral-200 bg-stone-50 p-6 shadow-sm lg:block">
             <div className="min-w-200">
                 <div className="flex justify-center">
-                    <OrgCard title="Holding Group" variant="primary" />
+                    <OrgCard title={t("holdingGroup")} variant="primary" />
                 </div>
 
                 <ConnectorLine className="mx-auto h-10" />
 
                 <div className="flex justify-center">
-                    <OrgCard title="Chairman" variant="secondary" />
+                    <OrgCard title={t("chairman")} variant="secondary" />
                 </div>
 
                 <ConnectorLine className="mx-auto h-10" />
 
                 <div className="flex justify-center">
-                    <OrgCard title="CEO" variant="secondary" />
+                    <OrgCard title={t("ceo")} variant="secondary" />
                 </div>
 
                 <div className="relative pt-16">
@@ -426,20 +451,20 @@ function DesktopOrganizationChart() {
                     <div className="grid grid-cols-6 gap-4">
                         <div className="relative flex justify-center">
                             <OrgCard
-                                title={assistantCeoNode.title}
+                                title={t(`nodes.${assistantCeoNode.key}`)}
                                 variant={assistantCeoNode.variant}
                             />
                         </div>
 
                         {executiveNodes.map((node) => (
                             <div
-                                key={node.title}
+                                key={node.key}
                                 className="relative flex justify-center"
                             >
                                 <div className="absolute -top-6 h-6 w-px bg-neutral-300" />
 
                                 <OrgCard
-                                    title={node.title}
+                                    title={t(`nodes.${node.key}`)}
                                     variant={node.variant}
                                 />
                             </div>
@@ -452,7 +477,8 @@ function DesktopOrganizationChart() {
 }
 
 function MobileOrgNode({ node }: { node: OrgNode }) {
-    const isAssistant = node.title === "Assistant CEO";
+    const t = useTranslations("Organization.chart.nodes");
+    const isAssistant = node.key === "assistantCeo";
 
     return (
         <div
@@ -463,13 +489,16 @@ function MobileOrgNode({ node }: { node: OrgNode }) {
             }
         >
             <p className="text-sm font-semibold leading-5 text-neutral-950">
-                {node.title}
+                {t(node.key)}
             </p>
         </div>
     );
 }
 
-function OrgCard({ title, variant = "division" }: OrgNode) {
+function OrgCard({ title, variant = "division" }: {
+    title: string;
+    variant?: "primary" | "secondary" | "division";
+}) {
     const variants = {
         primary:
             "border-orange-600 bg-orange-600 text-white shadow-lg shadow-orange-600/20",
@@ -481,7 +510,9 @@ function OrgCard({ title, variant = "division" }: OrgNode) {
         <div
             className={`flex min-h-20 w-full min-w-44 max-w-60 items-center justify-center rounded-xl border p-4 text-center ${variants[variant]}`}
         >
-            <p className="text-sm font-semibold leading-5">{title}</p>
+            <p className="text-sm font-semibold leading-5">
+                {title}
+            </p>
         </div>
     );
 }
@@ -491,6 +522,8 @@ function ConnectorLine({ className = "" }: { className?: string }) {
 }
 
 function BoardOfDirectorsSection() {
+    const t = useTranslations("Organization.directors");
+
     return (
         <section className="relative overflow-hidden bg-stone-50 py-16">
             <Image
@@ -506,29 +539,29 @@ function BoardOfDirectorsSection() {
             <SectionContainer className="relative z-10">
                 <SectionHeading
                     align="center"
-                    title="Board of Directors"
-                    description="WIN Holdings is led by experienced professionals who guide strategy, governance, and business performance across the group."
+                    title={t("title")}
+                    description={t("description")}
                 />
 
                 <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     {directors.map((director) => (
                         <article
-                            key={director.position}
+                            key={director.key}
                             className="overflow-hidden rounded-2xl border border-neutral-200 bg-white/90 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-lg"
                         >
                             <div className="h-56 bg-stone-300" />
 
                             <div className="p-6">
                                 <p className="text-lg font-semibold tracking-tight text-neutral-950">
-                                    {director.name}
+                                    {t(`items.${director.key}.name`)}
                                 </p>
 
                                 <p className="mt-1 text-sm font-medium text-orange-600">
-                                    {director.position}
+                                    {t(`items.${director.key}.position`)}
                                 </p>
 
                                 <p className="mt-4 text-sm leading-6 text-neutral-600">
-                                    {director.description}
+                                    {t(`items.${director.key}.description`)}
                                 </p>
                             </div>
                         </article>
@@ -540,19 +573,21 @@ function BoardOfDirectorsSection() {
 }
 
 function BusinessUnitGovernanceSection() {
+    const t = useTranslations("Organization.governance");
+
     return (
         <section className="bg-stone-50 py-16">
             <SectionContainer>
                 <SectionHeading
                     align="center"
-                    title="Business Unit Governance"
-                    description="Each business unit operates under dedicated executive leadership to maintain accountability, operational focus, and alignment with the holding group’s strategic direction."
+                    title={t("title")}
+                    description={t("description")}
                 />
 
                 <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
                     {governanceCards.map((item) => (
                         <article
-                            key={item.title}
+                            key={item.key}
                             className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm"
                         >
                             <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-orange-600/10 text-orange-600">
@@ -560,11 +595,11 @@ function BusinessUnitGovernanceSection() {
                             </div>
 
                             <h3 className="mt-6 text-xl font-semibold tracking-tight text-neutral-950">
-                                {item.category}
+                                {t(`items.${item.key}.category`)}
                             </h3>
 
                             <p className="mt-4 text-sm leading-6 text-neutral-600">
-                                {item.description}
+                                {t(`items.${item.key}.description`)}
                             </p>
                         </article>
                     ))}
@@ -575,6 +610,8 @@ function BusinessUnitGovernanceSection() {
 }
 
 function CTASection() {
+    const t = useTranslations("Organization.cta");
+
     return (
         <section className="relative overflow-hidden bg-neutral-800 py-12 text-stone-50">
             <Image
@@ -589,17 +626,16 @@ function CTASection() {
 
             <SectionContainer className="relative z-10 flex flex-col items-center text-center">
                 <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-                    Driven by Structure, Led by Experience
+                    {t("title")}
                 </h2>
 
                 <p className="mt-6 max-w-2xl text-lg leading-7 text-stone-50/80">
-                    Learn more about how WIN Holdings manages its business portfolio
-                    through strong leadership, clear governance, and strategic direction.
+                    {t("description")}
                 </p>
 
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                     <ButtonLink href="/contact" variant="orange">
-                        Contact Us
+                        {t("button")}
                     </ButtonLink>
                 </div>
             </SectionContainer>

@@ -1,3 +1,4 @@
+import { Link } from "@/i18n/routing";
 import type { ReactNode } from "react";
 import {
     BriefcaseBusiness,
@@ -11,120 +12,95 @@ import {
     Users,
 } from "lucide-react";
 import Image from "next/image";
-import ButtonLink from "@/app/components/ui/ButtonLink";
+import { useTranslations } from "next-intl";
 
 type OverviewItem = {
-    title: string;
-    description: string;
+    key: "indonesiaWideOperations" | "foreignInvestedAlliance" | "regionalProjectFocus";
     icon: ReactNode;
-};
-
-type MissionItem = {
-    text: string;
 };
 
 type Service = {
-    title: string;
-    description: string;
+    key:
+        | "outsourcingEmployee"
+        | "outsourcingExperts"
+        | "outsourcingSdm"
+        | "businessProcess"
+        | "businessConsultation";
     icon: ReactNode;
 };
 
-type TradingOrgNode = {
+type OutsourcingOrgNode = {
     title: string;
     variant?: "primary" | "secondary" | "division";
 };
 
-type TradingDepartmentNode = {
-    title: string;
+type OutsourcingDepartmentNode = {
+    key: "projectManager" | "humanResources" | "finance";
     children: string[];
 };
 
-const tradingDepartmentNodes: TradingDepartmentNode[] = [
+const outsourcingDepartmentNodes: OutsourcingDepartmentNode[] = [
     {
-        title: "Project Manager",
+        key: "projectManager",
+        children: ["siteManagement", "backOffice"],
+    },
+    {
+        key: "humanResources",
         children: [
-            "Vice Manager – Site Management",
-            "Vice Manager – Back Office",
+            "headOfficeHrd",
+            "industrialRelations",
+            "recruitment",
+            "projectAttendance",
         ],
     },
     {
-        title: "Head of Human Resources Department",
-        children: [
-            "Vice Department Head – Head Office HRD",
-            "Vice Department Head – Industrial Relations",
-            "Vice Department Head – Recruitment",
-            "Vice Department Head – Project Attendance",
-        ],
-    },
-    {
-        title: "Head of Finance Department",
-        children: [
-            "Vice Department Head – Accounting",
-            "Vice Department Head – Payroll",
-        ],
+        key: "finance",
+        children: ["accounting", "payroll"],
     },
 ];
 
 const overviewItems: OverviewItem[] = [
     {
-        title: "Indonesia-wide Operations",
-        description: "Scalable workforce solutions from Sumatra to Papua.",
+        key: "indonesiaWideOperations",
         icon: <Globe2 className="h-6 w-6" />,
     },
     {
-        title: "Foreign-Invested Alliance",
-        description: "Strategic partner for global industrial giants and SOEs.",
+        key: "foreignInvestedAlliance",
         icon: <Handshake className="h-6 w-6" />,
     },
     {
-        title: "Regional Project Focus",
-        description: "Active in Kalimantan, Sulawesi, and Maluku hubs.",
+        key: "regionalProjectFocus",
         icon: <MapPin className="h-6 w-6" />,
     },
 ];
 
-const missionItems: MissionItem[] = [
-    {
-        text: "Providing professional manpower services through strict selection.",
-    },
-    {
-        text: "Ensuring all professionals are trained and certified for specific tasks.",
-    },
-    {
-        text: "Building long-term, mutually beneficial relationships with clients.",
-    },
-    {
-        text: "Fostering continuous growth and welfare for our employees.",
-    },
-    {
-        text: "Consistently enhancing company value for all stakeholders.",
-    },
-];
+const missionKeys = [
+    "professionalManpower",
+    "trainedCertified",
+    "clientRelationships",
+    "employeeWelfare",
+    "stakeholderValue",
+] as const;
 
 const services: Service[] = [
     {
-        title: "Outsourcing Employee",
-        description: "End-to-end management of administrative and general staff.",
+        key: "outsourcingEmployee",
         icon: <ClipboardList className="h-5 w-5" />,
     },
     {
-        title: "Outsourcing Experts",
-        description: "Highly skilled technical specialists for project-critical tasks.",
+        key: "outsourcingExperts",
         icon: <Users className="h-5 w-5" />,
     },
     {
-        title: "Outsourcing SDM",
-        description: "Comprehensive human resource development and placement.",
+        key: "outsourcingSdm",
         icon: <BriefcaseBusiness className="h-5 w-5" />,
     },
     {
-        title: "Business Process",
-        description: "Optimizing operational workflows through professional support.",
+        key: "businessProcess",
         icon: <Target className="h-5 w-5" />,
     },
     {
-        title: "Business Consultation",
-        description: "Advisory for manpower planning and labor compliance.",
+        key: "businessConsultation",
         icon: <Handshake className="h-5 w-5" />,
     },
 ];
@@ -138,12 +114,13 @@ export default function IndosinoPage() {
             <CompanyOverviewSection />
             <VisionMissionSection />
             <ServicesSection />
-            <TradingOrganizationSection />
+            <OutsourcingOrganizationSection />
             <ClientsSection />
             <CTASection />
         </main>
     );
 }
+
 function SectionContainer({
     children,
     className = "",
@@ -158,30 +135,54 @@ function SectionContainer({
     );
 }
 
+function ButtonLink({
+    href,
+    children,
+    variant = "orange",
+    className = "",
+}: {
+    href: string;
+    children: ReactNode;
+    variant?: "orange" | "outline-light";
+    className?: string;
+}) {
+    const variants = {
+        orange: "bg-orange-600 text-white shadow-lg hover:bg-orange-700",
+        "outline-light":
+            "border border-white/20 text-white hover:border-white/50 hover:bg-white/5",
+    };
+
+    return (
+        <Link
+            href={href}
+            className={`inline-flex items-center justify-center rounded-lg px-8 py-4 text-base transition-colors ${variants[variant]} ${className}`}
+        >
+            {children}
+        </Link>
+    );
+}
+
 function HeroSection() {
+    const t = useTranslations("Outsourcing.hero");
+
     return (
         <section className="bg-stone-50 py-16 lg:py-24">
             <SectionContainer className="grid items-center gap-12 lg:grid-cols-2">
                 <div>
                     <p className="text-sm font-bold uppercase tracking-widest text-orange-500">
-                        Subsidiary
+                        {t("eyebrow")}
                     </p>
 
                     <h1 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-slate-800 md:text-5xl">
-                        Outsourcing Company
+                        {t("title")}
                     </h1>
 
                     <p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-600">
-                        Human resource services and outsourcing solutions for
-                        industrial and project-based operations.
+                        {t("subtitle")}
                     </p>
 
                     <p className="mt-5 max-w-2xl text-base leading-7 text-neutral-600">
-                        We provide comprehensive professional manpower and
-                        outsourcing support across the Indonesian archipelago. The
-                        company specializes in navigating large-scale industrial labor
-                        needs and ensuring operational efficiency for global
-                        enterprises.
+                        {t("description")}
                     </p>
                 </div>
 
@@ -201,7 +202,7 @@ function HeroSection() {
                                     </div>
 
                                     <p className="text-sm font-bold tracking-wide text-slate-800">
-                                        Licensed Professional HR Partner
+                                        {t("badge")}
                                     </p>
                                 </div>
                             </div>
@@ -212,7 +213,10 @@ function HeroSection() {
         </section>
     );
 }
+
 function CompanyOverviewSection() {
+    const t = useTranslations("Outsourcing.companyOverview");
+
     return (
         <section className="relative overflow-hidden bg-stone-100 py-16">
             <Image
@@ -228,30 +232,18 @@ function CompanyOverviewSection() {
             <SectionContainer className="relative z-10 grid gap-10 lg:grid-cols-12">
                 <div className="lg:col-span-7">
                     <h2 className="text-3xl font-semibold leading-10 tracking-tight text-orange-600">
-                        Specialized HR Outsourcing
+                        {t("title")}
                     </h2>
 
                     <div className="mt-5 space-y-5 text-base leading-7 text-neutral-800">
-                        <p>
-                            We have established ourself as a
-                            premier partner for foreign-invested enterprises,
-                            particularly Chinese state-owned enterprises. The company
-                            understands the requirements of international projects and
-                            bridges global standards with local expertise.
-                        </p>
-
-                        <p>
-                            Its strategic alliances and deep knowledge of the Indonesian
-                            labor market allow the company to deploy skilled and
-                            semi-skilled manpower rapidly, including to remote project
-                            sites.
-                        </p>
+                        <p>{t("paragraph1")}</p>
+                        <p>{t("paragraph2")}</p>
                     </div>
                 </div>
 
                 <div className="space-y-5 lg:col-span-5">
                     {overviewItems.map((item) => (
-                        <OverviewCard key={item.title} item={item} />
+                        <OverviewCard key={item.key} item={item} />
                     ))}
                 </div>
             </SectionContainer>
@@ -259,57 +251,180 @@ function CompanyOverviewSection() {
     );
 }
 
-function TradingOrganizationSection() {
-    return (
-        <section className="bg-white py-16">
-            <SectionContainer>
-                <div className="mx-auto max-w-3xl text-center">
-                    <p className="text-sm font-bold uppercase tracking-widest text-orange-500">
-                        Organization Structure
-                    </p>
+function OverviewCard({ item }: { item: OverviewItem }) {
+    const t = useTranslations("Outsourcing.overviewItems");
 
-                    <h2 className="mt-3 text-3xl font-semibold leading-10 tracking-tight text-slate-800">
-                        Outsourcing Company Organization Structure
+    return (
+        <article className="flex gap-4 rounded-lg border border-neutral-300 bg-white p-5 shadow-sm">
+            <div className="shrink-0 text-orange-500">
+                {item.icon}
+            </div>
+
+            <div>
+                <h3 className="text-base font-bold leading-6 text-slate-800">
+                    {t(`${item.key}.title`)}
+                </h3>
+
+                <p className="mt-1 text-sm font-medium leading-5 tracking-wide text-neutral-600">
+                    {t(`${item.key}.description`)}
+                </p>
+            </div>
+        </article>
+    );
+}
+
+function VisionMissionSection() {
+    const t = useTranslations("Outsourcing.visionMission");
+
+    return (
+        <section className="bg-stone-50 py-16">
+            <SectionContainer className="grid gap-6 lg:grid-cols-2">
+                <article className="rounded-xl bg-slate-800 p-8 text-white shadow-sm lg:p-12">
+                    <div className="text-orange-400">
+                        <Target className="h-7 w-7" />
+                    </div>
+
+                    <h2 className="mt-5 text-2xl font-semibold tracking-tight">
+                        {t("visionTitle")}
                     </h2>
 
-                    <p className="mt-4 text-base leading-7 text-neutral-600">
-                        A clear leadership hierarchy supports operational control,
-                        project coordination, human resources management, and finance
-                        accountability across the outsourcing company.
+                    <p className="mt-5 text-lg italic leading-8 text-white/90">
+                        {t("visionText")}
                     </p>
+                </article>
+
+                <article className="rounded-xl border border-neutral-300 bg-white p-8 shadow-sm lg:p-12">
+                    <div className="text-orange-500">
+                        <CheckCircle2 className="h-7 w-7" />
+                    </div>
+
+                    <h2 className="mt-5 text-2xl font-semibold tracking-tight text-slate-800">
+                        {t("missionTitle")}
+                    </h2>
+
+                    <ul className="mt-5 space-y-4">
+                        {missionKeys.map((missionKey) => (
+                            <li key={missionKey} className="flex gap-3">
+                                <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-orange-500" />
+
+                                <span className="text-base leading-7 text-neutral-600">
+                                    {t(`missions.${missionKey}`)}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                </article>
+            </SectionContainer>
+        </section>
+    );
+}
+
+function ServicesSection() {
+    const t = useTranslations("Outsourcing.services");
+
+    return (
+        <section className="relative overflow-hidden bg-stone-50 py-16">
+            <Image
+                src="/images/manpower-7.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-stone-50/80" />
+
+            <SectionContainer className="relative z-10">
+                <div className="text-center">
+                    <h2 className="text-3xl font-semibold leading-10 tracking-tight text-orange-600">
+                        {t("title")}
+                    </h2>
+
+                    <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-black" />
                 </div>
 
-                <div className="mt-14">
-                    <MobileTradingOrganizationChart />
-
-                    <DesktopTradingOrganizationChart />
+                <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+                    {services.map((service) => (
+                        <ServiceCard key={service.key} service={service} />
+                    ))}
                 </div>
             </SectionContainer>
         </section>
     );
 }
 
-function MobileTradingOrganizationChart() {
+function ServiceCard({ service }: { service: Service }) {
+    const t = useTranslations("Outsourcing.services.items");
+
+    return (
+        <article className="rounded-xl border border-neutral-300 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-500/10 text-orange-500">
+                {service.icon}
+            </div>
+
+            <h3 className="mt-5 text-base font-bold leading-6 text-slate-800">
+                {t(`${service.key}.title`)}
+            </h3>
+
+            <p className="mt-2 text-sm font-medium leading-5 tracking-wide text-neutral-600">
+                {t(`${service.key}.description`)}
+            </p>
+        </article>
+    );
+}
+
+function OutsourcingOrganizationSection() {
+    const t = useTranslations("Outsourcing.organization");
+
+    return (
+        <section className="bg-white py-16">
+            <SectionContainer>
+                <div className="mx-auto max-w-3xl text-center">
+                    <p className="text-sm font-bold uppercase tracking-widest text-orange-500">
+                        {t("eyebrow")}
+                    </p>
+
+                    <h2 className="mt-3 text-3xl font-semibold leading-10 tracking-tight text-slate-800">
+                        {t("title")}
+                    </h2>
+
+                    <p className="mt-4 text-base leading-7 text-neutral-600">
+                        {t("description")}
+                    </p>
+                </div>
+
+                <div className="mt-14">
+                    <MobileOutsourcingOrganizationChart />
+                    <DesktopOutsourcingOrganizationChart />
+                </div>
+            </SectionContainer>
+        </section>
+    );
+}
+
+function MobileOutsourcingOrganizationChart() {
+    const t = useTranslations("Outsourcing.organization");
+
     return (
         <div className="space-y-6 lg:hidden">
             <div className="rounded-2xl border border-neutral-200 bg-stone-50 p-5 shadow-sm">
                 <div className="flex justify-center">
-                    <TradingOrgCard title="CEO" variant="primary" />
+                    <OutsourcingOrgCard title={t("ceo")} variant="primary" />
                 </div>
 
-                <TradingConnectorLine className="mx-auto h-8" />
+                <OutsourcingConnectorLine className="mx-auto h-8" />
 
                 <div className="grid gap-3">
-                    <TradingMobileOrgNode
+                    <OutsourcingMobileOrgNode
                         node={{
-                            title: "Assistant CEO",
+                            title: t("assistantCeo"),
                             variant: "secondary",
                         }}
                     />
 
-                    <TradingMobileOrgNode
+                    <OutsourcingMobileOrgNode
                         node={{
-                            title: "Vice CEO",
+                            title: t("viceCeo"),
                             variant: "secondary",
                         }}
                     />
@@ -318,13 +433,13 @@ function MobileTradingOrganizationChart() {
 
             <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
                 <p className="text-sm font-semibold uppercase tracking-wider text-orange-600">
-                    Departments Under Vice CEO
+                    {t("departmentsLabel")}
                 </p>
 
                 <div className="mt-4 grid gap-4">
-                    {tradingDepartmentNodes.map((department) => (
-                        <TradingMobileDepartmentCard
-                            key={department.title}
+                    {outsourcingDepartmentNodes.map((department) => (
+                        <OutsourcingMobileDepartmentCard
+                            key={department.key}
                             department={department}
                         />
                     ))}
@@ -334,15 +449,17 @@ function MobileTradingOrganizationChart() {
     );
 }
 
-function DesktopTradingOrganizationChart() {
+function DesktopOutsourcingOrganizationChart() {
+    const t = useTranslations("Outsourcing.organization");
+
     return (
         <div className="hidden overflow-x-auto rounded-2xl border border-neutral-200 bg-stone-50 p-6 shadow-sm lg:block">
             <div className="min-w-200">
                 <div className="flex justify-center">
-                    <TradingOrgCard title="CEO" variant="primary" />
+                    <OutsourcingOrgCard title={t("ceo")} variant="primary" />
                 </div>
 
-                <TradingConnectorLine className="mx-auto h-10" />
+                <OutsourcingConnectorLine className="mx-auto h-10" />
 
                 <div className="relative">
                     <div className="absolute left-1/2 top-0 h-px w-1/2 -translate-x-1/2 bg-neutral-300" />
@@ -351,8 +468,8 @@ function DesktopTradingOrganizationChart() {
                         <div className="relative flex justify-center">
                             <div className="absolute -top-6 h-6 w-px bg-neutral-300" />
 
-                            <TradingOrgCard
-                                title="Assistant CEO"
+                            <OutsourcingOrgCard
+                                title={t("assistantCeo")}
                                 variant="secondary"
                             />
                         </div>
@@ -360,8 +477,8 @@ function DesktopTradingOrganizationChart() {
                         <div className="relative flex justify-center">
                             <div className="absolute -top-6 h-6 w-px bg-neutral-300" />
 
-                            <TradingOrgCard
-                                title="Vice CEO"
+                            <OutsourcingOrgCard
+                                title={t("viceCeo")}
                                 variant="secondary"
                             />
                         </div>
@@ -374,14 +491,11 @@ function DesktopTradingOrganizationChart() {
                     <div className="absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-neutral-300" />
 
                     <div className="grid grid-cols-3 gap-6 pt-6">
-                        {tradingDepartmentNodes.map((department) => (
-                            <div
-                                key={department.title}
-                                className="relative"
-                            >
+                        {outsourcingDepartmentNodes.map((department) => (
+                            <div key={department.key} className="relative">
                                 <div className="absolute -top-6 left-1/2 h-6 w-px -translate-x-1/2 bg-neutral-300" />
 
-                                <TradingDepartmentCard
+                                <OutsourcingDepartmentCard
                                     department={department}
                                 />
                             </div>
@@ -393,16 +507,21 @@ function DesktopTradingOrganizationChart() {
     );
 }
 
-function TradingDepartmentCard({
+function OutsourcingDepartmentCard({
     department,
 }: {
-    department: TradingDepartmentNode;
+    department: OutsourcingDepartmentNode;
 }) {
+    const t = useTranslations("Outsourcing.organization.departments");
+
     return (
         <article className="rounded-xl border border-neutral-200 bg-white p-4 shadow-sm">
-            <TradingOrgCard title={department.title} variant="division" />
+            <OutsourcingOrgCard
+                title={t(`${department.key}.title`)}
+                variant="division"
+            />
 
-            <TradingConnectorLine className="mx-auto h-6" />
+            <OutsourcingConnectorLine className="mx-auto h-6" />
 
             <div className="grid gap-3">
                 {department.children.map((child) => (
@@ -410,7 +529,7 @@ function TradingDepartmentCard({
                         key={child}
                         className="rounded-lg border border-neutral-200 bg-stone-50 px-3 py-3 text-center text-sm font-semibold leading-5 text-neutral-700"
                     >
-                        {child}
+                        {t(`${department.key}.children.${child}`)}
                     </div>
                 ))}
             </div>
@@ -418,15 +537,17 @@ function TradingDepartmentCard({
     );
 }
 
-function TradingMobileDepartmentCard({
+function OutsourcingMobileDepartmentCard({
     department,
 }: {
-    department: TradingDepartmentNode;
+    department: OutsourcingDepartmentNode;
 }) {
+    const t = useTranslations("Outsourcing.organization.departments");
+
     return (
         <article className="rounded-xl border border-neutral-200 bg-stone-50 p-4">
             <h3 className="text-sm font-bold leading-5 text-slate-800">
-                {department.title}
+                {t(`${department.key}.title`)}
             </h3>
 
             <ul className="mt-4 space-y-3">
@@ -435,7 +556,7 @@ function TradingMobileDepartmentCard({
                         key={child}
                         className="rounded-lg border border-neutral-200 bg-white px-3 py-3 text-sm font-medium leading-5 text-neutral-700"
                     >
-                        {child}
+                        {t(`${department.key}.children.${child}`)}
                     </li>
                 ))}
             </ul>
@@ -443,10 +564,10 @@ function TradingMobileDepartmentCard({
     );
 }
 
-function TradingMobileOrgNode({
+function OutsourcingMobileOrgNode({
     node,
 }: {
-    node: TradingOrgNode;
+    node: OutsourcingOrgNode;
 }) {
     return (
         <div className="rounded-xl border border-neutral-200 bg-white px-4 py-3">
@@ -457,10 +578,10 @@ function TradingMobileOrgNode({
     );
 }
 
-function TradingOrgCard({
+function OutsourcingOrgCard({
     title,
     variant = "division",
-}: TradingOrgNode) {
+}: OutsourcingOrgNode) {
     const variants = {
         primary:
             "border-orange-600 bg-orange-600 text-white shadow-lg shadow-orange-600/20",
@@ -479,7 +600,7 @@ function TradingOrgCard({
     );
 }
 
-function TradingConnectorLine({
+function OutsourcingConnectorLine({
     className = "",
 }: {
     className?: string;
@@ -487,132 +608,19 @@ function TradingConnectorLine({
     return <div className={`w-px bg-neutral-300 ${className}`} />;
 }
 
-function OverviewCard({ item }: { item: OverviewItem }) {
-    return (
-        <article className="flex gap-4 rounded-lg border border-neutral-300 bg-white p-5 shadow-sm">
-            <div className="shrink-0 text-orange-500">
-                {item.icon}
-            </div>
-
-            <div>
-                <h3 className="text-base font-bold leading-6 text-slate-800">
-                    {item.title}
-                </h3>
-
-                <p className="mt-1 text-sm font-medium leading-5 tracking-wide text-neutral-600">
-                    {item.description}
-                </p>
-            </div>
-        </article>
-    );
-}
-
-function VisionMissionSection() {
-    return (
-        <section className="bg-stone-50 py-16">
-            <SectionContainer className="grid gap-6 lg:grid-cols-2">
-                <article className="rounded-xl bg-slate-800 p-8 text-white shadow-sm lg:p-12">
-                    <div className="text-orange-400">
-                        <Target className="h-7 w-7" />
-                    </div>
-
-                    <h2 className="mt-5 text-2xl font-semibold tracking-tight">
-                        Our Vision
-                    </h2>
-
-                    <p className="mt-5 text-lg italic leading-8 text-white/90">
-                        “To become a leading outsourcing service provider in
-                        Indonesia, recognized for our commitment to quality, integrity,
-                        and the empowerment of our professional workforce.”
-                    </p>
-                </article>
-
-                <article className="rounded-xl border border-neutral-300 bg-white p-8 shadow-sm lg:p-12">
-                    <div className="text-orange-500">
-                        <CheckCircle2 className="h-7 w-7" />
-                    </div>
-
-                    <h2 className="mt-5 text-2xl font-semibold tracking-tight text-slate-800">
-                        Our Mission
-                    </h2>
-
-                    <ul className="mt-5 space-y-4">
-                        {missionItems.map((item) => (
-                            <li key={item.text} className="flex gap-3">
-                                <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-orange-500" />
-                                <span className="text-base leading-7 text-neutral-600">
-                                    {item.text}
-                                </span>
-                            </li>
-                        ))}
-                    </ul>
-                </article>
-            </SectionContainer>
-        </section>
-    );
-}
-
-function ServicesSection() {
-    return (
-        <section className="relative overflow-hidden bg-stone-50 py-16">
-            <Image
-                src="/images/manpower-7.jpg"
-                alt=""
-                fill
-                sizes="100vw"
-                className="object-cover"
-            />
-
-            <div className="absolute inset-0 bg-stone-50/80" />
-
-            <SectionContainer className="relative z-10">
-                <div className="text-center">
-                    <h2 className="text-3xl font-semibold leading-10 tracking-tight text-orange-600">
-                        Our Core Services
-                    </h2>
-
-                    <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-black" />
-                </div>
-
-                <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-                    {services.map((service) => (
-                        <ServiceCard key={service.title} service={service} />
-                    ))}
-                </div>
-            </SectionContainer>
-        </section>
-    );
-}
-
-function ServiceCard({ service }: { service: Service }) {
-    return (
-        <article className="rounded-xl border border-neutral-300 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-500/10 text-orange-500">
-                {service.icon}
-            </div>
-
-            <h3 className="mt-5 text-base font-bold leading-6 text-slate-800">
-                {service.title}
-            </h3>
-
-            <p className="mt-2 text-sm font-medium leading-5 tracking-wide text-neutral-600">
-                {service.description}
-            </p>
-        </article>
-    );
-}
-
 function ClientsSection() {
+    const t = useTranslations("Outsourcing.clients");
+
     return (
         <section className="bg-[#a7a7a1] py-16">
             <SectionContainer>
                 <div className="text-center">
                     <h2 className="text-3xl font-semibold leading-10 tracking-tight text-white">
-                        Our Strategic Clients
+                        {t("title")}
                     </h2>
 
                     <p className="mt-2 text-base leading-6 text-white">
-                        Powering the largest industrial projects in Indonesia.
+                        {t("description")}
                     </p>
                 </div>
 
@@ -634,6 +642,8 @@ function ClientsSection() {
 }
 
 function CTASection() {
+    const t = useTranslations("Outsourcing.cta");
+
     return (
         <section className="relative overflow-hidden bg-neutral-800 py-12 text-stone-50">
             <Image
@@ -648,16 +658,16 @@ function CTASection() {
 
             <SectionContainer className="relative z-10 flex flex-col items-center text-center">
                 <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-                    Reliable Outsourcing Partner for Industrial Growth
+                    {t("title")}
                 </h2>
 
                 <p className="mt-6 max-w-2xl text-lg leading-7 text-stone-50/80">
-                    Connecting businesses with trusted supply solutions across construction materials, industrial products, machinery, packaging, and operational needs.
+                    {t("description")}
                 </p>
 
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                     <ButtonLink href="/contact" variant="orange">
-                        Contact Us
+                        {t("button")}
                     </ButtonLink>
                 </div>
             </SectionContainer>

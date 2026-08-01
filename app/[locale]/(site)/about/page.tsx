@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import type { ReactNode } from "react";
 import {
     ArrowRight,
@@ -15,124 +15,96 @@ import {
     Users,
 } from "lucide-react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 type ValueCard = {
-    title: string;
-    description: string;
+    key: "integrity" | "excellence" | "collaboration" | "growth";
     icon: ReactNode;
 };
 
 type SubsidiaryCard = {
-    name: string;
-    industry: string;
-    description: string;
+    key: "manufacturing" | "outsourcing" | "trading" | "construction";
     icon: ReactNode;
 };
 
 type TimelineItem = {
+    key: "foundation" | "workforce" | "foodSupply" | "expansion" | "headquarters";
     year: string;
-    title: string;
-    description: string;
-    pillar: string;
     side: "left" | "right";
 };
 
 const timeline: TimelineItem[] = [
     {
+        key: "foundation",
         year: "2019",
-        title: "Foundation in Construction Materials Trading",
-        description:
-            "The company was established in Indonesia with an initial focus on construction material trading in West Java, including cement, stone, sand, and other building materials. This stage built the supplier network and project-service experience that became the foundation for future business expansion.",
-        pillar: "Trading • Procurement • Supply Network",
         side: "left",
     },
     {
+        key: "workforce",
         year: "2021",
-        title: "Expansion into Workforce Solutions",
-        description:
-            "The company entered the manpower outsourcing and human resources supply sector, starting with Halmahera as its first strategic operation point. Services included operators, technicians, skilled workers, general workers, and project support personnel.",
-        pillar: "Workforce • Industrial Services",
         side: "right",
     },
     {
+        key: "foodSupply",
         year: "2023",
-        title: "Industrial Food Supply Development",
-        description:
-            "To support large-scale industrial operations, the company expanded into food supply and logistics, providing rice, vegetables, meat, seafood, seasonings, and other essential goods while strengthening warehousing, distribution, cold chain, and integrated supply-chain capabilities.",
-        pillar: "Food Supply • Logistics",
         side: "left",
     },
     {
+        key: "expansion",
         year: "2024",
-        title: "National and Multi-Sector Expansion",
-        description:
-            "The company expanded its operational bases into Sulawesi and Kalimantan, entered the construction sector through civil, mechanical, and electrical works, and invested in an industrial coating manufacturing facility in Cikarang, West Java.",
-        pillar: "Regional Expansion • Construction Services • Manufacturing",
         side: "right",
     },
     {
+        key: "headquarters",
         year: "2025",
-        title: "Strategic Construction Expansion and Holding Headquarters",
-        description:
-            "The company strengthened its construction capability by winning a strategic project in West Kalimantan involving civil infrastructure and sports facility development. In the same year, the group established its headquarters at Gold Coast Office, Jakarta, with approximately 900 m² of office space to support integrated governance and corporate coordination.",
-        pillar: "Infrastructure Development • Corporate Governance",
         side: "left",
     },
 ];
 
 const values: ValueCard[] = [
     {
-        title: "Integrity",
-        description: "Upholding the highest ethical standards in every transaction.",
+        key: "integrity",
         icon: <ShieldCheck className="h-6 w-6" />,
     },
     {
-        title: "Excellence",
-        description: "Relentlessly pursuing quality and superior performance.",
+        key: "excellence",
         icon: <Award className="h-6 w-6" />,
     },
     {
-        title: "Collaboration",
-        description: "Working together to achieve more than we can alone.",
+        key: "collaboration",
         icon: <Handshake className="h-6 w-6" />,
     },
     {
-        title: "Growth",
-        description: "Continuously expanding our potential and market impact.",
+        key: "growth",
         icon: <TrendingUp className="h-6 w-6" />,
     },
 ];
 
 const subsidiaries: SubsidiaryCard[] = [
     {
-        name: "3C Paint",
-        industry: "Manufacturing",
-        description:
-        "Leading manufacturer of premium industrial and commercial coatings.",
+        key: "manufacturing",
         icon: <Factory className="h-8 w-8" />,
     },
     {
-        name: "WLS",
-        industry: "Outsourcing",
-        description:
-        "Comprehensive workforce management and professional recruitment services.",
+        key: "outsourcing",
         icon: <Users className="h-8 w-8" />,
     },
     {
-        name: "Indosino",
-        industry: "Trading",
-        description:
-        "Global trading hub facilitating seamless international supply chains.",
+        key: "trading",
         icon: <Repeat2 className="h-8 w-8" />,
     },
     {
-        name: "ICG",
-        industry: "Construction",
-        description:
-        "Specialized infrastructure development and architectural solutions.",
+        key: "construction",
         icon: <Building2 className="h-8 w-8" />,
     },
 ];
+
+const missionKeys = [
+    "strategicDirection",
+    "operationalExcellence",
+    "sustainablePartnerships",
+    "responsibleGrowth",
+] as const;
 
 export default function AboutPage() {
     return (
@@ -175,7 +147,7 @@ function ButtonLink({
     const variants = {
         orange: "bg-orange-600 text-white shadow-lg hover:bg-orange-700",
         "outline-light":
-        "border border-white/20 text-white hover:border-white/50 hover:bg-white/5",
+            "border border-white/20 text-white hover:border-white/50 hover:bg-white/5",
     };
 
     return (
@@ -187,14 +159,17 @@ function ButtonLink({
         </Link>
     );
 }
+
 function WhoWeAreSection() {
+    const t = useTranslations("About.whoWeAre");
+
     return (
         <section className="bg-white py-12">
             <SectionContainer className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
                 <div className="relative h-80 overflow-hidden rounded-xl bg-stone-300 shadow-md">
                     <Image
                         src="/images/hq-3.jpg"
-                        alt="WIN Holdings boardroom and business discussion"
+                        alt={t("imageAlt")}
                         fill
                         sizes="(min-width: 1024px) 50vw, 100vw"
                         className="object-cover"
@@ -203,27 +178,35 @@ function WhoWeAreSection() {
 
                 <div>
                     <h1 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                        Who We Are
+                        {t("title")}
                     </h1>
 
                     <div className="mt-6 space-y-4 text-base leading-7 text-neutral-600">
-                        <p>
-                            WIN Holdings is a premier investment and management firm dedicated
-                            to fostering sustainable growth through a diverse portfolio of
-                            market-leading subsidiaries. Our expertise spans manufacturing,
-                            human capital solutions, international trading, and infrastructure
-                            development.
-                        </p>
+                        <p>{t("paragraph1")}</p>
 
                         <p>
-                            By providing strategic oversight and operational excellence to our
-                            core entities—including{" "}
-                            <strong className="font-bold text-neutral-950">Manufacturing</strong>,{" "}
-                            <strong className="font-bold text-neutral-950">Outsourcing</strong>,{" "}
-                            <strong className="font-bold text-neutral-950">Trading</strong>,
-                            and <strong className="font-bold text-neutral-950">Construction</strong> companies —we
-                            ensure each business maintains the highest standards of quality
-                            while driving collective value for our stakeholders.
+                            {t.rich("paragraph2", {
+                                manufacturing: (chunks) => (
+                                    <strong className="font-bold text-neutral-950">
+                                        {chunks}
+                                    </strong>
+                                ),
+                                outsourcing: (chunks) => (
+                                    <strong className="font-bold text-neutral-950">
+                                        {chunks}
+                                    </strong>
+                                ),
+                                trading: (chunks) => (
+                                    <strong className="font-bold text-neutral-950">
+                                        {chunks}
+                                    </strong>
+                                ),
+                                construction: (chunks) => (
+                                    <strong className="font-bold text-neutral-950">
+                                        {chunks}
+                                    </strong>
+                                ),
+                            })}
                         </p>
                     </div>
                 </div>
@@ -233,12 +216,7 @@ function WhoWeAreSection() {
 }
 
 function VisionMissionSection() {
-    const missions = [
-        "Providing visionary strategic direction to ensure long-term profitability and market leadership for all subsidiaries.",
-        "Upholding operational excellence through lean processes and innovative management frameworks.",
-        "Cultivating sustainable partnerships that empower communities and preserve environmental integrity.",
-        "Fostering responsible growth by adhering to the highest standards of corporate governance and ethics.",
-    ];
+    const t = useTranslations("About.visionMission");
 
     return (
         <section className="relative overflow-hidden bg-stone-50 py-12">
@@ -260,14 +238,12 @@ function VisionMissionSection() {
                         <Eye className="h-6 w-6 text-orange-600" />
 
                         <h2 className="text-2xl font-semibold tracking-tight text-neutral-950">
-                            Our Vision
+                            {t("visionTitle")}
                         </h2>
                     </div>
 
                     <p className="mt-6 text-lg italic leading-8 text-neutral-600">
-                        “To become a trusted holding company that creates sustainable value
-                        and drives transformative growth across global markets through
-                        excellence and innovation.”
+                        {t("visionText")}
                     </p>
                 </article>
 
@@ -278,17 +254,17 @@ function VisionMissionSection() {
                         <Target className="h-6 w-6 text-orange-600" />
 
                         <h2 className="text-2xl font-semibold tracking-tight text-neutral-950">
-                            Our Mission
+                            {t("missionTitle")}
                         </h2>
                     </div>
 
                     <ul className="mt-6 space-y-4">
-                        {missions.map((mission) => (
-                            <li key={mission} className="flex gap-3">
+                        {missionKeys.map((missionKey) => (
+                            <li key={missionKey} className="flex gap-3">
                                 <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-orange-600" />
 
                                 <p className="text-base leading-6 text-neutral-600">
-                                    {mission}
+                                    {t(`missions.${missionKey}`)}
                                 </p>
                             </li>
                         ))}
@@ -300,24 +276,25 @@ function VisionMissionSection() {
 }
 
 function CoreValuesSection() {
+    const t = useTranslations("About.coreValues");
+
     return (
         <section className="bg-stone-100 py-12">
             <SectionContainer>
                 <div className="text-center">
                     <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                        Our Core Values
+                        {t("title")}
                     </h2>
 
                     <p className="mx-auto mt-4 max-w-2xl text-base leading-6 text-neutral-600">
-                        The principles that guide our every decision and interaction across
-                        the WIN Holdings ecosystem.
+                        {t("description")}
                     </p>
                 </div>
 
                 <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     {values.map((value) => (
                         <article
-                            key={value.title}
+                            key={value.key}
                             className="flex flex-col items-center rounded-xl border border-neutral-300 bg-white p-6 text-center shadow-sm"
                         >
                             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-orange-600/10 text-orange-600">
@@ -325,11 +302,11 @@ function CoreValuesSection() {
                             </div>
 
                             <h3 className="mt-6 text-2xl font-semibold tracking-tight text-neutral-950">
-                                {value.title}
+                                {t(`items.${value.key}.title`)}
                             </h3>
 
                             <p className="mt-2 text-base leading-6 text-neutral-600">
-                                {value.description}
+                                {t(`items.${value.key}.description`)}
                             </p>
                         </article>
                     ))}
@@ -340,6 +317,8 @@ function CoreValuesSection() {
 }
 
 function BusinessEcosystemSection() {
+    const t = useTranslations("About.businessEcosystem");
+
     return (
         <section className="relative overflow-hidden bg-stone-50 py-12">
             <Image
@@ -356,11 +335,11 @@ function BusinessEcosystemSection() {
                 <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                     <div>
                         <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                            Our Business Ecosystem
+                            {t("title")}
                         </h2>
 
                         <p className="mt-4 text-base leading-6 text-neutral-600">
-                            Diverse expertise, unified by strategic management.
+                            {t("description")}
                         </p>
                     </div>
 
@@ -368,7 +347,7 @@ function BusinessEcosystemSection() {
                         href="/subsidiaries"
                         className="inline-flex items-center gap-2 text-base leading-6 text-orange-600 transition-colors hover:text-orange-700"
                     >
-                        View All Subsidiaries
+                        {t("cta")}
                         <ArrowRight className="h-4 w-4" />
                     </Link>
                 </div>
@@ -376,17 +355,17 @@ function BusinessEcosystemSection() {
                 <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     {subsidiaries.map((item) => (
                         <article
-                            key={item.name}
+                            key={item.key}
                             className="rounded-xl bg-neutral-800/95 p-6 text-stone-50 shadow-sm backdrop-blur-sm"
                         >
                             <div className="text-orange-600">{item.icon}</div>
 
                             <h3 className="mt-4 text-2xl font-semibold leading-8 tracking-tight">
-                                {item.industry}
+                                {t(`items.${item.key}.title`)}
                             </h3>
 
                             <p className="mt-3 text-base leading-6 text-stone-50/80">
-                                {item.description}
+                                {t(`items.${item.key}.description`)}
                             </p>
                         </article>
                     ))}
@@ -395,24 +374,24 @@ function BusinessEcosystemSection() {
         </section>
     );
 }
+
 function GrowthJourneySection() {
+    const t = useTranslations("About.growthJourney");
+
     return (
         <section className="bg-stone-50 py-16">
             <SectionContainer>
                 <div className="mx-auto max-w-3xl text-center">
                     <p className="text-sm font-semibold uppercase tracking-widest text-orange-600">
-                        Company History
+                        {t("eyebrow")}
                     </p>
 
                     <h2 className="mt-3 text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                        Our Growth Journey
+                        {t("title")}
                     </h2>
 
                     <p className="mt-4 text-base leading-7 text-neutral-600">
-                        From construction material trading to an integrated industrial
-                        supply and construction group, our growth reflects continuous
-                        expansion across procurement, workforce services, logistics,
-                        construction, manufacturing, and corporate governance.
+                        {t("description")}
                     </p>
                 </div>
 
@@ -421,7 +400,10 @@ function GrowthJourneySection() {
 
                     <div className="space-y-10 md:space-y-16">
                         {timeline.map((item) => (
-                            <TimelineRow key={`${item.year}-${item.title}`} item={item} />
+                            <TimelineRow
+                                key={`${item.year}-${item.key}`}
+                                item={item}
+                            />
                         ))}
                     </div>
                 </div>
@@ -431,6 +413,7 @@ function GrowthJourneySection() {
 }
 
 function TimelineRow({ item }: { item: TimelineItem }) {
+    const t = useTranslations("About.growthJourney.timeline");
     const isLeft = item.side === "left";
 
     return (
@@ -448,11 +431,11 @@ function TimelineRow({ item }: { item: TimelineItem }) {
                     </p>
 
                     <h3 className="mt-3 text-xl font-semibold leading-7 tracking-tight text-neutral-950">
-                        {item.title}
+                        {t(`${item.key}.title`)}
                     </h3>
 
                     <p className="mt-3 text-base leading-7 text-neutral-600">
-                        {item.description}
+                        {t(`${item.key}.description`)}
                     </p>
 
                     <div
@@ -463,7 +446,7 @@ function TimelineRow({ item }: { item: TimelineItem }) {
                         }
                     >
                         <span className="inline-flex rounded-full bg-orange-600/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-orange-700">
-                            {item.pillar}
+                            {t(`${item.key}.pillar`)}
                         </span>
                     </div>
                 </article>
@@ -475,6 +458,8 @@ function TimelineRow({ item }: { item: TimelineItem }) {
 }
 
 function CTASection() {
+    const t = useTranslations("About.cta");
+
     return (
         <section className="relative overflow-hidden bg-neutral-800 py-12 text-stone-50">
             <Image
@@ -489,17 +474,16 @@ function CTASection() {
 
             <SectionContainer className="relative z-10 flex flex-col items-center text-center">
                 <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-                    Building Stronger Businesses Together
+                    {t("title")}
                 </h2>
 
                 <p className="mt-6 max-w-2xl text-lg leading-7 text-stone-50/80">
-                    Join us as we continue to shape industries and define the future of
-                    strategic management.
+                    {t("description")}
                 </p>
 
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                     <ButtonLink href="/contact" variant="orange">
-                        Contact Us
+                        {t("button")}
                     </ButtonLink>
                 </div>
             </SectionContainer>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 export type NewsItem = {
     id: string;
@@ -14,10 +14,19 @@ export type NewsItem = {
     created_at: string;
 };
 
+type LatestNewsLabels = {
+    readMore: string;
+    viewMore: string;
+    viewAll: string;
+    fallbackExcerpt: string;
+};
+
 export default function LatestNewsClient({
     newsItems,
+    labels,
 }: {
     newsItems: NewsItem[];
+    labels: LatestNewsLabels;
 }) {
     const [visibleCount, setVisibleCount] = useState(3);
 
@@ -48,8 +57,7 @@ export default function LatestNewsClient({
                             </h3>
 
                             <p className="mt-3 line-clamp-4 text-base leading-6 text-neutral-600">
-                                {item.excerpt ??
-                                    "Read the latest update from WIN Holdings."}
+                                {item.excerpt ?? labels.fallbackExcerpt}
                             </p>
 
                             <div className="mt-auto pt-6">
@@ -57,7 +65,7 @@ export default function LatestNewsClient({
                                     href={`/news/${item.slug}`}
                                     className="inline-flex text-base font-semibold text-orange-600 transition-colors hover:text-orange-700"
                                 >
-                                    Read More
+                                    {labels.readMore}
                                 </Link>
                             </div>
                         </div>
@@ -72,14 +80,14 @@ export default function LatestNewsClient({
                         onClick={() => setVisibleCount((count) => count + 3)}
                         className="inline-flex items-center justify-center rounded-lg border border-neutral-300 bg-white px-6 py-3 text-base font-medium text-neutral-950 transition-colors hover:border-orange-600 hover:text-orange-600"
                     >
-                        View More
+                        {labels.viewMore}
                     </button>
                 ) : (
                     <Link
                         href="/news"
                         className="inline-flex items-center justify-center rounded-lg border border-neutral-300 bg-white px-6 py-3 text-base font-medium text-neutral-950 transition-colors hover:border-orange-600 hover:text-orange-600"
                     >
-                        View All News
+                        {labels.viewAll}
                     </Link>
                 )}
             </div>

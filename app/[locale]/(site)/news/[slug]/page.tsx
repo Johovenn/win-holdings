@@ -1,6 +1,7 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import {
     ArrowLeft,
     ArrowRight,
@@ -10,6 +11,8 @@ import {
     Tag,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
+import { useTranslations } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
 
 type News = {
     id: string;
@@ -25,6 +28,7 @@ type News = {
 };
 
 type PageParams = {
+    locale: string;
     slug: string;
 };
 
@@ -35,12 +39,17 @@ export async function generateMetadata({
 }: {
     params: PageParams | Promise<PageParams>;
 }): Promise<Metadata> {
-    const { slug } = await Promise.resolve(params);
+    const { locale, slug } = await Promise.resolve(params);
+    const t = await getTranslations({
+        locale,
+        namespace: "NewsArticle.metadata",
+    });
+
     const news = await getNewsBySlug(slug);
 
     if (!news) {
         return {
-            title: "News Not Found | WIN Holdings",
+            title: t("notFoundTitle"),
         };
     }
 
@@ -49,7 +58,7 @@ export async function generateMetadata({
         description:
             news.excerpt ??
             truncateText(news.content, 150) ??
-            "Read the latest update from WIN Holdings.",
+            t("defaultDescription"),
     };
 }
 
@@ -59,6 +68,7 @@ export default async function NewsSlugPage({
     params: PageParams | Promise<PageParams>;
 }) {
     const { slug } = await Promise.resolve(params);
+    const locale = await getLocale();
     const news = await getNewsBySlug(slug);
 
     if (!news) {
@@ -69,13 +79,16 @@ export default async function NewsSlugPage({
 
     return (
         <main className="min-h-screen bg-stone-50 text-neutral-950">
-            <ArticleHeroSection news={news} />
+            <ArticleHeroSection news={news} locale={locale} />
 
             <section className="bg-white py-16 lg:py-24">
                 <SectionContainer>
                     <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_20rem]">
                         <ArticleContent news={news} />
-                        <ArticleSidebar recentNews={recentNews} />
+                        <ArticleSidebar
+                            recentNews={recentNews}
+                            locale={locale}
+                        />
                     </div>
                 </SectionContainer>
             </section>
@@ -91,7 +104,7 @@ async function getNewsBySlug(slug: string): Promise<News | null> {
     const { data, error } = await supabase
         .from("news")
         .select(
-            "id, title, slug, excerpt, content, category, status, published_at, created_at, updated_at"
+            "id, title, slug, excerpt, content, category, status, published_at, created_at, updated_at",
         )
         .eq("slug", slug)
         .eq("status", "published")
@@ -111,7 +124,7 @@ async function getRecentNews(currentNewsId: string): Promise<News[]> {
     const { data, error } = await supabase
         .from("news")
         .select(
-            "id, title, slug, excerpt, content, category, status, published_at, created_at, updated_at"
+            "id, title, slug, excerpt, content, category, status, published_at, created_at, updated_at",
         )
         .eq("status", "published")
         .neq("id", currentNewsId)
@@ -131,7 +144,7 @@ function SectionContainer({
     children,
     className = "",
 }: {
-    children: React.ReactNode;
+    children: ReactNode;
     className?: string;
 }) {
     return (
@@ -141,7 +154,15 @@ function SectionContainer({
     );
 }
 
-function ArticleHeroSection({ news }: { news: News }) {
+function ArticleHeroSection({
+    news,
+    locale,
+}: {
+    news: News;
+    locale: string;
+}) {
+    const t = useTranslations("NewsArticle.article");
+
     return (
         <section className="relative overflow-hidden bg-white py-20 lg:py-28">
             <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-orange-600/10 blur-3xl" />
@@ -152,14 +173,22 @@ function ArticleHeroSection({ news }: { news: News }) {
                     className="inline-flex items-center gap-2 text-base font-semibold text-orange-600 transition-colors hover:text-orange-700"
                 >
                     <ArrowLeft className="h-4 w-4" />
-                    Back to News
+                    {t("backToNews")}
                 </Link>
 
                 <div className="mt-10 max-w-4xl">
                     <div className="flex flex-wrap items-center gap-3">
                         <CategoryBadge category={news.category} />
-                        <DateLabel date={news.published_at ?? news.created_at} />
-                        <ReadingTime content={news.content} />
+
+                        <DateLabel
+                            date={news.published_at ?? news.created_at}
+                            locale={locale}
+                        />
+
+                        <ReadingTime
+                            content={news.content}
+                            locale={locale}
+                        />
                     </div>
 
                     <h1 className="mt-8 text-4xl font-bold leading-tight tracking-tight text-neutral-950 md:text-5xl">
@@ -178,6 +207,8 @@ function ArticleHeroSection({ news }: { news: News }) {
 }
 
 function ArticleContent({ news }: { news: News }) {
+    const t = useTranslations("NewsArticle.article");
+
     const paragraphs = news.content
         .split(/\n+/)
         .map((paragraph) => paragraph.trim())
@@ -188,7 +219,9 @@ function ArticleContent({ news }: { news: News }) {
             <div className="space-y-6 text-lg leading-8 text-neutral-700">
                 {paragraphs.length > 0 ? (
                     paragraphs.map((paragraph, index) => (
-                        <p key={`${news.id}-paragraph-${index}`}>{paragraph}</p>
+                        <p key={`${news.id}-paragraph-${index}`}>
+                            {paragraph}
+                        </p>
                     ))
                 ) : (
                     <p>{news.content}</p>
@@ -201,14 +234,22 @@ function ArticleContent({ news }: { news: News }) {
                     className="inline-flex items-center gap-2 rounded-lg border border-neutral-300 bg-white px-6 py-3 text-base font-medium text-neutral-950 transition-colors hover:border-orange-600 hover:text-orange-600"
                 >
                     <ArrowLeft className="h-4 w-4" />
-                    Back to News
+                    {t("backToNews")}
                 </Link>
             </div>
         </article>
     );
 }
 
-function ArticleSidebar({ recentNews }: { recentNews: News[] }) {
+function ArticleSidebar({
+    recentNews,
+    locale,
+}: {
+    recentNews: News[];
+    locale: string;
+}) {
+    const t = useTranslations("NewsArticle.sidebar");
+
     return (
         <aside className="lg:sticky lg:top-28 lg:self-start">
             <div className="rounded-2xl border border-neutral-300 bg-stone-50 p-6">
@@ -218,7 +259,7 @@ function ArticleSidebar({ recentNews }: { recentNews: News[] }) {
                     </div>
 
                     <h2 className="text-xl font-semibold tracking-tight text-neutral-950">
-                        Recent News
+                        {t("title")}
                     </h2>
                 </div>
 
@@ -231,7 +272,7 @@ function ArticleSidebar({ recentNews }: { recentNews: News[] }) {
                                 className="block border-b border-neutral-200 pb-6 last:border-b-0 last:pb-0"
                             >
                                 <p className="text-sm font-medium text-orange-600">
-                                    {item.category ?? "Company Update"}
+                                    {item.category ?? t("defaultCategory")}
                                 </p>
 
                                 <h3 className="mt-2 text-base font-semibold leading-6 text-neutral-950 transition-colors hover:text-orange-600">
@@ -239,14 +280,18 @@ function ArticleSidebar({ recentNews }: { recentNews: News[] }) {
                                 </h3>
 
                                 <p className="mt-2 text-sm leading-6 text-neutral-600">
-                                    {formatDate(item.published_at ?? item.created_at)}
+                                    {formatDate(
+                                        item.published_at ?? item.created_at,
+                                        locale,
+                                        t("noDate"),
+                                    )}
                                 </p>
                             </Link>
                         ))}
                     </div>
                 ) : (
                     <p className="mt-6 text-sm leading-6 text-neutral-600">
-                        No other published news available yet.
+                        {t("empty")}
                     </p>
                 )}
             </div>
@@ -255,35 +300,53 @@ function ArticleSidebar({ recentNews }: { recentNews: News[] }) {
 }
 
 function CategoryBadge({ category }: { category: string | null }) {
+    const t = useTranslations("NewsArticle.labels");
+
     return (
         <span className="inline-flex items-center gap-2 rounded-full bg-orange-600/10 px-3 py-1 text-sm font-semibold text-orange-700">
             <Tag className="h-4 w-4" />
-            {category ?? "Company Update"}
+            {category ?? t("defaultCategory")}
         </span>
     );
 }
 
-function DateLabel({ date }: { date: string | null }) {
+function DateLabel({
+    date,
+    locale,
+}: {
+    date: string | null;
+    locale: string;
+}) {
+    const t = useTranslations("NewsArticle.labels");
+
     return (
         <time className="inline-flex items-center gap-2 text-sm font-medium text-neutral-600">
             <CalendarDays className="h-4 w-4" />
-            {formatDate(date)}
+            {formatDate(date, locale, t("noDate"))}
         </time>
     );
 }
 
-function ReadingTime({ content }: { content: string }) {
+function ReadingTime({
+    content,
+}: {
+    content: string;
+    locale: string;
+}) {
+    const t = useTranslations("NewsArticle.labels");
     const minutes = Math.max(1, Math.ceil(content.split(/\s+/).length / 200));
 
     return (
         <span className="inline-flex items-center gap-2 text-sm font-medium text-neutral-600">
             <Clock className="h-4 w-4" />
-            {minutes} min read
+            {t("readingTime", { minutes })}
         </span>
     );
 }
 
 function CTASection() {
+    const t = useTranslations("NewsArticle.cta");
+
     return (
         <section className="bg-neutral-950 py-20 text-white lg:py-24">
             <SectionContainer className="flex flex-col items-center text-center">
@@ -292,19 +355,18 @@ function CTASection() {
                 </div>
 
                 <h2 className="mt-8 text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-                    Explore More Updates
+                    {t("title")}
                 </h2>
 
                 <p className="mt-4 max-w-2xl text-base leading-7 text-white/70">
-                    Discover more announcements, business activities, and corporate
-                    insights from WIN Holdings.
+                    {t("description")}
                 </p>
 
                 <Link
                     href="/news"
                     className="mt-10 inline-flex items-center justify-center rounded-lg bg-orange-600 px-10 py-4 text-base font-semibold text-white shadow-xl transition-colors hover:bg-orange-700"
                 >
-                    View All News
+                    {t("button")}
                     <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
             </SectionContainer>
@@ -312,12 +374,14 @@ function CTASection() {
     );
 }
 
-function formatDate(date: string | null) {
+function formatDate(date: string | null, locale: string, fallback: string) {
     if (!date) {
-        return "No date";
+        return fallback;
     }
 
-    return new Intl.DateTimeFormat("en", {
+    const dateLocale = locale === "zh" ? "zh-CN" : "en";
+
+    return new Intl.DateTimeFormat(dateLocale, {
         day: "2-digit",
         month: "long",
         year: "numeric",

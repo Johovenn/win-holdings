@@ -1,150 +1,148 @@
+import { Link } from "@/i18n/routing";
 import type { ReactNode } from "react";
 import {
     HardHat,
     MapPin,
 } from "lucide-react";
 import Image from "next/image";
-import ButtonLink from "@/app/components/ui/ButtonLink";
+import { useTranslations } from "next-intl";
 
 type Stat = {
+    key: "chineseStaff" | "indonesianWorkers" | "projectsCompleted" | "highestGrade";
     value: string;
-    label: string;
 };
 
 type Qualification = {
-    title: string;
+    key:
+        | "b2QualificationGrade"
+        | "generalContracting"
+        | "civilConstruction"
+        | "steelStructure"
+        | "electromechanicalInstallation"
+        | "smeltingEngineering"
+        | "environmentalEngineering"
+        | "jiangsuZhongchenInternational";
     highlighted?: boolean;
 };
 
 type Project = {
-    name: string;
-    location: string;
-    scope: string;
-    status: "Completed" | "Active";
+    key: "iwip" | "lanyan" | "puqing" | "zhongqing";
+    status: "completed" | "active";
 };
 
 type Region = {
-    name: string;
-    description: string;
+    key: "kalimantan" | "maluku" | "sulawesi";
 };
 
 type GalleryItem = {
-    title: string;
+    key: string;
     image: string;
     className?: string;
 };
 
 const stats: Stat[] = [
     {
+        key: "chineseStaff",
         value: "400+",
-        label: "Chinese Staff",
     },
     {
+        key: "indonesianWorkers",
         value: "3,000+",
-        label: "Indonesian Workers",
     },
     {
+        key: "projectsCompleted",
         value: "30+",
-        label: "Projects Completed",
     },
     {
+        key: "highestGrade",
         value: "B2",
-        label: "Highest Grade",
     },
 ];
 
-const specializedFields = [
-    "Large-scale Metallurgical Projects",
-    "Electromechanical Integration",
-    "Municipal & Ecological Technology",
-    "Industrial Production Lines",
-    "Cement Production Lines",
-    "Nickel-Iron Smelting",
-];
+const specializedFieldKeys = [
+    "metallurgicalProjects",
+    "electromechanicalIntegration",
+    "municipalEcologicalTechnology",
+    "industrialProductionLines",
+    "cementProductionLines",
+    "nickelIronSmelting",
+] as const;
 
 const qualifications: Qualification[] = [
     {
-        title: "B2 Qualification Grade",
+        key: "b2QualificationGrade",
         highlighted: true,
     },
     {
-        title: "General Contracting",
+        key: "generalContracting",
     },
     {
-        title: "Civil Construction",
+        key: "civilConstruction",
     },
     {
-        title: "Steel Structure",
+        key: "steelStructure",
     },
     {
-        title: "Electromechanical Installation",
+        key: "electromechanicalInstallation",
     },
     {
-        title: "Smelting Engineering",
+        key: "smeltingEngineering",
     },
     {
-        title: "Environmental Engineering",
+        key: "environmentalEngineering",
     },
     {
-        title: "Jiangsu Zhongchen International",
+        key: "jiangsuZhongchenInternational",
     },
 ];
 
 const projects: Project[] = [
     {
-        name: "Tsingshan IWIP Industry Park",
-        location: "Maluku",
-        scope: "Metallurgical Facilities",
-        status: "Completed",
+        key: "iwip",
+        status: "completed",
     },
     {
-        name: "Lanyan Guangqing Projects",
-        location: "Sulawesi",
-        scope: "Industrial Plant Construction",
-        status: "Completed",
+        key: "lanyan",
+        status: "completed",
     },
     {
-        name: "Indonesia Puqing Engineering",
-        location: "Kalimantan",
-        scope: "Mechanical & Electrical",
-        status: "Completed",
+        key: "puqing",
+        status: "completed",
     },
     {
-        name: "Zhongqing New Energy Phase I",
-        location: "Sulawesi",
-        scope: "Production Line Integration",
-        status: "Active",
+        key: "zhongqing",
+        status: "active",
     },
 ];
 
 const galleryItems: GalleryItem[] = [
     {
-        title: "Industrial Construction Project 4",
+        key: "project4",
         image: "/images/construction-4.jpg",
     },
     {
-        title: "Industrial Construction Project 5",
+        key: "project5",
         image: "/images/construction-5.jpg",
         className: "md:col-span-2",
     },
     {
-        title: "Industrial Construction Project 6",
+        key: "project6",
         image: "/images/construction-6.jpg",
     },
     {
-        title: "Industrial Construction Project 7",
+        key: "project7",
         image: "/images/construction-7.jpg",
     },
     {
-        title: "Industrial Construction Project 8",
+        key: "project8",
         image: "/images/construction-8.jpg",
     },
     {
-        title: "Industrial Construction Project 9",
+        key: "project9",
         image: "/images/construction-9.jpg",
     },
     {
-        title: "Industrial Construction Project 10",
+        key: "project10",
         image: "/images/construction-10.jpg",
         className: "md:col-span-2",
     },
@@ -152,19 +150,13 @@ const galleryItems: GalleryItem[] = [
 
 const regions: Region[] = [
     {
-        name: "Kalimantan",
-        description:
-            "Active operations in industrial hubs, supporting power plant and mineral processing infrastructure.",
+        key: "kalimantan",
     },
     {
-        name: "Maluku",
-        description:
-            "Primary construction partner for some of the largest metallurgical parks in Eastern Indonesia.",
+        key: "maluku",
     },
     {
-        name: "Sulawesi",
-        description:
-            "Extensive track record in nickel-iron smelting and new energy production line development.",
+        key: "sulawesi",
     },
 ];
 
@@ -197,23 +189,50 @@ function SectionContainer({
     );
 }
 
+function ButtonLink({
+    href,
+    children,
+    variant = "orange",
+    className = "",
+}: {
+    href: string;
+    children: ReactNode;
+    variant?: "orange" | "outline-light";
+    className?: string;
+}) {
+    const variants = {
+        orange: "bg-orange-600 text-white shadow-lg hover:bg-orange-700",
+        "outline-light":
+            "border border-white/20 text-white hover:border-white/50 hover:bg-white/5",
+    };
+
+    return (
+        <Link
+            href={href}
+            className={`inline-flex items-center justify-center rounded-lg px-8 py-4 text-base transition-colors ${variants[variant]} ${className}`}
+        >
+            {children}
+        </Link>
+    );
+}
+
 function HeroSection() {
+    const t = useTranslations("Construction.hero");
+
     return (
         <section className="relative overflow-hidden bg-stone-50 py-24 lg:py-32">
             <SectionContainer className="grid items-center gap-12 lg:grid-cols-2">
                 <div>
                     <div className="inline-flex rounded-full bg-orange-600/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-orange-600">
-                        Subsidiary
+                        {t("eyebrow")}
                     </div>
 
                     <h1 className="mt-5 max-w-2xl text-4xl font-bold leading-tight tracking-tight text-slate-950 md:text-5xl">
-                        Construction Company
+                        {t("title")}
                     </h1>
 
                     <p className="mt-5 max-w-xl text-lg leading-8 text-neutral-600">
-                        Industrial engineering and construction expertise for
-                        large-scale infrastructure and production projects across the
-                        Indonesian archipelago.
+                        {t("description")}
                     </p>
                 </div>
 
@@ -225,7 +244,7 @@ function HeroSection() {
                             className="h-80 bg-cover bg-center"
                             style={{
                                 backgroundImage:
-                                    "linear-gradient(rgba(15,23,42,0.08), rgba(15,23,42,0.08)), url('/images/subsidiaries-construction.jpeg')",   
+                                    "linear-gradient(rgba(15,23,42,0.08), rgba(15,23,42,0.08)), url('/images/subsidiaries-construction.jpeg')",
                             }}
                         />
 
@@ -237,10 +256,11 @@ function HeroSection() {
 
                                 <div>
                                     <p className="text-sm font-semibold text-slate-950">
-                                        Industrial Engineering
+                                        {t("badgeTitle")}
                                     </p>
+
                                     <p className="text-xs text-neutral-500">
-                                        Large-scale project execution
+                                        {t("badgeDescription")}
                                     </p>
                                 </div>
                             </div>
@@ -253,6 +273,8 @@ function HeroSection() {
 }
 
 function CompanyOverviewSection() {
+    const t = useTranslations("Construction.companyOverview");
+
     return (
         <section className="relative overflow-hidden bg-white py-16">
             <Image
@@ -268,30 +290,18 @@ function CompanyOverviewSection() {
             <SectionContainer className="relative z-10 grid gap-12 lg:grid-cols-12">
                 <div className="lg:col-span-7">
                     <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                        A Leader in Industrial Construction
+                        {t("title")}
                     </h2>
 
                     <div className="mt-5 space-y-5 text-base leading-7 text-neutral-800">
-                        <p>
-                            We stand at the forefront of
-                            Indonesia&apos;s industrial transformation. As a core
-                            subsidiary of WIN Holdings and backed by international
-                            expertise from Jiangsu Zhongchen, ICG delivers turnkey
-                            solutions for complex engineering challenges.
-                        </p>
-
-                        <p>
-                            The company integrates Chinese engineering standards with a
-                            deep understanding of Indonesian requirements, creating a
-                            strong bridge for industrial excellence and sustainable
-                            infrastructure development.
-                        </p>
+                        <p>{t("paragraph1")}</p>
+                        <p>{t("paragraph2")}</p>
                     </div>
                 </div>
 
                 <div className="grid gap-4 sm:grid-cols-2 lg:col-span-5">
                     {stats.map((stat) => (
-                        <StatCard key={stat.label} stat={stat} />
+                        <StatCard key={stat.key} stat={stat} />
                     ))}
                 </div>
             </SectionContainer>
@@ -300,6 +310,8 @@ function CompanyOverviewSection() {
 }
 
 function StatCard({ stat }: { stat: Stat }) {
+    const t = useTranslations("Construction.stats");
+
     return (
         <div className="rounded-xl border border-neutral-300 bg-stone-100 p-5">
             <p className="text-2xl font-semibold tracking-tight text-orange-600">
@@ -307,13 +319,15 @@ function StatCard({ stat }: { stat: Stat }) {
             </p>
 
             <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-neutral-600">
-                {stat.label}
+                {t(`${stat.key}.label`)}
             </p>
         </div>
     );
 }
 
 function SpecializedFieldsSection() {
+    const t = useTranslations("Construction.specializedFields");
+
     return (
         <section className="relative overflow-hidden bg-slate-950 py-16 text-white">
             <div className="absolute right-0 top-0 h-full w-1/3 bg-orange-600/10 blur-3xl" />
@@ -321,24 +335,23 @@ function SpecializedFieldsSection() {
             <SectionContainer className="relative">
                 <div>
                     <h2 className="text-3xl font-semibold leading-10 tracking-tight">
-                        Specialized Fields of Expertise
+                        {t("title")}
                     </h2>
 
                     <p className="mt-4 max-w-3xl text-base leading-7 text-white/70">
-                        High-precision engineering and construction for highly
-                        specialized industrial sectors.
+                        {t("description")}
                     </p>
                 </div>
 
                 <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {specializedFields.map((field, index) => (
+                    {specializedFieldKeys.map((fieldKey, index) => (
                         <div
-                            key={field}
+                            key={fieldKey}
                             className="group relative min-h-65 overflow-hidden rounded-xl border border-white/10"
                         >
                             <Image
                                 src={`/images/fields-${index + 1}.png`}
-                                alt={field}
+                                alt={t(`items.${fieldKey}`)}
                                 fill
                                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -348,7 +361,7 @@ function SpecializedFieldsSection() {
 
                             <div className="absolute inset-x-0 bottom-0 p-5">
                                 <p className="text-lg font-semibold leading-6 text-white">
-                                    {field}
+                                    {t(`items.${fieldKey}`)}
                                 </p>
                             </div>
                         </div>
@@ -360,18 +373,20 @@ function SpecializedFieldsSection() {
 }
 
 function QualificationsSection() {
+    const t = useTranslations("Construction.qualifications");
+
     return (
         <section className="bg-white py-16">
             <SectionContainer>
                 <SectionHeader
                     align="center"
-                    title="Qualifications & Certifications"
+                    title={t("title")}
                 />
 
                 <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     {qualifications.map((qualification) => (
                         <QualificationCard
-                            key={qualification.title}
+                            key={qualification.key}
                             qualification={qualification}
                         />
                     ))}
@@ -386,6 +401,8 @@ function QualificationCard({
 }: {
     qualification: Qualification;
 }) {
+    const t = useTranslations("Construction.qualifications.items");
+
     if (qualification.highlighted) {
         return (
             <article className="rounded-xl border-2 border-orange-600 bg-orange-600/5 p-5 text-center">
@@ -394,7 +411,7 @@ function QualificationCard({
                 </p>
 
                 <p className="mt-2 text-xs font-bold uppercase tracking-widest text-neutral-950">
-                    Qualification Grade
+                    {t("b2QualificationGrade")}
                 </p>
             </article>
         );
@@ -403,12 +420,15 @@ function QualificationCard({
     return (
         <article className="flex min-h-20 items-center justify-center rounded-xl border border-neutral-300 bg-white p-5 text-center">
             <p className="text-base leading-6 text-neutral-950">
-                {qualification.title}
+                {t(qualification.key)}
             </p>
         </article>
     );
 }
+
 function ProjectTrackRecordSection() {
+    const t = useTranslations("Construction.projects");
+
     return (
         <section
             id="track-record"
@@ -428,18 +448,17 @@ function ProjectTrackRecordSection() {
                 <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
                     <div>
                         <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                            Proven Project Track Record
+                            {t("title")}
                         </h2>
 
                         <p className="mt-2 text-base leading-6 text-neutral-600">
-                            Delivering excellence across major industrial parks in
-                            Indonesia.
+                            {t("description")}
                         </p>
                     </div>
 
                     <div className="flex gap-4">
-                        <MetricBadge value="30+" label="Total Projects" />
-                        <MetricBadge value="100%" label="Completion" />
+                        <MetricBadge value="30+" label={t("metrics.totalProjects")} />
+                        <MetricBadge value="100%" label={t("metrics.completion")} />
                     </div>
                 </div>
 
@@ -448,17 +467,17 @@ function ProjectTrackRecordSection() {
                         <table className="w-full min-w-4xl border-collapse">
                             <thead className="bg-stone-100">
                                 <tr>
-                                    <TableHead>Project Name</TableHead>
-                                    <TableHead>Location</TableHead>
-                                    <TableHead>Scope</TableHead>
-                                    <TableHead>Status</TableHead>
+                                    <TableHead>{t("table.projectName")}</TableHead>
+                                    <TableHead>{t("table.location")}</TableHead>
+                                    <TableHead>{t("table.scope")}</TableHead>
+                                    <TableHead>{t("table.status")}</TableHead>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 {projects.map((project) => (
                                     <ProjectRow
-                                        key={project.name}
+                                        key={project.key}
                                         project={project}
                                     />
                                 ))}
@@ -494,18 +513,20 @@ function TableHead({ children }: { children: ReactNode }) {
 }
 
 function ProjectRow({ project }: { project: Project }) {
+    const t = useTranslations("Construction.projects.items");
+
     return (
         <tr className="border-b border-neutral-200 last:border-b-0">
             <td className="px-4 py-4 text-base font-bold text-neutral-950">
-                {project.name}
+                {t(`${project.key}.name`)}
             </td>
 
             <td className="px-4 py-4 text-base text-neutral-950">
-                {project.location}
+                {t(`${project.key}.location`)}
             </td>
 
             <td className="px-4 py-4 text-base text-neutral-600">
-                {project.scope}
+                {t(`${project.key}.scope`)}
             </td>
 
             <td className="px-4 py-4">
@@ -516,7 +537,8 @@ function ProjectRow({ project }: { project: Project }) {
 }
 
 function StatusBadge({ status }: { status: Project["status"] }) {
-    const isCompleted = status === "Completed";
+    const t = useTranslations("Construction.projects.status");
+    const isCompleted = status === "completed";
 
     return (
         <span
@@ -526,17 +548,19 @@ function StatusBadge({ status }: { status: Project["status"] }) {
                     : "inline-flex rounded bg-blue-100 px-2 py-1 text-xs font-bold uppercase text-blue-700"
             }
         >
-            {status}
+            {t(status)}
         </span>
     );
 }
 
 function ProjectGallerySection() {
+    const t = useTranslations("Construction.gallery");
+
     return (
         <section className="bg-white py-16">
             <SectionContainer>
                 <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                    Project Gallery
+                    {t("title")}
                 </h2>
 
                 <div className="mt-12 grid gap-4 md:grid-cols-3">
@@ -550,13 +574,15 @@ function ProjectGallerySection() {
 }
 
 function GalleryCard({ item }: { item: GalleryItem }) {
+    const t = useTranslations("Construction.gallery.items");
+
     return (
         <article
             className={`group relative h-64 overflow-hidden rounded-xl bg-stone-300 shadow-sm transition-transform duration-500 hover:scale-105 hover:shadow-xl ${item.className ?? ""}`}
         >
             <Image
                 src={item.image}
-                alt={item.title}
+                alt={t(item.key)}
                 fill
                 sizes="(min-width: 768px) 33vw, 100vw"
                 className="object-cover"
@@ -566,6 +592,8 @@ function GalleryCard({ item }: { item: GalleryItem }) {
 }
 
 function RegionalPresenceSection() {
+    const t = useTranslations("Construction.regionalPresence");
+
     return (
         <section className="relative overflow-hidden bg-stone-50 py-16">
             <Image
@@ -580,12 +608,12 @@ function RegionalPresenceSection() {
 
             <SectionContainer className="relative z-10">
                 <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                    Strategic Regional Presence
+                    {t("title")}
                 </h2>
 
                 <div className="mt-12 grid gap-6 md:grid-cols-3">
                     {regions.map((region) => (
-                        <RegionCard key={region.name} region={region} />
+                        <RegionCard key={region.key} region={region} />
                     ))}
                 </div>
             </SectionContainer>
@@ -594,6 +622,8 @@ function RegionalPresenceSection() {
 }
 
 function RegionCard({ region }: { region: Region }) {
+    const t = useTranslations("Construction.regionalPresence.items");
+
     return (
         <article className="rounded-xl border border-neutral-300 bg-white p-6 shadow-sm">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-600/10 text-orange-600">
@@ -601,17 +631,19 @@ function RegionCard({ region }: { region: Region }) {
             </div>
 
             <h3 className="mt-6 text-2xl font-bold tracking-tight text-orange-600">
-                {region.name}
+                {t(`${region.key}.name`)}
             </h3>
 
             <p className="mt-3 text-base leading-7 text-neutral-600">
-                {region.description}
+                {t(`${region.key}.description`)}
             </p>
         </article>
     );
 }
 
 function CTASection() {
+    const t = useTranslations("Construction.cta");
+
     return (
         <section className="relative overflow-hidden bg-neutral-800 py-12 text-stone-50">
             <Image
@@ -626,17 +658,16 @@ function CTASection() {
 
             <SectionContainer className="relative z-10 flex flex-col items-center text-center">
                 <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-                    Build Large-Scale Industrial Projects with Us
+                    {t("title")}
                 </h2>
 
                 <p className="mt-6 max-w-2xl text-lg leading-7 text-stone-50/80">
-                    Connecting global engineering standards with Indonesian
-                    industrial potential for a sustainable future.
+                    {t("description")}
                 </p>
 
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                     <ButtonLink href="/contact" variant="orange">
-                        Contact Us
+                        {t("button")}
                     </ButtonLink>
                 </div>
             </SectionContainer>

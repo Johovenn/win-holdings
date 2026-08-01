@@ -1,0 +1,1108 @@
+{
+    "Navbar": {
+        "links": {
+            "home": "Home",
+            "about": "About",
+            "subsidiaries": "Subsidiaries",
+            "organization": "Organization",
+            "news": "News",
+            "career": "Career",
+            "contact": "Contact"
+        },
+        "contactButton": "Contact Us"
+    },
+     "Home": {
+        "hero": {
+            "eyebrow": "Holding Company",
+            "title": "Building Sustainable Growth Across Multiple Industries",
+            "description": "A diversified holding company managing businesses in manufacturing, outsourcing, trading, and construction with strategic precision.",
+            "primaryCta": "Explore Our Business",
+            "secondaryCta": "Learn About Us",
+            "growthLabel": "Years of Growth",
+            "imageAlt": "WIN Holdings business and industrial operations"
+        },
+        "companyOverview": {
+            "title": "About Our Company",
+            "description": "We are a diversified holding company focused on creating long-term value through strategic business management, operational excellence, and sustainable growth across multiple sectors. Our commitment lies in fostering innovation and stability.",
+            "highlights": {
+                "diversifiedPortfolio": {
+                    "title": "Diversified Portfolio",
+                    "description": "Managing a robust range of industries to balance risk and maximize return across markets."
+                },
+                "strategicGrowth": {
+                    "title": "Strategic Growth",
+                    "description": "Leveraging market insights and capital efficiency to drive expansion in emerging sectors."
+                },
+                "operationalExcellence": {
+                    "title": "Operational Excellence",
+                    "description": "Standardizing best practices across all subsidiaries to ensure peak efficiency and quality."
+                }
+            }
+        },
+        "businessPortfolio": {
+            "title": "Our Business Portfolio",
+            "cta": "Explore Business Unit",
+            "items": {
+                "manufacturing": {
+                    "title": "Manufacturing",
+                    "description": "A manufacturing business unit focused on supporting industrial and commercial product development with consistent quality and operational reliability."
+                },
+                "outsourcing": {
+                    "title": "Outsourcing",
+                    "description": "An outsourcing business unit delivering manpower, workforce support, and business process services for operational efficiency."
+                },
+                "trading": {
+                    "title": "Trading",
+                    "description": "A trading and supply business unit providing reliable procurement, materials, and distribution support for industrial and project-based needs."
+                },
+                "construction": {
+                    "title": "Construction",
+                    "description": "A construction and engineering business unit supporting project execution, infrastructure development, and industrial construction requirements."
+                }
+            }
+        },
+        "organizationLeadership": {
+            "title": "Organization & Leadership",
+            "description": "Our leadership team brings decades of collective experience across manufacturing, finance, and global logistics. We pride ourselves on a governance structure that emphasizes transparency, agility, and ethics.",
+            "cta": "View Organization Structure",
+            "points": {
+                "experiencedBoard": "Experienced Board of Directors",
+                "agileStructure": "Agile Organizational Structure",
+                "accountability": "Direct Accountability Models"
+            },
+            "images": {
+                "leadershipMeeting": "WIN Holdings leadership meeting",
+                "corporateDiscussion": "WIN Holdings corporate discussion",
+                "managementCollaboration": "WIN Holdings management collaboration",
+                "executiveLeadership": "WIN Holdings executive leadership"
+            }
+        },
+        "latestNews": {
+            "title": "Latest News & Insights",
+            "errorMessage": "Failed to load latest news. Please check your Supabase connection and policies.",
+            "emptyTitle": "No published news yet.",
+            "emptyDescription": "Latest company updates will appear here once published.",
+            "readMore": "Read More",
+            "viewMore": "View More",
+            "viewAll": "View All News",
+            "fallbackExcerpt": "Read the latest update from WIN Holdings."
+        },
+        "career": {
+            "title": "Grow Your Career With Us",
+            "description": "Be part of a dynamic team driving change across multiple industries. We offer a culture of continuous learning, professional growth, and global opportunities.",
+            "cta": "Explore Career Opportunities"
+        }
+    },
+    "About": {
+        "whoWeAre": {
+            "title": "Who We Are",
+            "imageAlt": "WIN Holdings boardroom and business discussion",
+            "paragraph1": "WIN Holdings is a premier investment and management firm dedicated to fostering sustainable growth through a diverse portfolio of market-leading subsidiaries. Our expertise spans manufacturing, human capital solutions, international trading, and infrastructure development.",
+            "paragraph2": "By providing strategic oversight and operational excellence to our core entities—including <manufacturing>Manufacturing</manufacturing>, <outsourcing>Outsourcing</outsourcing>, <trading>Trading</trading>, and <construction>Construction</construction> companies—we ensure each business maintains the highest standards of quality while driving collective value for our stakeholders."
+        },
+        "visionMission": {
+            "visionTitle": "Our Vision",
+            "visionText": "“To become a trusted holding company that creates sustainable value and drives transformative growth across global markets through excellence and innovation.”",
+            "missionTitle": "Our Mission",
+            "missions": {
+                "strategicDirection": "Providing visionary strategic direction to ensure long-term profitability and market leadership for all subsidiaries.",
+                "operationalExcellence": "Upholding operational excellence through lean processes and innovative management frameworks.",
+                "sustainablePartnerships": "Cultivating sustainable partnerships that empower communities and preserve environmental integrity.",
+                "responsibleGrowth": "Fostering responsible growth by adhering to the highest standards of corporate governance and ethics."
+            }
+        },
+        "coreValues": {
+            "title": "Our Core Values",
+            "description": "The principles that guide our every decision and interaction across the WIN Holdings ecosystem.",
+            "items": {
+                "integrity": {
+                    "title": "Integrity",
+                    "description": "Upholding the highest ethical standards in every transaction."
+                },
+                "excellence": {
+                    "title": "Excellence",
+                    "description": "Relentlessly pursuing quality and superior performance."
+                },
+                "collaboration": {
+                    "title": "Collaboration",
+                    "description": "Working together to achieve more than we can alone."
+                },
+                "growth": {
+                    "title": "Growth",
+                    "description": "Continuously expanding our potential and market impact."
+                }
+            }
+        },
+        "businessEcosystem": {
+            "title": "Our Business Ecosystem",
+            "description": "Diverse expertise, unified by strategic management.",
+            "cta": "View All Subsidiaries",
+            "items": {
+                "manufacturing": {
+                    "title": "Manufacturing",
+                    "description": "A manufacturing business unit supporting industrial and commercial product development."
+                },
+                "outsourcing": {
+                    "title": "Outsourcing",
+                    "description": "Comprehensive workforce management and professional recruitment services."
+                },
+                "trading": {
+                    "title": "Trading",
+                    "description": "A trading and supply business unit supporting procurement, distribution, and operational needs."
+                },
+                "construction": {
+                    "title": "Construction",
+                    "description": "Specialized infrastructure development and engineering construction solutions."
+                }
+            }
+        },
+        "growthJourney": {
+            "eyebrow": "Company History",
+            "title": "Our Growth Journey",
+            "description": "From construction material trading to an integrated industrial supply and construction group, our growth reflects continuous expansion across procurement, workforce services, logistics, construction, manufacturing, and corporate governance.",
+            "timeline": {
+                "foundation": {
+                    "title": "Foundation in Construction Materials Trading",
+                    "description": "The company was established in Indonesia with an initial focus on construction material trading in West Java, including cement, stone, sand, and other building materials. This stage built the supplier network and project-service experience that became the foundation for future business expansion.",
+                    "pillar": "Trading • Procurement • Supply Network"
+                },
+                "workforce": {
+                    "title": "Expansion into Workforce Solutions",
+                    "description": "The company entered the manpower outsourcing and human resources supply sector, starting with Halmahera as its first strategic operation point. Services included operators, technicians, skilled workers, general workers, and project support personnel.",
+                    "pillar": "Workforce • Industrial Services"
+                },
+                "foodSupply": {
+                    "title": "Industrial Food Supply Development",
+                    "description": "To support large-scale industrial operations, the company expanded into food supply and logistics, providing rice, vegetables, meat, seafood, seasonings, and other essential goods while strengthening warehousing, distribution, cold chain, and integrated supply-chain capabilities.",
+                    "pillar": "Food Supply • Logistics"
+                },
+                "expansion": {
+                    "title": "National and Multi-Sector Expansion",
+                    "description": "The company expanded its operational bases into Sulawesi and Kalimantan, entered the construction sector through civil, mechanical, and electrical works, and invested in an industrial coating manufacturing facility in Cikarang, West Java.",
+                    "pillar": "Regional Expansion • Construction Services • Manufacturing"
+                },
+                "headquarters": {
+                    "title": "Strategic Construction Expansion and Holding Headquarters",
+                    "description": "The company strengthened its construction capability by winning a strategic project in West Kalimantan involving civil infrastructure and sports facility development. In the same year, the group established its headquarters at Gold Coast Office, Jakarta, with approximately 900 m² of office space to support integrated governance and corporate coordination.",
+                    "pillar": "Infrastructure Development • Corporate Governance"
+                }
+            }
+        },
+        "cta": {
+            "title": "Building Stronger Businesses Together",
+            "description": "Join us as we continue to shape industries and define the future of strategic management.",
+            "button": "Contact Us"
+        }
+    },
+    "Subsidiaries": {
+        "portfolioOverview": {
+            "title": "Our Business Portfolio",
+            "description": "Each subsidiary under WIN Holdings plays a strategic role in supporting the group’s diversified business ecosystem, leveraging cross-industry expertise to drive sustainable value."
+        },
+        "items": {
+            "manufacture": {
+                "industry": "Manufacture",
+                "shortDescription": "High-performance industrial and commercial coating solutions.",
+                "description": "Specializing in the manufacturing of premium architectural and industrial paint products. Our facilities utilize advanced chemical engineering to deliver durability, aesthetic quality, and environmental compliance across diverse markets.",
+                "websiteLabel": "Visit 3C Paint Website",
+                "imageAlt": "Manufacturing and coating production facility"
+            },
+            "trading": {
+                "industry": "Trading",
+                "shortDescription": "Reliable food supply and operational goods for industrial, construction, and project-based workforce needs.",
+                "description": "Supplies reliable food and essential operational goods for project-based business needs, including industrial sites, construction areas, and remote workforce operations. The company supports domestic and international customers through consistent procurement, food supply coordination, and distribution capabilities.",
+                "websiteLabel": "Learn more",
+                "imageAlt": "Warehouse and food supply distribution operations"
+            },
+            "outsourcing": {
+                "industry": "Outsourcing",
+                "shortDescription": "Professional manpower and outsourcing support services.",
+                "description": "Provides human resources, outsourcing, and manpower support for industrial and foreign-invested projects across Indonesia. The company helps businesses operate efficiently through reliable workforce solutions and business support services.",
+                "websiteLabel": "Learn more",
+                "imageAlt": "Professional HR outsourcing team"
+            },
+            "construction": {
+                "industry": "Construction",
+                "shortDescription": "Industrial construction and engineering project execution.",
+                "description": "Focuses on industrial engineering, construction, commissioning, and production-line support for large-scale projects. The company supports complex industrial development across key operational regions in Indonesia.",
+                "websiteLabel": "Learn more",
+                "imageAlt": "Industrial engineering and construction project"
+            }
+        },
+        "groupSynergy": {
+            "eyebrow": "Group Synergy",
+            "title": "Building Value Through Business Synergy",
+            "description": "WIN Holdings connects its subsidiaries through strategic direction, governance, and operational coordination. This approach allows each company to grow independently while contributing to the strength of the overall group.",
+            "cards": {
+                "strategicDirection": {
+                    "title": "Strategic Direction",
+                    "description": "WIN Holdings provides strategic oversight to keep each subsidiary aligned with the group’s long-term business direction."
+                },
+                "operationalCoordination": {
+                    "title": "Operational Coordination",
+                    "description": "Cross-business coordination helps each company improve execution, efficiency, and accountability."
+                },
+                "sustainableGrowth": {
+                    "title": "Sustainable Growth",
+                    "description": "The group focuses on long-term value creation through responsible growth and stable business development."
+                }
+            }
+        },
+        "cta": {
+            "title": "Explore Opportunities with WIN Holdings",
+            "description": "Connect with WIN Holdings to learn more about our subsidiaries, business portfolio, and partnership opportunities.",
+            "button": "Contact Us"
+        }
+    },
+    "Trading": {
+        "hero": {
+            "eyebrow": "Subsidiary",
+            "title": "Trading Company",
+            "subtitle": "Food supply, packaging, and operational goods for project-based operations.",
+            "description": "Established in 2019, we supply reliable food products, packaging materials, operational goods, and selected industrial supplies for domestic and international customers.",
+            "tagline": "“Your Trust is Our Priority”"
+        },
+        "companyOverview": {
+            "title": "Company Overview",
+            "paragraph1": "We stand as a reliable partner in project-based supply operations. The company specializes in food supply, packaging, procurement, and operational goods for industrial sites, construction areas, remote workforce operations, and business project needs.",
+            "paragraph2": "Through procurement capability, quality control, warehousing, and logistics coordination, we help customers secure consistent supplies according to required quality standards, schedules, and operating conditions."
+        },
+        "overviewCards": {
+            "established": {
+                "label": "Established",
+                "value": "2019"
+            },
+            "sector": {
+                "label": "Sector",
+                "value": "Food & Operational Supply"
+            },
+            "scope": {
+                "label": "Scope",
+                "value": "Domestic & Global"
+            },
+            "role": {
+                "label": "Role",
+                "value": "Reliable Partner"
+            }
+        },
+        "visionMission": {
+            "visionTitle": "Our Vision",
+            "visionText": "To become a trusted supply partner for food, packaging, and operational goods across Indonesia’s industrial, construction, and project-based business sectors.",
+            "missionTitle": "Our Mission",
+            "missionText": "To fulfil customers’ procurement and supply needs by providing consistent service, reliable product quality, responsive coordination, and timely distribution."
+        },
+        "products": {
+            "title": "Comprehensive Product Portfolio",
+            "items": {
+                "packaging": {
+                    "title": "Packaging",
+                    "description": "Paper bags, woven bags, and packaging materials for industrial and operational distribution needs."
+                },
+                "foodSupply": {
+                    "title": "Food Supply",
+                    "description": "Vegetables, meat, fruits, seafood, seasonings, and essential food products for industrial sites and workforce operations."
+                },
+                "cement": {
+                    "title": "Cement",
+                    "description": "OPC and PCC cement for structural, masonry, plastering, and general project needs."
+                },
+                "cementClinker": {
+                    "title": "Cement Clinker",
+                    "description": "Bulk clinker supply sourced from selected manufacturers across Indonesia and Asia."
+                },
+                "gypsumBoard": {
+                    "title": "Gypsum Board",
+                    "description": "Standard, moisture resistant, fire resistant, and laminated gypsum board products."
+                },
+                "ceramics": {
+                    "title": "Ceramics",
+                    "description": "Floor tiles, wall tiles, granite tiles, roof tiles, and vinyl tiles for construction needs."
+                },
+                "greaseLubricants": {
+                    "title": "Grease & Lubricants",
+                    "description": "Industrial-grade grease and lubricants for machinery, vehicles, and operational equipment."
+                },
+                "machineryParts": {
+                    "title": "Machinery & Parts",
+                    "description": "Pumps, welding machines, forklifts, compressors, electrical equipment, and spare parts."
+                }
+            }
+        },
+        "featureDetails": {
+            "items": {
+                "foodSupply": {
+                    "title": "Food Supply",
+                    "description": "We provide reliable food supply solutions for industrial sites, construction projects, remote workforce operations, and project-based business needs. Our supply coverage includes daily food ingredients, fresh produce, meat, seafood, seasonings, and essential goods to support stable operations in demanding project environments.",
+                    "useCases": [
+                        "Industrial Site Operations",
+                        "Construction Workforce Support",
+                        "Remote Project Food Supply"
+                    ],
+                    "imageAlt": "Food supply for industrial and project-based operations"
+                },
+                "packaging": {
+                    "title": "Packaging",
+                    "description": "We support industrial and construction-related operations with packaging supply solutions for bulk materials, dry goods, and operational distribution needs. Our packaging services help customers maintain product handling quality, storage efficiency, and supply-chain reliability.",
+                    "useCases": [
+                        "Industrial Packaging Supply",
+                        "Bulk Material Handling",
+                        "Storage and Distribution Support"
+                    ],
+                    "imageAlt": "Packaging supply for industrial and operational needs"
+                }
+            }
+        },
+        "capabilities": {
+            "title": "Core Supply Capabilities",
+            "description": "We connect customer demand with reliable procurement, warehousing, food supply coordination, packaging supply, and transparent logistics execution.",
+            "items": {
+                "procurement": {
+                    "title": "Procurement",
+                    "description": "Strategic sourcing and negotiation to ensure competitive pricing and reliable supply."
+                },
+                "industrialSupply": {
+                    "title": "Operational Supply",
+                    "description": "Supply of essential goods, materials, and products for industrial and project-based operations."
+                },
+                "globalSourcing": {
+                    "title": "Global Sourcing",
+                    "description": "Specialized sourcing from domestic and international supply networks."
+                },
+                "packaging": {
+                    "title": "Packaging",
+                    "description": "Packaging solutions for bulk materials, dry goods, and operational distribution."
+                },
+                "distribution": {
+                    "title": "Distribution",
+                    "description": "Logistics support for domestic and international supply distribution."
+                },
+                "foodSupply": {
+                    "title": "Food Supply",
+                    "description": "Reliable food supply for workers at remote construction and industrial sites."
+                }
+            }
+        },
+        "organization": {
+            "eyebrow": "Organization Structure",
+            "title": "Trading Company Organization Structure",
+            "description": "The trading company is structured to support regional operations, sales, procurement, warehousing, finance, and domestic and international logistics coordination.",
+            "materialSupply": "Material Supply",
+            "viceCeo": "Vice CEO",
+            "departmentsLabel": "Departments Under Vice CEO",
+            "departments": {
+                "sulawesi": {
+                    "title": "Regional Manager – Sulawesi",
+                    "children": {
+                        "sales": "Vice Manager – Sales",
+                        "procurement": "Vice Manager – Procurement",
+                        "warehouse": "Vice Manager – Warehouse"
+                    }
+                },
+                "maluku": {
+                    "title": "Regional Manager – Maluku",
+                    "children": {
+                        "sales": "Vice Manager – Sales",
+                        "procurement": "Vice Manager – Procurement",
+                        "warehouse": "Vice Manager – Warehouse"
+                    }
+                },
+                "finance": {
+                    "title": "Head of Finance Department",
+                    "children": {
+                        "accounting": "Vice Department Head – Accounting"
+                    }
+                },
+                "procurementLogistics": {
+                    "title": "Head of Procurement and Logistics Department",
+                    "children": {
+                        "domesticInternationalProcurementLogistics": "Supervisor – Domestic and International Procurement & Logistics"
+                    }
+                }
+            }
+        },
+        "cta": {
+            "title": "Source Reliable Food Supply and Operational Goods with Us",
+            "description": "Connect with our supply team to discuss food supply, packaging, operational goods, procurement, and logistics requirements for your next project.",
+            "button": "Contact Us"
+        }
+    },
+     "Outsourcing": {
+        "hero": {
+            "eyebrow": "Subsidiary",
+            "title": "Outsourcing Company",
+            "subtitle": "Human resource services and outsourcing solutions for industrial and project-based operations.",
+            "description": "We provide comprehensive professional manpower and outsourcing support across the Indonesian archipelago. The company specializes in navigating large-scale industrial labor needs and ensuring operational efficiency for global enterprises.",
+            "badge": "Licensed Professional HR Partner"
+        },
+        "companyOverview": {
+            "title": "Specialized HR Outsourcing",
+            "paragraph1": "We have established ourselves as a reliable partner for foreign-invested enterprises, particularly Chinese state-owned enterprises. The company understands the requirements of international projects and bridges global standards with local expertise.",
+            "paragraph2": "Its strategic alliances and deep knowledge of the Indonesian labor market allow the company to deploy skilled and semi-skilled manpower rapidly, including to remote project sites."
+        },
+        "overviewItems": {
+            "indonesiaWideOperations": {
+                "title": "Indonesia-wide Operations",
+                "description": "Scalable workforce solutions from Sumatra to Papua."
+            },
+            "foreignInvestedAlliance": {
+                "title": "Foreign-Invested Alliance",
+                "description": "Strategic partner for global industrial companies and state-owned enterprises."
+            },
+            "regionalProjectFocus": {
+                "title": "Regional Project Focus",
+                "description": "Active in Kalimantan, Sulawesi, and Maluku hubs."
+            }
+        },
+        "visionMission": {
+            "visionTitle": "Our Vision",
+            "visionText": "“To become a leading outsourcing service provider in Indonesia, recognized for our commitment to quality, integrity, and the empowerment of our professional workforce.”",
+            "missionTitle": "Our Mission",
+            "missions": {
+                "professionalManpower": "Providing professional manpower services through strict selection.",
+                "trainedCertified": "Ensuring all professionals are trained and certified for specific tasks.",
+                "clientRelationships": "Building long-term, mutually beneficial relationships with clients.",
+                "employeeWelfare": "Fostering continuous growth and welfare for our employees.",
+                "stakeholderValue": "Consistently enhancing company value for all stakeholders."
+            }
+        },
+        "services": {
+            "title": "Our Core Services",
+            "items": {
+                "outsourcingEmployee": {
+                    "title": "Outsourcing Employee",
+                    "description": "End-to-end management of administrative and general staff."
+                },
+                "outsourcingExperts": {
+                    "title": "Outsourcing Experts",
+                    "description": "Highly skilled technical specialists for project-critical tasks."
+                },
+                "outsourcingSdm": {
+                    "title": "Outsourcing HR",
+                    "description": "Comprehensive human resource development and placement."
+                },
+                "businessProcess": {
+                    "title": "Business Process",
+                    "description": "Optimizing operational workflows through professional support."
+                },
+                "businessConsultation": {
+                    "title": "Business Consultation",
+                    "description": "Advisory for manpower planning and labor compliance."
+                }
+            }
+        },
+        "organization": {
+            "eyebrow": "Organization Structure",
+            "title": "Outsourcing Company Organization Structure",
+            "description": "A clear leadership hierarchy supports operational control, project coordination, human resources management, and finance accountability across the outsourcing company.",
+            "ceo": "CEO",
+            "assistantCeo": "Assistant CEO",
+            "viceCeo": "Vice CEO",
+            "departmentsLabel": "Departments Under Vice CEO",
+            "departments": {
+                "projectManager": {
+                    "title": "Project Manager",
+                    "children": {
+                        "siteManagement": "Vice Manager – Site Management",
+                        "backOffice": "Vice Manager – Back Office"
+                    }
+                },
+                "humanResources": {
+                    "title": "Head of Human Resources Department",
+                    "children": {
+                        "headOfficeHrd": "Vice Department Head – Head Office HRD",
+                        "industrialRelations": "Vice Department Head – Industrial Relations",
+                        "recruitment": "Vice Department Head – Recruitment",
+                        "projectAttendance": "Vice Department Head – Project Attendance"
+                    }
+                },
+                "finance": {
+                    "title": "Head of Finance Department",
+                    "children": {
+                        "accounting": "Vice Department Head – Accounting",
+                        "payroll": "Vice Department Head – Payroll"
+                    }
+                }
+            }
+        },
+        "clients": {
+            "title": "Our Strategic Clients",
+            "description": "Powering the largest industrial projects in Indonesia."
+        },
+        "cta": {
+            "title": "Reliable Outsourcing Partner for Industrial Growth",
+            "description": "Connect with our team to discuss manpower outsourcing, workforce planning, HR support, project staffing, and operational workforce needs.",
+            "button": "Contact Us"
+        }
+    },
+     "Construction": {
+        "hero": {
+            "eyebrow": "Subsidiary",
+            "title": "Construction Company",
+            "description": "Industrial engineering and construction expertise for large-scale infrastructure and production projects across the Indonesian archipelago.",
+            "badgeTitle": "Industrial Engineering",
+            "badgeDescription": "Large-scale project execution"
+        },
+        "companyOverview": {
+            "title": "A Leader in Industrial Construction",
+            "paragraph1": "We stand at the forefront of Indonesia's industrial transformation. As a core subsidiary of WIN Holdings and backed by international expertise from Jiangsu Zhongchen, ICG delivers turnkey solutions for complex engineering challenges.",
+            "paragraph2": "The company integrates Chinese engineering standards with a deep understanding of Indonesian requirements, creating a strong bridge for industrial excellence and sustainable infrastructure development."
+        },
+        "stats": {
+            "chineseStaff": {
+                "label": "Chinese Staff"
+            },
+            "indonesianWorkers": {
+                "label": "Indonesian Workers"
+            },
+            "projectsCompleted": {
+                "label": "Projects Completed"
+            },
+            "highestGrade": {
+                "label": "Highest Grade"
+            }
+        },
+        "specializedFields": {
+            "title": "Specialized Fields of Expertise",
+            "description": "High-precision engineering and construction for highly specialized industrial sectors.",
+            "items": {
+                "metallurgicalProjects": "Large-scale Metallurgical Projects",
+                "electromechanicalIntegration": "Electromechanical Integration",
+                "municipalEcologicalTechnology": "Municipal & Ecological Technology",
+                "industrialProductionLines": "Industrial Production Lines",
+                "cementProductionLines": "Cement Production Lines",
+                "nickelIronSmelting": "Nickel-Iron Smelting"
+            }
+        },
+        "qualifications": {
+            "title": "Qualifications & Certifications",
+            "items": {
+                "b2QualificationGrade": "Qualification Grade",
+                "generalContracting": "General Contracting",
+                "civilConstruction": "Civil Construction",
+                "steelStructure": "Steel Structure",
+                "electromechanicalInstallation": "Electromechanical Installation",
+                "smeltingEngineering": "Smelting Engineering",
+                "environmentalEngineering": "Environmental Engineering",
+                "jiangsuZhongchenInternational": "Jiangsu Zhongchen International"
+            }
+        },
+        "projects": {
+            "title": "Proven Project Track Record",
+            "description": "Delivering excellence across major industrial parks in Indonesia.",
+            "metrics": {
+                "totalProjects": "Total Projects",
+                "completion": "Completion"
+            },
+            "table": {
+                "projectName": "Project Name",
+                "location": "Location",
+                "scope": "Scope",
+                "status": "Status"
+            },
+            "status": {
+                "completed": "Completed",
+                "active": "Active"
+            },
+            "items": {
+                "iwip": {
+                    "name": "Tsingshan IWIP Industry Park",
+                    "location": "Maluku",
+                    "scope": "Metallurgical Facilities"
+                },
+                "lanyan": {
+                    "name": "Lanyan Guangqing Projects",
+                    "location": "Sulawesi",
+                    "scope": "Industrial Plant Construction"
+                },
+                "puqing": {
+                    "name": "Indonesia Puqing Engineering",
+                    "location": "Kalimantan",
+                    "scope": "Mechanical & Electrical"
+                },
+                "zhongqing": {
+                    "name": "Zhongqing New Energy Phase I",
+                    "location": "Sulawesi",
+                    "scope": "Production Line Integration"
+                }
+            }
+        },
+        "gallery": {
+            "title": "Project Gallery",
+            "items": {
+                "project4": "Industrial construction project 4",
+                "project5": "Industrial construction project 5",
+                "project6": "Industrial construction project 6",
+                "project7": "Industrial construction project 7",
+                "project8": "Industrial construction project 8",
+                "project9": "Industrial construction project 9",
+                "project10": "Industrial construction project 10"
+            }
+        },
+        "regionalPresence": {
+            "title": "Strategic Regional Presence",
+            "items": {
+                "kalimantan": {
+                    "name": "Kalimantan",
+                    "description": "Active operations in industrial hubs, supporting power plant and mineral processing infrastructure."
+                },
+                "maluku": {
+                    "name": "Maluku",
+                    "description": "Primary construction partner for some of the largest metallurgical parks in Eastern Indonesia."
+                },
+                "sulawesi": {
+                    "name": "Sulawesi",
+                    "description": "Extensive track record in nickel-iron smelting and new energy production line development."
+                }
+            }
+        },
+        "cta": {
+            "title": "Build Large-Scale Industrial Projects with Us",
+            "description": "Connecting global engineering standards with Indonesian industrial potential for a sustainable future.",
+            "button": "Contact Us"
+        }
+    },
+    "Organization": {
+        "hero": {
+            "eyebrow": "Organization Structure",
+            "title": "Strong Governance for Sustainable Business Growth",
+            "description": "WIN Holdings is supported by a structured organization and experienced leadership to ensure effective decision-making, accountability, and strategic growth across all business units.",
+            "imageAlt": "WIN Holdings organization structure"
+        },
+        "framework": {
+            "title": "Our Organizational Framework",
+            "description": "WIN Holdings applies a clear organizational structure to support strategic direction, operational coordination, and business governance across its subsidiaries. This structure helps each business unit operate efficiently while remaining aligned with the company’s long-term vision.",
+            "stats": {
+                "governance": {
+                    "label": "Governance",
+                    "value": "Clear"
+                },
+                "businessUnits": {
+                    "label": "Business Units",
+                    "value": "4+"
+                },
+                "portfolio": {
+                    "label": "Portfolio",
+                    "value": "Diversified"
+                }
+            },
+            "items": {
+                "strategicDirection": {
+                    "title": "Strategic Direction",
+                    "description": "Group-level business oversight"
+                },
+                "operationalCoordination": {
+                    "title": "Operational Coordination",
+                    "description": "Integrated subsidiary management"
+                },
+                "corporateGovernance": {
+                    "title": "Corporate Governance",
+                    "description": "Accountability and ethical control"
+                }
+            }
+        },
+        "chart": {
+            "title": "Holding Group Organization Structure",
+            "description": "A clear leadership hierarchy supports executive coordination, business-unit accountability, and strategic growth across the holding group.",
+            "holdingGroup": "Holding Group",
+            "chairman": "Chairman",
+            "ceo": "CEO",
+            "executiveLeadership": "Executive Leadership",
+            "nodes": {
+                "assistantCeo": "Assistant CEO",
+                "manpowerSupply": "Vice CEO – Manpower Supply Company",
+                "tradingMaterial": "Vice CEO – Trading Material Company",
+                "construction": "Vice CEO – Construction Company",
+                "manufacturing": "Vice CEO – Manufacturing Company",
+                "businessDevelopment": "Business Development – Investment and Business Development Company"
+            }
+        },
+        "directors": {
+            "title": "Board of Directors",
+            "description": "WIN Holdings is led by experienced professionals who guide strategy, governance, and business performance across the group.",
+            "items": {
+                "chairman": {
+                    "name": "Leadership",
+                    "position": "Chairman",
+                    "description": "Provides group-level leadership, strategic direction, and long-term governance oversight for the holding group."
+                },
+                "ceo": {
+                    "name": "Leadership",
+                    "position": "CEO",
+                    "description": "Leads the execution of corporate strategy and ensures alignment across all business units under the holding group."
+                },
+                "assistantCeo": {
+                    "name": "Leadership",
+                    "position": "Assistant CEO",
+                    "description": "Supports the CEO in executive coordination, internal communication, and operational follow-up across the organization."
+                },
+                "businessDevelopment": {
+                    "name": "Leadership",
+                    "position": "Business Development",
+                    "description": "Drives investment planning, business expansion, and strategic development opportunities for the holding group."
+                }
+            }
+        },
+        "governance": {
+            "title": "Business Unit Governance",
+            "description": "Each business unit operates under dedicated executive leadership to maintain accountability, operational focus, and alignment with the holding group’s strategic direction.",
+            "items": {
+                "manpowerSupply": {
+                    "category": "Manpower Supply",
+                    "description": "Managed under dedicated executive leadership to support workforce supply, manpower coordination, and operational staffing needs."
+                },
+                "tradingMaterial": {
+                    "category": "Trading Material",
+                    "description": "Managed under dedicated executive leadership to support procurement, material trading, and supply coordination."
+                },
+                "construction": {
+                    "category": "Construction",
+                    "description": "Managed under dedicated executive leadership to support construction execution, project coordination, and field operations."
+                },
+                "manufacturing": {
+                    "category": "Manufacturing",
+                    "description": "Managed under dedicated executive leadership to support production quality, manufacturing operations, and process efficiency."
+                },
+                "investmentBusinessDevelopment": {
+                    "category": "Investment & Business Development",
+                    "description": "Managed under business development leadership to support investment strategy, portfolio growth, and new business opportunities."
+                }
+            }
+        },
+        "cta": {
+            "title": "Driven by Structure, Led by Experience",
+            "description": "Learn more about how WIN Holdings manages its business portfolio through strong leadership, clear governance, and strategic direction.",
+            "button": "Contact Us"
+        }
+    },
+    "News": {
+        "hero": {
+            "title": "News & Info",
+            "description": "Stay informed with the latest updates, announcements, activities, and insights from WIN Holdings and its business ecosystem."
+        },
+        "list": {
+            "title": "Latest Updates",
+            "description": "Explore company announcements, corporate updates, and business ecosystem activities."
+        },
+        "cards": {
+            "readFullArticle": "Read Full Article",
+            "readMore": "Read More"
+        },
+        "labels": {
+            "defaultCategory": "Company Update",
+            "noDate": "No date"
+        },
+        "empty": {
+            "title": "No matching news found",
+            "description": "There are currently no published news posts that match your search. Try changing the filters or reset the page.",
+            "reset": "Reset Filters"
+        },
+        "pagination": {
+            "previous": "Previous page",
+            "next": "Next page"
+        },
+        "cta": {
+            "title": "Stay Connected with WIN Holdings",
+            "description": "Follow our latest updates, business activities, and corporate announcements as we continue building sustainable growth across multiple industries.",
+            "button": "Contact Us"
+        },
+        "fallback": {
+            "items": {
+                "portfolio": {
+                    "title": "WIN Holdings Strengthens Business Portfolio Across Multiple Industries",
+                    "excerpt": "WIN Holdings continues to strengthen its diversified business ecosystem across manufacturing, outsourcing, trading, and construction.",
+                    "content": "WIN Holdings continues to develop its business portfolio through strategic direction, operational excellence, and sustainable business growth.",
+                    "category": "Company Update"
+                },
+                "coordination": {
+                    "title": "Business Coordination Meeting with Subsidiaries",
+                    "excerpt": "WIN Holdings held a coordination meeting to align strategic priorities across its subsidiaries.",
+                    "content": "The coordination meeting brought together representatives from each subsidiary to discuss business direction, operational priorities, and future collaboration opportunities.",
+                    "category": "Business Activities"
+                },
+                "manufacturing": {
+                    "title": "Manufacturing Growth Initiatives",
+                    "excerpt": "The manufacturing business unit continues to improve production capabilities and support manufacturing growth initiatives.",
+                    "content": "As part of the WIN Holdings business ecosystem, the manufacturing business unit focuses on strengthening operations, product development, and production quality.",
+                    "category": "Subsidiary News"
+                }
+            }
+        }
+    },
+    "NewsArticle": {
+        "metadata": {
+            "notFoundTitle": "News Not Found | WIN Holdings",
+            "defaultDescription": "Read the latest update from WIN Holdings."
+        },
+        "article": {
+            "backToNews": "Back to News"
+        },
+        "labels": {
+            "defaultCategory": "Company Update",
+            "noDate": "No date",
+            "readingTime": "{minutes} min read"
+        },
+        "sidebar": {
+            "title": "Recent News",
+            "defaultCategory": "Company Update",
+            "noDate": "No date",
+            "empty": "No other published news available yet."
+        },
+        "cta": {
+            "title": "Explore More Updates",
+            "description": "Discover more announcements, business activities, and corporate insights from WIN Holdings.",
+            "button": "View All News"
+        }
+    },
+    "Career": {
+        "status": {
+            "success": {
+                "applicationSubmitted": "Your application has been submitted successfully."
+            },
+            "errors": {
+                "missingApplicationFields": "Please fill in your full name and email address.",
+                "invalidEmail": "Please enter a valid email address.",
+                "applicationFailed": "Failed to submit your application. Please try again."
+            }
+        },
+        "whyJoinUs": {
+            "title": "Why Work at WIN Holdings?",
+            "description": "We provide the platform for you to excel, grow, and lead in a dynamic global market.",
+            "benefits": {
+                "professionalDevelopment": {
+                    "title": "Professional Development",
+                    "description": "Continuous learning and career advancement opportunities across diverse industries within our extensive network."
+                },
+                "collaborativeCulture": {
+                    "title": "Collaborative Culture",
+                    "description": "A supportive environment where teamwork and shared vision lead to stronger outcomes and lasting professional relationships."
+                },
+                "strategicImpact": {
+                    "title": "Strategic Impact",
+                    "description": "Contribute to the growth and governance of a leading diversified holding company making real impact across markets."
+                }
+            }
+        },
+        "openOpportunities": {
+            "title": "Open Opportunities",
+            "description": "Find the role that matches your expertise and ambition."
+        },
+        "filters": {
+            "placeholder": "Search by job title...",
+            "search": "Search",
+            "reset": "Reset"
+        },
+        "card": {
+            "departmentFallback": "WIN Holdings",
+            "employmentTypes": {
+                "fullTime": "Full-time",
+                "partTime": "Part-time",
+                "contract": "Contract",
+                "internship": "Internship"
+            }
+        },
+        "empty": {
+            "title": "No matching positions found",
+            "description": "There are currently no published career positions that match your search. Try changing the filters or submit a general application.",
+            "reset": "Reset Filters"
+        },
+        "pagination": {
+            "previous": "Previous",
+            "next": "Next",
+            "pageOf": "Page {currentPage} of {totalPages}"
+        },
+        "hiringProcess": {
+            "title": "Our Hiring Process",
+            "description": "A transparent and rigorous journey to ensure we find the best fit for our culture and excellence standards.",
+            "steps": {
+                "applicationReview": {
+                    "title": "Application Review",
+                    "description": "Our talent acquisition team carefully reviews every submission."
+                },
+                "initialScreening": {
+                    "title": "Initial Screening",
+                    "description": "A brief conversation to align on expectations and basic qualifications."
+                },
+                "technicalInterview": {
+                    "title": "Technical Interview",
+                    "description": "Deep dive into your domain expertise and problem-solving skills."
+                },
+                "finalOffer": {
+                    "title": "Final Offer",
+                    "description": "Welcoming you to the WIN Holdings family with a comprehensive plan."
+                }
+            }
+        },
+        "talentPool": {
+            "title": "Don’t See a Perfect Match?",
+            "description": "We are always looking for exceptional talent to join our growing ecosystem. Submit your CV to our talent pool for future consideration.",
+            "button": "Contact Us"
+        },
+        "fallbackCareers": {
+            "businessDevelopmentOfficer": {
+                "title": "Business Development Officer",
+                "department": "Business Development",
+                "location": "Jakarta, Indonesia",
+                "employmentType": "Full-time",
+                "description": "Support business expansion, partnership development, and strategic initiatives across WIN Holdings and its subsidiaries."
+            },
+            "financeAccountingStaff": {
+                "title": "Finance & Accounting Staff",
+                "department": "Finance",
+                "location": "Jakarta, Indonesia",
+                "employmentType": "Full-time",
+                "description": "Support financial reporting, documentation, budgeting, invoice management, and accounting operations within the company."
+            },
+            "humanResourcesOfficer": {
+                "title": "Human Resources Officer",
+                "department": "Human Resources",
+                "location": "Jakarta, Indonesia",
+                "employmentType": "Full-time",
+                "description": "Support recruitment, employee administration, HR documentation, and coordination with business units."
+            }
+        }
+    },
+    "CareerApplication": {
+        "button": "Apply Now",
+        "modalLabel": "Career Application",
+        "closeAriaLabel": "Close application modal",
+        "cancel": "Cancel",
+        "submit": "Submit Application",
+        "fields": {
+            "fullName": {
+                "label": "Full Name",
+                "placeholder": "Enter your full name"
+            },
+            "email": {
+                "label": "Email Address",
+                "placeholder": "name@example.com"
+            },
+            "phone": {
+                "label": "Phone Number",
+                "placeholder": "+62 812 3456 7890"
+            },
+            "linkedin": {
+                "label": "LinkedIn URL",
+                "placeholder": "https://linkedin.com/in/yourname"
+            },
+            "portfolio": {
+                "label": "Portfolio / CV URL",
+                "placeholder": "Google Drive, portfolio, or CV link"
+            },
+            "message": {
+                "label": "Short Message",
+                "placeholder": "Briefly introduce yourself and explain why you are interested in this role."
+            }
+        }
+    },
+    "Contact": {
+        "hero": {
+            "title": "Get in Touch",
+            "description": "Connecting global vision with local excellence. Reach out to us for strategic partnerships, investment opportunities, or to join our growing team of professionals.",
+            "emailButton": "Email Us",
+            "careerButton": "Career Opportunities",
+            "imageCardText": "Strategic growth starts with the right conversation."
+        },
+        "office": {
+            "title": "Office Information",
+            "items": {
+                "headquarters": {
+                    "label": "Headquarters",
+                    "line1": "Sampoerna Strategic Square, Level 24",
+                    "line2": "Jl. Jenderal Sudirman No.45-46, Jakarta 12930",
+                    "line3": "Indonesia"
+                },
+                "generalInquiries": {
+                    "label": "General Inquiries",
+                    "value": "info@winholdings.com"
+                },
+                "corporatePhone": {
+                    "label": "Corporate Phone",
+                    "value": "+62 21 577 0000"
+                }
+            }
+        },
+        "social": {
+            "title": "Connect with us",
+            "items": {
+                "linkedin": "LinkedIn",
+                "corporateNetwork": "Corporate network",
+                "businessCommunity": "Business community"
+            }
+        },
+        "form": {
+            "fields": {
+                "fullName": {
+                    "label": "Full Name",
+                    "placeholder": "John Doe"
+                },
+                "email": {
+                    "label": "Email Address",
+                    "placeholder": "john@example.com"
+                },
+                "subject": {
+                    "label": "Subject"
+                },
+                "message": {
+                    "label": "Message",
+                    "placeholder": "How can we help you?"
+                }
+            },
+            "subjects": {
+                "generalInquiry": "General Inquiry",
+                "partnership": "Partnership",
+                "investmentOpportunity": "Investment Opportunity",
+                "career": "Career",
+                "mediaInquiry": "Media Inquiry"
+            },
+            "submit": "Send Message"
+        },
+        "faq": {
+            "title": "Quick Help & FAQ",
+            "description": "Common inquiries about our operations and strategic goals.",
+            "items": {
+                "partner": {
+                    "question": "How to partner with us?",
+                    "answer": "We look for long-term collaborations that align with our core values of integrity and innovation. Interested parties should submit a proposal via the Partnership category in our contact form."
+                },
+                "subsidiaries": {
+                    "question": "Where are your subsidiaries located?",
+                    "answer": "WIN Holdings maintains a diversified presence across Indonesia, with business operations connected to key industrial and commercial regions. Detailed subsidiary profiles are available in our Subsidiaries section."
+                },
+                "investmentFocus": {
+                    "question": "What is your investment focus?",
+                    "answer": "Our focus is on building long-term value across manufacturing, outsourcing, trading, construction, and strategic business development opportunities."
+                },
+                "career": {
+                    "question": "How can I apply for a position?",
+                    "answer": "Career opportunities are updated regularly on our Career page. You can also contact our team through the Career inquiry option in the contact form."
+                }
+            }
+        }
+    },
+    "Footer": {
+        "description": "A diversified holding group focused on sustainable business growth, operational excellence, and long-term value creation across multiple industries.",
+        "copyright": "© 2024 WIN Holdings. All rights reserved.",
+        "quickLinks": {
+            "title": "Quick Links",
+            "items": {
+                "home": "Home",
+                "about": "About",
+                "subsidiaries": "Subsidiaries",
+                "organization": "Organization",
+                "news": "News",
+                "career": "Career",
+                "contact": "Contact"
+            }
+        },
+        "subsidiaries": {
+            "title": "Subsidiaries",
+            "items": {
+                "portfolio": "Business Portfolio",
+                "manufacture": "Manufacturing Company",
+                "trading": "Trading Company",
+                "outsourcing": "Outsourcing Company",
+                "construction": "Construction Company"
+            }
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import type { ReactNode } from "react";
 import {
     BriefcaseBusiness,
@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
 import CareerApplicationButton from "@/app/components/career/CareerApplicationButton";
 
 type Career = {
@@ -36,36 +38,32 @@ type SearchParams = {
 };
 
 type BenefitCard = {
-    title: string;
-    description: string;
+    key: "professionalDevelopment" | "collaborativeCulture" | "strategicImpact";
     icon: ReactNode;
 };
 
 type HiringStep = {
+    key:
+        | "applicationReview"
+        | "initialScreening"
+        | "technicalInterview"
+        | "finalOffer";
     number: string;
-    title: string;
-    description: string;
 };
 
 const CAREERS_PER_PAGE = 6;
 
 const benefits: BenefitCard[] = [
     {
-        title: "Professional Development",
-        description:
-            "Continuous learning and career advancement opportunities across diverse industries within our extensive network.",
+        key: "professionalDevelopment",
         icon: <TrendingUp className="h-6 w-6" />,
     },
     {
-        title: "Collaborative Culture",
-        description:
-            "A supportive environment where teamwork and shared vision lead to stronger outcomes and lasting professional relationships.",
+        key: "collaborativeCulture",
         icon: <Users className="h-6 w-6" />,
     },
     {
-        title: "Strategic Impact",
-        description:
-            "Contribute to the growth and governance of a leading diversified holding company making real impact across markets.",
+        key: "strategicImpact",
         icon: <Target className="h-6 w-6" />,
     },
 ];
@@ -73,88 +71,21 @@ const benefits: BenefitCard[] = [
 const hiringSteps: HiringStep[] = [
     {
         number: "1",
-        title: "Application Review",
-        description:
-            "Our talent acquisition team carefully reviews every submission.",
+        key: "applicationReview",
     },
     {
         number: "2",
-        title: "Initial Screening",
-        description:
-            "A brief conversation to align on expectations and basic qualifications.",
+        key: "initialScreening",
     },
     {
         number: "3",
-        title: "Technical Interview",
-        description:
-            "Deep dive into your domain expertise and problem-solving skills.",
+        key: "technicalInterview",
     },
     {
         number: "4",
-        title: "Final Offer",
-        description:
-            "Welcoming you to the WIN Holdings family with a comprehensive plan.",
+        key: "finalOffer",
     },
 ];
-
-const fallbackCareers: Career[] = [
-    {
-        id: "fallback-1",
-        title: "Business Development Officer",
-        slug: "business-development-officer",
-        department: "Business Development",
-        location: "Jakarta, Indonesia",
-        employment_type: "Full-time",
-        description:
-            "Support business expansion, partnership development, and strategic initiatives across WIN Holdings and its subsidiaries.",
-        requirements: null,
-        status: "published",
-        closing_date: null,
-        created_at: new Date().toISOString(),
-    },
-    {
-        id: "fallback-2",
-        title: "Finance & Accounting Staff",
-        slug: "finance-accounting-staff",
-        department: "Finance",
-        location: "Jakarta, Indonesia",
-        employment_type: "Full-time",
-        description:
-            "Support financial reporting, documentation, budgeting, invoice management, and accounting operations within the company.",
-        requirements: null,
-        status: "published",
-        closing_date: null,
-        created_at: new Date().toISOString(),
-    },
-    {
-        id: "fallback-3",
-        title: "Human Resources Officer",
-        slug: "human-resources-officer",
-        department: "Human Resources",
-        location: "Jakarta, Indonesia",
-        employment_type: "Full-time",
-        description:
-            "Support recruitment, employee administration, HR documentation, and coordination with business units.",
-        requirements: null,
-        status: "published",
-        closing_date: null,
-        created_at: new Date().toISOString(),
-    },
-];
-
-function getCurrentPage(page: string | undefined, totalPages: number) {
-    const parsedPage = Number(page);
-
-    if (!Number.isInteger(parsedPage) || parsedPage < 1) {
-        return 1;
-    }
-
-    if (parsedPage > totalPages) {
-        return totalPages;
-    }
-
-    return parsedPage;
-}
 
 export default async function CareersPage({
     searchParams,
@@ -162,6 +93,7 @@ export default async function CareersPage({
     searchParams?: SearchParams | Promise<SearchParams>;
 }) {
     const params = await Promise.resolve(searchParams ?? {});
+    const locale = await getLocale();
     const careers = await getCareers();
 
     const filteredCareers = filterCareers(careers, params);
@@ -192,6 +124,7 @@ export default async function CareersPage({
                 searchQuery={params.q ?? ""}
                 currentPage={currentPage}
                 totalPages={totalPages}
+                locale={locale}
             />
 
             <HiringProcessSection />
@@ -200,61 +133,18 @@ export default async function CareersPage({
     );
 }
 
-function ApplicationStatusMessage({
-    success,
-    error,
-}: {
-    success?: string;
-    error?: string;
-}) {
-    const successMessage = getSuccessMessage(success);
-    const errorMessage = getErrorMessage(error);
+function getCurrentPage(page: string | undefined, totalPages: number) {
+    const parsedPage = Number(page);
 
-    if (!successMessage && !errorMessage) {
-        return null;
+    if (!Number.isInteger(parsedPage) || parsedPage < 1) {
+        return 1;
     }
 
-    return (
-        <section className="bg-white py-6">
-            <SectionContainer>
-                {successMessage ? (
-                    <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm font-medium text-green-700">
-                        {successMessage}
-                    </div>
-                ) : null}
-
-                {errorMessage ? (
-                    <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
-                        {errorMessage}
-                    </div>
-                ) : null}
-            </SectionContainer>
-        </section>
-    );
-}
-
-function getSuccessMessage(success?: string) {
-    if (success === "application_submitted") {
-        return "Your application has been submitted successfully.";
+    if (parsedPage > totalPages) {
+        return totalPages;
     }
 
-    return null;
-}
-
-function getErrorMessage(error?: string) {
-    if (error === "missing_application_fields") {
-        return "Please fill in your full name and email address.";
-    }
-
-    if (error === "invalid_email") {
-        return "Please enter a valid email address.";
-    }
-
-    if (error === "application_failed") {
-        return "Failed to submit your application. Please try again.";
-    }
-
-    return null;
+    return parsedPage;
 }
 
 async function getCareers(): Promise<Career[]> {
@@ -263,14 +153,14 @@ async function getCareers(): Promise<Career[]> {
     const { data, error } = await supabase
         .from("careers")
         .select(
-            "id, title, slug, department, location, employment_type, description, requirements, status, closing_date, created_at"
+            "id, title, slug, department, location, employment_type, description, requirements, status, closing_date, created_at",
         )
         .eq("status", "published")
         .order("created_at", { ascending: false });
 
     if (error) {
         console.error("Failed to fetch careers:", error.message);
-        return fallbackCareers;
+        return await getFallbackCareers();
     }
 
     if (!data || data.length === 0) {
@@ -278,6 +168,52 @@ async function getCareers(): Promise<Career[]> {
     }
 
     return data as Career[];
+}
+
+async function getFallbackCareers(): Promise<Career[]> {
+    const t = await getTranslations("Career.fallbackCareers");
+
+    return [
+        {
+            id: "fallback-1",
+            title: t("businessDevelopmentOfficer.title"),
+            slug: "business-development-officer",
+            department: t("businessDevelopmentOfficer.department"),
+            location: t("businessDevelopmentOfficer.location"),
+            employment_type: t("businessDevelopmentOfficer.employmentType"),
+            description: t("businessDevelopmentOfficer.description"),
+            requirements: null,
+            status: "published",
+            closing_date: null,
+            created_at: new Date().toISOString(),
+        },
+        {
+            id: "fallback-2",
+            title: t("financeAccountingStaff.title"),
+            slug: "finance-accounting-staff",
+            department: t("financeAccountingStaff.department"),
+            location: t("financeAccountingStaff.location"),
+            employment_type: t("financeAccountingStaff.employmentType"),
+            description: t("financeAccountingStaff.description"),
+            requirements: null,
+            status: "published",
+            closing_date: null,
+            created_at: new Date().toISOString(),
+        },
+        {
+            id: "fallback-3",
+            title: t("humanResourcesOfficer.title"),
+            slug: "human-resources-officer",
+            department: t("humanResourcesOfficer.department"),
+            location: t("humanResourcesOfficer.location"),
+            employment_type: t("humanResourcesOfficer.employmentType"),
+            description: t("humanResourcesOfficer.description"),
+            requirements: null,
+            status: "published",
+            closing_date: null,
+            created_at: new Date().toISOString(),
+        },
+    ];
 }
 
 function filterCareers(careers: Career[], params: SearchParams) {
@@ -335,7 +271,74 @@ function ButtonLink({
     );
 }
 
+function ApplicationStatusMessage({
+    success,
+    error,
+}: {
+    success?: string;
+    error?: string;
+}) {
+    const t = useTranslations("Career.status");
+
+    const successMessage = getSuccessMessage(success, t);
+    const errorMessage = getErrorMessage(error, t);
+
+    if (!successMessage && !errorMessage) {
+        return null;
+    }
+
+    return (
+        <section className="bg-white py-6">
+            <SectionContainer>
+                {successMessage ? (
+                    <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm font-medium text-green-700">
+                        {successMessage}
+                    </div>
+                ) : null}
+
+                {errorMessage ? (
+                    <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+                        {errorMessage}
+                    </div>
+                ) : null}
+            </SectionContainer>
+        </section>
+    );
+}
+
+function getSuccessMessage(
+    success: string | undefined,
+    t: ReturnType<typeof useTranslations>,
+) {
+    if (success === "application_submitted") {
+        return t("success.applicationSubmitted");
+    }
+
+    return null;
+}
+
+function getErrorMessage(
+    error: string | undefined,
+    t: ReturnType<typeof useTranslations>,
+) {
+    if (error === "missing_application_fields") {
+        return t("errors.missingApplicationFields");
+    }
+
+    if (error === "invalid_email") {
+        return t("errors.invalidEmail");
+    }
+
+    if (error === "application_failed") {
+        return t("errors.applicationFailed");
+    }
+
+    return null;
+}
+
 function WhyJoinUsSection() {
+    const t = useTranslations("Career.whyJoinUs");
+
     return (
         <section className="relative overflow-hidden bg-white py-24 lg:py-32">
             <Image
@@ -351,19 +354,18 @@ function WhyJoinUsSection() {
             <SectionContainer className="relative z-10">
                 <div className="text-center">
                     <h1 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                        Why Work at WIN Holdings?
+                        {t("title")}
                     </h1>
 
                     <p className="mx-auto mt-3 max-w-2xl text-base leading-6 text-neutral-600">
-                        We provide the platform for you to excel, grow, and lead in a
-                        dynamic global market.
+                        {t("description")}
                     </p>
                 </div>
 
                 <div className="mt-12 grid gap-6 md:grid-cols-3">
                     {benefits.map((benefit) => (
                         <article
-                            key={benefit.title}
+                            key={benefit.key}
                             className="rounded-xl border border-neutral-300 bg-white/90 p-6 shadow-sm backdrop-blur-sm"
                         >
                             <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-orange-600/10 text-orange-600">
@@ -371,11 +373,11 @@ function WhyJoinUsSection() {
                             </div>
 
                             <h2 className="mt-6 text-2xl font-semibold tracking-tight text-neutral-950">
-                                {benefit.title}
+                                {t(`benefits.${benefit.key}.title`)}
                             </h2>
 
                             <p className="mt-3 text-base leading-7 text-neutral-600">
-                                {benefit.description}
+                                {t(`benefits.${benefit.key}.description`)}
                             </p>
                         </article>
                     ))}
@@ -390,27 +392,34 @@ function OpenOpportunitiesSection({
     searchQuery,
     currentPage,
     totalPages,
+    locale,
 }: {
     careers: Career[];
     searchQuery: string;
     currentPage: number;
     totalPages: number;
+    locale: string;
 }) {
+    const t = useTranslations("Career.openOpportunities");
+
     return (
         <section className="bg-stone-100 py-24 lg:py-32">
             <SectionContainer>
                 <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
                     <div>
                         <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                            Open Opportunities
+                            {t("title")}
                         </h2>
 
                         <p className="mt-2 text-base leading-6 text-neutral-600">
-                            Find the role that matches your expertise and ambition.
+                            {t("description")}
                         </p>
                     </div>
 
-                    <CareerFilters searchQuery={searchQuery} />
+                    <CareerFilters
+                        searchQuery={searchQuery}
+                        locale={locale}
+                    />
                 </div>
 
                 {careers.length > 0 ? (
@@ -435,79 +444,18 @@ function OpenOpportunitiesSection({
     );
 }
 
-function Pagination({
-    currentPage,
-    totalPages,
+function CareerFilters({
     searchQuery,
+    locale,
 }: {
-    currentPage: number;
-    totalPages: number;
     searchQuery: string;
+    locale: string;
 }) {
-    if (totalPages <= 1) {
-        return null;
-    }
+    const t = useTranslations("Career.filters");
 
-    const hasPreviousPage = currentPage > 1;
-    const hasNextPage = currentPage < totalPages;
-
-    return (
-        <div className="mt-12 flex items-center justify-center gap-4">
-            {hasPreviousPage ? (
-                <Link
-                    href={buildCareerPageHref({
-                        page: currentPage - 1,
-                        searchQuery,
-                    })}
-                    className="inline-flex h-11 items-center gap-2 rounded-lg border border-neutral-300 bg-white px-4 text-sm font-medium text-neutral-950 transition-colors hover:border-orange-600 hover:text-orange-600"
-                >
-                    <ChevronLeft className="h-4 w-4" />
-                    Previous
-                </Link>
-            ) : (
-                <button
-                    type="button"
-                    disabled
-                    className="inline-flex h-11 items-center gap-2 rounded-lg border border-neutral-300 bg-white px-4 text-sm font-medium text-neutral-400 opacity-50"
-                >
-                    <ChevronLeft className="h-4 w-4" />
-                    Previous
-                </button>
-            )}
-
-            <span className="rounded-lg border border-neutral-300 bg-white px-4 py-3 text-sm font-semibold text-neutral-700">
-                Page {currentPage} of {totalPages}
-            </span>
-
-            {hasNextPage ? (
-                <Link
-                    href={buildCareerPageHref({
-                        page: currentPage + 1,
-                        searchQuery,
-                    })}
-                    className="inline-flex h-11 items-center gap-2 rounded-lg border border-neutral-300 bg-white px-4 text-sm font-medium text-neutral-950 transition-colors hover:border-orange-600 hover:text-orange-600"
-                >
-                    Next
-                    <ChevronRight className="h-4 w-4" />
-                </Link>
-            ) : (
-                <button
-                    type="button"
-                    disabled
-                    className="inline-flex h-11 items-center gap-2 rounded-lg border border-neutral-300 bg-white px-4 text-sm font-medium text-neutral-400 opacity-50"
-                >
-                    Next
-                    <ChevronRight className="h-4 w-4" />
-                </button>
-            )}
-        </div>
-    );
-}
-
-function CareerFilters({ searchQuery }: { searchQuery: string }) {
     return (
         <form
-            action="/career"
+            action={`/${locale}/career`}
             method="GET"
             className="grid w-full gap-3 sm:grid-cols-[minmax(0,1fr)_auto_auto] lg:w-auto"
         >
@@ -518,7 +466,7 @@ function CareerFilters({ searchQuery }: { searchQuery: string }) {
                     type="search"
                     name="q"
                     defaultValue={searchQuery}
-                    placeholder="Search by job title..."
+                    placeholder={t("placeholder")}
                     className="h-12 w-full rounded-lg border border-neutral-300 bg-white pl-11 pr-4 text-sm text-neutral-950 outline-none transition-colors placeholder:text-neutral-500 focus:border-orange-600 lg:w-72"
                 />
             </label>
@@ -527,25 +475,27 @@ function CareerFilters({ searchQuery }: { searchQuery: string }) {
                 type="submit"
                 className="h-12 rounded-lg bg-neutral-950 px-5 text-sm font-medium text-white transition-colors hover:bg-black"
             >
-                Search
+                {t("search")}
             </button>
 
             <Link
                 href="/career"
                 className="inline-flex h-12 items-center justify-center rounded-lg border border-neutral-300 bg-white px-5 text-sm font-medium text-neutral-950 transition-colors hover:border-orange-600 hover:text-orange-600"
             >
-                Reset
+                {t("reset")}
             </Link>
         </form>
     );
 }
 
 function CareerCard({ career }: { career: Career }) {
+    const t = useTranslations("Career.card");
+
     return (
         <article className="flex min-h-80 flex-col rounded-xl border border-neutral-300 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
             <div className="flex items-start justify-between gap-4">
                 <span className="rounded bg-stone-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-neutral-600">
-                    {career.employment_type ?? "Full-time"}
+                    {getEmploymentTypeLabel(career.employment_type, t)}
                 </span>
 
                 <BriefcaseBusiness className="h-5 w-5 text-neutral-500" />
@@ -556,7 +506,7 @@ function CareerCard({ career }: { career: Career }) {
             </h3>
 
             <div className="mt-2 flex flex-wrap items-center gap-2 text-sm leading-5 text-neutral-600">
-                <span>{career.department ?? "WIN Holdings"}</span>
+                <span>{career.department ?? t("departmentFallback")}</span>
 
                 {career.location ? (
                     <>
@@ -585,26 +535,130 @@ function CareerCard({ career }: { career: Career }) {
     );
 }
 
+function getEmploymentTypeLabel(
+    employmentType: string | null,
+    t: ReturnType<typeof useTranslations>,
+) {
+    if (!employmentType) {
+        return t("employmentTypes.fullTime");
+    }
+
+    const normalized = employmentType.trim().toLowerCase();
+
+    if (normalized === "full-time" || normalized === "full time") {
+        return t("employmentTypes.fullTime");
+    }
+
+    if (normalized === "part-time" || normalized === "part time") {
+        return t("employmentTypes.partTime");
+    }
+
+    if (normalized === "contract") {
+        return t("employmentTypes.contract");
+    }
+
+    if (normalized === "internship") {
+        return t("employmentTypes.internship");
+    }
+
+    return employmentType;
+}
+
 function EmptyCareersState() {
+    const t = useTranslations("Career.empty");
+
     return (
         <div className="mt-12 rounded-2xl border border-neutral-300 bg-white p-10 text-center shadow-sm">
             <BriefcaseBusiness className="mx-auto h-10 w-10 text-orange-600" />
 
             <h3 className="mt-5 text-2xl font-semibold tracking-tight text-neutral-950">
-                No matching positions found
+                {t("title")}
             </h3>
 
             <p className="mx-auto mt-3 max-w-xl text-base leading-7 text-neutral-600">
-                There are currently no published career positions that match your
-                search. Try changing the filters or submit a general application.
+                {t("description")}
             </p>
 
             <Link
                 href="/career"
                 className="mt-6 inline-flex items-center justify-center rounded-lg border border-neutral-300 bg-white px-6 py-3 text-base font-medium text-neutral-950 transition-colors hover:border-orange-600 hover:text-orange-600"
             >
-                Reset Filters
+                {t("reset")}
             </Link>
+        </div>
+    );
+}
+
+function Pagination({
+    currentPage,
+    totalPages,
+    searchQuery,
+}: {
+    currentPage: number;
+    totalPages: number;
+    searchQuery: string;
+}) {
+    const t = useTranslations("Career.pagination");
+
+    if (totalPages <= 1) {
+        return null;
+    }
+
+    const hasPreviousPage = currentPage > 1;
+    const hasNextPage = currentPage < totalPages;
+
+    return (
+        <div className="mt-12 flex items-center justify-center gap-4">
+            {hasPreviousPage ? (
+                <Link
+                    href={buildCareerPageHref({
+                        page: currentPage - 1,
+                        searchQuery,
+                    })}
+                    className="inline-flex h-11 items-center gap-2 rounded-lg border border-neutral-300 bg-white px-4 text-sm font-medium text-neutral-950 transition-colors hover:border-orange-600 hover:text-orange-600"
+                >
+                    <ChevronLeft className="h-4 w-4" />
+                    {t("previous")}
+                </Link>
+            ) : (
+                <button
+                    type="button"
+                    disabled
+                    className="inline-flex h-11 items-center gap-2 rounded-lg border border-neutral-300 bg-white px-4 text-sm font-medium text-neutral-400 opacity-50"
+                >
+                    <ChevronLeft className="h-4 w-4" />
+                    {t("previous")}
+                </button>
+            )}
+
+            <span className="rounded-lg border border-neutral-300 bg-white px-4 py-3 text-sm font-semibold text-neutral-700">
+                {t("pageOf", {
+                    currentPage,
+                    totalPages,
+                })}
+            </span>
+
+            {hasNextPage ? (
+                <Link
+                    href={buildCareerPageHref({
+                        page: currentPage + 1,
+                        searchQuery,
+                    })}
+                    className="inline-flex h-11 items-center gap-2 rounded-lg border border-neutral-300 bg-white px-4 text-sm font-medium text-neutral-950 transition-colors hover:border-orange-600 hover:text-orange-600"
+                >
+                    {t("next")}
+                    <ChevronRight className="h-4 w-4" />
+                </Link>
+            ) : (
+                <button
+                    type="button"
+                    disabled
+                    className="inline-flex h-11 items-center gap-2 rounded-lg border border-neutral-300 bg-white px-4 text-sm font-medium text-neutral-400 opacity-50"
+                >
+                    {t("next")}
+                    <ChevronRight className="h-4 w-4" />
+                </button>
+            )}
         </div>
     );
 }
@@ -632,17 +686,18 @@ function buildCareerPageHref({
 }
 
 function HiringProcessSection() {
+    const t = useTranslations("Career.hiringProcess");
+
     return (
         <section className="bg-white py-24 lg:py-32">
             <SectionContainer>
                 <div className="text-center">
                     <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                        Our Hiring Process
+                        {t("title")}
                     </h2>
 
                     <p className="mx-auto mt-3 max-w-2xl text-base leading-6 text-neutral-600">
-                        A transparent and rigorous journey to ensure we find the best
-                        fit for our culture and excellence standards.
+                        {t("description")}
                     </p>
                 </div>
 
@@ -660,11 +715,11 @@ function HiringProcessSection() {
                                 </div>
 
                                 <h3 className="mt-6 text-xl font-semibold tracking-tight text-neutral-950">
-                                    {step.title}
+                                    {t(`steps.${step.key}.title`)}
                                 </h3>
 
                                 <p className="mt-2 max-w-xs text-sm leading-6 text-neutral-600">
-                                    {step.description}
+                                    {t(`steps.${step.key}.description`)}
                                 </p>
                             </article>
                         ))}
@@ -676,6 +731,8 @@ function HiringProcessSection() {
 }
 
 function TalentPoolCTASection() {
+    const t = useTranslations("Career.talentPool");
+
     return (
         <section className="relative overflow-hidden bg-neutral-800 py-12 text-stone-50">
             <Image
@@ -690,18 +747,16 @@ function TalentPoolCTASection() {
 
             <SectionContainer className="relative z-10 flex flex-col items-center text-center">
                 <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-                    Don&apos;t See a Perfect Match?
+                    {t("title")}
                 </h2>
 
                 <p className="mt-6 max-w-2xl text-lg leading-7 text-stone-50/80">
-                    We are always looking for exceptional talent to join our growing
-                    ecosystem. Submit your CV to our talent pool for future
-                    consideration.
+                    {t("description")}
                 </p>
 
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                     <ButtonLink href="/contact" variant="orange">
-                        Contact Us
+                        {t("button")}
                     </ButtonLink>
                 </div>
             </SectionContainer>

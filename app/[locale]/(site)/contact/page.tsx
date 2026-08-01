@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import type { ReactNode } from "react";
 import {
     ArrowUpRight,
@@ -13,83 +13,110 @@ import {
     Share2,
     Users,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type ContactInfo = {
-    label: string;
-    value: ReactNode;
+    key: "headquarters" | "generalInquiries" | "corporatePhone";
     icon: ReactNode;
 };
 
 type FAQItem = {
-    question: string;
-    answer: string;
+    key:
+        | "partner"
+        | "subsidiaries"
+        | "investmentFocus"
+        | "career";
     icon: ReactNode;
+};
+
+type SocialLinkItem = {
+    key: "linkedin" | "corporateNetwork" | "businessCommunity";
+    href: string;
+    icon: ReactNode;
+};
+
+type SubjectOption = {
+    key:
+        | "generalInquiry"
+        | "partnership"
+        | "investmentOpportunity"
+        | "career"
+        | "mediaInquiry";
+    value: string;
 };
 
 const contactInfo: ContactInfo[] = [
     {
-        label: "Headquarters",
-        value: (
-            <>
-                Sampoerna Strategic Square, Level 24
-                <br />
-                Jl. Jenderal Sudirman No.45-46, Jakarta 12930
-                <br />
-                Indonesia
-            </>
-        ),
+        key: "headquarters",
         icon: <MapPin className="h-5 w-5" />,
     },
     {
-        label: "General Inquiries",
-        value: (
-            <Link
-                href="mailto:info@winholdings.com"
-                className="transition-colors hover:text-orange-600"
-            >
-                info@winholdings.com
-            </Link>
-        ),
+        key: "generalInquiries",
         icon: <Mail className="h-5 w-5" />,
     },
     {
-        label: "Corporate Phone",
-        value: (
-            <Link
-                href="tel:+62215770000"
-                className="transition-colors hover:text-orange-600"
-            >
-                +62 21 577 0000
-            </Link>
-        ),
+        key: "corporatePhone",
         icon: <Phone className="h-5 w-5" />,
     },
 ];
 
 const faqItems: FAQItem[] = [
     {
-        question: "How to partner with us?",
-        answer:
-            "We look for long-term collaborations that align with our core values of integrity and innovation. Interested parties should submit a proposal via the Partnership category in our contact form.",
+        key: "partner",
         icon: <MessageCircle className="h-5 w-5" />,
     },
     {
-        question: "Where are your subsidiaries located?",
-        answer:
-            "WIN Holdings maintains a diversified presence across Southeast Asia, with major operations in Jakarta, Singapore, and Bangkok. Detailed subsidiary profiles are available in our Subsidiaries section.",
+        key: "subsidiaries",
         icon: <Building2 className="h-5 w-5" />,
     },
     {
-        question: "What is your investment focus?",
-        answer:
-            "Our primary focus is on sustainable infrastructure, fintech, and renewable energy sectors within emerging markets, aiming for transformative social and economic impact.",
+        key: "investmentFocus",
         icon: <BarChart3 className="h-5 w-5" />,
     },
     {
-        question: "How can I apply for a position?",
-        answer:
-            "Career opportunities are updated regularly on our Career page. You can also send your CV directly to our HR team by selecting Career in the contact form inquiry dropdown.",
+        key: "career",
         icon: <BriefcaseBusiness className="h-5 w-5" />,
+    },
+];
+
+const socialLinks: SocialLinkItem[] = [
+    {
+        key: "linkedin",
+        href: "#",
+        icon: <Users className="h-4 w-4" />,
+    },
+    {
+        key: "corporateNetwork",
+        href: "#",
+        icon: <Share2 className="h-4 w-4" />,
+    },
+    {
+        key: "businessCommunity",
+        href: "#",
+        icon: <Building2 className="h-4 w-4" />,
+    },
+];
+
+const subjectOptions: SubjectOption[] = [
+    {
+        key: "generalInquiry",
+        value: "General Inquiry",
+    },
+    {
+        key: "partnership",
+        value: "Partnership",
+    },
+    {
+        key: "investmentOpportunity",
+        value: "Investment Opportunity",
+    },
+    {
+        key: "career",
+        value: "Career",
+    },
+    {
+        key: "mediaInquiry",
+        value: "Media Inquiry",
     },
 ];
 
@@ -118,6 +145,8 @@ function SectionContainer({
 }
 
 function HeroSection() {
+    const t = useTranslations("Contact.hero");
+
     return (
         <section className="relative overflow-hidden bg-stone-50 py-20 lg:py-28">
             <div className="absolute -left-24 -top-24 h-96 w-96 rounded-full bg-neutral-500/5 blur-3xl" />
@@ -125,13 +154,11 @@ function HeroSection() {
             <SectionContainer className="relative grid items-center gap-12 lg:grid-cols-2">
                 <div>
                     <h1 className="text-4xl font-bold leading-tight tracking-tight text-neutral-950 md:text-5xl">
-                        Get in Touch
+                        {t("title")}
                     </h1>
 
                     <p className="mt-5 max-w-xl text-lg leading-8 text-neutral-600">
-                        Connecting global vision with local excellence. Reach out to
-                        us for strategic partnerships, investment opportunities, or to
-                        join our growing team of professionals.
+                        {t("description")}
                     </p>
 
                     <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -139,7 +166,7 @@ function HeroSection() {
                             href="mailto:info@winholdings.com"
                             className="inline-flex items-center justify-center rounded-lg bg-orange-600 px-6 py-3 text-base font-medium text-white transition-colors hover:bg-orange-700"
                         >
-                            Email Us
+                            {t("emailButton")}
                             <ArrowUpRight className="ml-2 h-4 w-4" />
                         </Link>
 
@@ -147,7 +174,7 @@ function HeroSection() {
                             href="/career"
                             className="inline-flex items-center justify-center rounded-lg border border-neutral-300 bg-white px-6 py-3 text-base font-medium text-neutral-950 transition-colors hover:border-orange-600 hover:text-orange-600"
                         >
-                            Career Opportunities
+                            {t("careerButton")}
                         </Link>
                     </div>
                 </div>
@@ -165,8 +192,9 @@ function HeroSection() {
                                 <p className="text-sm font-semibold uppercase tracking-widest text-orange-600">
                                     WIN Holdings
                                 </p>
+
                                 <p className="mt-2 max-w-xs text-lg font-semibold leading-7 text-neutral-950">
-                                    Strategic growth starts with the right conversation.
+                                    {t("imageCardText")}
                                 </p>
                             </div>
                         </div>
@@ -178,13 +206,16 @@ function HeroSection() {
 }
 
 function ContactSection() {
+    const t = useTranslations("Contact.office");
+    const socialT = useTranslations("Contact.social");
+
     return (
         <section className="bg-stone-100 py-16 lg:py-20">
             <SectionContainer className="grid gap-12 lg:grid-cols-12">
                 <div className="lg:col-span-5">
                     <div>
                         <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                            Office Information
+                            {t("title")}
                         </h2>
 
                         <div className="mt-4 h-1 w-20 rounded-full bg-orange-600" />
@@ -192,27 +223,25 @@ function ContactSection() {
 
                     <div className="mt-10 space-y-6">
                         {contactInfo.map((item) => (
-                            <ContactInfoItem key={item.label} item={item} />
+                            <ContactInfoItem key={item.key} item={item} />
                         ))}
                     </div>
 
                     <div className="mt-12">
                         <p className="text-sm font-medium uppercase tracking-widest text-neutral-950">
-                            Connect with us
+                            {socialT("title")}
                         </p>
 
                         <div className="mt-4 flex gap-3">
-                            <SocialLink href="#" label="LinkedIn">
-                                <Users className="h-4 w-4" />
-                            </SocialLink>
-
-                            <SocialLink href="#" label="Corporate network">
-                                <Share2 className="h-4 w-4" />
-                            </SocialLink>
-
-                            <SocialLink href="#" label="Business community">
-                                <Building2 className="h-4 w-4" />
-                            </SocialLink>
+                            {socialLinks.map((item) => (
+                                <SocialLink
+                                    key={item.key}
+                                    href={item.href}
+                                    label={socialT(`items.${item.key}`)}
+                                >
+                                    {item.icon}
+                                </SocialLink>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -226,6 +255,8 @@ function ContactSection() {
 }
 
 function ContactInfoItem({ item }: { item: ContactInfo }) {
+    const t = useTranslations("Contact.office.items");
+
     return (
         <div className="flex gap-4">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-neutral-300 bg-stone-50 text-orange-600">
@@ -234,14 +265,54 @@ function ContactInfoItem({ item }: { item: ContactInfo }) {
 
             <div>
                 <h3 className="text-sm font-medium uppercase tracking-widest text-neutral-950">
-                    {item.label}
+                    {t(`${item.key}.label`)}
                 </h3>
 
-                <p className="mt-2 text-base leading-7 text-neutral-600">
-                    {item.value}
-                </p>
+                <div className="mt-2 text-base leading-7 text-neutral-600">
+                    <ContactInfoValue itemKey={item.key} />
+                </div>
             </div>
         </div>
+    );
+}
+
+function ContactInfoValue({
+    itemKey,
+}: {
+    itemKey: ContactInfo["key"];
+}) {
+    const t = useTranslations("Contact.office.items");
+
+    if (itemKey === "headquarters") {
+        return (
+            <p>
+                {t("headquarters.line1")}
+                <br />
+                {t("headquarters.line2")}
+                <br />
+                {t("headquarters.line3")}
+            </p>
+        );
+    }
+
+    if (itemKey === "generalInquiries") {
+        return (
+            <Link
+                href="mailto:info@winholdings.com"
+                className="transition-colors hover:text-orange-600"
+            >
+                {t("generalInquiries.value")}
+            </Link>
+        );
+    }
+
+    return (
+        <Link
+            href="tel:+62215770000"
+            className="transition-colors hover:text-orange-600"
+        >
+            {t("corporatePhone.value")}
+        </Link>
     );
 }
 
@@ -266,6 +337,8 @@ function SocialLink({
 }
 
 function ContactForm() {
+    const t = useTranslations("Contact.form");
+
     return (
         <form
             action="mailto:info@winholdings.com"
@@ -274,50 +347,50 @@ function ContactForm() {
             className="rounded-xl border border-neutral-300 bg-stone-50 p-6 shadow-sm md:p-12"
         >
             <div className="grid gap-4 md:grid-cols-2">
-                <Field label="Full Name" htmlFor="fullName">
+                <Field label={t("fields.fullName.label")} htmlFor="fullName">
                     <input
                         id="fullName"
                         name="fullName"
                         type="text"
-                        placeholder="John Doe"
+                        placeholder={t("fields.fullName.placeholder")}
                         className="h-12 w-full rounded-lg border border-neutral-300 bg-stone-50 px-4 text-base text-neutral-950 outline-none transition-colors placeholder:text-neutral-500 focus:border-orange-600"
                     />
                 </Field>
 
-                <Field label="Email Address" htmlFor="email">
+                <Field label={t("fields.email.label")} htmlFor="email">
                     <input
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="john@example.com"
+                        placeholder={t("fields.email.placeholder")}
                         className="h-12 w-full rounded-lg border border-neutral-300 bg-stone-50 px-4 text-base text-neutral-950 outline-none transition-colors placeholder:text-neutral-500 focus:border-orange-600"
                     />
                 </Field>
             </div>
 
             <div className="mt-4">
-                <Field label="Subject" htmlFor="subject">
+                <Field label={t("fields.subject.label")} htmlFor="subject">
                     <select
                         id="subject"
                         name="subject"
                         defaultValue="General Inquiry"
                         className="h-12 w-full rounded-lg border border-neutral-300 bg-stone-50 px-4 text-base text-neutral-950 outline-none transition-colors focus:border-orange-600"
                     >
-                        <option>General Inquiry</option>
-                        <option>Partnership</option>
-                        <option>Investment Opportunity</option>
-                        <option>Career</option>
-                        <option>Media Inquiry</option>
+                        {subjectOptions.map((option) => (
+                            <option key={option.key} value={option.value}>
+                                {t(`subjects.${option.key}`)}
+                            </option>
+                        ))}
                     </select>
                 </Field>
             </div>
 
             <div className="mt-4">
-                <Field label="Message" htmlFor="message">
+                <Field label={t("fields.message.label")} htmlFor="message">
                     <textarea
                         id="message"
                         name="message"
-                        placeholder="How can we help you?"
+                        placeholder={t("fields.message.placeholder")}
                         rows={6}
                         className="w-full resize-none rounded-lg border border-neutral-300 bg-stone-50 px-4 py-3 text-base text-neutral-950 outline-none transition-colors placeholder:text-neutral-500 focus:border-orange-600"
                     />
@@ -328,7 +401,7 @@ function ContactForm() {
                 type="submit"
                 className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-orange-600 px-6 py-4 text-base font-medium text-white transition-colors hover:bg-orange-700"
             >
-                Send Message
+                {t("submit")}
                 <Send className="h-4 w-4" />
             </button>
         </form>
@@ -346,29 +419,34 @@ function Field({
 }) {
     return (
         <label htmlFor={htmlFor} className="block">
-            <span className="mb-2 block text-base text-neutral-600">{label}</span>
+            <span className="mb-2 block text-base text-neutral-600">
+                {label}
+            </span>
+
             {children}
         </label>
     );
 }
 
 function FAQSection() {
+    const t = useTranslations("Contact.faq");
+
     return (
         <section className="bg-stone-50 py-16 lg:py-20">
             <SectionContainer>
                 <div className="text-center">
                     <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                        Quick Help & FAQ
+                        {t("title")}
                     </h2>
 
                     <p className="mt-3 text-base leading-6 text-neutral-600">
-                        Common inquiries about our operations and strategic goals.
+                        {t("description")}
                     </p>
                 </div>
 
                 <div className="mt-12 grid gap-6 md:grid-cols-2">
                     {faqItems.map((item) => (
-                        <FAQCard key={item.question} item={item} />
+                        <FAQCard key={item.key} item={item} />
                     ))}
                 </div>
             </SectionContainer>
@@ -377,18 +455,20 @@ function FAQSection() {
 }
 
 function FAQCard({ item }: { item: FAQItem }) {
+    const t = useTranslations("Contact.faq.items");
+
     return (
         <article className="rounded-xl border border-neutral-300 bg-stone-100 p-6">
             <div className="flex items-start justify-between gap-4">
                 <h3 className="text-lg font-bold leading-7 text-neutral-950">
-                    {item.question}
+                    {t(`${item.key}.question`)}
                 </h3>
 
                 <div className="text-orange-600">{item.icon}</div>
             </div>
 
             <p className="mt-3 text-base leading-7 text-neutral-600">
-                {item.answer}
+                {t(`${item.key}.answer`)}
             </p>
         </article>
     );

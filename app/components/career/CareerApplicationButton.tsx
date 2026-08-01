@@ -10,7 +10,8 @@ import {
     User,
     X,
 } from "lucide-react";
-import { createCareerApplicationAction } from "@/app/(site)/career/actions";
+import { useTranslations } from "next-intl";
+import { createCareerApplicationAction } from "@/app/[locale]/(site)/career/actions";
 
 type CareerApplicationButtonProps = {
     careerId: string;
@@ -23,6 +24,7 @@ export default function CareerApplicationButton({
     careerSlug,
     careerTitle,
 }: CareerApplicationButtonProps) {
+    const t = useTranslations("CareerApplication");
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -32,14 +34,14 @@ export default function CareerApplicationButton({
                 onClick={() => setIsOpen(true)}
                 className="inline-flex w-full items-center justify-center rounded-lg bg-orange-600 px-5 py-3 text-base font-medium text-white transition-colors hover:bg-orange-700"
             >
-                Apply Now
+                {t("button")}
             </button>
 
             {isOpen ? (
                 <div className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6">
                     <button
                         type="button"
-                        aria-label="Close application modal"
+                        aria-label={t("closeAriaLabel")}
                         onClick={() => setIsOpen(false)}
                         className="absolute inset-0 bg-neutral-950/70 backdrop-blur-sm"
                     />
@@ -54,7 +56,7 @@ export default function CareerApplicationButton({
 
                                     <div>
                                         <p className="text-sm font-semibold uppercase tracking-wider text-orange-600">
-                                            Career Application
+                                            {t("modalLabel")}
                                         </p>
 
                                         <h2 className="text-xl font-semibold tracking-tight text-neutral-950">
@@ -66,6 +68,7 @@ export default function CareerApplicationButton({
 
                             <button
                                 type="button"
+                                aria-label={t("closeAriaLabel")}
                                 onClick={() => setIsOpen(false)}
                                 className="rounded-lg p-2 text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-950"
                             >
@@ -97,7 +100,7 @@ export default function CareerApplicationButton({
 
                             <label className="block">
                                 <span className="text-sm font-medium text-neutral-700">
-                                    Full Name
+                                    {t("fields.fullName.label")}
                                 </span>
 
                                 <div className="relative mt-2">
@@ -107,7 +110,7 @@ export default function CareerApplicationButton({
                                         name="full_name"
                                         type="text"
                                         required
-                                        placeholder="Enter your full name"
+                                        placeholder={t("fields.fullName.placeholder")}
                                         className="h-12 w-full rounded-lg border border-neutral-300 bg-white pl-12 pr-4 text-sm text-neutral-950 outline-none transition-colors placeholder:text-neutral-400 focus:border-orange-600"
                                     />
                                 </div>
@@ -116,7 +119,7 @@ export default function CareerApplicationButton({
                             <div className="grid gap-5 md:grid-cols-2">
                                 <label className="block">
                                     <span className="text-sm font-medium text-neutral-700">
-                                        Email Address
+                                        {t("fields.email.label")}
                                     </span>
 
                                     <div className="relative mt-2">
@@ -126,7 +129,7 @@ export default function CareerApplicationButton({
                                             name="email"
                                             type="email"
                                             required
-                                            placeholder="name@example.com"
+                                            placeholder={t("fields.email.placeholder")}
                                             className="h-12 w-full rounded-lg border border-neutral-300 bg-white pl-12 pr-4 text-sm text-neutral-950 outline-none transition-colors placeholder:text-neutral-400 focus:border-orange-600"
                                         />
                                     </div>
@@ -134,7 +137,7 @@ export default function CareerApplicationButton({
 
                                 <label className="block">
                                     <span className="text-sm font-medium text-neutral-700">
-                                        Phone Number
+                                        {t("fields.phone.label")}
                                     </span>
 
                                     <div className="relative mt-2">
@@ -143,7 +146,7 @@ export default function CareerApplicationButton({
                                         <input
                                             name="phone"
                                             type="tel"
-                                            placeholder="+62 812 3456 7890"
+                                            placeholder={t("fields.phone.placeholder")}
                                             className="h-12 w-full rounded-lg border border-neutral-300 bg-white pl-12 pr-4 text-sm text-neutral-950 outline-none transition-colors placeholder:text-neutral-400 focus:border-orange-600"
                                         />
                                     </div>
@@ -153,7 +156,7 @@ export default function CareerApplicationButton({
                             <div className="grid gap-5 md:grid-cols-2">
                                 <label className="block">
                                     <span className="text-sm font-medium text-neutral-700">
-                                        LinkedIn URL
+                                        {t("fields.linkedin.label")}
                                     </span>
 
                                     <div className="relative mt-2">
@@ -162,7 +165,7 @@ export default function CareerApplicationButton({
                                         <input
                                             name="linkedin_url"
                                             type="url"
-                                            placeholder="https://linkedin.com/in/yourname"
+                                            placeholder={t("fields.linkedin.placeholder")}
                                             className="h-12 w-full rounded-lg border border-neutral-300 bg-white pl-12 pr-4 text-sm text-neutral-950 outline-none transition-colors placeholder:text-neutral-400 focus:border-orange-600"
                                         />
                                     </div>
@@ -170,7 +173,7 @@ export default function CareerApplicationButton({
 
                                 <label className="block">
                                     <span className="text-sm font-medium text-neutral-700">
-                                        Portfolio / CV URL
+                                        {t("fields.portfolio.label")}
                                     </span>
 
                                     <div className="relative mt-2">
@@ -179,7 +182,7 @@ export default function CareerApplicationButton({
                                         <input
                                             name="portfolio_url"
                                             type="url"
-                                            placeholder="Google Drive, portfolio, or CV link"
+                                            placeholder={t("fields.portfolio.placeholder")}
                                             className="h-12 w-full rounded-lg border border-neutral-300 bg-white pl-12 pr-4 text-sm text-neutral-950 outline-none transition-colors placeholder:text-neutral-400 focus:border-orange-600"
                                         />
                                     </div>
@@ -188,13 +191,13 @@ export default function CareerApplicationButton({
 
                             <label className="block">
                                 <span className="text-sm font-medium text-neutral-700">
-                                    Short Message
+                                    {t("fields.message.label")}
                                 </span>
 
                                 <textarea
                                     name="message"
                                     rows={5}
-                                    placeholder="Briefly introduce yourself and explain why you are interested in this role."
+                                    placeholder={t("fields.message.placeholder")}
                                     className="mt-2 w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-sm leading-6 text-neutral-950 outline-none transition-colors placeholder:text-neutral-400 focus:border-orange-600"
                                 />
                             </label>
@@ -205,7 +208,7 @@ export default function CareerApplicationButton({
                                     onClick={() => setIsOpen(false)}
                                     className="inline-flex items-center justify-center rounded-lg border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-neutral-700 transition-colors hover:border-neutral-400 hover:bg-neutral-50"
                                 >
-                                    Cancel
+                                    {t("cancel")}
                                 </button>
 
                                 <button
@@ -213,7 +216,7 @@ export default function CareerApplicationButton({
                                     className="inline-flex items-center justify-center gap-2 rounded-lg bg-orange-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-600/20 transition-colors hover:bg-orange-700"
                                 >
                                     <Send className="h-4 w-4" />
-                                    Submit Application
+                                    {t("submit")}
                                 </button>
                             </div>
                         </form>

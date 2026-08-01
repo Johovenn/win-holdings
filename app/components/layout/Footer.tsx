@@ -1,6 +1,7 @@
-import Link from "next/link";
-import { footerColumns, siteConfig, subsidiaries } from "@/lib/site";
+import { Link } from "@/i18n/routing";
+import { footerColumns, subsidiaries } from "@/lib/site";
 import { cn } from "@/lib/cn";
+import { useTranslations } from "next-intl";
 import Container from "../ui/Container";
 
 type FooterLink = {
@@ -21,7 +22,40 @@ const quickLinks =
         column.title.toLowerCase().includes("quick"),
     )?.links ?? footerColumns[0]?.links ?? [];
 
+const quickLinkLabelKeys: Record<string, string> = {
+    "/": "home",
+    "/about": "about",
+    "/subsidiaries": "subsidiaries",
+    "/organization": "organization",
+    "/news": "news",
+    "/career": "career",
+    "/contact": "contact",
+};
+
+const subsidiaryLabelKeysByHref: Record<string, string> = {
+    "/subsidiaries": "portfolio",
+    "/subsidiaries/manufacture": "manufacture",
+    "/subsidiaries/trading": "trading",
+    "/subsidiaries/outsourcing": "outsourcing",
+    "/subsidiaries/construction": "construction",
+    "https://3c-paint.vercel.app/": "manufacture",
+};
+
+const subsidiaryLabelKeysByName: Record<string, string> = {
+    "manufacture": "manufacture",
+    "manufacturing": "manufacture",
+    "3c paint": "manufacture",
+    "trading": "trading",
+    "trading material": "trading",
+    "outsourcing": "outsourcing",
+    "manpower": "outsourcing",
+    "manpower supply": "outsourcing",
+    "construction": "construction",
+};
+
 export default function Footer() {
+    const t = useTranslations("Footer");
+
     return (
         <footer className="border-t border-[#c4c7c8] bg-white">
             <Container className="py-12">
@@ -38,12 +72,12 @@ export default function Footer() {
                         </Link>
 
                         <p className="mt-6 max-w-xs text-base leading-6 text-[#444748]">
-                            {siteConfig.description}
+                            {t("description")}
                         </p>
                     </div>
 
                     <FooterColumn
-                        title="Quick Links"
+                        title={t("quickLinks.title")}
                         links={quickLinks}
                     />
 
@@ -52,7 +86,7 @@ export default function Footer() {
 
                 <div className="mt-12 border-t border-[#c4c7c8]/30 pt-8 text-center">
                     <p className="text-base leading-6 text-[#444748]/60">
-                        © 2024 WIN Holdings. All rights reserved.
+                        {t("copyright")}
                     </p>
                 </div>
             </Container>
@@ -67,6 +101,8 @@ function FooterColumn({
     title: string;
     links: FooterLink[];
 }) {
+    const t = useTranslations("Footer.quickLinks.items");
+
     return (
         <div>
             <h3 className="text-base uppercase leading-6 tracking-[0.8px] text-[#5d5f5f]">
@@ -74,46 +110,57 @@ function FooterColumn({
             </h3>
 
             <ul className="mt-4 space-y-2">
-                {links.map((link) => (
-                    <li key={link.href}>
-                        <Link
-                            href={link.href}
-                            className={cn(
-                                "text-base leading-6 text-[#444748] transition-colors hover:text-[#ea580c]",
-                            )}
-                        >
-                            {link.label}
-                        </Link>
-                    </li>
-                ))}
+                {links.map((link) => {
+                    const labelKey = quickLinkLabelKeys[link.href];
+
+                    return (
+                        <li key={link.href}>
+                            <Link
+                                href={link.href}
+                                className={cn(
+                                    "text-base leading-6 text-[#444748] transition-colors hover:text-[#ea580c]",
+                                )}
+                            >
+                                {labelKey ? t(labelKey) : link.label}
+                            </Link>
+                        </li>
+                    );
+                })}
             </ul>
         </div>
     );
 }
 
 function SubsidiariesColumn() {
+    const t = useTranslations("Footer.subsidiaries");
+
     return (
         <div>
             <h3 className="text-base uppercase leading-6 tracking-[0.8px] text-[#5d5f5f]">
-                Subsidiaries
+                {t("title")}
             </h3>
 
             <ul className="mt-4 space-y-2">
                 {(subsidiaries as SubsidiaryItem[]).map((item) => {
                     const subsidiary = getSubsidiaryItem(item);
+                    const labelKey = getSubsidiaryLabelKey(subsidiary);
 
                     return (
-                        <li key={subsidiary.label}>
+                        <li key={`${subsidiary.label}-${subsidiary.href}`}>
                             {subsidiary.href ? (
                                 <Link
                                     href={subsidiary.href}
                                     className="text-base leading-6 text-[#444748] transition-colors hover:text-[#ea580c]"
                                 >
-                                    {subsidiary.label}
+                                    {labelKey
+                                        ? t(`items.${labelKey}`)
+                                        : subsidiary.label}
                                 </Link>
                             ) : (
                                 <span className="text-base leading-6 text-[#444748]">
-                                    {subsidiary.label}
+                                    {labelKey
+                                        ? t(`items.${labelKey}`)
+                                        : subsidiary.label}
                                 </span>
                             )}
                         </li>
@@ -136,4 +183,16 @@ function getSubsidiaryItem(item: SubsidiaryItem): FooterLink {
         label: item.name ?? item.label ?? "Subsidiary",
         href: item.href ?? "",
     };
+}
+
+function getSubsidiaryLabelKey(item: FooterLink) {
+    const hrefKey = subsidiaryLabelKeysByHref[item.href];
+
+    if (hrefKey) {
+        return hrefKey;
+    }
+
+    const normalizedLabel = item.label.trim().toLowerCase();
+
+    return subsidiaryLabelKeysByName[normalizedLabel] ?? null;
 }
