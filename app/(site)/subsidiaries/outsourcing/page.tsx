@@ -1,249 +1,149 @@
 import type { ReactNode } from "react";
 import {
-    BadgeCheck,
-    Boxes,
-    Building2,
+    BriefcaseBusiness,
     CheckCircle2,
     ClipboardList,
-    Factory,
     Globe2,
-    Hammer,
     Handshake,
-    PackageCheck,
+    MapPin,
     ShieldCheck,
-    ShoppingBag,
     Target,
-    Truck,
-    Utensils,
-    Wrench,
+    Users,
 } from "lucide-react";
 import Image from "next/image";
 import ButtonLink from "@/app/components/ui/ButtonLink";
 
-type OverviewCard = {
-    label: string;
-    value: string;
-    icon: ReactNode;
-};
-
-type Product = {
+type OverviewItem = {
     title: string;
     description: string;
     icon: ReactNode;
 };
 
-type FeatureDetail = {
-    title: string;
-    description: string;
-    useCases: string[];
-    image: string;
-    imageAlt: string;
-    reverse?: boolean;
+type MissionItem = {
+    text: string;
 };
 
-type Capability = {
+type Service = {
     title: string;
     description: string;
     icon: ReactNode;
 };
 
-type MaterialSupplyOrgNode = {
+type TradingOrgNode = {
     title: string;
     variant?: "primary" | "secondary" | "division";
 };
 
-type MaterialSupplyDepartmentNode = {
+type TradingDepartmentNode = {
     title: string;
     children: string[];
 };
 
-const materialSupplyDepartmentNodes: MaterialSupplyDepartmentNode[] = [
+const tradingDepartmentNodes: TradingDepartmentNode[] = [
     {
-        title: "Regional Manager – Sulawesi",
+        title: "Project Manager",
         children: [
-            "Vice Manager – Sales",
-            "Vice Manager – Procurement",
-            "Vice Manager – Warehouse",
+            "Vice Manager – Site Management",
+            "Vice Manager – Back Office",
         ],
     },
     {
-        title: "Regional Manager – Maluku",
+        title: "Head of Human Resources Department",
         children: [
-            "Vice Manager – Sales",
-            "Vice Manager – Procurement",
-            "Vice Manager – Warehouse",
+            "Vice Department Head – Head Office HRD",
+            "Vice Department Head – Industrial Relations",
+            "Vice Department Head – Recruitment",
+            "Vice Department Head – Project Attendance",
         ],
     },
     {
         title: "Head of Finance Department",
         children: [
             "Vice Department Head – Accounting",
-        ],
-    },
-    {
-        title: "Head of Procurement and Logistics Department",
-        children: [
-            "Supervisor – Domestic and International Procurement & Logistics",
+            "Vice Department Head – Payroll",
         ],
     },
 ];
 
-const overviewCards: OverviewCard[] = [
+const overviewItems: OverviewItem[] = [
     {
-        label: "Established",
-        value: "2019",
-        icon: <BadgeCheck className="h-6 w-6" />,
-    },
-    {
-        label: "Sector",
-        value: "Industrial Supply",
-        icon: <Factory className="h-6 w-6" />,
-    },
-    {
-        label: "Scope",
-        value: "Domestic & Global",
+        title: "Indonesia-wide Operations",
+        description: "Scalable workforce solutions from Sumatra to Papua.",
         icon: <Globe2 className="h-6 w-6" />,
     },
     {
-        label: "Role",
-        value: "Reliable Partner",
+        title: "Foreign-Invested Alliance",
+        description: "Strategic partner for global industrial giants and SOEs.",
         icon: <Handshake className="h-6 w-6" />,
     },
-];
-
-const products: Product[] = [
     {
-        title: "Cement",
-        description:
-            "Premium OPC and PCC cement for structural, masonry, plastering, and wall applications.",
-        icon: <Building2 className="h-6 w-6" />,
-    },
-    {
-        title: "Cement Clinker",
-        description:
-            "Bulk clinker supply sourced from major manufacturers across Indonesia and Asia.",
-        icon: <Boxes className="h-6 w-6" />,
-    },
-    {
-        title: "Gypsum Board",
-        description:
-            "Standard, moisture resistant, fire resistant, and aluminium foil laminated gypsum boards.",
-        icon: <ClipboardList className="h-6 w-6" />,
-    },
-    {
-        title: "Ceramics",
-        description:
-            "Floor tiles, wall tiles, granite tiles, roof tiles, and vinyl tiles for construction needs.",
-        icon: <PackageCheck className="h-6 w-6" />,
-    },
-    {
-        title: "Grease & Lubricants",
-        description:
-            "Industrial-grade SINOPEC grease and lubricants for machinery and vehicles.",
-        icon: <Wrench className="h-6 w-6" />,
-    },
-    {
-        title: "Machinery & Parts",
-        description:
-            "Pumps, welding machines, forklifts, compressors, electrical equipment, and spare parts.",
-        icon: <Hammer className="h-6 w-6" />,
-    },
-    {
-        title: "Packaging",
-        description:
-            "Paper bags and woven bags for cement, putty powder, tile adhesive, and dry mortar.",
-        icon: <ShoppingBag className="h-6 w-6" />,
-    },
-    {
-        title: "Food Supply",
-        description:
-            "Vegetables, meat, fruits, and seasonings for construction sites and industrial parks.",
-        icon: <Utensils className="h-6 w-6" />,
+        title: "Regional Project Focus",
+        description: "Active in Kalimantan, Sulawesi, and Maluku hubs.",
+        icon: <MapPin className="h-6 w-6" />,
     },
 ];
 
-const featureDetails: FeatureDetail[] = [
+const missionItems: MissionItem[] = [
     {
-        title: "Cement & Clinker",
-        description:
-            "We supply premium cement and cement clinker for infrastructure, batching plants, high-rise buildings, and industrial manufacturing. The company supports both domestic and international procurement needs.",
-        useCases: [
-            "Infrastructure Development",
-            "High-Rise Construction",
-            "Industrial Manufacturing",
-        ],
-        image: "/images/outsourcing-1.jpg",
-        imageAlt: "Cement and clinker supply",
+        text: "Providing professional manpower services through strict selection.",
     },
     {
-        title: "Gypsum & Ceramics",
-        description:
-            "We support residential and commercial construction with gypsum board, ceiling systems, and ceramic products for modern building applications, interior finishing, and architectural development.",
-        useCases: [
-            "Commercial Interior Fit-outs",
-            "Residential Housing Projects",
-            "Hospitality Developments",
-        ],
-        image: "/images/outsourcing-2.jpg",
-        imageAlt: "Gypsum board and ceramic materials",
-        reverse: true,
+        text: "Ensuring all professionals are trained and certified for specific tasks.",
+    },
+    {
+        text: "Building long-term, mutually beneficial relationships with clients.",
+    },
+    {
+        text: "Fostering continuous growth and welfare for our employees.",
+    },
+    {
+        text: "Consistently enhancing company value for all stakeholders.",
     },
 ];
 
-const capabilities: Capability[] = [
+const services: Service[] = [
     {
-        title: "Procurement",
-        description:
-            "Strategic sourcing and negotiation to ensure competitive pricing and quality.",
-        icon: <ClipboardList className="h-6 w-6" />,
+        title: "Outsourcing Employee",
+        description: "End-to-end management of administrative and general staff.",
+        icon: <ClipboardList className="h-5 w-5" />,
     },
     {
-        title: "Industrial Supply",
-        description:
-            "Direct supply of raw materials and industrial products for heavy operations.",
-        icon: <Factory className="h-6 w-6" />,
+        title: "Outsourcing Experts",
+        description: "Highly skilled technical specialists for project-critical tasks.",
+        icon: <Users className="h-5 w-5" />,
     },
     {
-        title: "Global Sourcing",
-        description:
-            "Specialized sourcing from domestic and international supply networks.",
-        icon: <Globe2 className="h-6 w-6" />,
+        title: "Outsourcing SDM",
+        description: "Comprehensive human resource development and placement.",
+        icon: <BriefcaseBusiness className="h-5 w-5" />,
     },
     {
-        title: "Packaging",
-        description:
-            "Industrial packaging solutions for cement, dry mortar, and bulk commodities.",
-        icon: <PackageCheck className="h-6 w-6" />,
+        title: "Business Process",
+        description: "Optimizing operational workflows through professional support.",
+        icon: <Target className="h-5 w-5" />,
     },
     {
-        title: "Distribution",
-        description:
-            "Logistics support for domestic and international material distribution.",
-        icon: <Truck className="h-6 w-6" />,
-    },
-    {
-        title: "Food Supply",
-        description:
-            "Reliable food supply for workers at remote construction and industrial sites.",
-        icon: <Utensils className="h-6 w-6" />,
+        title: "Business Consultation",
+        description: "Advisory for manpower planning and labor compliance.",
+        icon: <Handshake className="h-5 w-5" />,
     },
 ];
 
-export default function WLSPage() {
+const clients = ["Huawei", "Huayue", "MIP", "MCC", "CCECC", "IWIP"];
+
+export default function IndosinoPage() {
     return (
-        <main className="min-h-screen bg-stone-50 text-neutral-950">
+        <main className="min-h-screen bg-stone-50 text-slate-800">
             <HeroSection />
             <CompanyOverviewSection />
             <VisionMissionSection />
-            <ProductPortfolioSection />
-            <FeaturedPortfolioSection />
-            <IndustrialCapabilitySection />
-            <MaterialSupplyOrganizationSection />
+            <ServicesSection />
+            <TradingOrganizationSection />
+            <ClientsSection />
             <CTASection />
         </main>
     );
 }
-
 function SectionContainer({
     children,
     className = "",
@@ -260,41 +160,51 @@ function SectionContainer({
 
 function HeroSection() {
     return (
-        <section className="relative overflow-hidden bg-stone-50 py-24 lg:py-32">
-            <div
-                className="absolute inset-0 bg-cover bg-center opacity-100 grayscale"
-                style={{
-                    backgroundImage: "url('/images/subsidiaries-outsourcing.jpeg')",
-                }}
-            />
-            <div className="absolute inset-0 bg-linear-to-r from-stone-50 via-stone-50/90 to-stone-50/30" />
-
-            <SectionContainer className="relative">
-                <div className="max-w-3xl">
-                    <div className="inline-flex rounded-full bg-orange-600/10 px-4 py-2 text-sm font-medium uppercase tracking-wider text-orange-600">
+        <section className="bg-stone-50 py-16 lg:py-24">
+            <SectionContainer className="grid items-center gap-12 lg:grid-cols-2">
+                <div>
+                    <p className="text-sm font-bold uppercase tracking-widest text-orange-500">
                         Subsidiary
-                    </div>
+                    </p>
 
-                    <h1 className="mt-6 text-4xl font-bold leading-tight tracking-tight text-neutral-950 md:text-5xl">
+                    <h1 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-slate-800 md:text-5xl">
                         Outsourcing Company
                     </h1>
 
-                    <p className="mt-5 text-2xl font-semibold leading-9 tracking-tight text-neutral-600">
-                        Construction and industrial materials supplier for
-                        project-based operations.
-                    </p>
-
                     <p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-600">
-                        Established in 2019, we supply
-                        premium construction materials, industrial products, machinery,
-                        packaging, and food supply solutions for domestic and
-                        international customers.
+                        Human resource services and outsourcing solutions for
+                        industrial and project-based operations.
                     </p>
 
-                    <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-                        <div className="inline-flex items-center gap-2 text-base font-medium italic text-orange-600">
-                            <ShieldCheck className="h-5 w-5" />
-                            “Your Trust is Our Priority”
+                    <p className="mt-5 max-w-2xl text-base leading-7 text-neutral-600">
+                        We provide comprehensive professional manpower and
+                        outsourcing support across the Indonesian archipelago. The
+                        company specializes in navigating large-scale industrial labor
+                        needs and ensuring operational efficiency for global
+                        enterprises.
+                    </p>
+                </div>
+
+                <div className="relative overflow-hidden rounded-xl bg-white shadow-sm">
+                    <div
+                        className="h-96 bg-cover bg-center lg:h-120"
+                        style={{
+                            backgroundImage:
+                                "linear-gradient(rgba(30,41,59,0.1), rgba(30,41,59,0.1)), url('/images/manpower-8.jpg')",
+                        }}
+                    >
+                        <div className="flex h-full items-end p-4">
+                            <div className="rounded-lg border border-white/20 bg-white/90 p-4 shadow-sm backdrop-blur-md">
+                                <div className="flex items-center gap-3">
+                                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-500/10 text-orange-600">
+                                        <ShieldCheck className="h-5 w-5" />
+                                    </div>
+
+                                    <p className="text-sm font-bold tracking-wide text-slate-800">
+                                        Licensed Professional HR Partner
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -302,54 +212,106 @@ function HeroSection() {
         </section>
     );
 }
-
-function MaterialSupplyOrganizationSection() {
+function CompanyOverviewSection() {
     return (
-        <section className="bg-white py-16">
-            <SectionContainer>
-                <div className="mx-auto max-w-3xl text-center">
-                    <p className="text-sm font-bold uppercase tracking-widest text-orange-600">
-                        Organization Structure
-                    </p>
+        <section className="relative overflow-hidden bg-stone-100 py-16">
+            <Image
+                src="/images/manpower-5.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
 
-                    <h2 className="mt-3 text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                        Material Supply Organization Structure
+            <div className="absolute inset-0 bg-stone-100/70" />
+
+            <SectionContainer className="relative z-10 grid gap-10 lg:grid-cols-12">
+                <div className="lg:col-span-7">
+                    <h2 className="text-3xl font-semibold leading-10 tracking-tight text-orange-600">
+                        Specialized HR Outsourcing
                     </h2>
 
-                    <p className="mt-4 text-base leading-7 text-neutral-600">
-                        The material supply division is structured to support regional
-                        operations, sales, procurement, warehousing, finance, and
-                        domestic and international logistics coordination.
-                    </p>
+                    <div className="mt-5 space-y-5 text-base leading-7 text-neutral-800">
+                        <p>
+                            We have established ourself as a
+                            premier partner for foreign-invested enterprises,
+                            particularly Chinese state-owned enterprises. The company
+                            understands the requirements of international projects and
+                            bridges global standards with local expertise.
+                        </p>
+
+                        <p>
+                            Its strategic alliances and deep knowledge of the Indonesian
+                            labor market allow the company to deploy skilled and
+                            semi-skilled manpower rapidly, including to remote project
+                            sites.
+                        </p>
+                    </div>
                 </div>
 
-                <div className="mt-14">
-                    <MobileMaterialSupplyOrganizationChart />
-
-                    <DesktopMaterialSupplyOrganizationChart />
+                <div className="space-y-5 lg:col-span-5">
+                    {overviewItems.map((item) => (
+                        <OverviewCard key={item.title} item={item} />
+                    ))}
                 </div>
             </SectionContainer>
         </section>
     );
 }
 
-function MobileMaterialSupplyOrganizationChart() {
+function TradingOrganizationSection() {
+    return (
+        <section className="bg-white py-16">
+            <SectionContainer>
+                <div className="mx-auto max-w-3xl text-center">
+                    <p className="text-sm font-bold uppercase tracking-widest text-orange-500">
+                        Organization Structure
+                    </p>
+
+                    <h2 className="mt-3 text-3xl font-semibold leading-10 tracking-tight text-slate-800">
+                        Outsourcing Company Organization Structure
+                    </h2>
+
+                    <p className="mt-4 text-base leading-7 text-neutral-600">
+                        A clear leadership hierarchy supports operational control,
+                        project coordination, human resources management, and finance
+                        accountability across the outsourcing company.
+                    </p>
+                </div>
+
+                <div className="mt-14">
+                    <MobileTradingOrganizationChart />
+
+                    <DesktopTradingOrganizationChart />
+                </div>
+            </SectionContainer>
+        </section>
+    );
+}
+
+function MobileTradingOrganizationChart() {
     return (
         <div className="space-y-6 lg:hidden">
             <div className="rounded-2xl border border-neutral-200 bg-stone-50 p-5 shadow-sm">
                 <div className="flex justify-center">
-                    <MaterialSupplyOrgCard
-                        title="Material Supply"
-                        variant="primary"
-                    />
+                    <TradingOrgCard title="CEO" variant="primary" />
                 </div>
 
-                <MaterialSupplyConnectorLine className="mx-auto h-8" />
+                <TradingConnectorLine className="mx-auto h-8" />
 
-                <div className="flex justify-center">
-                    <MaterialSupplyOrgCard
-                        title="Vice CEO"
-                        variant="secondary"
+                <div className="grid gap-3">
+                    <TradingMobileOrgNode
+                        node={{
+                            title: "Assistant CEO",
+                            variant: "secondary",
+                        }}
+                    />
+
+                    <TradingMobileOrgNode
+                        node={{
+                            title: "Vice CEO",
+                            variant: "secondary",
+                        }}
                     />
                 </div>
             </div>
@@ -360,8 +322,8 @@ function MobileMaterialSupplyOrganizationChart() {
                 </p>
 
                 <div className="mt-4 grid gap-4">
-                    {materialSupplyDepartmentNodes.map((department) => (
-                        <MaterialSupplyMobileDepartmentCard
+                    {tradingDepartmentNodes.map((department) => (
+                        <TradingMobileDepartmentCard
                             key={department.title}
                             department={department}
                         />
@@ -372,40 +334,54 @@ function MobileMaterialSupplyOrganizationChart() {
     );
 }
 
-function DesktopMaterialSupplyOrganizationChart() {
+function DesktopTradingOrganizationChart() {
     return (
         <div className="hidden overflow-x-auto rounded-2xl border border-neutral-200 bg-stone-50 p-6 shadow-sm lg:block">
             <div className="min-w-200">
                 <div className="flex justify-center">
-                    <MaterialSupplyOrgCard
-                        title="Material Supply"
-                        variant="primary"
-                    />
+                    <TradingOrgCard title="CEO" variant="primary" />
                 </div>
 
-                <MaterialSupplyConnectorLine className="mx-auto h-10" />
-
-                <div className="flex justify-center">
-                    <MaterialSupplyOrgCard
-                        title="Vice CEO"
-                        variant="secondary"
-                    />
-                </div>
-
-                <MaterialSupplyConnectorLine className="mx-auto h-10" />
+                <TradingConnectorLine className="mx-auto h-10" />
 
                 <div className="relative">
-                    <div className="absolute left-1/2 top-0 h-px w-11/12 -translate-x-1/2 bg-neutral-300" />
+                    <div className="absolute left-1/2 top-0 h-px w-1/2 -translate-x-1/2 bg-neutral-300" />
 
-                    <div className="grid grid-cols-4 gap-6 pt-6">
-                        {materialSupplyDepartmentNodes.map((department) => (
+                    <div className="grid grid-cols-2 gap-6 pt-6">
+                        <div className="relative flex justify-center">
+                            <div className="absolute -top-6 h-6 w-px bg-neutral-300" />
+
+                            <TradingOrgCard
+                                title="Assistant CEO"
+                                variant="secondary"
+                            />
+                        </div>
+
+                        <div className="relative flex justify-center">
+                            <div className="absolute -top-6 h-6 w-px bg-neutral-300" />
+
+                            <TradingOrgCard
+                                title="Vice CEO"
+                                variant="secondary"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="ml-auto mr-[25%] h-10 w-px bg-neutral-300" />
+
+                <div className="relative">
+                    <div className="absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-neutral-300" />
+
+                    <div className="grid grid-cols-3 gap-6 pt-6">
+                        {tradingDepartmentNodes.map((department) => (
                             <div
                                 key={department.title}
                                 className="relative"
                             >
                                 <div className="absolute -top-6 left-1/2 h-6 w-px -translate-x-1/2 bg-neutral-300" />
 
-                                <MaterialSupplyDepartmentCard
+                                <TradingDepartmentCard
                                     department={department}
                                 />
                             </div>
@@ -417,19 +393,16 @@ function DesktopMaterialSupplyOrganizationChart() {
     );
 }
 
-function MaterialSupplyDepartmentCard({
+function TradingDepartmentCard({
     department,
 }: {
-    department: MaterialSupplyDepartmentNode;
+    department: TradingDepartmentNode;
 }) {
     return (
         <article className="rounded-xl border border-neutral-200 bg-white p-4 shadow-sm">
-            <MaterialSupplyOrgCard
-                title={department.title}
-                variant="division"
-            />
+            <TradingOrgCard title={department.title} variant="division" />
 
-            <MaterialSupplyConnectorLine className="mx-auto h-6" />
+            <TradingConnectorLine className="mx-auto h-6" />
 
             <div className="grid gap-3">
                 {department.children.map((child) => (
@@ -445,14 +418,14 @@ function MaterialSupplyDepartmentCard({
     );
 }
 
-function MaterialSupplyMobileDepartmentCard({
+function TradingMobileDepartmentCard({
     department,
 }: {
-    department: MaterialSupplyDepartmentNode;
+    department: TradingDepartmentNode;
 }) {
     return (
         <article className="rounded-xl border border-neutral-200 bg-stone-50 p-4">
-            <h3 className="text-sm font-bold leading-5 text-neutral-950">
+            <h3 className="text-sm font-bold leading-5 text-slate-800">
                 {department.title}
             </h3>
 
@@ -470,17 +443,29 @@ function MaterialSupplyMobileDepartmentCard({
     );
 }
 
-function MaterialSupplyOrgCard({
+function TradingMobileOrgNode({
+    node,
+}: {
+    node: TradingOrgNode;
+}) {
+    return (
+        <div className="rounded-xl border border-neutral-200 bg-white px-4 py-3">
+            <p className="text-sm font-semibold leading-5 text-neutral-950">
+                {node.title}
+            </p>
+        </div>
+    );
+}
+
+function TradingOrgCard({
     title,
     variant = "division",
-}: MaterialSupplyOrgNode) {
+}: TradingOrgNode) {
     const variants = {
         primary:
             "border-orange-600 bg-orange-600 text-white shadow-lg shadow-orange-600/20",
-        secondary:
-            "border-neutral-200 bg-white text-neutral-950 shadow-sm",
-        division:
-            "border-orange-100 bg-orange-50 text-neutral-950 shadow-sm",
+        secondary: "border-neutral-200 bg-white text-slate-800 shadow-sm",
+        division: "border-orange-100 bg-orange-50 text-slate-800 shadow-sm",
     };
 
     return (
@@ -494,7 +479,7 @@ function MaterialSupplyOrgCard({
     );
 }
 
-function MaterialSupplyConnectorLine({
+function TradingConnectorLine({
     className = "",
 }: {
     className?: string;
@@ -502,265 +487,149 @@ function MaterialSupplyConnectorLine({
     return <div className={`w-px bg-neutral-300 ${className}`} />;
 }
 
-function CompanyOverviewSection() {
+function OverviewCard({ item }: { item: OverviewItem }) {
     return (
-        <section className="bg-white py-16">
-            <SectionContainer className="grid items-center gap-12 lg:grid-cols-2">
-                <div>
-                    <div className="border-l-4 border-orange-600 pl-7">
-                        <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                            Company Overview
-                        </h2>
+        <article className="flex gap-4 rounded-lg border border-neutral-300 bg-white p-5 shadow-sm">
+            <div className="shrink-0 text-orange-500">
+                {item.icon}
+            </div>
+
+            <div>
+                <h3 className="text-base font-bold leading-6 text-slate-800">
+                    {item.title}
+                </h3>
+
+                <p className="mt-1 text-sm font-medium leading-5 tracking-wide text-neutral-600">
+                    {item.description}
+                </p>
+            </div>
+        </article>
+    );
+}
+
+function VisionMissionSection() {
+    return (
+        <section className="bg-stone-50 py-16">
+            <SectionContainer className="grid gap-6 lg:grid-cols-2">
+                <article className="rounded-xl bg-slate-800 p-8 text-white shadow-sm lg:p-12">
+                    <div className="text-orange-400">
+                        <Target className="h-7 w-7" />
                     </div>
 
-                    <p className="mt-6 text-base leading-7 text-neutral-600">
-                        We stand as a reliable partner in the
-                        industrial supply chain. The company specializes in supplying
-                        construction materials and industrial needs for concrete
-                        batching plants, property development projects, infrastructure
-                        projects, industrial plants, and project-site operations.
-                    </p>
+                    <h2 className="mt-5 text-2xl font-semibold tracking-tight">
+                        Our Vision
+                    </h2>
 
-                    <p className="mt-5 text-base leading-7 text-neutral-600">
-                        Through procurement capability, quality control, and logistics
-                        support, WLS helps project-based customers secure the materials
-                        and supplies they need according to required quality standards
-                        and schedules.
+                    <p className="mt-5 text-lg italic leading-8 text-white/90">
+                        “To become a leading outsourcing service provider in
+                        Indonesia, recognized for our commitment to quality, integrity,
+                        and the empowerment of our professional workforce.”
                     </p>
-                </div>
+                </article>
 
-                <div className="grid gap-4 sm:grid-cols-2">
-                    {overviewCards.map((item) => (
-                        <OverviewCard key={item.label} item={item} />
-                    ))}
-                </div>
+                <article className="rounded-xl border border-neutral-300 bg-white p-8 shadow-sm lg:p-12">
+                    <div className="text-orange-500">
+                        <CheckCircle2 className="h-7 w-7" />
+                    </div>
+
+                    <h2 className="mt-5 text-2xl font-semibold tracking-tight text-slate-800">
+                        Our Mission
+                    </h2>
+
+                    <ul className="mt-5 space-y-4">
+                        {missionItems.map((item) => (
+                            <li key={item.text} className="flex gap-3">
+                                <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-orange-500" />
+                                <span className="text-base leading-7 text-neutral-600">
+                                    {item.text}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                </article>
             </SectionContainer>
         </section>
     );
 }
 
-function OverviewCard({ item }: { item: OverviewCard }) {
+function ServicesSection() {
     return (
-        <article className="rounded-xl border border-neutral-300/40 bg-stone-100 p-6">
-            <div className="text-orange-600">
-                {item.icon}
-            </div>
-
-            <p className="mt-4 text-base font-medium text-neutral-950">
-                {item.label}
-            </p>
-
-            <p className="mt-1 text-base text-neutral-700">
-                {item.value}
-            </p>
-        </article>
-    );
-}
-function VisionMissionSection() {
-    return (
-        <section className="relative overflow-hidden bg-stone-100 py-16">
+        <section className="relative overflow-hidden bg-stone-50 py-16">
             <Image
-                src="/images/landscape-bg-5.jpg"
+                src="/images/manpower-7.jpg"
                 alt=""
                 fill
                 sizes="100vw"
                 className="object-cover"
             />
 
-            <div className="absolute inset-0 bg-stone-100/60" />
+            <div className="absolute inset-0 bg-stone-50/80" />
 
-            <SectionContainer className="relative z-10 grid gap-6 lg:grid-cols-2">
-                <article className="rounded-2xl border border-neutral-300 bg-white/85 p-8 shadow-sm backdrop-blur-md lg:p-12">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-600 text-white">
-                        <BadgeCheck className="h-6 w-6" />
-                    </div>
-
-                    <h2 className="mt-6 text-3xl font-semibold tracking-tight text-neutral-950">
-                        Our Vision
+            <SectionContainer className="relative z-10">
+                <div className="text-center">
+                    <h2 className="text-3xl font-semibold leading-10 tracking-tight text-orange-600">
+                        Our Core Services
                     </h2>
 
-                    <p className="mt-5 text-lg leading-8 text-neutral-600">
-                        To develop and uphold our reputation in becoming the leading
-                        construction and industrial materials supplier in Indonesia’s
-                        construction, property, and industrial sector.
-                    </p>
-                </article>
+                    <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-black" />
+                </div>
 
-                <article className="rounded-2xl border border-neutral-300 bg-white/85 p-8 shadow-sm backdrop-blur-md lg:p-12">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-600 text-white">
-                        <TargetIcon />
-                    </div>
-
-                    <h2 className="mt-6 text-3xl font-semibold tracking-tight text-neutral-950">
-                        Our Mission
-                    </h2>
-
-                    <p className="mt-5 text-lg leading-8 text-neutral-600">
-                        To fulfil our customers’ procurement needs by providing our
-                        best service in accordance with the required quality standard
-                        and schedule.
-                    </p>
-                </article>
+                <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+                    {services.map((service) => (
+                        <ServiceCard key={service.title} service={service} />
+                    ))}
+                </div>
             </SectionContainer>
         </section>
     );
 }
 
-function ProductPortfolioSection() {
+function ServiceCard({ service }: { service: Service }) {
     return (
-        <section id="product-portfolio" className="bg-white py-16">
+        <article className="rounded-xl border border-neutral-300 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-500/10 text-orange-500">
+                {service.icon}
+            </div>
+
+            <h3 className="mt-5 text-base font-bold leading-6 text-slate-800">
+                {service.title}
+            </h3>
+
+            <p className="mt-2 text-sm font-medium leading-5 tracking-wide text-neutral-600">
+                {service.description}
+            </p>
+        </article>
+    );
+}
+
+function ClientsSection() {
+    return (
+        <section className="bg-[#a7a7a1] py-16">
             <SectionContainer>
                 <div className="text-center">
-                    <h2 className="text-3xl font-semibold leading-10 tracking-tight text-neutral-950">
-                        Comprehensive Product Portfolio
+                    <h2 className="text-3xl font-semibold leading-10 tracking-tight text-white">
+                        Our Strategic Clients
                     </h2>
 
-                    <div className="mx-auto mt-3 h-1 w-20 bg-orange-600" />
+                    <p className="mt-2 text-base leading-6 text-white">
+                        Powering the largest industrial projects in Indonesia.
+                    </p>
                 </div>
 
-                <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                    {products.map((product) => (
-                        <ProductCard key={product.title} product={product} />
+                <div className="mt-12 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+                    {clients.map((client) => (
+                        <div
+                            key={client}
+                            className="flex h-24 items-center justify-center rounded-lg border border-neutral-300 bg-white p-4"
+                        >
+                            <p className="text-base font-bold text-orange-600">
+                                {client}
+                            </p>
+                        </div>
                     ))}
                 </div>
             </SectionContainer>
         </section>
-    );
-}
-
-function ProductCard({ product }: { product: Product }) {
-    return (
-        <article className="rounded-xl border border-neutral-300 bg-white p-6 transition-shadow hover:shadow-md">
-            <div className="text-orange-600">
-                {product.icon}
-            </div>
-
-            <h3 className="mt-5 text-base font-medium leading-6 text-neutral-950">
-                {product.title}
-            </h3>
-
-            <p className="mt-3 text-sm leading-6 text-neutral-600">
-                {product.description}
-            </p>
-        </article>
-    );
-}
-
-function FeaturedPortfolioSection() {
-    return (
-        <section className="bg-stone-50 py-16">
-            <SectionContainer>
-                <div className="space-y-8 lg:space-y-20">
-                    {featureDetails.map((item) => (
-                        <FeatureDetailSection key={item.title} item={item} />
-                    ))}
-                </div>
-            </SectionContainer>
-        </section>
-    );
-}
-
-function FeatureDetailSection({ item }: { item: FeatureDetail }) {
-    const imageOrder = item.reverse
-        ? "order-1 lg:order-2"
-        : "order-1 lg:order-1";
-
-    const contentOrder = item.reverse
-        ? "order-2 lg:order-1"
-        : "order-2 lg:order-2";
-
-    return (
-        <section className="grid overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm lg:grid-cols-2 lg:items-center lg:gap-12 lg:overflow-visible lg:rounded-none lg:border-0 lg:bg-transparent lg:shadow-none">
-            <div className={imageOrder}>
-                <div className="relative h-72 overflow-hidden bg-stone-300 md:h-80 lg:rounded-2xl lg:shadow-lg">
-                    <Image
-                        src={item.image}
-                        alt={item.imageAlt}
-                        fill
-                        sizes="(min-width: 1024px) 50vw, 100vw"
-                        className="object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                </div>
-            </div>
-
-            <div className={`${contentOrder} p-6 lg:p-0`}>
-                <h2 className="text-2xl font-semibold leading-9 tracking-tight text-neutral-950 md:text-3xl md:leading-10">
-                    {item.title}
-                </h2>
-
-                <p className="mt-4 text-base leading-7 text-neutral-600 md:mt-5">
-                    {item.description}
-                </p>
-
-                <ul className="mt-6 space-y-3">
-                    {item.useCases.map((useCase) => (
-                        <li key={useCase} className="flex items-center gap-3">
-                            <CheckCircle2 className="h-5 w-5 shrink-0 text-orange-600" />
-
-                            <span className="text-base text-neutral-950">
-                                {useCase}
-                            </span>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </section>
-    );
-}
-
-function IndustrialCapabilitySection() {
-    return (
-        <section
-            className="relative bg-cover bg-center bg-no-repeat py-20 text-white"
-            style={{
-                backgroundImage: "url('/images/warehouse-1.jpg')",
-            }}
-        >
-            <div className="absolute inset-0 bg-neutral-900/90" />
-
-            <div className="relative z-10">
-                <SectionContainer>
-                    <div className="max-w-3xl">
-                        <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-                            Core Industrial Capabilities
-                        </h2>
-
-                        <p className="mt-5 text-base leading-7 text-white/70">
-                            We bridge global manufacturers and local project
-                            demands through procurement expertise, supply
-                            coordination, and transparent logistics execution.
-                        </p>
-                    </div>
-
-                    <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                        {capabilities.map((capability) => (
-                            <CapabilityCard
-                                key={capability.title}
-                                capability={capability}
-                            />
-                        ))}
-                    </div>
-                </SectionContainer>
-            </div>
-        </section>
-    );
-}
-
-function CapabilityCard({ capability }: { capability: Capability }) {
-    return (
-        <article className="rounded-xl border border-white/10 bg-black/70 p-6">
-            <div className="text-orange-500">
-                {capability.icon}
-            </div>
-
-            <h3 className="mt-5 text-lg font-medium text-white">
-                {capability.title}
-            </h3>
-
-            <p className="mt-3 text-sm leading-6 text-white/70">
-                {capability.description}
-            </p>
-        </article>
     );
 }
 
@@ -779,13 +648,11 @@ function CTASection() {
 
             <SectionContainer className="relative z-10 flex flex-col items-center text-center">
                 <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-                    Source Reliable Construction and Industrial Materials with Us
+                    Reliable Outsourcing Partner for Industrial Growth
                 </h2>
 
                 <p className="mt-6 max-w-2xl text-lg leading-7 text-stone-50/80">
-                    Connect with our procurement specialists to discuss your next
-                    project&apost;s material, machinery, packaging, or site-supply
-                    requirements.
+                    Connecting businesses with trusted supply solutions across construction materials, industrial products, machinery, packaging, and operational needs.
                 </p>
 
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -795,11 +662,5 @@ function CTASection() {
                 </div>
             </SectionContainer>
         </section>
-    );
-}
-
-function TargetIcon() {
-    return (
-        <Target className="h-6 w-6" />
     );
 }
