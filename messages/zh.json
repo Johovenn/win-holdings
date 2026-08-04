@@ -3,10 +3,10 @@
         "links": {
             "home": "首页",
             "about": "关于我们",
-            "subsidiaries": "子公司",
+            "subsidiaries": "成员企业",
             "organization": "组织架构",
             "news": "新闻资讯",
-            "career": "招聘",
+            "career": "职业发展",
             "contact": "联系我们"
         },
         "contactButton": "联系我们"
@@ -14,61 +14,61 @@
     "Home": {
         "hero": {
             "eyebrow": "控股集团",
-            "title": "推动多产业可持续发展",
-            "description": "一家多元化控股集团，以战略化管理方式运营制造、人力资源服务、贸易和工程建设等业务。",
-            "primaryCta": "了解我们的业务",
-            "secondaryCta": "关于我们",
+            "title": "深耕多元产业，构建可持续增长未来。",
+            "description": "一家多元化控股集团，战略布局制造业、人力资源外包、贸易及工程建设等业务领域，以卓越的战略管理推动企业持续发展。",
+            "primaryCta": "探索我们的业务",
+            "secondaryCta": "了解我们",
             "growthLabel": "发展历程",
             "imageAlt": "WIN Holdings 商业与工业运营"
         },
         "companyOverview": {
-            "title": "关于集团",
-            "description": "我们是一家多元化控股集团，专注于通过战略业务管理、卓越运营和可持续增长，在多个产业领域创造长期价值。集团始终致力于推动创新、稳定发展和业务协同。",
+            "title": "关于我们",
+            "description": "我们是一家多元化控股集团，致力于通过战略化经营管理、卓越运营能力以及跨行业的可持续发展，为股东、客户和合作伙伴创造长期价值。我们始终坚持创新驱动与稳健发展，不断提升企业核心竞争力。",
             "highlights": {
                 "diversifiedPortfolio": {
-                    "title": "多元化业务组合",
-                    "description": "通过布局多个产业领域，平衡业务风险，并提升跨市场的长期回报能力。"
+                    "title": "多元化业务布局",
+                    "description": "通过布局多元产业，实现风险分散与资源协同，提升市场竞争力，持续创造长期价值。"
                 },
                 "strategicGrowth": {
-                    "title": "战略性增长",
-                    "description": "结合市场洞察和资本效率，推动集团在新兴领域和重点产业中的持续扩张。"
+                    "title": "战略增长",
+                    "description": "依托敏锐的市场洞察与高效的资本运作，推动新兴产业布局，实现可持续增长。"
                 },
                 "operationalExcellence": {
                     "title": "卓越运营",
-                    "description": "在各业务单元建立统一的管理标准与最佳实践，提升运营效率和服务质量。"
+                    "description": "通过统一管理标准和最佳实践，持续提升各子公司的运营效率与服务品质。"
                 }
             }
         },
         "businessPortfolio": {
-            "title": "业务组合",
-            "cta": "了解业务单元",
+            "title": "我们的业务版图",
+            "cta": "探索业务板块",
             "items": {
                 "manufacturing": {
-                    "title": "制造",
-                    "description": "专注于支持工业和商业产品开发的制造业务单元，强调稳定质量、生产效率和运营可靠性。"
+                    "title": "制造业",
+                    "description": "专注于工业及商业产品的研发与制造，以稳定的产品品质和可靠的运营能力，为客户提供高质量的制造解决方案。"
                 },
                 "outsourcing": {
-                    "title": "人力资源服务",
-                    "description": "提供人力派遣、劳动力支持和业务流程服务，帮助客户提升运营效率。"
+                    "title": "人力资源外包",
+                    "description": "提供人力资源外包、劳动力支持及业务流程外包服务，协助客户提升运营效率与组织效能。"
                 },
                 "trading": {
-                    "title": "贸易与供应",
-                    "description": "提供采购、物资供应和配送支持，服务于工业项目和项目型业务需求。"
+                    "title": "贸易业务",
+                    "description": "专注于贸易与供应链服务，为工业生产及工程项目提供可靠的采购、物资供应与物流配送解决方案，满足客户多元化业务需求。"
                 },
                 "construction": {
                     "title": "工程建设",
-                    "description": "支持项目执行、基础设施开发和工业工程建设需求的工程与施工业务单元。"
+                    "description": "专注于工程建设与工程管理，为基础设施建设、工业项目实施及各类工程需求提供专业、高效的一体化解决方案。"
                 }
             }
         },
         "organizationLeadership": {
-            "title": "组织与领导力",
-            "description": "我们的管理团队在制造、财务和全球物流等领域具备丰富经验。集团建立了强调透明度、灵活性和商业伦理的治理结构。",
+            "title": "组织架构与管理团队",
+            "description": "我们的管理团队汇聚了制造业、金融及全球供应链等领域的丰富经验，凭借专业的管理能力与国际化视野，引领集团持续发展。我们秉持以透明、高效、灵活及诚信为核心的治理理念，构建规范完善的企业管理体系。",
             "cta": "查看组织架构",
             "points": {
                 "experiencedBoard": "经验丰富的董事会",
-                "agileStructure": "灵活高效的组织架构",
-                "accountability": "清晰的责任机制"
+                "agileStructure": "高效灵活的组织架构",
+                "accountability": "清晰明确的责任管理体系"
             },
             "images": {
                 "leadershipMeeting": "WIN Holdings 管理会议",
@@ -78,7 +78,7 @@
             }
         },
         "latestNews": {
-            "title": "最新新闻与资讯",
+            "title": "最新资讯与行业洞察",
             "errorMessage": "无法加载最新新闻。请检查 Supabase 连接和访问权限设置。",
             "emptyTitle": "暂无已发布新闻。",
             "emptyDescription": "最新公司动态将在发布后显示在这里。",
@@ -88,184 +88,184 @@
             "fallbackExcerpt": "阅读 WIN Holdings 的最新动态。"
         },
         "career": {
-            "title": "与我们共同成长",
-            "description": "加入一个推动多行业变革的团队。我们提供持续学习、专业成长和全球化发展机会。",
-            "cta": "查看职业机会"
+            "title": "与我们共同成就职业未来",
+            "description": "加入充满活力的团队，与我们共同推动多元产业的发展。我们致力于营造持续学习、专业成长与国际化发展的企业文化，为每一位员工提供广阔的发展平台与职业机遇。",
+            "cta": "探索职业发展机会"
         }
     },
     "About": {
         "whoWeAre": {
-            "title": "关于我们",
+            "title": "我们是谁",
             "imageAlt": "WIN Holdings 董事会议与商务讨论",
-            "paragraph1": "WIN Holdings 是一家专注于投资与管理的控股集团，致力于通过多元化业务组合推动可持续增长。集团业务涵盖制造、人力资源服务、国际贸易和基础设施建设等领域。",
-            "paragraph2": "通过为核心业务单元提供战略管理和卓越运营支持，包括<manufacturing>制造</manufacturing>、<outsourcing>人力资源服务</outsourcing>、<trading>贸易</trading>以及<construction>工程建设</construction>等业务，我们确保各业务保持高质量标准，并为利益相关方创造整体价值。"
+            "paragraph1": "WIN Holdings 是业界领先的投资控股与企业管理集团，依托多元化且具市场竞争力的成员企业组合，推动可持续发展。集团业务涵盖制造业、人力资源解决方案、国际贸易及基础设施建设等领域，凭借专业化管理与战略布局，不断提升企业价值。",
+            "paragraph2": "集团通过对<manufacturing>制造业</manufacturing>、<outsourcing>人力资源外包</outsourcing>、<trading>贸易</trading>及<construction>工程建设</construction>等核心业务板块实施统一的战略管理与卓越运营，持续提升各成员企业的运营效率与服务品质，确保始终保持行业领先标准，并为股东、客户、员工及合作伙伴创造长期价值。"
         },
         "visionMission": {
             "visionTitle": "我们的愿景",
-            "visionText": "“成为值得信赖的控股集团，通过卓越与创新，在全球市场创造可持续价值并推动转型增长。”",
+            "visionText": "“成为一家值得信赖的国际化控股集团，以卓越管理与持续创新创造可持续价值，引领全球市场的变革与增长。”",
             "missionTitle": "我们的使命",
             "missions": {
-                "strategicDirection": "为所有子公司提供前瞻性的战略方向，确保长期盈利能力和市场领导地位。",
-                "operationalExcellence": "通过精益流程和创新管理体系，持续提升运营效率与管理质量。",
-                "sustainablePartnerships": "建立可持续合作关系，赋能社区发展并重视环境责任。",
-                "responsibleGrowth": "坚持最高标准的公司治理和商业伦理，推动负责任的业务增长。"
+                "strategicDirection": "以前瞻性的战略规划引领各成员企业，实现长期盈利能力与行业领先地位。",
+                "operationalExcellence": "通过精益化流程与创新管理体系，持续提升运营效率，实现卓越运营。",
+                "sustainablePartnerships": "构建可持续发展的合作伙伴关系，促进社会共赢，积极履行环境保护责任。",
+                "responsibleGrowth": "坚持最高标准的公司治理与商业道德，以负责任的发展理念推动企业持续成长。"
             }
         },
         "coreValues": {
-            "title": "核心价值观",
-            "description": "这些原则指引着 WIN Holdings 生态体系中的每一项决策与合作。",
+            "title": "我们的核心价值观",
+            "description": "我们的核心价值观贯穿于 WIN Holdings 的每一项决策与合作，指引集团持续稳健发展。",
             "items": {
                 "integrity": {
                     "title": "诚信",
-                    "description": "在每一项业务和合作中坚持最高的道德标准。"
+                    "description": "在每一项业务与合作中，始终坚持最高的诚信与职业道德标准。"
                 },
                 "excellence": {
                     "title": "卓越",
-                    "description": "持续追求高质量表现和卓越运营成果。"
+                    "description": "持续追求卓越品质与优异绩效，不断超越行业标准。"
                 },
                 "collaboration": {
                     "title": "协作",
-                    "description": "通过团队协同，实现单独行动无法达到的更大成果。"
+                    "description": "倡导协同合作，汇聚团队力量，共同创造更大的价值。"
                 },
                 "growth": {
                     "title": "成长",
-                    "description": "持续拓展能力边界，提升市场影响力和长期发展潜力。"
+                    "description": "持续提升企业潜能，拓展市场影响力，实现长期稳健发展。"
                 }
             }
         },
         "businessEcosystem": {
-            "title": "业务生态体系",
-            "description": "多元化专业能力，由统一的战略管理体系连接。",
-            "cta": "查看全部子公司",
+            "title": "我们的产业生态",
+            "description": "汇聚多元产业优势，以统一的战略管理实现协同发展。",
+            "cta": "查看所有成员企业",
             "items": {
                 "manufacturing": {
-                    "title": "制造",
-                    "description": "支持工业和商业产品开发的制造业务单元。"
+                    "title": "制造业",
+                    "description": "专注于高品质工业及商业涂料的研发、生产与销售，为客户提供专业、可靠的涂层解决方案。"
                 },
                 "outsourcing": {
-                    "title": "人力资源服务",
-                    "description": "提供劳动力管理、专业招聘和人力资源支持服务。"
+                    "title": "人力资源外包",
+                    "description": "提供全面的人力资源管理、人才招聘及劳动力解决方案，助力企业提升运营效率。"
                 },
                 "trading": {
-                    "title": "贸易",
-                    "description": "支持采购、配送和运营需求的贸易与供应业务单元。"
+                    "title": "贸易业务",
+                    "description": "依托全球贸易网络，提供高效、稳定的一体化国际供应链解决方案。"
                 },
                 "construction": {
                     "title": "工程建设",
-                    "description": "提供基础设施开发和专业工程建设解决方案。"
+                    "description": "专注于基础设施建设及工程解决方案，为各类项目提供专业、高效的建设服务。"
                 }
             }
         },
         "growthJourney": {
-            "eyebrow": "企业发展历程",
-            "title": "我们的成长之路",
-            "description": "从建筑材料贸易起步，到发展成为一体化工业供应与工程建设集团，我们的成长体现了在采购、人力资源服务、物流、工程建设、制造和公司治理等领域的持续扩展。",
+            "eyebrow": "公司发展历程",
+            "title": "我们的成长历程",
+            "description": "从建筑材料贸易起步，逐步发展成为集工业供应、工程建设于一体的综合性产业集团。集团持续拓展采购供应、人力资源服务、物流运输、工程建设、制造业及企业治理等核心业务领域，不断深化产业布局，实现可持续、高质量发展。",
             "timeline": {
                 "foundation": {
-                    "title": "建筑材料贸易起步",
-                    "description": "公司于印度尼西亚成立，初期专注于西爪哇地区的建筑材料贸易，产品包括水泥、石材、砂石及其他建筑材料。该阶段建立了稳定的供应商网络，并积累了项目服务经验，为后续业务拓展奠定基础。",
-                    "pillar": "贸易 • 采购 • 供应链网络"
+                    "title": "建筑材料贸易业务启航",
+                    "description": "公司于印度尼西亚成立，初期专注于西爪哇地区建筑材料贸易，主营水泥、石材、砂石及其他建筑材料。该阶段逐步构建了稳定的供应商网络与项目服务经验，为集团后续业务拓展奠定了坚实基础。",
+                    "pillar": "贸易 · 采购 · 供应链网络"
                 },
                 "workforce": {
-                    "title": "拓展人力资源解决方案",
-                    "description": "公司进入劳务外包和人力资源供应领域，并以哈马黑拉岛作为首个战略运营据点。服务范围包括操作员、技术人员、技工、普通工人和项目支持人员。",
-                    "pillar": "人力资源 • 工业服务"
+                    "title": "拓展人力资源解决方案业务",
+                    "description": "公司正式布局人力资源外包及劳动力供应领域，并以 Halmahera作为首个战略运营基地，向客户提供操作员、技术人员、专业技工、普通劳动力及工程项目支持人员等综合人力资源解决方案。",
+                    "pillar": "人力资源 · 工业服务"
                 },
                 "foodSupply": {
-                    "title": "发展工业食品供应",
-                    "description": "为支持大型工业运营需求，公司拓展食品供应与物流业务，供应大米、蔬菜、肉类、海鲜、调味品及其他生活必需品，同时强化仓储、配送、冷链物流和综合供应链能力。",
-                    "pillar": "食品供应 • 物流配送"
+                    "title": "拓展工业食材供应业务",
+                    "description": "为满足大型工业项目的运营需求，公司进一步拓展食材供应与物流业务，提供大米、蔬菜、肉类、水产品、调味品等生活物资供应，并持续完善仓储、配送、冷链物流及一体化供应链管理能力。",
+                    "pillar": "食材供应 · 物流配送"
                 },
                 "expansion": {
-                    "title": "全国化与多领域扩展",
-                    "description": "公司将运营基地扩展至苏拉威西和加里曼丹，进入工程建设领域，开展土建、机械和电气工程，并在西爪哇芝卡朗投资建设工业涂料制造设施。",
-                    "pillar": "区域扩展 • 工程建设 • 制造"
+                    "title": "全国化与多元产业布局",
+                    "description": "公司业务版图进一步拓展至苏拉威西和加里曼丹，并正式布局工程建设领域，涵盖土建、机械及机电工程等业务。同时，集团在西爪哇省芝卡朗投资建设工业涂料生产基地，正式布局制造业，实现产业链的纵向延伸与多元化发展。",
+                    "pillar": "全国布局 · 工程建设 · 制造业"
                 },
                 "headquarters": {
-                    "title": "战略工程拓展与集团总部成立",
-                    "description": "公司通过中标西加里曼丹战略项目，进一步强化工程建设能力，项目涵盖土建基础设施和体育设施建设。同年，集团在雅加达 Gold Coast Office 成立总部，办公面积约 900 平方米，以支持集团一体化治理和企业协调。",
-                    "pillar": "基础设施发展 • 集团治理"
+                    "title": "战略性工程拓展与集团总部成立",
+                    "description": "集团成功承揽西加里曼丹战略性工程项目，涵盖基础设施建设及体育设施开发，进一步提升了在大型工程建设领域的综合承建能力。同年，集团正式在雅加达 Gold Coast Office 设立总部，办公面积约900平方米，全面统筹集团战略规划、资源整合及各业务板块的协同运营，持续提升集团化治理水平。",
+                    "pillar": "基础设施建设 · 企业治理"
                 }
             }
         },
         "cta": {
-            "title": "携手打造更强大的企业",
-            "description": "与我们一起持续塑造产业发展，并定义战略管理的未来。",
+            "title": "携手共创卓越未来",
+            "description": "与我们携手同行，共同推动产业发展，开创战略管理的新未来。",
             "button": "联系我们"
         }
     },
-     "Subsidiaries": {
+    "Subsidiaries": {
         "portfolioOverview": {
-            "title": "业务组合",
-            "description": "WIN Holdings 旗下各业务单元在集团多元化业务生态中发挥战略作用，通过跨行业专业能力持续创造长期价值。"
+            "title": "我们的业务版图",
+            "description": "WIN Holdings 旗下各成员企业在集团多元化产业生态中发挥着关键的战略作用，通过跨行业资源整合与专业协同，不断创造可持续价值，推动集团长期稳健发展。"
         },
         "items": {
             "manufacture": {
-                "industry": "制造",
-                "shortDescription": "高性能工业和商业涂料解决方案。",
-                "description": "专注于高品质建筑和工业涂料产品的制造。生产设施结合先进化工技术，致力于为不同市场提供具备耐久性、美观性和环保合规性的产品。",
-                "websiteLabel": "访问 3C Paint 网站",
+                "industry": "制造业",
+                "shortDescription": "高性能工业及商业涂层解决方案。",
+                "description": "专注于高品质建筑涂料及工业涂料的研发、生产与销售。依托先进的化工制造技术与现代化生产设施，我们为不同市场提供兼具耐久性、美观性及环保性能的高品质涂层产品，满足多元化工业与商业应用需求。",
+                "websiteLabel": "访问 3C Paint 官方网站",
                 "imageAlt": "制造与涂料生产设施"
             },
             "trading": {
-                "industry": "贸易",
-                "shortDescription": "为工业、工程建设和项目型劳动力需求提供稳定的食品供应与运营物资。",
-                "description": "为项目型业务需求提供稳定的食品供应和基础运营物资，服务场景包括工业园区、工程建设区域和偏远项目现场。公司通过稳定的采购、食品供应协调和配送能力，支持国内外客户的运营需求。",
+                "industry": "贸易业务",
+                "shortDescription": "为工业、工程建设及项目运营提供可靠的食材供应、物资采购及综合供应链解决方案。",
+                "description": "为工业园区、工程建设项目及偏远地区运营提供可靠的食材供应及各类运营物资保障。公司依托稳定的采购体系、食材供应协调能力及物流配送网络，为国内外客户提供高效、专业的一体化供应链解决方案。",
                 "websiteLabel": "了解更多",
                 "imageAlt": "仓储与食品供应配送运营"
             },
             "outsourcing": {
-                "industry": "人力资源服务",
-                "shortDescription": "专业的人力资源外包和劳动力支持服务。",
-                "description": "为印度尼西亚境内的工业项目和外资项目提供人力资源、劳务外包和劳动力支持服务，帮助企业通过可靠的人力解决方案和业务支持服务提升运营效率。",
+                "industry": "人力资源外包",
+                "shortDescription": "专业的人力资源外包及劳动力支持服务。",
+                "description": "为印度尼西亚各地工业项目及外商投资企业提供专业的人力资源外包、劳动力派遣及运营支持服务。公司凭借完善的人力资源管理体系和可靠的业务支持能力，协助客户提升运营效率，实现项目稳定运行。",
                 "websiteLabel": "了解更多",
                 "imageAlt": "专业人力资源外包团队"
             },
             "construction": {
                 "industry": "工程建设",
-                "shortDescription": "工业工程建设与项目执行服务。",
-                "description": "专注于大型项目的工业工程、施工建设、调试和生产线支持，服务印度尼西亚重点运营区域中的复杂工业开发需求。",
+                "shortDescription": "工业工程建设及工程项目实施服务。",
+                "description": "专注于工业工程、工程建设、设备调试及生产线技术支持，为大型工业项目提供专业的一体化工程解决方案。公司业务覆盖印度尼西亚多个重点运营区域，助力各类复杂工业项目的建设与顺利实施。",
                 "websiteLabel": "了解更多",
                 "imageAlt": "工业工程与建设项目"
             }
         },
         "groupSynergy": {
             "eyebrow": "集团协同",
-            "title": "通过业务协同创造价值",
-            "description": "WIN Holdings 通过战略方向、公司治理和运营协调连接旗下各业务单元，使各公司能够独立成长，同时增强集团整体实力。",
+            "title": "协同发展，共创价值",
+            "description": "WIN Holdings 通过统一的战略规划、规范的企业治理及高效的运营协同，连接旗下各成员企业，实现资源共享与优势互补。在保持各成员企业独立发展的同时，充分发挥集团协同效应，共同提升整体竞争力，持续创造长期价值。",
             "cards": {
                 "strategicDirection": {
-                    "title": "战略方向",
-                    "description": "WIN Holdings 提供战略监督，确保各业务单元与集团长期发展方向保持一致。"
+                    "title": "战略引领",
+                    "description": "WIN Holdings 通过统一的战略规划与管理，为各成员企业提供战略指导，确保其发展方向与集团长期战略保持一致。"
                 },
                 "operationalCoordination": {
-                    "title": "运营协调",
-                    "description": "跨业务协同帮助各公司提升执行效率、运营质量和责任管理能力。"
+                    "title": "运营协同",
+                    "description": "通过跨业务板块的协同管理，持续提升各成员企业的执行力、运营效率及责任落实能力，实现资源优化配置与协同发展。"
                 },
                 "sustainableGrowth": {
-                    "title": "可持续增长",
-                    "description": "集团注重通过负责任的增长和稳定的业务发展创造长期价值。"
+                    "title": "可持续发展",
+                    "description": "集团坚持以负责任的发展理念推动稳健经营，通过持续创新与规范治理，为股东、客户及合作伙伴创造长期价值。"
                 }
             }
         },
         "cta": {
-            "title": "探索与 WIN Holdings 的合作机会",
-            "description": "联系 WIN Holdings，了解更多关于旗下业务单元、业务组合和合作机会的信息。",
+            "title": "携手 WIN Holdings，共创合作机遇",
+            "description": "欢迎与 WIN Holdings 联系，深入了解我们的成员企业、业务布局及合作机会，携手实现互利共赢、共同发展。",
             "button": "联系我们"
         }
     },
-     "Trading": {
+    "Trading": {
         "hero": {
-            "eyebrow": "子公司",
+            "eyebrow": "成员企业",
             "title": "贸易公司",
-            "subtitle": "为项目型运营提供食品供应、包装及运营物资。",
-            "description": "公司成立于 2019 年，为国内外客户提供稳定的食品产品、包装材料、运营物资以及部分工业供应品。",
-            "tagline": "“信任是我们的优先承诺”"
+            "subtitle": "专注于工程项目运营的建筑材料及工业物资供应商。",
+            "description": "公司成立于2019年，致力于为国内外客户提供优质建筑材料、工业产品、机械设备、包装材料及食材供应等综合采购解决方案。",
+            "tagline": "“您的信任，是我们的首要承诺。”"
         },
         "companyOverview": {
-            "title": "公司概况",
-            "paragraph1": "我们是项目型供应运营中的可靠合作伙伴。公司专注于为工业园区、工程建设区域、偏远劳动力运营和项目型业务需求提供食品供应、包装、采购和运营物资。",
-            "paragraph2": "通过采购能力、质量控制、仓储管理和物流协调，我们帮助客户按照所需质量标准、交付计划和运营条件获得稳定供应。"
+            "title": "公司简介",
+            "paragraph1": "作为值得信赖的工业供应链合作伙伴，公司专注于为混凝土搅拌站、房地产开发、基础设施建设、工业厂区及各类工程项目提供建筑材料与工业物资的一站式供应服务。",
+            "paragraph2": "依托专业的采购能力、严格的质量管控及完善的物流配送体系，WLS 为工程项目客户提供符合质量标准和交付周期要求的物资保障，助力项目高效、稳定推进。"
         },
         "overviewCards": {
             "established": {
@@ -274,78 +274,78 @@
             },
             "sector": {
                 "label": "业务领域",
-                "value": "食品与运营供应"
+                "value": "工业供应"
             },
             "scope": {
-                "label": "服务范围",
-                "value": "国内与国际"
+                "label": "工程范围",
+                "value": "国内与国际市场"
             },
             "role": {
-                "label": "角色",
-                "value": "可靠合作伙伴"
+                "label": "企业定位",
+                "value": "值得信赖的合作伙伴"
             }
         },
         "visionMission": {
             "visionTitle": "我们的愿景",
-            "visionText": "成为印度尼西亚工业、工程建设和项目型业务领域中值得信赖的食品、包装和运营物资供应合作伙伴。",
+            "visionText": "致力于成为印度尼西亚建筑、房地产及工业领域领先且值得信赖的建筑材料与工业物资供应商，持续提升品牌信誉与行业影响力。",
             "missionTitle": "我们的使命",
-            "missionText": "通过稳定服务、可靠产品质量、快速响应协调和及时配送，满足客户的采购与供应需求。"
+            "missionText": "以专业、高效的服务满足客户采购需求，确保所提供的产品符合约定的质量标准及交付进度。"
         },
         "products": {
-            "title": "综合产品组合",
+            "title": "综合产品系列",
             "items": {
                 "packaging": {
-                    "title": "包装",
-                    "description": "为工业和运营配送需求提供纸袋、编织袋及包装材料。"
+                    "title": "包装材料",
+                    "description": "适用于水泥、腻子粉、瓷砖胶及干混砂浆等产品的纸袋与编织袋包装。"
                 },
                 "foodSupply": {
-                    "title": "食品供应",
-                    "description": "为工业园区和劳动力运营提供蔬菜、肉类、水果、海鲜、调味品及基础食品。"
+                    "title": "食材供应",
+                    "description": "为工程项目现场及工业园区提供蔬菜、肉类、水果、调味品等食材供应服务。"
                 },
                 "cement": {
                     "title": "水泥",
-                    "description": "为结构、砌筑、抹灰和一般项目需求提供 OPC 和 PCC 水泥。"
+                    "description": "提供优质普通硅酸盐水泥（OPC）及复合硅酸盐水泥（PCC），广泛应用于结构工程、砌筑、抹灰及墙体施工。"
                 },
                 "cementClinker": {
                     "title": "水泥熟料",
-                    "description": "从印度尼西亚和亚洲指定制造商采购和供应散装熟料。"
+                    "description": "供应来自印度尼西亚及亚洲主要生产厂商的大宗水泥熟料，确保稳定的品质与供货能力。"
                 },
                 "gypsumBoard": {
                     "title": "石膏板",
-                    "description": "提供标准、防潮、防火和覆膜石膏板产品。"
+                    "description": "提供标准型、防潮型、防火型及铝箔复合石膏板，满足不同建筑工程需求。"
                 },
                 "ceramics": {
-                    "title": "陶瓷",
-                    "description": "为工程建设需求提供地砖、墙砖、花岗岩砖、屋面瓦和乙烯基地板。"
+                    "title": "陶瓷建材",
+                    "description": "提供地砖、墙砖、花岗岩砖、屋面瓦及PVC（乙烯基）地板等建筑装饰材料，满足各类工程建设需求。"
                 },
                 "greaseLubricants": {
                     "title": "润滑脂与润滑油",
-                    "description": "为机械、车辆和运营设备提供工业级润滑脂与润滑油。"
+                    "description": "提供中国石化（SINOPEC）工业级润滑脂及润滑油产品，广泛应用于工程机械、工业设备及各类车辆的润滑与维护。"
                 },
                 "machineryParts": {
-                    "title": "机械与零部件",
-                    "description": "提供泵、焊机、叉车、压缩机、电气设备和备件。"
+                    "title": "机械设备及配件",
+                    "description": "提供水泵、焊接设备、叉车、空气压缩机、电气设备及各类机械配件，满足工业生产及工程项目的设备需求。"
                 }
             }
         },
         "featureDetails": {
             "items": {
                 "foodSupply": {
-                    "title": "食品供应",
-                    "description": "我们为工业园区、工程项目、偏远劳动力运营和项目型业务需求提供可靠的食品供应解决方案。供应范围包括日常食品原料、新鲜农产品、肉类、海鲜、调味品和基础物资，以支持高要求项目环境中的稳定运营。",
+                    "title": "食材供应",
+                    "description": "我们为工业园区、工程建设项目、偏远地区作业现场及各类项目运营提供可靠的食材供应解决方案。供应范围涵盖日常食材、新鲜蔬菜、水果、肉类、水产品、调味品及各类生活必需品，依托稳定的采购体系、完善的仓储管理及物流配送能力，为客户在复杂项目环境中的持续运营提供坚实保障。",
                     "useCases": [
-                        "工业园区运营",
-                        "工程劳动力支持",
-                        "偏远项目食品供应"
+                        "工业现场运营保障",
+                        "工程项目人员保障",
+                        "偏远项目食材供应"
                     ],
                     "imageAlt": "面向工业和项目型运营的食品供应"
                 },
                 "packaging": {
-                    "title": "包装",
-                    "description": "我们为工业和工程相关运营提供包装供应解决方案，支持散装材料、干货和运营配送需求。包装服务帮助客户维持产品处理质量、仓储效率和供应链可靠性。",
+                    "title": "包装材料",
+                    "description": "我们为工业生产及工程建设项目提供专业的包装材料供应解决方案，广泛应用于散装物料、干粉产品及运营配送等场景。通过优质的包装产品与配套服务，帮助客户提升物料装卸质量、仓储效率及供应链稳定性。",
                     "useCases": [
-                        "工业包装供应",
-                        "散装物料处理",
+                        "工业包装材料供应",
+                        "散装物料包装与运输",
                         "仓储与配送支持"
                     ],
                     "imageAlt": "面向工业和运营需求的包装供应"
@@ -353,203 +353,203 @@
             }
         },
         "capabilities": {
-            "title": "核心供应能力",
-            "description": "我们通过可靠采购、仓储管理、食品供应协调、包装供应和透明的物流执行，将客户需求与稳定供应连接起来。",
+            "title": "核心产业能力",
+            "description": "依托专业的采购能力、供应链协同管理及透明高效的物流执行体系，我们有效连接全球制造商与本地项目需求，为客户提供稳定、高效的一体化供应链解决方案。",
             "items": {
                 "procurement": {
-                    "title": "采购",
-                    "description": "通过战略采购和谈判，确保有竞争力的价格和可靠供应。"
+                    "title": "采购管理",
+                    "description": "通过战略采购与专业商务谈判，确保产品品质稳定，并实现具有竞争力的采购成本。"
                 },
                 "industrialSupply": {
-                    "title": "运营供应",
-                    "description": "为工业和项目型运营提供基础物资、材料和产品供应。"
+                    "title": "工业物资供应",
+                    "description": "为工业生产及大型工程项目直接提供原材料及各类工业产品，满足高强度运营需求。"
                 },
                 "globalSourcing": {
                     "title": "全球采购",
-                    "description": "依托国内外供应网络进行专业采购。"
+                    "description": "依托国内外供应链网络，提供专业化的全球采购服务，满足客户多元化物资需求。"
                 },
                 "packaging": {
-                    "title": "包装",
-                    "description": "为散装材料、干货和运营配送提供包装解决方案。"
+                    "title": "包装材料",
+                    "description": "为水泥、干混砂浆及各类散装物料提供专业的工业包装解决方案。"
                 },
                 "distribution": {
-                    "title": "配送",
-                    "description": "为国内和国际供应配送提供物流支持。"
+                    "title": "物流配送",
+                    "description": "提供覆盖国内及国际市场的物流配送服务，确保各类物资安全、高效、准时交付。"
                 },
                 "foodSupply": {
-                    "title": "食品供应",
-                    "description": "为偏远工程和工业现场工人提供可靠食品供应。"
+                    "title": "食材供应",
+                    "description": "为偏远工程项目及工业园区作业人员提供稳定、可靠的食材供应服务，保障项目持续运营需求。"
                 }
             }
         },
         "organization": {
             "eyebrow": "组织架构",
             "title": "贸易公司组织架构",
-            "description": "贸易公司通过清晰的组织架构支持区域运营、销售、采购、仓储、财务以及国内外采购与物流协调。",
-            "materialSupply": "物资供应",
-            "viceCeo": "副首席执行官",
-            "departmentsLabel": "副首席执行官下属部门",
+            "description": "物资供应事业部围绕区域运营、市场销售、采购管理、仓储管理、财务管理以及国内外物流协调等核心职能进行组织架构布局，构建高效协同的运营管理体系，为客户提供专业、稳定的一体化供应链服务。",
+            "materialSupply": "物资供应事业部",
+            "viceCeo": "副总经理",
+            "departmentsLabel": "副总经理下属部门",
             "departments": {
                 "sulawesi": {
-                    "title": "区域经理 – 苏拉威西",
+                    "title": "苏拉威西区域经理",
                     "children": {
-                        "sales": "副经理 – 销售",
-                        "procurement": "副经理 – 采购",
-                        "warehouse": "副经理 – 仓储"
+                        "sales": "销售副经理",
+                        "procurement": "采购副经理",
+                        "warehouse": "仓储副经理"
                     }
                 },
                 "maluku": {
-                    "title": "区域经理 – 马鲁古",
+                    "title": "马鲁古区域经理",
                     "children": {
-                        "sales": "副经理 – 销售",
-                        "procurement": "副经理 – 采购",
-                        "warehouse": "副经理 – 仓储"
+                        "sales": "销售副经理",
+                        "procurement": "采购副经理",
+                        "warehouse": "仓储副经理"
                     }
                 },
                 "finance": {
-                    "title": "财务部门负责人",
+                    "title": "财务部经理",
                     "children": {
-                        "accounting": "副部门负责人 – 会计"
+                        "accounting": "会计部副经理"
                     }
                 },
                 "procurementLogistics": {
-                    "title": "采购与物流部门负责人",
+                    "title": "采购与物流部经理",
                     "children": {
-                        "domesticInternationalProcurementLogistics": "主管 – 国内与国际采购及物流"
+                        "domesticInternationalProcurementLogistics": "国内及国际采购与物流主管"
                     }
                 }
             }
         },
         "cta": {
-            "title": "与我们获取可靠的食品供应和运营物资",
-            "description": "联系我们的供应团队，讨论您的食品供应、包装、运营物资、采购和物流需求。",
+            "title": "携手我们，获取值得信赖的建筑材料与工业物资解决方案",
+            "description": "欢迎联系我们的采购专家，深入了解您下一项目的建筑材料、工业设备、包装材料及现场物资供应需求，我们将为您提供专业、高效的一站式采购与供应链解决方案。",
             "button": "联系我们"
         }
     },
     "Outsourcing": {
         "hero": {
-            "eyebrow": "子公司",
+            "eyebrow": "成员企业",
             "title": "人力资源外包公司",
-            "subtitle": "为工业和项目型运营提供人力资源服务与外包解决方案。",
-            "description": "我们在印度尼西亚全国范围内提供专业的人力资源和外包支持。公司专注于满足大型工业项目的人力需求，并帮助全球企业提升运营效率。",
+            "subtitle": "为工业企业及工程项目提供专业的人力资源服务与外包解决方案。",
+            "description": "我们在印度尼西亚全国范围内提供专业的人力资源服务及外包解决方案，为各类工业企业和工程项目提供全面的人力支持。凭借丰富的大型工业项目管理经验，公司能够满足全球企业多样化的用工需求，助力客户提升运营效率，实现项目稳定运行。",
             "badge": "持证专业人力资源合作伙伴"
         },
         "companyOverview": {
-            "title": "专业人力资源外包",
-            "paragraph1": "我们已成为外资企业，特别是中国国有企业的可靠合作伙伴。公司理解国际项目的运营要求，并将全球标准与本地专业能力有效结合。",
-            "paragraph2": "凭借战略合作关系以及对印度尼西亚劳动力市场的深入了解，公司能够快速部署熟练和半熟练劳动力，包括偏远项目现场的人力支持。"
+            "title": "专业人力资源外包服务",
+            "paragraph1": "我们已成为外商投资企业，特别是中国国有企业值得信赖的战略合作伙伴。公司深刻理解国际化项目的运营需求，融合国际管理标准与本地专业能力，为客户提供高效、专业的人力资源解决方案。",
+            "paragraph2": "凭借广泛的战略合作网络及对印度尼西亚劳动力市场的深入了解，公司能够快速调配技术工人、半技术工人及其他专业人才，为包括偏远地区在内的各类工程项目提供及时、可靠的人力资源支持。"
         },
         "overviewItems": {
             "indonesiaWideOperations": {
                 "title": "覆盖印度尼西亚全国",
-                "description": "从苏门答腊到巴布亚，提供可扩展的人力解决方案。"
+                "description": "业务覆盖从苏门答腊至巴布亚，为客户提供灵活、高效、可规模化的人力资源解决方案。"
             },
             "foreignInvestedAlliance": {
-                "title": "外资企业合作伙伴",
-                "description": "服务全球工业企业和国有企业的战略合作伙伴。"
+                "title": "外资企业战略合作伙伴",
+                "description": "全球工业龙头企业及国有企业的战略合作伙伴。"
             },
             "regionalProjectFocus": {
-                "title": "重点区域项目布局",
-                "description": "活跃于加里曼丹、苏拉威西和马鲁古等重点区域。"
+                "title": "重点项目布局",
+                "description": "业务重点覆盖加里曼丹、苏拉威西及马鲁古等核心运营区域。"
             }
         },
         "visionMission": {
             "visionTitle": "我们的愿景",
-            "visionText": "“成为印度尼西亚领先的人力资源外包服务提供商，以质量、诚信和专业人才赋能而受到认可。”",
+            "visionText": "“成为印度尼西亚领先的人力资源外包服务提供商，以卓越品质、诚信经营及专业人才发展赢得客户信赖与行业认可。”",
             "missionTitle": "我们的使命",
             "missions": {
-                "professionalManpower": "通过严格筛选提供专业人力服务。",
-                "trainedCertified": "确保所有专业人员接受培训，并具备特定岗位所需认证。",
-                "clientRelationships": "与客户建立长期互利的合作关系。",
-                "employeeWelfare": "促进员工的持续成长与福利提升。",
-                "stakeholderValue": "持续提升公司对所有利益相关方的价值。"
+                "professionalManpower": "通过严格的人才甄选机制，为客户提供专业的人力资源服务。",
+                "trainedCertified": "确保所有专业人员均接受系统培训，并具备相应岗位所需的专业资质。",
+                "clientRelationships": "与客户建立长期、稳定、互利共赢的合作伙伴关系。",
+                "employeeWelfare": "持续促进员工职业发展与福利提升，实现企业与员工共同成长。",
+                "stakeholderValue": "持续提升企业价值，为股东、客户、员工及合作伙伴创造长期价值。"
             }
         },
         "services": {
             "title": "核心服务",
             "items": {
                 "outsourcingEmployee": {
-                    "title": "员工外包",
-                    "description": "提供行政人员和一般员工的端到端管理服务。"
+                    "title": "员工外包服务",
+                    "description": "为行政及一般岗位员工提供从招聘、派遣到日常管理的一站式外包服务。"
                 },
                 "outsourcingExperts": {
-                    "title": "专家外包",
-                    "description": "为关键项目任务提供高技能技术专家。"
+                    "title": "专业技术人才外包",
+                    "description": "为关键工程项目提供经验丰富的专业技术人才，满足高标准、高专业性的岗位需求。"
                 },
                 "outsourcingSdm": {
                     "title": "人力资源外包",
-                    "description": "提供综合性人力资源开发与岗位配置服务。"
+                    "description": "提供涵盖人才招聘、培训、培养、配置及派遣的一体化人力资源解决方案。"
                 },
                 "businessProcess": {
-                    "title": "业务流程支持",
-                    "description": "通过专业支持优化运营流程。"
+                    "title": "业务流程外包",
+                    "description": "通过专业化的业务流程外包服务，优化企业运营流程，提升管理效率与整体运营绩效。"
                 },
                 "businessConsultation": {
-                    "title": "业务咨询",
-                    "description": "提供人力规划和劳动合规方面的咨询服务。"
+                    "title": "企业咨询服务",
+                    "description": "为企业提供人力资源规划、用工管理及劳动法规合规等专业咨询服务。"
                 }
             }
         },
         "organization": {
             "eyebrow": "组织架构",
             "title": "人力资源外包公司组织架构",
-            "description": "清晰的领导层级支持运营管控、项目协调、人力资源管理以及财务责任管理。",
-            "ceo": "首席执行官",
-            "assistantCeo": "首席执行官助理",
-            "viceCeo": "副首席执行官",
-            "departmentsLabel": "副首席执行官下属部门",
+            "description": "公司构建了完善、清晰的组织管理体系，通过规范的领导架构，实现运营管理、项目协调、人力资源管理及财务管理等核心职能的高效协同，为企业持续稳定发展提供有力保障。",
+            "ceo": "总经理",
+            "assistantCeo": "总经理助理",
+            "viceCeo": "副总经理",
+            "departmentsLabel": "副总经理下属部门",
             "departments": {
                 "projectManager": {
                     "title": "项目经理",
                     "children": {
-                        "siteManagement": "副经理 – 现场管理",
-                        "backOffice": "副经理 – 后台办公室"
+                        "siteManagement": "现场管理副经理",
+                        "backOffice": "行政后台副经理"
                     }
                 },
                 "humanResources": {
-                    "title": "人力资源部门负责人",
+                    "title": "人力资源部经理",
                     "children": {
-                        "headOfficeHrd": "副部门负责人 – 总部人力资源",
-                        "industrialRelations": "副部门负责人 – 劳资关系",
-                        "recruitment": "副部门负责人 – 招聘",
-                        "projectAttendance": "副部门负责人 – 项目考勤"
+                        "headOfficeHrd": "总部人力资源部副经理",
+                        "industrialRelations": "劳资关系部副经理",
+                        "recruitment": "招聘部副经理",
+                        "projectAttendance": "项目考勤部副经理"
                     }
                 },
                 "finance": {
-                    "title": "财务部门负责人",
+                    "title": "财务部长",
                     "children": {
-                        "accounting": "副部门负责人 – 会计",
-                        "payroll": "副部门负责人 – 薪资"
+                        "accounting": "会计部副经理",
+                        "payroll": "工资组副经理"
                     }
                 }
             }
         },
         "clients": {
-            "title": "战略客户",
-            "description": "支持印度尼西亚大型工业项目的人力运营。"
+            "title": "我们的战略客户",
+            "description": "携手战略合作伙伴，共同服务印度尼西亚大型工业项目。"
         },
         "cta": {
-            "title": "支持工业增长的可靠外包合作伙伴",
-            "description": "联系我们的团队，讨论人力资源外包、劳动力规划、人力支持、项目用工和运营人力需求。",
+            "title": "助力产业发展的可信赖人力资源外包合作伙伴",
+            "description": "为企业提供专业、可靠的人力资源外包解决方案，满足工业生产、工程建设及项目运营的人才需求，助力客户提升运营效率，实现可持续发展。",
             "button": "联系我们"
         }
     },
     "Construction": {
         "hero": {
-            "eyebrow": "子公司",
+            "eyebrow": "成员企业",
             "title": "工程建设公司",
-            "description": "为印度尼西亚群岛范围内的大型基础设施和生产项目提供工业工程与施工建设专业能力。",
+            "description": "专注于工业工程与工程建设，为印度尼西亚全国范围内的大型基础设施及工业生产项目提供专业解决方案。",
             "badgeTitle": "工业工程",
-            "badgeDescription": "大型项目执行"
+            "badgeDescription": "大型工程项目实施"
         },
         "companyOverview": {
-            "title": "工业工程建设领域的领先力量",
-            "paragraph1": "我们处于印度尼西亚工业转型的前沿。作为 WIN Holdings 的核心子公司，并依托江苏中辰的国际工程经验，ICG 为复杂工程挑战提供交钥匙解决方案。",
-            "paragraph2": "公司将中国工程标准与对印度尼西亚本地需求的深入理解相结合，为工业卓越发展和可持续基础设施建设搭建坚实桥梁。"
+            "title": "工业工程建设领域的领先者",
+            "paragraph1": "立足印度尼西亚工业发展前沿，ICG 作为 WIN Holdings 的核心成员企业，并依托江苏中辰的国际化工程技术实力，为各类复杂工业项目提供从规划、设计、施工到交付的一体化交钥匙工程（EPC）解决方案。",
+            "paragraph2": "公司融合中国先进工程技术标准与对印度尼西亚市场需求的深刻理解，构建连接国际标准与本地实践的桥梁，为工业高质量发展及可持续基础设施建设提供坚实保障。"
         },
         "stats": {
             "chineseStaff": {
-                "label": "中国员工"
+                "label": "中方员工"
             },
             "indonesianWorkers": {
                 "label": "印尼员工"
@@ -563,41 +563,41 @@
         },
         "specializedFields": {
             "title": "专业领域",
-            "description": "面向高度专业化工业领域的高精度工程与施工建设服务。",
+            "description": "专注于高精度工业工程与工程建设，为专业化工业领域提供高标准、高质量的工程解决方案。",
             "items": {
-                "metallurgicalProjects": "大型冶金项目",
-                "electromechanicalIntegration": "机电一体化",
-                "municipalEcologicalTechnology": "市政与生态技术",
-                "industrialProductionLines": "工业生产线",
-                "cementProductionLines": "水泥生产线",
-                "nickelIronSmelting": "镍铁冶炼"
+                "metallurgicalProjects": "大型冶金工程项目",
+                "electromechanicalIntegration": "机电一体化工程",
+                "municipalEcologicalTechnology": "市政与生态环保工程",
+                "industrialProductionLines": "工业生产线工程",
+                "cementProductionLines": "水泥生产线工程",
+                "nickelIronSmelting": "镍铁冶炼工程"
             }
         },
         "qualifications": {
             "title": "资质与认证",
             "items": {
                 "b2QualificationGrade": "资质等级",
-                "generalContracting": "总承包",
-                "civilConstruction": "土建施工",
-                "steelStructure": "钢结构",
-                "electromechanicalInstallation": "机电安装",
-                "smeltingEngineering": "冶炼工程",
+                "generalContracting": "工程总承包",
+                "civilConstruction": "土建工程",
+                "steelStructure": "钢结构工程",
+                "electromechanicalInstallation": "机电安装工程",
+                "smeltingEngineering": "冶金工程",
                 "environmentalEngineering": "环保工程",
-                "jiangsuZhongchenInternational": "江苏中辰国际"
+                "jiangsuZhongchenInternational": "江苏中辰建设有限公司"
             }
         },
         "projects": {
-            "title": "成熟的项目业绩",
-            "description": "在印度尼西亚主要工业园区持续交付高质量工程成果。",
+            "title": "卓越工程业绩",
+            "description": "深耕印度尼西亚重点工业园区，为各类大型工业项目提供高品质工程建设服务。",
             "metrics": {
-                "totalProjects": "项目总数",
-                "completion": "完成率"
+                "totalProjects": "累计项目",
+                "completion": "按期交付"
             },
             "table": {
                 "projectName": "项目名称",
-                "location": "地点",
-                "scope": "范围",
-                "status": "状态"
+                "location": "项目地点",
+                "scope": "工程范围",
+                "status": "项目状态"
             },
             "status": {
                 "completed": "已完成",
@@ -607,17 +607,17 @@
                 "iwip": {
                     "name": "青山 IWIP 工业园",
                     "location": "马鲁古",
-                    "scope": "冶金设施"
+                    "scope": "冶金设施工程"
                 },
                 "lanyan": {
                     "name": "蓝焰广青项目",
                     "location": "苏拉威西",
-                    "scope": "工业厂房建设"
+                    "scope": "冶金设施工程"
                 },
                 "puqing": {
                     "name": "印度尼西亚普青工程",
                     "location": "加里曼丹",
-                    "scope": "机械与电气工程"
+                    "scope": "机电工程"
                 },
                 "zhongqing": {
                     "name": "中青新能源一期",
@@ -627,7 +627,7 @@
             }
         },
         "gallery": {
-            "title": "项目图库",
+            "title": "项目展示",
             "items": {
                 "project4": "工业建设项目 4",
                 "project5": "工业建设项目 5",
@@ -643,145 +643,145 @@
             "items": {
                 "kalimantan": {
                     "name": "加里曼丹",
-                    "description": "在工业枢纽地区开展运营，支持电厂和矿产加工基础设施建设。"
+                    "description": "深耕重点工业园区，提供电力设施、矿产加工及配套基础设施工程建设服务。"
                 },
                 "maluku": {
                     "name": "马鲁古",
-                    "description": "服务印度尼西亚东部部分大型冶金工业园区的主要建设合作伙伴。"
+                    "description": "作为印度尼西亚东部多个大型冶金工业园区的重要工程建设合作伙伴，持续为重点项目提供专业工程服务。"
                 },
                 "sulawesi": {
                     "name": "苏拉威西",
-                    "description": "在镍铁冶炼和新能源生产线建设方面拥有丰富项目经验。"
+                    "description": "在镍铁冶炼工程及新能源生产线建设领域拥有丰富的项目经验和成熟的技术实力。"
                 }
             }
         },
         "cta": {
-            "title": "与我们建设大型工业项目",
-            "description": "连接全球工程标准与印度尼西亚工业潜力，共同迈向可持续未来。",
+            "title": "携手共建大型工业项目",
+            "description": "融合国际工程标准与印度尼西亚产业发展优势，为客户提供专业、高效、可持续的工程建设解决方案，共同推动工业高质量发展，迈向可持续未来。",
             "button": "联系我们"
         }
     },
     "Organization": {
         "hero": {
             "eyebrow": "组织架构",
-            "title": "以稳健治理推动可持续业务增长",
-            "description": "WIN Holdings 依托清晰的组织架构和经验丰富的领导团队，确保各业务单元具备高效决策、明确责任和战略增长能力。",
+            "title": "健全治理体系，推动企业可持续发展",
+            "description": "WIN Holdings 构建了完善的组织架构，并由经验丰富的管理团队领导，通过科学决策、明确责任及高效管理，推动各业务板块协同发展，实现集团长期战略目标。",
             "imageAlt": "WIN Holdings 组织架构"
         },
         "framework": {
-            "title": "组织管理框架",
-            "description": "WIN Holdings 采用清晰的组织架构，以支持旗下子公司的战略方向、运营协调和业务治理。该架构帮助各业务单元高效运营，同时与集团长期愿景保持一致。",
+            "title": "我们的组织体系",
+            "description": "WIN Holdings 实行清晰高效的组织管理体系，通过统一的战略规划、运营协同及企业治理，统筹旗下各成员企业的发展。该组织架构在保障各业务板块高效运营的同时，确保各成员企业始终与集团长期发展战略保持一致，实现资源共享、优势互补及协同发展。",
             "stats": {
                 "governance": {
-                    "label": "治理",
-                    "value": "清晰"
+                    "label": "企业治理",
+                    "value": "规范完善"
                 },
                 "businessUnits": {
-                    "label": "业务单元",
+                    "label": "业务板块",
                     "value": "4+"
                 },
                 "portfolio": {
-                    "label": "业务组合",
+                    "label": "产业布局",
                     "value": "多元化"
                 }
             },
             "items": {
                 "strategicDirection": {
-                    "title": "战略方向",
-                    "description": "集团层面的业务监督"
+                    "title": "战略引领",
+                    "description": "集团层面的战略统筹与业务管理"
                 },
                 "operationalCoordination": {
-                    "title": "运营协调",
-                    "description": "一体化子公司管理"
+                    "title": "运营协同",
+                    "description": "成员企业一体化运营管理"
                 },
                 "corporateGovernance": {
-                    "title": "公司治理",
-                    "description": "责任机制与商业伦理管控"
+                    "title": "企业治理",
+                    "description": "责任落实与合规管控"
                 }
             }
         },
         "chart": {
             "title": "控股集团组织架构",
-            "description": "清晰的领导层级支持集团内部的执行协调、业务单元责任管理和战略增长。",
+            "description": "集团构建了清晰高效的管理架构，通过完善的领导体系，实现管理层协同、业务板块责任落实及集团战略的持续推进，为企业长期稳健发展提供有力保障。",
             "holdingGroup": "控股集团",
             "chairman": "董事长",
-            "ceo": "首席执行官",
+            "ceo": "总经理",
             "executiveLeadership": "执行领导层",
             "nodes": {
-                "assistantCeo": "首席执行官助理",
-                "manpowerSupply": "副首席执行官 – 人力供应公司",
-                "tradingMaterial": "副首席执行官 – 贸易物资公司",
-                "construction": "副首席执行官 – 工程建设公司",
-                "manufacturing": "副首席执行官 – 制造公司",
-                "businessDevelopment": "业务发展 – 投资与业务发展公司"
+                "assistantCeo": "副总经理",
+                "manpowerSupply": "人力资源外包公司副总经理",
+                "tradingMaterial": "贸易公司副总经理",
+                "construction": "工程建设公司副总经理",
+                "manufacturing": "制造公司副总经理",
+                "businessDevelopment": "投资与业务发展公司 — 业务发展负责人"
             }
         },
         "directors": {
             "title": "董事会",
-            "description": "WIN Holdings 由经验丰富的专业管理团队领导，负责集团战略、治理和业务表现。",
+            "description": "WIN Holdings 由经验丰富的董事会成员及管理团队共同领导，负责制定集团发展战略、完善企业治理体系，并持续提升各业务板块的经营绩效，推动集团实现长期、稳健、可持续发展。",
             "items": {
                 "chairman": {
-                    "name": "领导层",
+                    "name": "管理团队",
                     "position": "董事长",
-                    "description": "为控股集团提供集团层面的领导、战略方向和长期治理监督。"
+                    "description": "负责集团整体领导、战略规划及长期企业治理，为集团持续稳健发展提供战略引领与决策支持。"
                 },
                 "ceo": {
-                    "name": "领导层",
-                    "position": "首席执行官",
-                    "description": "负责执行公司战略，并确保控股集团旗下所有业务单元保持一致。"
+                    "name": "管理团队",
+                    "position": "总经理",
+                    "description": "全面负责集团战略执行与经营管理，统筹各业务板块协同发展，确保各成员企业与集团战略目标保持一致。"
                 },
                 "assistantCeo": {
-                    "name": "领导层",
-                    "position": "首席执行官助理",
-                    "description": "支持首席执行官进行执行协调、内部沟通和组织内运营跟进。"
+                    "name": "管理团队",
+                    "position": "总经理助理",
+                    "description": "协助总经理开展管理层协调、内部沟通及各项经营工作的推进与落实，确保集团运营高效有序。"
                 },
                 "businessDevelopment": {
-                    "name": "领导层",
+                    "name": "管理团队",
                     "position": "业务发展",
-                    "description": "推动控股集团的投资规划、业务扩展和战略发展机会。"
+                    "description": "负责集团投资规划、业务拓展及战略发展工作，持续发掘新的投资机会与业务增长点，推动集团实现可持续发展。"
                 }
             }
         },
         "governance": {
-            "title": "业务单元治理",
-            "description": "每个业务单元均由专门的执行领导层管理，以保持责任明确、运营聚焦，并与控股集团战略方向保持一致。",
+            "title": "业务板块治理",
+            "description": "各业务板块均由专属管理团队负责运营，通过明确的管理职责、专业化运营及高效执行，确保各成员企业始终与集团整体战略保持一致，实现协同发展与持续成长。",
             "items": {
                 "manpowerSupply": {
-                    "category": "人力供应",
-                    "description": "由专门的执行领导层管理，支持劳动力供应、人力协调和运营用工需求。"
+                    "category": "人力资源外包",
+                    "description": "由专业管理团队统筹运营，负责人力资源供应、劳动力协调及项目用工管理，为客户提供高效、可靠的人力资源解决方案。"
                 },
                 "tradingMaterial": {
-                    "category": "贸易物资",
-                    "description": "由专门的执行领导层管理，支持采购、物资贸易和供应协调。"
+                    "category": "贸易业务",
+                    "description": "由专业管理团队负责采购管理、物资贸易及供应链协调，持续提升供应保障能力与运营效率。"
                 },
                 "construction": {
                     "category": "工程建设",
-                    "description": "由专门的执行领导层管理，支持施工执行、项目协调和现场运营。"
+                    "description": "由专业管理团队统筹工程实施、项目协调及现场运营管理，确保工程项目安全、高效、高质量交付。"
                 },
                 "manufacturing": {
-                    "category": "制造",
-                    "description": "由专门的执行领导层管理，支持生产质量、制造运营和流程效率。"
+                    "category": "制造业",
+                    "description": "由专业管理团队负责生产运营、质量管理及工艺优化，不断提升制造效率与产品品质。"
                 },
                 "investmentBusinessDevelopment": {
                     "category": "投资与业务发展",
-                    "description": "由业务发展领导层管理，支持投资战略、业务组合增长和新业务机会。"
+                    "description": "由业务发展团队统筹投资规划、产业布局及新业务拓展，持续推动集团投资组合优化与长期价值增长。"
                 }
             }
         },
         "cta": {
-            "title": "以结构驱动，由经验领导",
-            "description": "了解 WIN Holdings 如何通过强有力的领导、清晰的治理和战略方向管理其业务组合。",
+            "title": "以完善管理体系为基础，以丰富经验引领发展",
+            "description": "了解 WIN Holdings 如何通过卓越领导力、规范的企业治理及清晰的战略规划，统筹多元化业务布局，持续推动集团稳健发展与长期价值创造。",
             "button": "联系我们"
         }
     },
-     "News": {
+    "News": {
         "hero": {
             "title": "新闻与资讯",
-            "description": "了解 WIN Holdings 及其业务生态的最新动态、公告、活动和行业资讯。"
+            "description": "及时了解 WIN Holdings 及旗下成员企业的最新动态、企业公告、业务活动及行业资讯，掌握集团发展的最新信息。"
         },
         "list": {
             "title": "最新动态",
-            "description": "浏览公司公告、企业更新和业务生态活动。"
+            "description": "浏览集团公告、企业最新动态及各业务板块的重要活动，全面了解 WIN Holdings 的发展成果与产业布局。"
         },
         "cards": {
             "readFullArticle": "阅读全文",
@@ -801,8 +801,8 @@
             "next": "下一页"
         },
         "cta": {
-            "title": "持续关注 WIN Holdings",
-            "description": "关注我们的最新动态、业务活动和企业公告，了解我们如何持续推动多产业可持续增长。",
+            "title": "关注 WIN Holdings 最新动态",
+            "description": "欢迎持续关注 WIN Holdings 的最新动态、业务进展及企业公告，与我们共同见证集团在多元产业领域持续创造价值、实现可持续发展的成长历程。",
             "button": "联系我们"
         },
         "fallback": {
@@ -853,7 +853,7 @@
             "button": "查看全部新闻"
         }
     },
-     "Career": {
+    "Career": {
         "status": {
             "success": {
                 "applicationSubmitted": "您的申请已成功提交。"
@@ -994,30 +994,30 @@
             }
         }
     },
-     "Contact": {
+    "Contact": {
         "hero": {
             "title": "联系我们",
-            "description": "连接全球视野与本地卓越能力。欢迎联系我们，洽谈战略合作、投资机会，或加入我们不断成长的专业团队。",
+            "description": "连接全球视野，汇聚本地优势。欢迎联系我们，共同探讨战略合作、投资机会，或加入 WIN Holdings，与专业团队携手共创未来。",
             "emailButton": "发送邮件",
-            "careerButton": "招聘机会",
-            "imageCardText": "战略增长始于一次正确的交流。"
+            "careerButton": "职业发展机会",
+            "imageCardText": "战略合作，始于一次高效的沟通。"
         },
         "office": {
             "title": "办公信息",
             "items": {
                 "headquarters": {
-                    "label": "总部",
-                    "line1": "Sampoerna Strategic Square, Level 24",
-                    "line2": "Jl. Jenderal Sudirman No.45-46, Jakarta 12930",
+                    "label": "集团总部",
+                    "line1": "Gold Coast Office Tower Liberty Lt 28",
+                    "line2": "Jl. Pantai Indah Kapuk Boulevard, Kamal Muara, Penjaringan, Kota Adm. Jakarta Utara, DKI Jakarta, 14470",
                     "line3": "印度尼西亚"
                 },
                 "generalInquiries": {
                     "label": "一般咨询",
-                    "value": "info@winholdings.com"
+                    "value": "wetrust.investama.nusantara@gmail.com"
                 },
                 "corporatePhone": {
-                    "label": "公司电话",
-                    "value": "+62 21 577 0000"
+                    "label": "集团电话",
+                    "value": "+62 21 123 4567"
                 }
             }
         },
@@ -1051,57 +1051,57 @@
                 "generalInquiry": "一般咨询",
                 "partnership": "合作伙伴关系",
                 "investmentOpportunity": "投资机会",
-                "career": "招聘",
+                "career": "职业发展",
                 "mediaInquiry": "媒体咨询"
             },
             "submit": "发送消息"
         },
         "faq": {
-            "title": "快速帮助与常见问题",
-            "description": "关于我们运营和战略目标的常见问题。",
+            "title": "常见问题",
+            "description": "了解有关集团业务运营、战略发展及合作机会的常见问题。",
             "items": {
                 "partner": {
-                    "question": "如何与我们合作？",
-                    "answer": "我们寻求符合诚信与创新核心价值观的长期合作。感兴趣的合作方可以通过联系表单中的合作伙伴选项提交方案。"
+                    "question": "如何与我们建立合作？",
+                    "answer": "我们期待与认同诚信、创新及合作共赢理念的合作伙伴建立长期合作关系。欢迎通过联系表单中的“合作伙伴（Partnership）”类别提交合作方案，我们将尽快与您联系。"
                 },
                 "subsidiaries": {
-                    "question": "你们的子公司位于哪里？",
-                    "answer": "WIN Holdings 在印度尼西亚拥有多元化业务布局，业务运营连接多个重要工业和商业区域。详细子公司资料可在子公司页面查看。"
+                    "question": "集团成员企业分布在哪里？",
+                    "answer": "WIN Holdings 在东南亚多个国家和地区设有业务布局，主要运营中心包括雅加达、新加坡及曼谷。更多成员企业介绍，请参阅“成员企业”页面。"
                 },
                 "investmentFocus": {
-                    "question": "你们的投资重点是什么？",
-                    "answer": "我们的重点是在制造、人力资源服务、贸易、工程建设以及战略业务发展机会中创造长期价值。"
+                    "question": "集团重点投资方向是什么？",
+                    "answer": "集团重点关注新兴市场的可持续基础设施、金融科技及新能源等领域，致力于通过长期投资创造可持续的商业价值，并推动社会与经济的共同发展。"
                 },
                 "career": {
                     "question": "如何申请职位？",
-                    "answer": "招聘机会会定期更新在招聘页面。您也可以通过联系表单中的招聘咨询选项联系我们的团队。"
+                    "answer": "最新招聘职位将持续发布于“职业发展”页面。您也可以在联系表单中选择“职业发展（Career）”类别，或直接向人力资源团队提交您的个人简历，我们期待您的加入。"
                 }
             }
         }
     },
     "Footer": {
-        "description": "一家多元化控股集团，专注于可持续业务增长、卓越运营以及跨行业长期价值创造。",
-        "copyright": "© 2024 WIN Holdings. 版权所有。",
+        "description": "以卓越运营与诚信经营驱动多元产业战略发展，持续创造长期价值。",
+        "copyright": "© 2024 WIN Holdings 版权所有。保留所有权利。",
         "quickLinks": {
-            "title": "快速链接",
+            "title": "快速导航",
             "items": {
                 "home": "首页",
                 "about": "关于我们",
-                "subsidiaries": "子公司",
+                "subsidiaries": "成员企业",
                 "organization": "组织架构",
                 "news": "新闻资讯",
-                "career": "招聘",
+                "career": "职业发展",
                 "contact": "联系我们"
             }
         },
         "subsidiaries": {
-            "title": "子公司",
+            "title": "成员企业",
             "items": {
-                "portfolio": "业务组合",
-                "manufacture": "制造公司",
-                "trading": "贸易公司",
-                "outsourcing": "人力资源外包公司",
-                "construction": "工程建设公司"
+                "portfolio": "我们的业务版图",
+                "manufacture": "制造业",
+                "trading": "贸易业务",
+                "outsourcing": "人力资源外包",
+                "construction": "工程建设"
             }
         }
     }

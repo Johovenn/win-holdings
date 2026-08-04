@@ -105,7 +105,7 @@ const services: Service[] = [
     },
 ];
 
-const clients = ["Huawei", "Huayue", "MIP", "MCC", "CCECC", "IWIP"];
+const clients = ["Huafei", "Huayue", "MIP", "MCC", "CCECC", "IWIP"];
 
 export default function IndosinoPage() {
     return (
