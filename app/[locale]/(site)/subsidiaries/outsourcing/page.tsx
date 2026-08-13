@@ -187,14 +187,17 @@ function HeroSection() {
                 </div>
 
                 <div className="relative overflow-hidden rounded-xl bg-white shadow-sm">
-                    <div
-                        className="h-96 bg-cover bg-center lg:h-120"
-                        style={{
-                            backgroundImage:
-                                "linear-gradient(rgba(30,41,59,0.1), rgba(30,41,59,0.1)), url('/images/manpower-8.jpg')",
-                        }}
-                    >
-                        <div className="flex h-full items-end p-4">
+                    <div className="relative h-96 lg:h-120">
+                        <Image
+                            src="/images/manpower-8.jpg"
+                            alt=""
+                            fill
+                            sizes="(min-width: 1024px) 50vw, 100vw"
+                            className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-slate-800/10" />
+
+                        <div className="relative flex h-full items-end p-4">
                             <div className="rounded-lg border border-white/20 bg-white/90 p-4 shadow-sm backdrop-blur-md">
                                 <div className="flex items-center gap-3">
                                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-500/10 text-orange-600">

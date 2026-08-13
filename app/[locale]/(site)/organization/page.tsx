@@ -261,7 +261,7 @@ function HeroSection() {
                             src="/images/hq-2.jpg"
                             alt={t("imageAlt")}
                             fill
-                            priority
+                            preload
                             sizes="50vw"
                             className="object-cover"
                         />

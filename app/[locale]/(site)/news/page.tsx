@@ -203,7 +203,7 @@ function HeroSection() {
                 src="/images/news-bg.jpg"
                 alt=""
                 fill
-                priority
+                preload
                 sizes="100vw"
                 className="object-fill"
             />

@@ -240,13 +240,16 @@ function HeroSection() {
                     <div className="absolute -bottom-5 -left-5 h-24 w-24 rounded-2xl bg-orange-600/20" />
 
                     <div className="relative rotate-1 overflow-hidden rounded-2xl bg-stone-300 shadow-2xl">
-                        <div
-                            className="h-80 bg-cover bg-center"
-                            style={{
-                                backgroundImage:
-                                    "linear-gradient(rgba(15,23,42,0.08), rgba(15,23,42,0.08)), url('/images/subsidiaries-construction.jpeg')",
-                            }}
-                        />
+                        <div className="relative h-80">
+                            <Image
+                                src="/images/subsidiaries-construction.jpeg"
+                                alt=""
+                                fill
+                                sizes="(min-width: 1024px) 50vw, 100vw"
+                                className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-slate-900/8" />
+                        </div>
 
                         <div className="absolute bottom-4 left-4 rounded-xl border border-white/20 bg-white/90 p-4 shadow-lg backdrop-blur-md">
                             <div className="flex items-center gap-3">

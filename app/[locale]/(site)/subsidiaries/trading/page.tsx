@@ -239,11 +239,12 @@ function HeroSection() {
 
     return (
         <section className="relative overflow-hidden bg-stone-50 py-24 lg:py-32">
-            <div
-                className="absolute inset-0 bg-cover bg-center opacity-100 grayscale"
-                style={{
-                    backgroundImage: "url('/images/subsidiaries-outsourcing.jpeg')",
-                }}
+            <Image
+                src="/images/subsidiaries-outsourcing.jpeg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover grayscale"
             />
 
             <div className="absolute inset-0 bg-linear-to-r from-stone-50 via-stone-50/90 to-stone-50/30" />
@@ -488,12 +489,14 @@ function IndustrialCapabilitySection() {
     const t = useTranslations("Trading.capabilities");
 
     return (
-        <section
-            className="relative bg-cover bg-center bg-no-repeat py-20 text-white"
-            style={{
-                backgroundImage: "url('/images/warehouse-1.jpg')",
-            }}
-        >
+        <section className="relative overflow-hidden py-20 text-white">
+            <Image
+                src="/images/warehouse-1.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+            />
             <div className="absolute inset-0 bg-neutral-900/90" />
 
             <div className="relative z-10">
