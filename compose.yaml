@@ -1,0 +1,28 @@
+name: win-holdings
+
+# Run ./scripts/bootstrap-supabase.sh <Supabase git ref> once before using this
+# file. It installs the official Supabase self-hosted Compose definition in
+# ./supabase, which is included below.
+include:
+  - path: ./supabase/docker-compose.yml
+    env_file: ./supabase/.env
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # NEXT_PUBLIC_* values used by browser code are compiled into the bundle.
+        NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL:?Set NEXT_PUBLIC_SUPABASE_URL in .env}
+        NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:?Set NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY in .env}
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+    depends_on:
+      kong:
+        condition: service_started
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    restart: unless-stopped
