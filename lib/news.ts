@@ -1,7 +1,7 @@
 import "server-only";
 
 import { getTranslations } from "next-intl/server";
-import { createClient } from "@/lib/supabase/server";
+import { query } from "@/lib/db";
 
 export type NewsItem = {
     id: string;
@@ -19,39 +19,33 @@ export type NewsItem = {
 export type LatestNewsItem = Omit<NewsItem, "content" | "updated_at">;
 
 export async function getPublishedNews(): Promise<NewsItem[]> {
-    const supabase = await createClient();
-    const query = supabase
-        .from("news")
-        .select(
-            "id, title, slug, excerpt, content, category, status, published_at, created_at, updated_at",
-        )
-        .eq("status", "published");
-    const { data, error } = await query
-        .order("published_at", { ascending: false, nullsFirst: false })
-        .order("created_at", { ascending: false });
-
-    if (error) {
+    const result = await query<NewsItem>(
+        `SELECT id, title, slug, excerpt, content, category, status,
+                published_at, created_at, updated_at
+         FROM news WHERE status = $1
+         ORDER BY published_at DESC NULLS LAST, created_at DESC`,
+        ["published"],
+    ).catch((error) => {
         console.error("Failed to fetch news:", error.message);
-        return getFallbackNews();
-    }
+        return null;
+    });
 
-    return (data ?? []) as NewsItem[];
+    if (!result) return getFallbackNews();
+
+    return result.rows;
 }
 
 export async function getLatestNews(limit = 6) {
-    const supabase = await createClient();
-    const query = supabase
-        .from("news")
-        .select("id, title, slug, excerpt, category, status, published_at, created_at")
-        .eq("status", "published");
-    const { data, error } = await query
-        .order("published_at", { ascending: false, nullsFirst: false })
-        .order("created_at", { ascending: false })
-        .limit(limit);
+    const result = await query<LatestNewsItem>(
+        `SELECT id, title, slug, excerpt, category, status, published_at, created_at
+         FROM news WHERE status = $1
+         ORDER BY published_at DESC NULLS LAST, created_at DESC LIMIT $2`,
+        ["published", limit],
+    ).catch(() => null);
 
     return {
-        newsItems: (data ?? []) as LatestNewsItem[],
-        hasError: Boolean(error),
+        newsItems: result?.rows ?? [],
+        hasError: !result,
     };
 }
 

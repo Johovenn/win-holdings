@@ -3,6 +3,5 @@
 node_modules
 npm-debug.log*
 .env*
-supabase
 README.md
 AGENTS.md

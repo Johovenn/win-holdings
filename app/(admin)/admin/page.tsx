@@ -7,7 +7,7 @@ import {
     LogOut,
     Newspaper,
 } from "lucide-react";
-import { createClient } from "@/lib/supabase/server";
+import { getCurrentUser, signOut } from "@/lib/auth";
 
 type DashboardCard = {
     title: string;
@@ -38,14 +38,9 @@ const dashboardCards: DashboardCard[] = [
 ];
 
 export default async function AdminDashboardPage() {
-    const supabase = await createClient();
+    const user = await getCurrentUser();
 
-    const {
-        data: { user },
-        error,
-    } = await supabase.auth.getUser();
-
-    if (error || !user) {
+    if (!user) {
         redirect("/admin/login");
     }
 
@@ -131,9 +126,7 @@ function AdminCard({ card }: { card: DashboardCard }) {
 async function signOutAction() {
     "use server";
 
-    const supabase = await createClient();
-
-    await supabase.auth.signOut();
+    await signOut();
 
     redirect("/admin/login");
 }

@@ -2,12 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { query } from "@/lib/db";
+import { requireAdmin } from "@/lib/auth";
 
 type CareerStatus = "draft" | "published" | "closed";
 
 export async function createCareerAction(formData: FormData) {
-    const { supabase, userId } = await requireAdmin();
+    const { id: userId } = await requireAdmin();
 
     const title = getText(formData, "title");
     const slugInput = getText(formData, "slug");
@@ -27,23 +28,16 @@ export async function createCareerAction(formData: FormData) {
 
     const now = new Date().toISOString();
 
-    const { error } = await supabase.from("careers").insert({
-        title,
-        slug,
-        department: department || null,
-        location: location || null,
-        employment_type: employmentType || null,
-        description,
-        requirements: requirements || null,
-        status,
-        closing_date: closingDate || null,
-        created_by: userId,
-        created_at: now,
-        updated_at: now,
-    });
-
-    if (error) {
-        redirect(`/admin/careers?error=${getDatabaseErrorCode(error.code)}`);
+    try {
+        await query(
+            `INSERT INTO careers (title, slug, department, location, employment_type,
+             description, requirements, status, closing_date, created_by, created_at, updated_at)
+             VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`,
+            [title, slug, department || null, location || null, employmentType || null,
+                description, requirements || null, status, closingDate || null, userId, now, now],
+        );
+    } catch (error) {
+        redirect(`/admin/careers?error=${getDatabaseErrorCode(error)}`);
     }
 
     revalidatePath("/admin/careers");
@@ -53,7 +47,7 @@ export async function createCareerAction(formData: FormData) {
 }
 
 export async function updateCareerAction(formData: FormData) {
-    const { supabase } = await requireAdmin();
+    await requireAdmin();
 
     const id = getText(formData, "id");
     const title = getText(formData, "title");
@@ -74,24 +68,16 @@ export async function updateCareerAction(formData: FormData) {
 
     const now = new Date().toISOString();
 
-    const { error } = await supabase
-        .from("careers")
-        .update({
-            title,
-            slug,
-            department: department || null,
-            location: location || null,
-            employment_type: employmentType || null,
-            description,
-            requirements: requirements || null,
-            status,
-            closing_date: closingDate || null,
-            updated_at: now,
-        })
-        .eq("id", id);
-
-    if (error) {
-        redirect(`/admin/careers?error=${getDatabaseErrorCode(error.code)}`);
+    try {
+        await query(
+            `UPDATE careers SET title=$1, slug=$2, department=$3, location=$4,
+             employment_type=$5, description=$6, requirements=$7, status=$8,
+             closing_date=$9, updated_at=$10 WHERE id=$11`,
+            [title, slug, department || null, location || null, employmentType || null,
+                description, requirements || null, status, closingDate || null, now, id],
+        );
+    } catch (error) {
+        redirect(`/admin/careers?error=${getDatabaseErrorCode(error)}`);
     }
 
     revalidatePath("/admin/careers");
@@ -101,7 +87,7 @@ export async function updateCareerAction(formData: FormData) {
 }
 
 export async function deleteCareerAction(formData: FormData) {
-    const { supabase } = await requireAdmin();
+    await requireAdmin();
 
     const id = getText(formData, "id");
 
@@ -109,12 +95,9 @@ export async function deleteCareerAction(formData: FormData) {
         redirect("/admin/careers?error=missing_fields");
     }
 
-    const { error } = await supabase
-        .from("careers")
-        .delete()
-        .eq("id", id);
-
-    if (error) {
+    try {
+        await query("DELETE FROM careers WHERE id = $1", [id]);
+    } catch {
         redirect("/admin/careers?error=delete_failed");
     }
 
@@ -122,36 +105,6 @@ export async function deleteCareerAction(formData: FormData) {
     revalidatePath("/career");
 
     redirect("/admin/careers?success=deleted");
-}
-
-async function requireAdmin() {
-    const supabase = await createClient();
-
-    const {
-        data: { user },
-        error,
-    } = await supabase.auth.getUser();
-
-    if (error || !user) {
-        redirect("/admin/login");
-    }
-
-    const { data: adminUser, error: adminError } = await supabase
-        .from("admin_users")
-        .select("user_id")
-        .eq("user_id", user.id)
-        .maybeSingle();
-
-    if (adminError || !adminUser) {
-        await supabase.auth.signOut();
-
-        redirect("/admin/login?error=not_authorized");
-    }
-
-    return {
-        supabase,
-        userId: user.id,
-    };
 }
 
 function getText(formData: FormData, key: string) {
@@ -182,8 +135,8 @@ function slugify(value: string) {
         .replace(/^-|-$/g, "");
 }
 
-function getDatabaseErrorCode(code?: string) {
-    if (code === "23505") {
+function getDatabaseErrorCode(error: unknown) {
+    if (typeof error === "object" && error !== null && "code" in error && error.code === "23505") {
         return "duplicate_slug";
     }
 

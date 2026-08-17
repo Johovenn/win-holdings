@@ -1,11 +1,9 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { query } from "@/lib/db";
 
 export async function createCareerApplicationAction(formData: FormData) {
-    const supabase = await createClient();
-
     const careerId = getText(formData, "career_id");
     const careerSlug = getText(formData, "career_slug");
     const careerTitle = getText(formData, "career_title");
@@ -25,20 +23,17 @@ export async function createCareerApplicationAction(formData: FormData) {
         redirect("/career?error=invalid_email");
     }
 
-    const { error } = await supabase.from("career_applications").insert({
-        career_id: careerId || null,
-        career_slug: careerSlug,
-        career_title: careerTitle,
-        full_name: fullName,
-        email,
-        phone: phone || null,
-        linkedin_url: linkedinUrl || null,
-        portfolio_url: portfolioUrl || null,
-        message: message || null,
-        status: "new",
-    });
-
-    if (error) {
+    try {
+        await query(
+            `INSERT INTO career_applications
+             (career_id, career_slug, career_title, full_name, email, phone,
+              linkedin_url, portfolio_url, message, status)
+             VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
+            [careerId || null, careerSlug, careerTitle, fullName, email,
+                phone || null, linkedinUrl || null, portfolioUrl || null,
+                message || null, "new"],
+        );
+    } catch {
         redirect("/career?error=application_failed");
     }
 

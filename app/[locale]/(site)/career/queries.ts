@@ -1,7 +1,7 @@
 import "server-only";
 
 import { getTranslations } from "next-intl/server";
-import { createClient } from "@/lib/supabase/server";
+import { query } from "@/lib/db";
 
 export type Career = {
     id: string;
@@ -18,22 +18,21 @@ export type Career = {
 };
 
 export async function getCareers(): Promise<Career[]> {
-    const supabase = await createClient();
-
-    const { data, error } = await supabase
-        .from("careers")
-        .select(
-            "id, title, slug, department, location, employment_type, description, requirements, status, closing_date, created_at",
-        )
-        .eq("status", "published")
-        .order("created_at", { ascending: false });
-
-    if (error) {
+    const result = await query<Career>(
+        `SELECT id, title, slug, department, location, employment_type,
+                description, requirements, status, closing_date, created_at
+         FROM careers WHERE status = $1 ORDER BY created_at DESC`,
+        ["published"],
+    ).catch((error) => {
         console.error("Failed to fetch careers:", error.message);
+        return null;
+    });
+
+    if (!result) {
         return getFallbackCareers();
     }
 
-    return (data ?? []) as Career[];
+    return result.rows;
 }
 
 async function getFallbackCareers(): Promise<Career[]> {

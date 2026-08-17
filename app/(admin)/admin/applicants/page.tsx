@@ -7,7 +7,7 @@ import {
     Phone,
     User,
 } from "lucide-react";
-import { createClient } from "@/lib/supabase/server";
+import { query } from "@/lib/db";
 
 type Applicant = {
     id: string;
@@ -24,16 +24,13 @@ type Applicant = {
 };
 
 export default async function AdminApplicantsPage() {
-    const supabase = await createClient();
-
-    const { data, error } = await supabase
-        .from("career_applications")
-        .select(
-            "id, career_title, career_slug, full_name, email, phone, linkedin_url, portfolio_url, message, status, created_at",
-        )
-        .order("created_at", { ascending: false });
-
-    const applicants = (data ?? []) as Applicant[];
+    const result = await query<Applicant>(
+        `SELECT id, career_title, career_slug, full_name, email, phone,
+                linkedin_url, portfolio_url, message, status, created_at
+         FROM career_applications ORDER BY created_at DESC`,
+    ).catch(() => null);
+    const error = !result;
+    const applicants = result?.rows ?? [];
 
     return (
         <main className="min-h-screen bg-stone-50 text-neutral-950">

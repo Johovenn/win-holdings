@@ -18,7 +18,7 @@ This file provides repository-specific guidance for coding agents working on WIN
 - `app/components/`: shared UI, layout, news, and career components.
 - `i18n/`: locale routing and request configuration.
 - `messages/`: translation catalogs; keep `en.json` and `zh.json` structurally aligned.
-- `lib/supabase/`: browser and server Supabase client factories.
+- `lib/db.ts` and `lib/auth.ts`: server-only PostgreSQL access and sessions.
 - `lib/site.ts`: shared site data and navigation definitions.
 - `public/images/`: static site imagery.
 
