@@ -1,0 +1,129 @@
+
+> win-holdings@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.105:3000
+- Environments: .env.local
+✓ Ready in 879ms
+Creating turbopack project {
+  dir: 'C:\\Users\\jogun\\Documents\\GitHub\\win-holdings',
+  testMode: true
+}
+
+ GET /en 200 in 3.4s (next.js: 1382ms, proxy.ts: 357ms, generate-params: 1158ms, application-code: 1689ms)
+ GET /en 200 in 556ms (next.js: 45ms, proxy.ts: 30ms, generate-params: 22ms, application-code: 481ms)
+○ Compiling /[locale]/about ...
+ GET /en/about 200 in 5.1s (next.js: 4.6s, proxy.ts: 10ms, generate-params: 1009ms, application-code: 453ms)
+ GET /en 200 in 208ms (next.js: 17ms, proxy.ts: 6ms, generate-params: 8ms, application-code: 185ms)
+ GET /en 200 in 172ms (next.js: 15ms, proxy.ts: 6ms, generate-params: 7ms, application-code: 152ms)
+ GET /en 200 in 154ms (next.js: 8ms, proxy.ts: 5ms, generate-params: 36µs, application-code: 140ms)
+ GET /en 200 in 180ms (next.js: 9ms, proxy.ts: 4ms, generate-params: 53µs, application-code: 167ms)
+ GET /zh 200 in 167ms (next.js: 14ms, proxy.ts: 4ms, generate-params: 7ms, application-code: 149ms)
+✓ Compiled in 148ms
+ GET /en 200 in 1131ms (next.js: 213ms, proxy.ts: 156ms, generate-params: 10ms, application-code: 761ms)
+ GET /en 200 in 557ms (next.js: 195ms, proxy.ts: 23ms, generate-params: 109µs, application-code: 339ms)
+ GET /en/about 200 in 975ms (next.js: 473ms, proxy.ts: 8ms, generate-params: 9ms, application-code: 494ms)
+ GET /en/about 200 in 386ms (next.js: 173ms, proxy.ts: 22ms, generate-params: 40µs, application-code: 190ms)
+ GET /en/about 200 in 734ms (next.js: 30ms, proxy.ts: 11ms, generate-params: 15ms, application-code: 693ms)
+ GET /en 200 in 186ms (next.js: 21ms, proxy.ts: 5ms, generate-params: 10ms, application-code: 160ms)
+ GET /images/business-portfolio-bg.jpeg 404 in 976ms (next.js: 888ms, application-code: 88ms)
+ GET /en/news 200 in 1923ms (next.js: 1801ms, proxy.ts: 5ms, generate-params: 740ms, application-code: 117ms)
+ GET /en/career 200 in 1614ms (next.js: 1531ms, proxy.ts: 5ms, generate-params: 693ms, application-code: 78ms)
+ GET /zh/career 200 in 112ms (next.js: 20ms, proxy.ts: 6ms, generate-params: 10ms, application-code: 86ms)
+ GET /en/career 200 in 123ms (next.js: 15ms, proxy.ts: 5ms, generate-params: 7ms, application-code: 104ms)
+ GET /admin 307 in 651ms (next.js: 529ms, application-code: 123ms)
+ GET /admin/login 200 in 588ms (next.js: 434ms, application-code: 154ms)
+ GET /admin/login?error=invalid_credentials 200 in 67ms (next.js: 8ms, application-code: 59ms)
+ POST /admin/login 303 in 183ms (next.js: 8ms, application-code: 174ms)
+  └─ ƒ signInAction({}) in 69ms app/(auth)/admin/login/actions.ts
+ GET /admin 200 in 96ms (next.js: 5ms, application-code: 91ms)
+ POST /admin/login?error=invalid_credentials 303 in 302ms (next.js: 6ms, application-code: 296ms)
+  └─ ƒ signInAction({}) in 184ms app/(auth)/admin/login/actions.ts
+ GET /admin/news 200 in 791ms (next.js: 715ms, application-code: 76ms)
+ GET /en 200 in 651ms (next.js: 38ms, proxy.ts: 9ms, generate-params: 19ms, application-code: 605ms)
+ GET /admin/news?success=created 200 in 105ms (next.js: 6ms, application-code: 99ms)
+ POST /admin/news 303 in 295ms (next.js: 7ms, application-code: 288ms)
+  └─ ƒ createNewsAction({}) in 164ms app/(admin)/admin/news/actions.ts
+ GET /admin 200 in 45ms (next.js: 7ms, application-code: 38ms)
+ GET /admin/careers 200 in 481ms (next.js: 426ms, application-code: 55ms)
+ GET /admin/careers?success=created 200 in 97ms (next.js: 6ms, application-code: 92ms)
+ POST /admin/careers 303 in 176ms (next.js: 6ms, application-code: 170ms)
+  └─ ƒ createCareerAction({}) in 58ms app/(admin)/admin/careers/actions.ts
+ GET /admin 200 in 41ms (next.js: 6ms, application-code: 34ms)
+ GET /admin/login 200 in 46ms (next.js: 5ms, application-code: 41ms)
+ POST /admin 303 in 105ms (next.js: 5ms, application-code: 100ms)
+  └─ ƒ <inline action>() in 41ms app/(admin)/admin/page.tsx
+ GET /en 200 in 112ms (next.js: 16ms, proxy.ts: 4ms, generate-params: 8ms, application-code: 92ms)
+ GET /images/business-portfolio-bg.jpeg 404 in 113ms (next.js: 18ms, application-code: 95ms)
+ GET /en/news/lorem-ipsum 200 in 1351ms (next.js: 1236ms, proxy.ts: 4ms, application-code: 111ms)
+ GET /en/news 200 in 70ms (next.js: 15ms, proxy.ts: 4ms, generate-params: 7ms, application-code: 51ms)
+  Reload env: .env.local
+  Reload env: .env.local
+ GET /en/news 200 in 2.8s (next.js: 432ms, proxy.ts: 492ms, generate-params: 10ms, application-code: 1900ms)
+ GET /en/news 200 in 1683ms (next.js: 574ms, proxy.ts: 378ms, generate-params: 8ms, application-code: 731ms)
+ GET /en 200 in 804ms (next.js: 473ms, proxy.ts: 156ms, generate-params: 105µs, application-code: 176ms)
+ GET /en 200 in 3.0s (next.js: 214ms, proxy.ts: 454ms, generate-params: 7ms, application-code: 2.4s)
+ GET /en 200 in 1930ms (next.js: 622ms, proxy.ts: 249ms, generate-params: 7ms, application-code: 1059ms)
+  Reload env: .env.local
+✓ Compiled in 156ms
+ GET /en/news 200 in 3.3s (next.js: 691ms, proxy.ts: 11ms, generate-params: 35µs, application-code: 2.6s)
+ GET /en 500 in 3.3s (next.js: 653ms, proxy.ts: 10ms, generate-params: 41µs, application-code: 2.7s)
+  Reload env: .env.local
+✓ Compiled in 93ms
+ GET /en 200 in 631ms (next.js: 490ms, proxy.ts: 52ms, generate-params: 100µs, application-code: 89ms)
+ GET /en 200 in 1411ms (next.js: 213ms, proxy.ts: 157ms, generate-params: 9ms, application-code: 1041ms)
+ GET /en/news 200 in 730ms (next.js: 468ms, proxy.ts: 165ms, generate-params: 210µs, application-code: 96ms)
+ GET /en/news 200 in 1541ms (next.js: 482ms, proxy.ts: 158ms, generate-params: 11ms, application-code: 900ms)
+ GET /en/news 200 in 1528ms (next.js: 661ms, proxy.ts: 12ms, generate-params: 26µs, application-code: 855ms)
+ GET /en 200 in 1547ms (next.js: 801ms, proxy.ts: 14ms, generate-params: 31µs, application-code: 733ms)
+  Reload env: .env.local
+✓ Compiled in 3ms
+  Reload env: .env.local
+ GET /en/news 200 in 1260ms (next.js: 151ms, proxy.ts: 334ms, generate-params: 22µs, application-code: 775ms)
+ GET /en 200 in 2.0s (next.js: 165ms, proxy.ts: 207ms, generate-params: 8ms, application-code: 1654ms)
+ GET /en 200 in 1264ms (next.js: 113ms, proxy.ts: 333ms, generate-params: 24µs, application-code: 818ms)
+ GET /en/news 200 in 1047ms (next.js: 578ms, proxy.ts: 416ms, generate-params: 55µs, application-code: 52ms)
+ GET /en 200 in 1088ms (next.js: 370ms, proxy.ts: 415ms, generate-params: 7ms, application-code: 303ms)
+ GET /en/news 200 in 1087ms (next.js: 533ms, proxy.ts: 416ms, generate-params: 44µs, application-code: 138ms)
+ GET /en/news 200 in 1090ms (next.js: 465ms, proxy.ts: 415ms, generate-params: 8ms, application-code: 210ms)
+ GET /en/news 200 in 2.5s (next.js: 397ms, proxy.ts: 206ms, generate-params: 7ms, application-code: 1893ms)
+ GET /en/news 200 in 2.5s (next.js: 601ms, proxy.ts: 140ms, generate-params: 24µs, application-code: 1763ms)
+ GET /en 200 in 2.5s (next.js: 569ms, proxy.ts: 138ms, generate-params: 46µs, application-code: 1807ms)
+  Reload env: .env.local
+ GET /en 200 in 1359ms (next.js: 175ms, proxy.ts: 120ms, generate-params: 8ms, application-code: 1064ms)
+ GET /en 200 in 662ms (next.js: 399ms, proxy.ts: 154ms, generate-params: 11ms, application-code: 109ms)
+ GET /en/news 200 in 1542ms (next.js: 442ms, proxy.ts: 121ms, generate-params: 7ms, application-code: 979ms)
+ GET /en/news 200 in 711ms (next.js: 461ms, proxy.ts: 154ms, generate-params: 33µs, application-code: 96ms)
+ GET /en/news 200 in 1489ms (next.js: 791ms, proxy.ts: 9ms, generate-params: 73µs, application-code: 689ms)
+ GET /en 200 in 1496ms (next.js: 743ms, proxy.ts: 8ms, generate-params: 27µs, application-code: 745ms)
+  Reload env: .env.local
+ GET /en 200 in 1537ms (next.js: 216ms, proxy.ts: 159ms, generate-params: 9ms, application-code: 1163ms)
+ GET /en/news 200 in 1607ms (next.js: 517ms, proxy.ts: 124ms, generate-params: 8ms, application-code: 965ms)
+ GET /en/news 200 in 790ms (next.js: 459ms, proxy.ts: 239ms, generate-params: 42µs, application-code: 92ms)
+ GET /en/news 200 in 1521ms (next.js: 929ms, proxy.ts: 11ms, generate-params: 39µs, application-code: 581ms)
+ GET /en 200 in 1527ms (next.js: 735ms, proxy.ts: 10ms, generate-params: 24µs, application-code: 782ms)
+  Reload env: .env
+✓ Compiled in 12ms
+ GET /en/news 200 in 1473ms (next.js: 498ms, proxy.ts: 234ms, generate-params: 28µs, application-code: 741ms)
+ GET /en/news 200 in 2.4s (next.js: 514ms, proxy.ts: 157ms, generate-params: 12ms, application-code: 1733ms)
+ GET /en 200 in 2.4s (next.js: 205ms, proxy.ts: 157ms, generate-params: 8ms, application-code: 2.0s)
+ GET /en 200 in 1514ms (next.js: 448ms, proxy.ts: 232ms, generate-params: 7ms, application-code: 834ms)
+ GET /en/news 200 in 631ms (next.js: 298ms, proxy.ts: 45ms, generate-params: 28µs, application-code: 288ms)
+ GET /en/news 200 in 635ms (next.js: 182ms, proxy.ts: 43ms, generate-params: 8ms, application-code: 410ms)
+ GET /en/news 200 in 636ms (next.js: 231ms, proxy.ts: 44ms, generate-params: 29µs, application-code: 360ms)
+ GET /en 200 in 641ms (next.js: 99ms, proxy.ts: 42ms, generate-params: 60µs, application-code: 500ms)
+ GET /en/news 200 in 2.3s (next.js: 856ms, proxy.ts: 15ms, generate-params: 52µs, application-code: 1477ms)
+ GET /en 200 in 2.4s (next.js: 777ms, proxy.ts: 14ms, generate-params: 64µs, application-code: 1576ms)
+  Reload env: .env
+ GET /en 200 in 1354ms (next.js: 183ms, proxy.ts: 160ms, generate-params: 7ms, application-code: 1012ms)
+ GET /en/news 200 in 1398ms (next.js: 442ms, proxy.ts: 160ms, generate-params: 11ms, application-code: 795ms)
+ GET /en/news 200 in 1426ms (next.js: 838ms, proxy.ts: 11ms, generate-params: 80µs, application-code: 578ms)
+ GET /en 200 in 1558ms (next.js: 648ms, proxy.ts: 124ms, generate-params: 41µs, application-code: 786ms)
+✓ Finished filesystem cache database compaction in 11.3s
+ GET /images/business-portfolio-bg.jpeg 404 in 114ms (next.js: 50ms, application-code: 63ms)
+ GET /en 200 in 264ms (next.js: 23ms, proxy.ts: 4ms, generate-params: 11ms, application-code: 237ms)
+ GET /en 200 in 207ms (next.js: 10ms, proxy.ts: 5ms, generate-params: 33µs, application-code: 193ms)
+ GET /zh 200 in 212ms (next.js: 10ms, proxy.ts: 4ms, generate-params: 25µs, application-code: 198ms)
+ GET /admin/login 200 in 214ms (next.js: 33ms, application-code: 181ms)

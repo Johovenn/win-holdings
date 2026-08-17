@@ -9,7 +9,7 @@ import {
     Plus,
     Trash2,
 } from "lucide-react";
-import { createClient } from "@/lib/supabase/server";
+import { query } from "@/lib/db";
 import {
     createNewsAction,
     deleteNewsAction,
@@ -48,16 +48,13 @@ export default async function AdminNewsPage({
     searchParams?: SearchParams | Promise<SearchParams>;
 }) {
     const params = await Promise.resolve(searchParams ?? {});
-    const supabase = await createClient();
-
-    const { data, error } = await supabase
-        .from("news")
-        .select(
-            "id, title, slug, excerpt, content, category, status, published_at, created_at, updated_at",
-        )
-        .order("created_at", { ascending: false });
-
-    const newsItems = (data ?? []) as NewsRow[];
+    const result = await query<NewsRow>(
+        `SELECT id, title, slug, excerpt, content, category, status,
+                published_at, created_at, updated_at
+         FROM news ORDER BY created_at DESC`,
+    ).catch(() => null);
+    const error = !result;
+    const newsItems = result?.rows ?? [];
 
     const totalNews = newsItems.length;
     const publishedNews = newsItems.filter(

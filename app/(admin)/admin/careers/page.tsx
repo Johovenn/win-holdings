@@ -10,7 +10,7 @@ import {
     Plus,
     Trash2,
 } from "lucide-react";
-import { createClient } from "@/lib/supabase/server";
+import { query } from "@/lib/db";
 import {
     createCareerAction,
     deleteCareerAction,
@@ -51,16 +51,13 @@ export default async function AdminCareersPage({
     searchParams?: SearchParams | Promise<SearchParams>;
 }) {
     const params = await Promise.resolve(searchParams ?? {});
-    const supabase = await createClient();
-
-    const { data, error } = await supabase
-        .from("careers")
-        .select(
-            "id, title, slug, department, location, employment_type, description, requirements, status, closing_date, created_at, updated_at",
-        )
-        .order("created_at", { ascending: false });
-
-    const careerItems = (data ?? []) as CareerRow[];
+    const result = await query<CareerRow>(
+        `SELECT id, title, slug, department, location, employment_type,
+                description, requirements, status, closing_date, created_at, updated_at
+         FROM careers ORDER BY created_at DESC`,
+    ).catch(() => null);
+    const error = !result;
+    const careerItems = result?.rows ?? [];
 
     const totalCareers = careerItems.length;
     const publishedCareers = careerItems.filter(

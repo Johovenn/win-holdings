@@ -10,7 +10,7 @@ import {
     Newspaper,
     Tag,
 } from "lucide-react";
-import { createClient } from "@/lib/supabase/server";
+import { query } from "@/lib/db";
 import { useTranslations } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 
@@ -99,45 +99,40 @@ export default async function NewsSlugPage({
 }
 
 async function getNewsBySlug(slug: string): Promise<News | null> {
-    const supabase = await createClient();
+    const result = await query<News>(
+        `SELECT id, title, slug, excerpt, content, category, status,
+                published_at, created_at, updated_at
+         FROM news WHERE slug = $1 AND status = $2 LIMIT 1`,
+        [slug, "published"],
+    ).catch((error) => {
+        console.error("Failed to fetch news article:", error instanceof Error ? error.message : error);
+        return null;
+    });
 
-    const { data, error } = await supabase
-        .from("news")
-        .select(
-            "id, title, slug, excerpt, content, category, status, published_at, created_at, updated_at",
-        )
-        .eq("slug", slug)
-        .eq("status", "published")
-        .maybeSingle();
-
-    if (error) {
-        console.error("Failed to fetch news article:", error.message);
+    if (!result) {
         return null;
     }
 
-    return data as News | null;
+    return result.rows[0] ?? null;
 }
 
 async function getRecentNews(currentNewsId: string): Promise<News[]> {
-    const supabase = await createClient();
+    const result = await query<News>(
+        `SELECT id, title, slug, excerpt, content, category, status,
+                published_at, created_at, updated_at
+         FROM news WHERE status = $1 AND id <> $2
+         ORDER BY published_at DESC NULLS LAST, created_at DESC LIMIT 3`,
+        ["published", currentNewsId],
+    ).catch((error) => {
+        console.error("Failed to fetch recent news:", error instanceof Error ? error.message : error);
+        return null;
+    });
 
-    const { data, error } = await supabase
-        .from("news")
-        .select(
-            "id, title, slug, excerpt, content, category, status, published_at, created_at, updated_at",
-        )
-        .eq("status", "published")
-        .neq("id", currentNewsId)
-        .order("published_at", { ascending: false, nullsFirst: false })
-        .order("created_at", { ascending: false })
-        .limit(3);
-
-    if (error) {
-        console.error("Failed to fetch recent news:", error.message);
+    if (!result) {
         return [];
     }
 
-    return (data ?? []) as News[];
+    return result.rows;
 }
 
 function SectionContainer({

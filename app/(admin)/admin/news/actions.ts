@@ -2,12 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { query } from "@/lib/db";
+import { requireAdmin } from "@/lib/auth";
 
 type NewsStatus = "draft" | "published";
 
 export async function createNewsAction(formData: FormData) {
-    const { supabase, userId } = await requireAdmin();
+    const { id: userId } = await requireAdmin();
 
     const title = getText(formData, "title");
     const slugInput = getText(formData, "slug");
@@ -24,21 +25,16 @@ export async function createNewsAction(formData: FormData) {
 
     const now = new Date().toISOString();
 
-    const { error } = await supabase.from("news").insert({
-        title,
-        slug,
-        excerpt: excerpt || null,
-        content,
-        category: category || null,
-        status,
-        published_at: status === "published" ? now : null,
-        created_by: userId,
-        created_at: now,
-        updated_at: now,
-    });
-
-    if (error) {
-        redirect(`/admin/news?error=${getDatabaseErrorCode(error.code)}`);
+    try {
+        await query(
+            `INSERT INTO news (title, slug, excerpt, content, category, status,
+             published_at, created_by, created_at, updated_at)
+             VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
+            [title, slug, excerpt || null, content, category || null, status,
+                status === "published" ? now : null, userId, now, now],
+        );
+    } catch (error) {
+        redirect(`/admin/news?error=${getDatabaseErrorCode(error)}`);
     }
 
     revalidatePath("/admin/news");
@@ -49,7 +45,7 @@ export async function createNewsAction(formData: FormData) {
 }
 
 export async function updateNewsAction(formData: FormData) {
-    const { supabase } = await requireAdmin();
+    await requireAdmin();
 
     const id = getText(formData, "id");
     const title = getText(formData, "title");
@@ -65,13 +61,11 @@ export async function updateNewsAction(formData: FormData) {
         redirect("/admin/news?error=missing_fields");
     }
 
-    const { data: existingNews, error: existingError } = await supabase
-        .from("news")
-        .select("published_at")
-        .eq("id", id)
-        .maybeSingle();
+    const existingResult = await query<{ published_at: string | null }>(
+        "SELECT published_at FROM news WHERE id = $1 LIMIT 1", [id]);
+    const existingNews = existingResult.rows[0];
 
-    if (existingError || !existingNews) {
+    if (!existingNews) {
         redirect("/admin/news?error=not_found");
     }
 
@@ -82,22 +76,15 @@ export async function updateNewsAction(formData: FormData) {
             ? existingNews.published_at ?? now
             : null;
 
-    const { error } = await supabase
-        .from("news")
-        .update({
-            title,
-            slug,
-            excerpt: excerpt || null,
-            content,
-            category: category || null,
-            status,
-            published_at: nextPublishedAt,
-            updated_at: now,
-        })
-        .eq("id", id);
-
-    if (error) {
-        redirect(`/admin/news?error=${getDatabaseErrorCode(error.code)}`);
+    try {
+        await query(
+            `UPDATE news SET title=$1, slug=$2, excerpt=$3, content=$4,
+             category=$5, status=$6, published_at=$7, updated_at=$8 WHERE id=$9`,
+            [title, slug, excerpt || null, content, category || null, status,
+                nextPublishedAt, now, id],
+        );
+    } catch (error) {
+        redirect(`/admin/news?error=${getDatabaseErrorCode(error)}`);
     }
 
     revalidatePath("/admin/news");
@@ -108,7 +95,7 @@ export async function updateNewsAction(formData: FormData) {
 }
 
 export async function deleteNewsAction(formData: FormData) {
-    const { supabase } = await requireAdmin();
+    await requireAdmin();
 
     const id = getText(formData, "id");
 
@@ -116,12 +103,9 @@ export async function deleteNewsAction(formData: FormData) {
         redirect("/admin/news?error=missing_fields");
     }
 
-    const { error } = await supabase
-        .from("news")
-        .delete()
-        .eq("id", id);
-
-    if (error) {
+    try {
+        await query("DELETE FROM news WHERE id = $1", [id]);
+    } catch {
         redirect("/admin/news?error=delete_failed");
     }
 
@@ -130,36 +114,6 @@ export async function deleteNewsAction(formData: FormData) {
     revalidatePath("/");
 
     redirect("/admin/news?success=deleted");
-}
-
-async function requireAdmin() {
-    const supabase = await createClient();
-
-    const {
-        data: { user },
-        error,
-    } = await supabase.auth.getUser();
-
-    if (error || !user) {
-        redirect("/admin/login");
-    }
-
-    const { data: adminUser, error: adminError } = await supabase
-        .from("admin_users")
-        .select("user_id")
-        .eq("user_id", user.id)
-        .maybeSingle();
-
-    if (adminError || !adminUser) {
-        await supabase.auth.signOut();
-
-        redirect("/admin/login?error=not_authorized");
-    }
-
-    return {
-        supabase,
-        userId: user.id,
-    };
 }
 
 function getText(formData: FormData, key: string) {
@@ -182,8 +136,8 @@ function slugify(value: string) {
         .replace(/^-|-$/g, "");
 }
 
-function getDatabaseErrorCode(code?: string) {
-    if (code === "23505") {
+function getDatabaseErrorCode(error: unknown) {
+    if (typeof error === "object" && error !== null && "code" in error && error.code === "23505") {
         return "duplicate_slug";
     }
 
