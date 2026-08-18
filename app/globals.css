@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+body {
+    font-family: "Inter Variable", Arial, sans-serif;
+}
+
 :lang(zh) {
+    font-family: "Noto Sans SC Variable", "Microsoft YaHei", sans-serif;
     letter-spacing: 0.01em;
 }

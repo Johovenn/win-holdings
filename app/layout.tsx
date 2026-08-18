@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter } from "next/font/google";
-
-const inter = Inter({
-  subsets: ["latin"],
-});
+import "@fontsource-variable/inter";
 
 export const metadata: Metadata = {
   title: "WIN Holdings",
@@ -21,7 +17,7 @@ export default function RootLayout({
       lang="en"
       className={`h-full antialiased`}
     >
-      <body className={inter.className}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
