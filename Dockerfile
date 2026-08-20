@@ -6,7 +6,14 @@ ENV NEXT_TELEMETRY_DISABLED=1
 
 FROM base AS dependencies
 COPY package.json package-lock.json ./
-RUN npm ci
+# npm lockfiles generated on Windows can omit Lightning CSS's Linux optional
+# package. Install the native binary explicitly for the Docker architecture.
+RUN npm ci --include=optional \
+    && case "$(uname -m)" in \
+        aarch64) npm install --no-save --package-lock=false lightningcss-linux-arm64-musl@1.32.0 ;; \
+        x86_64) npm install --no-save --package-lock=false lightningcss-linux-x64-musl@1.32.0 ;; \
+        *) echo "Unsupported Alpine architecture: $(uname -m)" && exit 1 ;; \
+    esac
 
 FROM base AS builder
 COPY --from=dependencies /app/node_modules ./node_modules
